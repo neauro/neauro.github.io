@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>[Q&a] Standard Annotation Language (SAL) - liwanag</title>
+  <meta name="author" content="nadine a.">
+
+  
+  <meta name="description" content="What does __inout, etc. mean?For OS I&#8217;m plumbing the depths of a Windows kernel and keep running into these things in the code that look like &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://neauro.github.io/blog/2011/01/16/q-standard-annotation-language-sal">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="liwanag" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Metrophobic:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46467190-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">liwanag</a></h1>
+  
+    <h2>things i learn, things i like</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:neauro.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">[Q&a] Standard Annotation Language (SAL)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-16T00:00:00-08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+<span class="sig">What does <code>__inout</code>, etc. mean?</span><br />For OS I&#8217;m plumbing the depths of a Windows kernel and keep running into these things in the code that look like <code>__in</code>, or <code>__out</code>, or even <code>__inout</code>&#8230;for example:<br /><br /><pre class="brush:xml">NTKERNELAPI<br />VOID<br />FASTCALL<br />ExAcquireFastMutexUnsafe (<br />    __inout PFAST_MUTEX FastMutex<br />    );<br /></pre><br />I initially found <a href="http://nuubu.blogspot.com/2011/01/q-operating-systems-etc.html">something</a> about the usage of <code>_</code> and <code>__</code> in code, and it turns out that <code>__</code> is just an annotation which will help programmers know more about the intended usage of the code, like comments, and are ignored by the compiler.  <code>__inout</code> stuff is no different.<br /><br />These annotations are part of Microsoft&#8217;s SAL, or, Standard Annotation Language, and define the proper use of buffers, which are regions of data that have been allocated and are represented as pointers.  If a pointer is pointing to a buffer, there&#8217;s no good way to know how big a buffer is in compile time; with usage of SAL, you can make explicit exactly how big a buffer is.  It also helps to show how a function uses its parameters &#8211; what it thinks that the parameter is, and what it will do with that parameter when it finishes.<br /><br />This is relevant because in C, a function can take a value or a pointer as an argument.  Arguments can be used as input (i.e. taking values to add together), or as output (i.e. taking a pointer to something which will store your output value.) But, if you were to leave out these annotations, you wouldn&#8217;t know if an argument a function takes is supposed to be used as function input or output.<br /><br /><code>__in</code>, <code>__out</code>, and <code>__inout</code> are all examples of &#8220;Usage&#8221; annotations.<br /><br />So, if you see something like<br /><br /><pre class="brush: xml">void * memset(<br /> __out_bcount(s) char *p,<br /> __in int v, <br /> __in size_t s);<br /></pre><br />This means that the function <code>memset</code> expects variables <code>int v</code> and <code>size_t s</code> to be valid when the function is called (also called &#8220;valid on input&#8221;).  Also, the buffer <code>char *p</code> will be initialized by this function, will be written to by this function, and will be valid when the function returns.<br /><br />In simpler terms &#8211; <code>v</code> and <code>s</code> are definitely meant to be <code>memset</code>&#8217;s input, and <code>p</code> is meant to be the output.<br /><br /><br />Sources:<br /><a href="http://207.46.16.248/en-us/library/ff550230%28VS.85%29.aspx">MSDN: Overview of Annotations for Drivers</a><br /><a href="http://msdn.microsoft.com/en-us/library/ms235402%28v=vs.80%29.aspx">MSDN: SAL Annotations</a><br /><a href="http://blogs.msdn.com/b/michael_howard/archive/2006/05/19/602077.aspx">MSDN: A Brief Introduction to the Standard Annotation Language</a></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">nadine a.</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-16T00:00:00-08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://neauro.github.io/blog/2011/01/16/q-standard-annotation-language-sal/" data-via="" data-counturl="http://neauro.github.io/blog/2011/01/16/q-standard-annotation-language-sal/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/01/14/q-semaphore-mutex/" title="Previous Post: [q&a] semaphore, mutex">&laquo; [q&a] semaphore, mutex</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/01/18/last-night-andou-asked-me-if-you/" title="Next Post: Last night Andou asked me, If you started writing a book right now, what would it be about?">Last night Andou asked me, If you started writing a book right now, what would it be about? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  I'm Nadine. I like various things.  
+</section>
+<section>
+  <h1>Other Places</h1>
+  <ul>
+    <li><a href="http://uxunicorn.com">Portfolio</a></li>
+    <li><a href="http://neauro.tumblr.com">Tumblr</a></li>
+    <li><a href="http://github.com/neauro">Github</a></li>
+    </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - nadine a. -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

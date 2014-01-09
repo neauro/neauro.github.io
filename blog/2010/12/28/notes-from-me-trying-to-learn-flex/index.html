@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Notes From Me Trying to Learn Flex/Flash Builder - liwanag</title>
+  <meta name="author" content="nadine a.">
+
+  
+  <meta name="description" content="Though both Kelly and Nandrew made faces when I said I was trying to learn thisIn General:Flex applications are comprised of MXML and ActionScript. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://neauro.github.io/blog/2010/12/28/notes-from-me-trying-to-learn-flex">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="liwanag" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Metrophobic:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46467190-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">liwanag</a></h1>
+  
+    <h2>things i learn, things i like</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:neauro.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Notes From Me Trying to Learn Flex/Flash Builder</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-28T00:00:00-08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TRmnXZ3Yu1I/AAAAAAAAABs/exbK6RHqHx8/s1600/Flexicon.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="200" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TRmnXZ3Yu1I/AAAAAAAAABs/exbK6RHqHx8/s200/Flexicon.png" width="200" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">Though both Kelly and Nandrew made faces when I said I was trying to learn this</td></tr></tbody></table><br /><strong>In General:</strong><br />Flex applications are comprised of MXML and ActionScript.  MXML/Flex is used for the application interface, and ActionScript is used for the programming logic.  Compiling a project yields a SWF file, which is referenced in an HTML page. When someone looks at the page, the SWF file is downloaded and rendered by Flash Player.<br /><br />When you create a Flex Project in Flash Builder, you&#8217;ll automatically get an MXML file with the same name as the new project.<br /><br />This is the initial code you get in that MXML file:<br /><br /><pre class="brush: xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:application minheight="600" minwidth="955" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark"><br /> <fx:declarations><br />      (non-visual elements like services, value objects are placed here)<br /> </fx:declarations><br /></s:application><br /></pre><br /><code>&lt;s:Application&gt;</code> defines the container for the application; it&#8217;s the root tag in the XML document.<br /><br /><br /><strong>MXML and UI</strong><br />MXML defines what components are in the UI &#8211; Buttons, CheckBoxes, DataGrids (which show lists), etc.  When you look at the MXML file in Flash Builder, two tabs will appear, which will allow you to alter the layout of the application.  You can use the Design tab (when you look at your .mxml file) to add buttons, etc. from the Components bar in the bottom-left, or you can write it buttons manually into the Source with tags that look like <code>&lt;s:Button&gt;</code>, <code>&lt;mx:DataGrid&gt;</code>, etc&#8230;<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TRmdzLInguI/AAAAAAAAABo/aYhA373OJ-g/s1600/flexui.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="172" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TRmdzLInguI/AAAAAAAAABo/aYhA373OJ-g/s320/flexui.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">buttons and stuff, yeeeeh</td></tr></tbody></table><br />Buttons and whatever you make in the Design tab get converted into MXML.  So, looking at the Source tab, this code was generated from my lolsy layout above:<br /><br /><pre class="brush: xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:application minheight="600" minwidth="955" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark"><br /> <fx:declarations><br /><br /> </fx:declarations><br /> <mx:colorpicker x="176" y="119"><br /> <s:button label="button!!" x="284" y="107"><br /> <mx:datagrid x="176" y="160"><br />  <mx:columns><br />   <mx:datagridcolumn datafield="col1" headertext="GET"><br />   <mx:datagridcolumn datafield="col4" headertext="AT"><br />   <mx:datagridcolumn datafield="col2" headertext="MY"><br />   <mx:datagridcolumn datafield="col3" headertext="DATA"><br />  </mx:datagridcolumn></mx:datagridcolumn></mx:datagridcolumn></mx:datagridcolumn></mx:columns><br /> </mx:datagrid><br /> <s:hslider x="170" y="67"><br /> <s:panel height="200" width="250" x="493" y="57"><br /> </s:panel><br /></s:hslider></s:button></mx:colorpicker></s:application><br /></pre><br />It doesn&#8217;t matter what order the components are in within the MXML file because their positions are determined by the <code>x</code> and <code>y</code> attributes.  Other styles can be set this way, like colors &#8211; you can view all of them by clicking inside a tag and pressing CTRL+space.  Alternatively, all the styles can be done by CSS.<br /><br />You can get even more information about the components by clicking Help &gt; Dynamic Help and clicking on whatever component you want.<br /><br />Now you can click on the green arrow and run stuff!  Actually, the first time I tried to run I pressed the small arrow to the right and selected <em>HelloFlex</em>, the name of my test project, and the browser was blank, though you could right-click and it would say <em>About Adobe Flash Player 10</em>, etc&#8230;but it turned out that I just hadn&#8217;t built the workspace, so&#8230;<br /><br />.____.<br /><br />So anyway now everything is in the browser and it&#8217;s clickable!  And also movable and stuff.<br /><br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TRrX3VeaAcI/AAAAAAAAAB0/NE2-8Z9r1a0/s1600/fb4_web.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="225" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TRrX3VeaAcI/AAAAAAAAAB0/NE2-8Z9r1a0/s320/fb4_web.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">LET&#8217;S GO CRAAAAZY</td></tr></tbody></table><br />But nothing happens yet.<br /><br /><br /><strong>MX and Spark Components</strong><br />If you take a closer look at the tags for the components added, you&#8217;ll notice that their namespaces are different &#8211; for instance, the Datagrid tag <code>&lt;mx:DataGrid&gt;</code> has a namespace of <code>mx</code>, whereas the button tag <code>&lt;s:Button&gt;</code> has a namespace of <code>s</code>.<br /><br />This is due to the fact that Flex 4 introduced a new set of components called Spark components, and uses them along with the older components, called MX Components.  Some advantages of the Spark components are that they&#8217;re easy to custom skin.  In general, Flex 4 lets you choose which components you want to use, and you can mix and match, though use Spark components when you can.<br /><br />I found more about Spark components and general Flex 4 stuff <a href="http://insideria.com/2009/06/overview-of-flex-4-gumbo.html">here</a>.<br /><br /><br /><strong>Making the Button Do Something</strong><br />To make the button do something, you&#8217;ll need to take advantage of the fact that buttons emit &#8220;click events&#8221; whenever someone presses them.  Change the <code>&lt;s:Button</code> tag to include a property <code>click="button1_clickHandler(event)"</code>.  Flash Builder should fill in that function name as a default, and also add brand new code right beneath the <code>&lt;s:Application&gt;</code> root node, which looks like this:<br /><br /><pre class="brush: xml"><fx:script><br /> &lt;![CDATA[<br />  protected function button1_clickHandler(event:MouseEvent):void<br />  {<br />   // TODO Auto-generated method stub<br />  }<br /> ]]&gt; <br /></fx:script><br /></pre><br />You can make a pop-up show when someone clicks the button by replacing the commented-out code with <code>Alert.show("LLAMAS")</code>.  Flash Builder should automatically import <code>mx.controls.Alert</code> before the function definition, so that the code should now look something like <br /><br /><pre class="brush: xml"><fx:script><br /> &lt;![CDATA[<br />  import mx.controls.Alert;<br />  protected function button1_clickHandler(event:MouseEvent):void<br />  {<br />   Alert.show("LLAMAS");<br />  }<br /> ]]&gt;<br /></fx:script><br /><br /></pre><br />Then you can (build and) run and click the button to your heart&#8217;s content.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TRrYEOUmO2I/AAAAAAAAAB4/KdU4LJunEG8/s1600/fb4_buttonalert.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="198" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TRrYEOUmO2I/AAAAAAAAAB4/KdU4LJunEG8/s320/fb4_buttonalert.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">WE TOTALLY GOT THIS BRO</td></tr></tbody></table><br /><br /><strong>Creating Application States</strong><br />In a website, you make different files for the different pages that you visit, but an application instead has states.  You can create them by going back to that <strong>Design</strong> tab, then looking for the new <strong>States</strong> window and right-clicking to create a State.<br /><br />For the second state, I put in two new components &#8211; an Image and a Label &#8211; and altered them accordingly with the Properties bar on the right-hand side.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TRrYOr7ITFI/AAAAAAAAAB8/-WFUft_YIVM/s1600/fb4_imgcomp.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="136" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TRrYOr7ITFI/AAAAAAAAAB8/-WFUft_YIVM/s320/fb4_imgcomp.jpg" width="320" /></a></div><br />Fiddling around in Design added new stuff to the source.  This is the entire thing now:<br /><br /><pre class="brush:xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:application minheight="600" minwidth="955" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark"><br /> <s:states><br />  <s:state name="State1"><br />  <s:state name="State2"><br /> </s:state></s:state><br /> </s:states><br /> <fx:declarations><br />  <br /> </fx:declarations><br /> <mx:colorpicker includein="State1" x="176" y="119"><br /> <s:button includein="State1" label="button!!" x="284" y="107"><br /> <mx:datagrid includein="State1" x="176" y="160"><br />  <mx:columns><br />   <mx:datagridcolumn datafield="col1" headertext="GET"><br />   <mx:datagridcolumn datafield="col4" headertext="AT"><br />   <mx:datagridcolumn datafield="col2" headertext="MY"><br />   <mx:datagridcolumn datafield="col3" headertext="DATA"><br />  </mx:datagridcolumn></mx:datagridcolumn></mx:datagridcolumn></mx:datagridcolumn></mx:columns><br /> </mx:datagrid><br /> <s:hslider includein="State1" x="170" y="67"><br /> <s:panel height="200" includein="State1" width="250" x="493" y="57"><br /> </s:panel><br /> <mx:image height="214" includein="State2" source="file:/C:/Users/nadine/Desktop/llamas.jpg" width="318" x="181" y="61"><br /> <s:label includein="State2" text="Our healing sweets animal" x="291" y="283"><br /></s:label></mx:image></s:hslider></s:button></mx:colorpicker></s:application><br /></pre><br />There are two main changes.  The first is this, right after the <code>&lt;s:Application&gt;</code> root tag:<br /><br /><pre class="brush: xml"><s:states><br /> <s:state name="State1"><br /> <s:state name="State2"><br /></s:state></s:state></s:states><br /></pre><br /><code>states</code> is basically an array of all the <code>State</code> objects that you have in the application.<br /><br />How does the application know which components belong to which state?  The <code>includeIn</code> property is attached to some of the components now, which show the only state for which it should be displayed.  Here are the MXML tags for the new Image and Label components that I added.<br /><br /><pre class="brush: xml"><mx:image height="214" includein="State2" source="file:/C:/Users/nadine/Desktop/llamas.jpg" width="318" x="181" y="61"><br /><s:label includein="State2" text="Our healing sweets animal" x="291" y="283"><br /></s:label></mx:image></pre><br /><br /><strong>Switching Between Application States</strong><br />You can switch between application states by setting <code>currentState</code> to something, like <code>currentState = state2</code>.  Placing this in the code for the click event of the button like this:<br /><br /><pre class="brush:js">protected function button1_clickHandler(event:MouseEvent):void<br /> {<br />  Alert.show("LLAMAS");<br />  currentState = "State2";<br /> }<br /></pre><br />Will make it so that clicking the button labeled &#8220;button!!&#8221; will bring you to the page with the llama Image.  Though there&#8217;s no way to get back to the first state, for now&#8230;<br /><br />In conclusion, here is all the code for this:<br /><br /><pre class="brush:xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:application minheight="600" minwidth="955" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark"><br /><br /> <fx:script><br />  &lt;![CDATA[<br />   import mx.controls.Alert;<br />   protected function button1_clickHandler(event:MouseEvent):void<br />   {<br />    Alert.show("LLAMAS");<br />    currentState = "State2";<br />   }<br />  ]]&gt;<br /> </fx:script><br /><br /> <s:states><br />  <s:state name="State1"><br />  <s:state name="State2"><br /> </s:state></s:state></s:states><br /> <fx:declarations><br />  <br /> </fx:declarations><br /> <mx:colorpicker includein="State1" x="176" y="119"><br /> <s:button click="button1_clickHandler(event)" includein="State1" label="button!!" x="284" y="107"><br /> <mx:datagrid includein="State1" x="176" y="160"><br />  <mx:columns><br />   <mx:datagridcolumn datafield="col1" headertext="GET"><br />   <mx:datagridcolumn datafield="col4" headertext="AT"><br />   <mx:datagridcolumn datafield="col2" headertext="MY"><br />   <mx:datagridcolumn datafield="col3" headertext="DATA"><br />  </mx:datagridcolumn></mx:datagridcolumn></mx:datagridcolumn></mx:datagridcolumn></mx:columns><br /> </mx:datagrid><br /> <s:hslider includein="State1" x="170" y="67"><br /> <s:panel height="200" includein="State1" width="250" x="493" y="57"><br /> </s:panel><br /> <mx:image height="214" includein="State2" source="file:/C:/Users/nadine/Desktop/llamas.jpg" width="318" x="181" y="61"><br /> <s:label includein="State2" text="Our healing sweets animal" x="291" y="283"><br /></s:label></mx:image></s:hslider></s:button></mx:colorpicker></s:application><br /></pre>Things got a little strange after I messed around with the columns of the DataGrid in runtime&#8230;but everything&#8217;s essentially there.<br /><br /><br />Sources:<br /><a href="http://www.adobe.com/devnet/flex/testdrive/articles/1_build_a_flex_app.html">Adobe: Flex Test Drive Page 1</a><br /><a href="http://www.adobe.com/devnet/flex/testdrive/articles/1_build_a_flex_app3.html">Adobe: Flex Test Drive Page 3</a><br /><a href="http://www.youtube.com/watch?v=uhrUWbSSLT4">Using button controls in Flash Builder 4 and Flex 4 Essential Training (video)</a><br /><a href="http://livedocs.adobe.com/flex/3/html/using_states_4.html">Adobe Docs: Using View States</a></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">nadine a.</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-28T00:00:00-08:00" pubdate data-updated="true">Dec 28<span>th</span>, 2010</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://neauro.github.io/blog/2010/12/28/notes-from-me-trying-to-learn-flex/" data-via="" data-counturl="http://neauro.github.io/blog/2010/12/28/notes-from-me-trying-to-learn-flex/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/12/27/rosetta-stone-installation-error-9123/" title="Previous Post: Rosetta Stone Installation Error 9123, 9114">&laquo; Rosetta Stone Installation Error 9123, 9114</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/12/29/ohanas/" title="Next Post: Ohana's">Ohana's &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  I'm Nadine. I like various things.  
+</section>
+<section>
+  <h1>Other Places</h1>
+  <ul>
+    <li><a href="http://uxunicorn.com">Portfolio</a></li>
+    <li><a href="http://neauro.tumblr.com">Tumblr</a></li>
+    <li><a href="http://github.com/neauro">Github</a></li>
+    </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - nadine a. -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

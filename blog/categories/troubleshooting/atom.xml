@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Troubleshooting | liwanag]]></title>
+  <link href="http://neauro.github.io/blog/categories/troubleshooting/atom.xml" rel="self"/>
+  <link href="http://neauro.github.io/"/>
+  <updated>2014-01-08T19:56:04-08:00</updated>
+  <id>http://neauro.github.io/</id>
+  <author>
+    <name><![CDATA[nadine a.]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Flex/AS3: Errors With Stage and Event Listeners]]></title>
+    <link href="http://neauro.github.io/blog/2011/01/14/flexas3-errors-with-stage-and-event/"/>
+    <updated>2011-01-14T00:00:00-08:00</updated>
+    <id>http://neauro.github.io/blog/2011/01/14/flexas3-errors-with-stage-and-event</id>
+    <content type="html"><![CDATA[<div class='post'>
+This is a continuation of myself attempting to find out how to <a href="http://nuubu.blogspot.com/2010/12/problem-how-do-i-use-flex-components-to.html">use Flex UI components with a previously created AS3 project</a>.<br /><br />And it works fine, except for this error which I get when running in debug mode:<br /><br /><code>TypeError: Error #1009: Cannot access a property or method of a null object reference.</code><br /><br />It turns out that this error refers to a part of the AS3 code which does something with this variable called the stage.  This stage variable was an instance of the <strong>Stage</strong> class, and it's made when the Flash Player starts.  SWF files are loaded into the stage container, and all of their objects that display are DisplayObjects, and are children of the stage.  All DisplayObject instances also have a <code>stage</code> property which references the stage that is displaying them.  <span class="shh">Also: Stage is a singleton class, meaning there's only one of them, and it can't be modified by lowly programmers, and is always at the top level of the display hierarchy within a Flash Player.</span><br /><br />Anyway, the error occurs (I think) because my parent (UI) application loads onto the stage before the embedded (AS3) application.  The AS3 app then tries to use the <code>stage</code> property before it's even on the stage.  The solution is to make sure that the embedded SWF is on the stage before you try instantiating or doing anything.<br /><br />To fix it, I essentially wrapped up offending code in an event listener which would wait until the stage was loaded to execute.  So, this code which lets the stage listen for keyboard input:<br /><br /><pre class="brush: cpp"><br />stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);<br /><br /></pre><br />became<br /><br /><pre class="brush: cpp"><br />addEventListener(Event.ADDED_TO_STAGE, function (e:Event):void {<br />  stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);<br />});<br /><br /></pre><br />Not sure if this is good style or not.<br /><br /><br />Sources:<br /><a href="http://www.kirupa.com/forum/showthread.php?p=2129548#post2129548">Kirupa: ActionScript 3 Tip of the Day</a><br /><a href="http://jaycsantos.com/flash/do-you-know-actionscript-as3-stage/">jaycsantos.com: Do you know ActionScript?  AS3 Stage</a><br /><a href="http://board.flashkit.com/board/showthread.php?t=792605">Flash Kit: TypeError: Error #1009</a></div>
+
+
+<h2>Comments</h2>
+
+
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Lewis R Strasburg</div>
+<div class='content'>
+Nice solution, it worked great for me.  I only needed to reference the stage at the very beginning for a &quot;Press Any Key to Start&quot; scenario, and it wasn&#39;t working until now.  Thanks!</div>
+</div>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rosetta Stone Installation Error 9123, 9114]]></title>
+    <link href="http://neauro.github.io/blog/2010/12/27/rosetta-stone-installation-error-9123/"/>
+    <updated>2010-12-27T00:00:00-08:00</updated>
+    <id>http://neauro.github.io/blog/2010/12/27/rosetta-stone-installation-error-9123</id>
+    <content type="html"><![CDATA[<div class='post'>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TRkkWic-ovI/AAAAAAAAABc/f7s3KdsFM64/s1600/rs_error.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="166" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TRkkWic-ovI/AAAAAAAAABc/f7s3KdsFM64/s320/rs_error.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">omg no stop it die die die</td></tr></tbody></table><br />I received Rosetta Stone (version 4) a couple of days ago and was pretty excited about it until I actually tried installing it and kept running into inexplicable errors that apparently no one else On The Internet had/could explain.  Basically I was able to install the Application CD alright, but immediately met upon this ambiguous 9123 error when trying to install a language. &nbsp;(This is on Windows Vista, by the way.)<br /><br />I resigned myself to customer support chat for a couple of hours, and after following instructions, and then fiddling around with their instructions, I finally arrived at a working solution.<br /><br /><ol><li>Install the Application CD. </li><li>Put in the language level CD that you want to install. </li><li>Copy all the files in the language level CD to an empty flash drive.</li><li>Remove the language level CD from the CD drive, but leave the flash drive in.</li><li>At this point I think you could proceed to install a language by clicking <b>Add a Language</b>&nbsp;in Rosetta Stone TOTALe. &nbsp;TOTALe should be able to automatically find the language files in your flash drive.</li><li>For me, just starting to install like this didn't work, so I had to go to <strong>Start</strong> and type in <strong>msconfig</strong> which will bring up <strong>System Configuration</strong>.</li><li>Click <b>Selective startup.</b></li><li>In the <b>Services </b>tab, check <b>Hide all Microsoft services.</b></li><li>Click the button which says <b>Disable all</b>. &nbsp;All the services should now be unchecked.</li><li>Go back through the list of services and find the one called <b>RosettaStoneDaemon</b>&nbsp;and make sure that it <i>is&nbsp;</i>checked. &nbsp;If it isn't, you'll get fatal errors when trying to start up TOTALe again.</li><li>Click <b>Apply </b>and restart your computer. </li><li>Once your computer has loaded in again, start up TOTALe and try<b>&nbsp;Add a Language </b>with the language files on your connected flash drive.</li><li>Rinse and repeat with any other levels that you have.</li></ol><div><br /></div><div>And it works! &nbsp;Actually, I haven't yet finished activating it so I'm not sure if it works completely, but for now at least, it's installed.</div></div>
+
+
+<h2>Comments</h2>
+
+
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Виктор Деревянко</div>
+<div class='content'>
+I can&#39;t Find RosettaStoneDaemon procces...Can you help me??!</div>
+</div>
+<div class='comment'>
+<div class='author'>elixirtheory</div>
+<div class='content'>
+Thanks so much bud this works great! I already had the RosettaStoneDaemon checked so basically all I had to do was transfer all the language files over to a USB and install them that way. Thanks a bunch!</div>
+</div>
+<div class='comment'>
+<div class='author'>trafficom</div>
+<div class='content'>
+For the language files for the Polish version it is only around the 500mb mark</div>
+</div>
+<div class='comment'>
+<div class='author'>nadine a.</div>
+<div class='content'>
+Hey Emily,<br /><br />Sorry for kind of a late response.  What I did and listed above worked for me.  I had a 4GB flashdrive, but I don&#39;t remember how much space the program actually took up on it.  I&#39;m not a professional and it&#39;s been a while since I did this, but if you have any other questions, let me know. :)</div>
+</div>
+<div class='comment'>
+<div class='author'>Emily</div>
+<div class='content'>
+did this work?  i am having the same problem and i am going nuts with tech support.  how large a flash drive i do not have one currently</div>
+</div>
+</div>
+
+]]></content>
+  </entry>
+  
+</feed>

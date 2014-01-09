@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Apps and Things | liwanag]]></title>
+  <link href="http://neauro.github.io/blog/categories/apps-and-things/atom.xml" rel="self"/>
+  <link href="http://neauro.github.io/"/>
+  <updated>2014-01-08T19:56:04-08:00</updated>
+  <id>http://neauro.github.io/</id>
+  <author>
+    <name><![CDATA[nadine a.]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lift App]]></title>
+    <link href="http://neauro.github.io/blog/2013/02/26/lift-app/"/>
+    <updated>2013-02-26T00:00:00-08:00</updated>
+    <id>http://neauro.github.io/blog/2013/02/26/lift-app</id>
+    <content type="html"><![CDATA[<div class='post'>
+I tried using <a href="http://lift.do/">Lift</a> for a while. Having read <a href="http://zenhabits.net/sticky/">ZenHabit</a>'s encouragement that the way to start a habit is by just <em>starting</em>, even if it's a little bit at a time, I thought Lift would be a good (and pretty) way to keep myself accountable. I rearranged my iPod home screen, putting it on my front page's top row. I dutifully added three habits that I wanted to keep track of: getting exercise, writing, and more writing.<br /><br />Two things broke Lift for me.<br /><br /><strong>First — You can't go back to previous days to mark what habits you did, but didn't mark that day.</strong> Or maybe you can, and I just couldn't figure out how? In any case, I have an iPod — I'm not connected to the internet through it every day — and stressing myself out by making sure I log into Lift at least once a day is something I'm not willing or happy to burden my completionist personality with.<br /><br /><strong>Second — ultimately, Lift isn't meaningful enough to me.</strong> Though I'm working on getting both exercise and writing time, actually doing those things is the feel-good reward, and Lift doesn't add to these feelings in any interesting way. Even with Tiny Tower, logging in once a day to mindlessly tap things gives you, eventually, an impressive tower. All Lift could do for me was represent my taps as a series of colored bars and occasionally send some canned inspirational e-mails.<br /><br />On a side note, it is fun to read Lift's blog and see data compiled about people's <a href="http://blog.lift.do/post/40128965086/infographic-your-goals-in-2013">2013 goals</a>, or other ways that people are using <a href="http://blog.lift.do/post/42988396863/lift-tip-rewards-for-good-habits">extrinsic awards</a> to keep themselves sticking to habits that I think are easy to justify yourself out of, such as not staying late at work.</div>
+
+
+<h2>Comments</h2>
+
+
+<div class='comments'>
+<div class='comment'>
+<div class='author'>nadine a.</div>
+<div class='content'>
+Yeah! It does make me wonder about the life cycle of this sort of app though. It seems to make itself obsolete by the success of its users (assuming success is defined by gaining intrinsic happiness). Then again, I suppose you could say that about a lot of things (like dating sites :P).</div>
+</div>
+<div class='comment'>
+<div class='author'>axcho</div>
+<div class='content'>
+If you&#39;ve gotten started and now actually doing your habits is your reward, then I&#39;d say you probably don&#39;t need Lift at this point anyway. :)</div>
+</div>
+</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[2013 Is Off to a Busy Busy Busy Busy Start.]]></title>
+    <link href="http://neauro.github.io/blog/2013/02/26/2013-is-off-to-busy-busy-busy-busy-start/"/>
+    <updated>2013-02-26T00:00:00-08:00</updated>
+    <id>http://neauro.github.io/blog/2013/02/26/2013-is-off-to-busy-busy-busy-busy-start</id>
+    <content type="html"><![CDATA[<div class='post'>
+I've recently started using <a href="http://www.trello.com">Trello</a> to keep track of my myriad projects, and I love it because I can use it as an always-accessible repository of lists for ideas regarding games, writing, websites, homework, and so on. It's also great for keeping track of resources like free icon sets. I've also been using it to manage and focus on what things are actually currently on my plate, and making sure I don't overextend myself.<br /><br />My prime reading time has always been during my commutes, but I have been reading less because I've discovered <a href="">IA Writer</a>, a writing app which features a simple UI, a re-arranged keyboard, and integration with iCloud (which took me forever how to use; but it's way more convenient than e-mailing myself everything). I absolutely adore it and have been using it for writing practice, which has in general alleviated my plaguing anxieties about not writing enough. I tried writing on the bus with my sketchbook but the bus's movement made my scribbles illegible; typing on my iPod makes things easier, and even a little fun.<br /><br />I have also been hard at work on my part of this year's group cosplay, Black Rock Shooter. I was initially going to go for Demon Cannon User, but then a friend dropped out due to busy-ness, and now I'm rocking Strength, for which I am actually attempting to build up strength to carry around the huge cardboard hands that Andou is helping me make.<br /><br />Winter quarter is also in full swing. This quarter I'm taking my first "practical" class, usability testing, and it's funny — I always thought that I would find practical classes more immediately applicable — but instead I'm finding myself missing theory courses, where you could learn a theory and apply it <em>immediately</em>, instead of waiting to gather participants and test. I'm working with a group to improve and analyze the usability of <a href="http://www.mappingvoices.org">Mapping Voices</a>, which I was interested in for the potential application of game design — for example, how can you encourage people to take action against health inequity? How can you make people feel productive taking action?<br /><br />Though it looks like our suggestions will have to hold up against a bureaucracy and generally complicated organization, I'm looking forward to contributing to a local organization!</div>
+
+]]></content>
+  </entry>
+  
+</feed>
