@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Project | liwanag]]></title>
+  <link href="http://neauro.github.io/blog/categories/project/atom.xml" rel="self"/>
+  <link href="http://neauro.github.io/"/>
+  <updated>2014-01-08T19:40:14-08:00</updated>
+  <id>http://neauro.github.io/</id>
+  <author>
+    <name><![CDATA[nadine a.]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Short Story: Golemist's Work]]></title>
+    <link href="http://neauro.github.io/blog/2012/12/30/short-story-golemists-work/"/>
+    <updated>2012-12-30T00:00:00-08:00</updated>
+    <id>http://neauro.github.io/blog/2012/12/30/short-story-golemists-work</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-fv-rh8_DYVI/UNPFitXzX1I/AAAAAAAAC7o/-u6dZbVbFVk/s1600/golemists's+work_pattern.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="640" src="http://3.bp.blogspot.com/-fv-rh8_DYVI/UNPFitXzX1I/AAAAAAAAC7o/-u6dZbVbFVk/s640/golemists's+work_pattern.png" width="492" /></a></div><br /><br /><a href="http://strayingfromreality.webs.com/">AU</a> is in its third year now, and grown so much! The inside of this quarter's edition is unexpectedly lovely. To check it out, you'll have to get it yourself, since I've tried and failed and subsequently quit attempting to make myself take pictures and upload them for this post.&nbsp;It's available on campus and neighboring book-related businesses until supplies run out. My particular story can also be accessed <a href="http://neauro.com/storything/golemist.html">here</a>, because I wanted some content to practice styling, and playing around with for lightweight parallaxing.<br /><br />[ spoilers ]<br /><br />Inspiration didn't quite strike me for any of the themes last year, but it did for this particular theme, "Homeland." I was feverishly thinking of ways to riff off the idea of <em>returning home</em> when I was shuffling my white/green tokens deck, and then looked down into my hand and saw Wayfaring Temple.<br /><br /><em>Oh my gosh</em>, I thought, <em>what if your home returns to YOU?</em><br /><em><br /></em>I used <a href="http://johnpolacek.github.com/superscrollorama/">SUPERSCROLLORAMA</a>&nbsp;for the sillyness at the end.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Selesnya Hat]]></title>
+    <link href="http://neauro.github.io/blog/2012/12/30/selesnya-hat/"/>
+    <updated>2012-12-30T00:00:00-08:00</updated>
+    <id>http://neauro.github.io/blog/2012/12/30/selesnya-hat</id>
+    <content type="html"><![CDATA[<div class='post'>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-EYe_xhDQLEY/UODqJDGJpiI/AAAAAAAAC-I/wSIBPodiaAg/s1600/hat.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="640" src="http://3.bp.blogspot.com/-EYe_xhDQLEY/UODqJDGJpiI/AAAAAAAAC-I/wSIBPodiaAg/s640/hat.jpg" width="474" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">with bonus ears</td></tr></tbody></table><br />Hat! Fleece! Felt! The tree came out a little lopsided but I think it was good for a first try. I intended for it to have more of a chullo-shape but in the end confused myself and ended up just going back to the familiar rectangular shape the yields triangle ears.<br /><br />I have a lot more brown and white fleece left which I hope to use for future corgi- or shiba-related endeavors!</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pong]]></title>
+    <link href="http://neauro.github.io/blog/2012/08/22/pong/"/>
+    <updated>2012-08-22T00:00:00-07:00</updated>
+    <id>http://neauro.github.io/blog/2012/08/22/pong</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-eIQZzcRHBoE/UDVb_WiTvVI/AAAAAAAACTc/TFLyM5mSpvc/s1600/pongu.jpg" imageanchor="1"><img border="0" height="286" src="http://4.bp.blogspot.com/-eIQZzcRHBoE/UDVb_WiTvVI/AAAAAAAACTc/TFLyM5mSpvc/s400/pongu.jpg" width="400" /></a></div><br />I've been working on a simple Pong game, to elaborate on <a href="http://nuubu.blogspot.com/2012/08/some-html5javascript-links.html">the stuff I learned a couple days ago</a>.<br /><br />Insidiously small bugs learned about thus far include this: if your JavaScript file loads before you make a <code>canvas</code> object in HTML, it won't know about <code>canvas</code>. For example, the following is wrong:<br /><br /><pre class="brush: html"><script src="game.js"></script> <!-- "WHERE IS #CANVAS" --><br /><canvas id="canvas"></canvas><br /></pre><br />In trying to do collision stuff, I also ran into a curious problem where the following did not work:<br /><br /><pre class="brush: js">if ( ((that.X-that.radius) &lt;= (player.X+player.width)) &amp;&amp;<br />(that.Y &gt;= player.Y) &amp;&amp;<br />(that.Y &lt; (player.y+player.height)))<br />collided = PADDLE;<br /></pre><br />But this <em>did</em>:<br /><br /><pre class="brush: js">var hit_paddle_side = beneath_paddle_top = above_paddle_bottom = false;<br /><br />if (((that.X-that.radius) &lt;= (player.X+player.width))) hit_paddle_side = true;                 if ((that.Y &gt;= player.Y)) beneath_paddle_top = true;<br />if ((that.Y &lt; (player.Y+player.height))) above_paddle_bottom = true;<br /><br />if (hit_paddle_side &amp;&amp; beneath_paddle_top &amp;&amp; above_paddle_bottom)<br />    collided = PADDLE;<br /></pre><br />Not sure why yet.<br /><br />All the code is <a href="https://github.com/neauro/html5pong">on my Github</a> for now.</div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[#amwriting Playlist]]></title>
+    <link href="http://neauro.github.io/blog/2012/02/02/amwriting-playlist/"/>
+    <updated>2012-02-02T00:00:00-08:00</updated>
+    <id>http://neauro.github.io/blog/2012/02/02/amwriting-playlist</id>
+    <content type="html"><![CDATA[<div class='post'>
+I've started another story. &nbsp;I'm confident about this one. &nbsp;I didn't finish last year's <a href="http://nuubu.blogspot.com/2011/11/2011-nanowrimo-limning.html">NaNo</a>&nbsp;but I'm&nbsp;placing my palms on it, shoving and shoving until its sputum can be resurrected as a passable plot.<br /><br />Mmm.<br /><br />I've discovered (not unexpectedly) that writing on the computer is, for me, a lost cause. <br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-MyzI0jY_Bzk/TytZ60DNvkI/AAAAAAAAAos/Ch2z_vwGufc/s1600/472d84164e1a11e1a87612313804ec91_7.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://3.bp.blogspot.com/-MyzI0jY_Bzk/TytZ60DNvkI/AAAAAAAAAos/Ch2z_vwGufc/s320/472d84164e1a11e1a87612313804ec91_7.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">i'm going to run out of moleskine soon</td></tr></tbody></table><br />There are too many distractions. &nbsp;I've been weaned too well to the Information Age. &nbsp;A newly-transferred Twitter packet is the sweetest nectar. &nbsp;The "(1)" notification that appears to the left of the title of my Facebook tab sends my endorphins flying (though 90% of the time it's just a request from CastleVille).<br /><br />I've also started assembling a playlist of songs Pandora has suggested to me, which I've found surprisingly stirring of the misery-hope emotions that fuel my inspiration so well. &nbsp;You can find it <a href="http://www.youtube.com/playlist?list=PLD2A04B5DCB06A2D9">here</a>.<br /><br /><br /><br /><center><iframe allowfullscreen="" frameborder="0" height="315" src="http://www.youtube.com/embed/videoseries?list=PLD2A04B5DCB06A2D9&amp;hl=en_US" width="560"></iframe></center><br /><br />Last but not least, an excerpt which I hope won't jinx my endeavors:<br /><br /><blockquote>"It will feel better once you open your eyes," Candle suggested, sounding shameful now, "sorry I can't keep it smooth," but though Win indeed felt sick, she couldn't bring herself to do it -- to open her eyes, to look down and realize that she was miles away from home.  If she fell, how long would it take for her to return?  To fall past Quartzal and Agatava and all of Tenor Anthem, the journey that had taken days in elevators, in short trains weaving on zippered tracks past caves of stationary monsters, in carriages fixed to the back of cliffdragons whose gangly shoulderblades made the entire carriage sway as they navigated aggressive granite striae.  The journey of days could be undone in hours of freefall.  Minutes, if she didn't hit anything.</blockquote></div>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[[Photo] Game in Progress]]></title>
+    <link href="http://neauro.github.io/blog/2011/11/29/photo-game-in-progress/"/>
+    <updated>2011-11-29T00:00:00-08:00</updated>
+    <id>http://neauro.github.io/blog/2011/11/29/photo-game-in-progress</id>
+    <content type="html"><![CDATA[<div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-ruEK9shMe6w/TtXXghDCa8I/AAAAAAAAAiY/yqrQN6D6GcU/s1600/0e4e2c921aab11e1a87612313804ec91_7.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://2.bp.blogspot.com/-ruEK9shMe6w/TtXXghDCa8I/AAAAAAAAAiY/yqrQN6D6GcU/s320/0e4e2c921aab11e1a87612313804ec91_7.jpg" width="320" /></a></div><br />Due to some resource problems, the hidden object game that I've been working on for the past two months has been cancelled, which is a little sad, but also exciting, because this next project is turning out to be pretty fun. &nbsp;I also have a brand new graph paper composition notebook, and a realization that writing in notebooks "hamburger-style" is the best thing ever.</div>
+
+
+<h2>Comments</h2>
+
+
+<div class='comments'>
+<div class='comment'>
+<div class='author'>nadine a.</div>
+<div class='content'>
+&quot;Hamburger-style&quot; as in, the opening of the notebook going horizontally instead of vertically!  Though now that you mention it, I learned that phrasing in kindergarten for folding 8x11 sheets of paper.  I wonder if it really can be applied to notebooks...</div>
+</div>
+<div class='comment'>
+<div class='author'>axcho</div>
+<div class='content'>
+Hamburger style? :o<br /><br />Awesome! :D</div>
+</div>
+</div>
+
+]]></content>
+  </entry>
+  
+</feed>
