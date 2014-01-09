@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Photocity | liwanag]]></title>
+  <link href="http://neauro.github.io/blog/categories/photocity/atom.xml" rel="self"/>
+  <link href="http://neauro.github.io/"/>
+  <updated>2014-01-08T19:24:11-08:00</updated>
+  <id>http://neauro.github.io/</id>
+  <author>
+    <name><![CDATA[nadine a.]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Flying Around Video]]></title>
+    <link href="http://neauro.github.io/blog/2011/05/02/flying-around-video/"/>
+    <updated>2011-05-02T00:00:00-07:00</updated>
+    <id>http://neauro.github.io/blog/2011/05/02/flying-around-video</id>
+    <content type="html"><![CDATA[<div class='post'>
+<center><iframe width="425" height="349" src="http://www.youtube.com/embed/29CsRayMdMg" frameborder="0" allowfullscreen></iframe></center><br /><br />Here's a video of a single, huuge reconstruction of buildings at UW, brought to you by <a href="http://photocitygame.com">PhotoCity</a>.  I have to say that when I was making this video, I was impressed by the sheer scale of the reconstruction, and how it's even possible to do something like this now just by using pictures.  It's even pretty much got the distances in between the buildings.</div>
+
+]]></content>
+  </entry>
+  
+</feed>

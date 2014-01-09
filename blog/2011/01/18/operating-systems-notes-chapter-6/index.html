@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Operating Systems Notes [Chapter 6: Process Synchronization] - liwanag</title>
+  <meta name="author" content="nadine a.">
+
+  
+  <meta name="description" content="So a cooperating process is one that can affect or be affected by other processes, because it shares address space (code, data) with other processes &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://neauro.github.io/blog/2011/01/18/operating-systems-notes-chapter-6">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="liwanag" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Metrophobic:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46467190-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">liwanag</a></h1>
+  
+    <h2>things i learn, things i like</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:neauro.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Operating Systems Notes [Chapter 6: Process Synchronization]</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T00:00:00-08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+So a <strong>cooperating process</strong> is one that can affect or be affected by other processes, because it shares address space (code, data) with other processes, or because it can share data through passing messages or files.  But, if you share data, then you can run into inconsistencies, i.e. if I&#8217;m reading a paper of numbers, adding them up, and halfway down while I&#8217;m reading it someone starts changing stuff.  By the time I get to the end of the paper, the answer that I get won&#8217;t properly reflect the sum of numbers that had originally been on the paper.<br /><br />The situation in which the outcome of the execution depends on the order of things that take place is a <strong>race condition</strong>.  So, the example earlier is a race condition, because the outcome will be different if I a) read and sum the paper, and then the paper gets rewritten, or if b) someone rewrites the paper, and then I read and sum the paper&#8217;s contents.<br /><br /><strong>Process synchronization</strong> concerns itself with making sure that the changes that result from different processes don&#8217;t interfere with what other processes are doing, even if they&#8217;re all sharing the same <strike>paper</strike> set of data.<br /><br />Parts of code to especially watch out for when trying to synchronize things are those parts that modify or write things, i.e. changing variables, outputting to file.  The part of a process which does this is called the <strong>critical section</strong> and to ensure consistency, you want to be sure you have critical sections which fulfill the following requirements:<ul><li><strong>mutual exclusion:</strong> only one thread is executing in the critical section at any time</li><li><strong>progress:</strong> if thread A and thread B are both outside of the critical section, neither can prevent the other from entering the critical section</li><li><strong>bounded waiting:</strong> (i.e. no starvation) if thread A is waiting to enter the critical section, it will enter it eventually</li><li><strong>performance:</strong> entering and exiting the critical section is small compared to the amount of work being done within it</li></ul><br />Critical sections can be built with <a href="http://nuubu.blogspot.com/2011/01/q-semaphore-mutex.html">semaphores and locks</a>, as well as monitors and messages.  Messages are when processes communicate to each other and have their synchronization taken care of through a communication layer; this is particularly important to <a href="http://nuubu.blogspot.com/2011/01/remote-procedure-calls-rpc.html">RPCs</a> in distributed systems.  Monitors are an abstract data structure which I talk more about below.<br /><br />Locks are the lowest-level mechanism you can use, and are really primitive.  Locks can be implemented either as spin-locks, which is when a process which needs a lock acquires it and goes; but if the lock is already posessed by another thread, the process will sit in a while loop, &#8220;spinning,&#8221; until the lock is free.  This is actually pretty bad because you&#8217;re using up CPU doing nothing, just&#8230;spinning around.<br /><br />You can also implement locks by disabling interrupts, and making sure that some process which is currently executing will not be interfered with by any other process.  But only the kernel should be able to disable interrupts, and if you have long periods of no interruptions then you can &#8220;wreak havoc&#8221; on certain devices.<br /><br />Both spinlocks and disabling interrupts should only be used to build higher-level constructs to ensure proper synchronization of processes.<br /><br /><br />Anyway, kernels can also run into race conditions.  For example, the kernel has a data structure that keeps track of all files that are presently open, and a race condition will occur if two processes open files simultaneously.  To handle critical sections in operating systems, there are <strong>preemptive kernels</strong> (which allow a process to be interrupted in kernel mode), and <strong>nonpreemptive kernels</strong> (which do not allow a process running in kernel mode to be preempted/interrupted, meaning a running kernel-mode process will run until it exits kernel mode).  Preemptive kernels, despite being prone to race conditions, are good for real-time programming scenarios, and are also more responsive since there&#8217;s less of a chance that you&#8217;ll have to wait for some arbitrary period until the processor is free to take on another process.<br /><br /><br /><span class="sig">Monitors</span><br />A monitor is an abstract data type which defines a set of operations which are allowed to be mutually exclusive.  It&#8217;s basically a class that allows shared private data, methods, and automatic synchronization.  A procedure defined in the monitor can only affect variables declared in the monitor, and variables defined in the monitor can only be accessed by functions in the monitor.  Within the monitor, only one process runs at a time.<br /><br />Monitors rely on a <strong>condition variable</strong>, which does three things:<ol><li><code>wait</code> &#8211; release a lock, wait for a signal, recapture a lock</li><li><code>signal</code> &#8211; wake up at most one thread which is waiting to access shared resource</li><li><code>broadcast</code> &#8211; wake up all waiting threads</li></ol>Monitors also manage queues of processes which are waiting to access the shared resource.<br /><br />A monitor can fix deadlocks in the dining philosophers problem.  A monitor would sit in the middle of the dining table, and the philosopher would first ask the monitor for forks.  The monitor would then make a couple of checks on the environment, see if there were any forks <strike>in the queue</strike> available, and if there is a good amount, then the monitor tell his pet condition construct, &#8220;Let the philosopher eat!&#8221;  The philosopher would then obtain forks, eat, and talk to the monitor again when he or she is done eating.<br /><br />There are two types of monitors: Hoare monitors, and Mesa monitors (the latter being the most prevalent today).  They differ in what action happens in the waiting queue after the condition variable signals.  In Hoare monitors, the waiting process is run immediately after <code>signal</code> is called, because it indicates that a resource that the process want has been freed.  In Mesa monitors, the signal doesn&#8217;t mean that a resource has been freed, rather only that something has changed.  Thus, when signal happens, the waiter is made ready to go, but only runs when the shared resource is completely for sure available.<br /><br />Unfortunately for monitors, they&#8217;re pretty heavyweight, so you can&#8217;t do any &#8220;fine-grained locking&#8221; &#8211; you have one thread in the monitor at a time, and that&#8217;s it.<br /><br /><br />Sources:<br /><em>Operating System Concepts (8th Edition)</em>, Silberschatz, Galvin and Gagne, ISBN 978-0-470-12872-5.<br /><a href="http://en.wikipedia.org/wiki/Atomicity">Wikipedia: Atomicity</a><br />lecture notes<br />section TA&#8217;s intensely well-designed slides</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">nadine a.</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T00:00:00-08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://neauro.github.io/blog/2011/01/18/operating-systems-notes-chapter-6/" data-via="" data-counturl="http://neauro.github.io/blog/2011/01/18/operating-systems-notes-chapter-6/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/01/18/operating-systems-notes-chapter-5-cpu/" title="Previous Post: Operating Systems Notes [Chapter 5: CPU Scheduling]">&laquo; Operating Systems Notes [Chapter 5: CPU Scheduling]</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/01/21/how-do-you-populate-flex-spark-list/" title="Next Post: How do you populate a Flex Spark List with information from an array?">How do you populate a Flex Spark List with information from an array? &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  I'm Nadine. I like various things.  
+</section>
+<section>
+  <h1>Other Places</h1>
+  <ul>
+    <li><a href="http://uxunicorn.com">Portfolio</a></li>
+    <li><a href="http://neauro.tumblr.com">Tumblr</a></li>
+    <li><a href="http://github.com/neauro">Github</a></li>
+    </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - nadine a. -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
