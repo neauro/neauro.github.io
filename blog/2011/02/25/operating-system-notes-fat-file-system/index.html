@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Operating System Notes: FAT File System - liwanag</title>
+  <meta name="author" content="nadine a.">
+
+  
+  <meta name="description" content="Disk Geometry DefinitionsSo now we&#8217;re learning about disks (which I always end up spelling as &#8220;discs&#8221; somehow) as well as file &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://neauro.github.io/blog/2011/02/25/operating-system-notes-fat-file-system">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="liwanag" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Metrophobic:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46467190-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">liwanag</a></h1>
+  
+    <h2>things i learn, things i like</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:neauro.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Operating System Notes: FAT File System</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+<span class="sig">Disk Geometry Definitions</span><br />So now we&#8217;re learning about disks (which I always end up spelling as &#8220;discs&#8221; somehow) as well as file systems.<br /><br />Some pertinent disk parts (which I always forget the definition of):<ul><li>the disk&#8217;s data is stored on concentric bands called <strong>tracks</strong>; tracks are more densely populated with data at the center of the disk than on the other edges (to ensure that a <strike>discked</strike> fixed amount of data can be read in a constant time, despite disk surface speed moving fast on the outer tracks)</li><li>tracks are divided into sections called <strong>sectors</strong>, which are the smallest unit of physical storage on the disk; the data size of a sector is always a power of two, and almost always 512 bytes</li><li>a <strong>cluster</strong> is what the Windows NT file systems use to allocate storage; a cluster is one or more contiguous sectors.</li></ul><br />As a file is written to the disk, the file system decides the appropriate number of clusters needed to store the file&#8217;s data.  For instance, if each cluster is 512 bytes and the file being written is 800 bytes, then two clusters are allocated for the file.  If the file size changes later, then more clusters are allocated to that file.<br /><br /><br /><br /><span class="sig">One type of file system: File Allocation Table (FAT)</span><br />So, a file system is a method of storing and organizing files and data on a computer.  Essentially, a file system organizes the files into a database so that the operating system can organize, manipulate, and retrieve them.<br /><br />Some basic differences (between FAT and NTFS file systems):<ul><li>The FAT file system can only use 16 bits for the cluster number, which means that volumes using the FAT format of file system can be larger than 65,535 sectors</li><li>Because of the overhead in the FAT file system, it&#8217;s not good for volumes larger than 511 MB (wait, isn&#8217;t this&#8230;all volumes nowadays?;;)</li><li>FAT is a better choice than NTFS for volumes that are smaller than ~400-500 MBs though, because of the disk overhead in NTFS.  I guess that&#8217;s the tradeoff</li><li>FAT file systems can be used with operating systems other than Windows NT, i.e. Windows 95, MS-DOS, etc.</li><li>FAT is simpler</li><li>FAT folder size is smaller for an equal number of files</li><li>FAT has no controls regarding whether a user can access a file or folder, which means the system doesn&#8217;t need to check permissions for an individual file or user, to see if the user has access to the file.  But Windows NT operating systems will have to check if a file is read-only anyway, whether it&#8217;s FAT or NTFS, which is why FAT may provide faster access to files in this respect</li></ul><br />FAT is a simple file system that was originally designed for small disks and simple folder structures. A FAT-formatted volume is allocated in clusters, the size of which is determined by the size of the volume, which must fit in 16 bits and must be a power of 2.<br /><br />FAT is named for the file allocation table, which lives at the beginning of a FAT-formatted volume.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-jw8lKfAxw60/TWX-0tUJQVI/AAAAAAAAAIs/9T9URTfof_c/s1600/FATvolume.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="62" width="320" src="http://3.bp.blogspot.com/-jw8lKfAxw60/TWX-0tUJQVI/AAAAAAAAAIs/9T9URTfof_c/s320/FATvolume.jpg" /></a></div><br />What do all of these areas do?  <strong>FAT1</strong> and <strong>FAT2</strong> contain the file allocation table, which contains information about a cluster on the volume, specifically whether that cluster is:<ul><li>unused</li><li>a cluster in use by a file</li><li>a bad cluster</li><li>the last cluster in a file</li></ul><br />The <strong>root folder</strong> contains an entry for each file and folder on the root.  The only difference between the root folder and other folders is that the root folder is in a specified location on the disk, and has a fixed size.  (On a hard disk, the size is 512 entries; on a floppy disk, it depends on the size of the floppy.)<br /><br />For every file and folder contained in a folder (as directories are really just a special type of file), there is a 32-byte entry, which contains the following information:<ul><li>name (eight-plus-three characters)</li><li>attribute byte (8 bits)</li><li>create time (24 bits)</li><li>create date (16 bits)</li><li>last access date (16 bits)</li><li>last modified time (16 bits)</li><li>last modified date (16 bits)</li><li>starting cluster number in the file allocation table (16 bits)</li><li>file size (32 bits)</li></ul><br />As for the FAT folder structure, there is no real organization &#8211; when a new file comes in, it is placed in the first available location on the volume.  The &#8221;<strong>starting cluster number</strong>&#8221; is the address of the first cluster used by the file.  Each cluster points to the next cluster used in the file, or else to a terminating cluster that signals the end of the file.<br /><br />Since all entries in a folder are the same size, the <strong>attribute byte</strong> for each entry in a folder describes what kind of entry it is: one bit indicating that it&#8217;s a subfolder, another bit marking the entry as a volume label, etc.  The OS controls the settings of these bits.  The user can control four other attribute bits, which indicate the entry is an archive file, system file, hidden file, and/or read-only file.<br /><br /><br /><br />More later.<br /><br /><br />Sources:<br />Microsoft TechNet: <a href="http://technet.microsoft.com/en-us/library/cc750198.aspx">Disk and File System Basics</a>, <a href="http://technet.microsoft.com/en-us/library/cc750355.aspx">Choosing a File System</a><br />Wikipedia: <a href="http://en.wikipedia.org/wiki/File_system">File system</a></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">nadine a.</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://neauro.github.io/blog/2011/02/25/operating-system-notes-fat-file-system/" data-via="" data-counturl="http://neauro.github.io/blog/2011/02/25/operating-system-notes-fat-file-system/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/02/25/aaaahhhh-rails/" title="Previous Post: AAAAHHHH RAILS">&laquo; AAAAHHHH RAILS</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/02/28/all-of-sudden-his-code-started-throwing/" title="Next Post: All of a sudden his code started throwing compile errors -- incorrect syntax, undefined variables.">All of a sudden his code started throwing compile errors -- incorrect syntax, undefined variables. &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  I'm Nadine. I like various things.  
+</section>
+<section>
+  <h1>Other Places</h1>
+  <ul>
+    <li><a href="http://uxunicorn.com">Portfolio</a></li>
+    <li><a href="http://neauro.tumblr.com">Tumblr</a></li>
+    <li><a href="http://github.com/neauro">Github</a></li>
+    </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - nadine a. -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

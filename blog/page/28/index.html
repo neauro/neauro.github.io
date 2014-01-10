@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>liwanag</title>
+  <meta name="author" content="nadine a.">
+
+  
+  <meta name="description" content="Getting Sandy3D 3.1.2 Working on Flash Builder Dec 2nd, 2010 Somehow to get Sandy working on my computer took forever, but here&#8217;s an example &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://neauro.github.io/blog/page/28">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="liwanag" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Metrophobic:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46467190-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">liwanag</a></h1>
+  
+    <h2>things i learn, things i like</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:neauro.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/02/getting-sandy3d-312-working-on-flash/">Getting Sandy3D 3.1.2 Working on Flash Builder</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-02T00:00:00-08:00" pubdate data-updated="true">Dec 2<span>nd</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TPh_TU109CI/AAAAAAAAAAM/q_A6cDrKYGE/s1600/hellosandy.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="267" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TPh_TU109CI/AAAAAAAAAAM/q_A6cDrKYGE/s320/hellosandy.jpg" width="320" /></a></div>Somehow to get Sandy working on my computer took forever, but here&#8217;s an example where you can use Sandy 3D/Flash Builder to display a cone.  You&#8217;ll need to have:<br /><br />Sandy 3.1.2 <a href="http://www.flashsandy.org/download">[download]</a><br />Flash Builder 4<br />Windows 7<br /><ol><li>First, <a href="http://www.flashsandy.org/download">download Sandy 3D</a> for ActionScript3 and put it in a place where you can find it.</li><li>Create a new Actionscript project in Flash Builder by doing <strong>File &gt; New &gt; ActionScript Project</strong>.  You can name it HelloSandy.</li><li>Next is linking Sandy to the project.  Right-click on  on the project, then select <strong>Properties</strong>.</li><li>Go to <strong>ActionScript Build Path</strong> on the left-hand sidebar.</li><li>Click the <strong>Source path</strong> tab.</li><li>Click <strong>Add Folder</strong> and find the directory that contains the Sandy version that you downloaded.  Add the <strong>src/</strong> folder and click OK.</li><li>Type in this code:<br /><pre class="brush: text">package<br />{<br />import flash.display.Sprite;<br />import flash.events.Event;<br /><br />import sandy.core.Scene3D;<br />import sandy.core.data.*;<br />import sandy.core.scenegraph.*;<br />import sandy.primitive.*;<br /><br />public class HelloSandy extends Sprite<br />{<br />private var scene:Scene3D;<br />private var camera:Camera3D;<br /><br />public function HelloSandy()<br />{<br />// We create the camera<br />camera = new Camera3D( 300, 300 );<br />camera.x = 0;<br />camera.y = 100;<br />camera.z = -400;<br />camera.lookAt(0,0,0);<br /><br />var root:Group = new Group;<br /><br />var myCone:Cone = new Cone("theObj1",50, 100);<br /><br />root.addChild(myCone);<br /><br />scene = new Scene3D( "scene", this, camera, root );<br /><br />addEventListener( Event.ENTER_FRAME, enterFrameHandler );<br />}<br /><br />// The Event.ENTER_FRAME event handler tells the world to render<br />private function enterFrameHandler( event : Event ) : void<br />{<br />scene.render();<br />}<br /><br />}<br />}</pre>This will create the cone to display.</li><li>Now everything should be linked up!  Run the program by going to <strong>Run &gt; HelloSandy</strong> or pressing CTRL+F11.</li></ol><br />With the 3.1.2 version of Sandy, I got two warnings in Node.as and VirtualMouse.as in the source code &#8211;<br /><br /><span class="code"><em>1106: Empty statement found where block of code expected.  Did you type &#8216;;&#8217; accidentally?</em></span><br /><br />But if you run the project, the image will still render.  You can remove the warnings by removing the &#8220;;&#8221; at the end of the line in Node.as, and commenting out the weird line in VirtualMouse.as.<br /><br />Yay~<br /><br />Note: I sometimes still have trouble loading in the Sandy library, but am pretty sure that it&#8217;s mostly related to the fact that I keep the source code in C:\Program Files, and maybe there&#8217;s a permissions issue with Adobe Flash Builder trying to access the library from there?  Hmm. -shrug-</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/sandy3d/'>sandy3d</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/11/26/new-fancy-noobling-blog/">~*New, Fancy Noobling Blog*~</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-26T00:00:00-08:00" pubdate data-updated="true">Nov 26<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+My favorite thing to do is start projects, particularly those that involve huge copious amounts of writing, so it stands to reason that I&#8217;ve been wanting for like forever to make a blog in which I could attempt making pro conversation/discussion with myself about things that I want to learn/practice/improve upon in general.<br /><br />My project threads are as follows:<br /><ul><li><strong>Red Moleskine:</strong> For whatever form inspiration strikes in, including abruptly making some observation about the weather, drawing up a database schema for a web app (that I found out has already been done), sketching out shiba inu people, etc. etc.</li><li><strong>Spotty Daiso Notebook:</strong> For taking note of the myriad of programming/software-design related things that I have no idea about, so that I actually look them up later; also, to keep track of tasks for school research projects</li><li><strong><a href="opalitewires.blogspot.com">Opalite Wires</a>:</strong> For practicing writing something completely uncalled for every single day</li><li><strong>Normal Blog:</strong> Also for practicing writing something completely uncalled for every single day, but also for purposes of coming back months later to ooze nostalgically over whatever I wrote the previous year and see whether I&#8217;m still friends with the people that I talked about</li></ul>This makes for tons of ideas that are all over the place, and ANYWAY, the point is that, the objective of <em>this</em> blog is: to try and consolidate, into a relatively intelligible way, all the things that I do in all the other threads.<br /><br />IT WILL MAKE SENSE WHEN THERE&#8217;S MORE THINGS.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/projects/'>projects</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/27/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  I&#8217;m Nadine. I like various things.  
+</section>
+<section>
+  <h1>Other Places</h1>
+  <ul>
+    <li><a href="http://uxunicorn.com">Portfolio</a></li>
+    <li><a href="http://neauro.tumblr.com">Tumblr</a></li>
+    <li><a href="http://github.com/neauro">Github</a></li>
+    </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - nadine a. -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

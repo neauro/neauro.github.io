@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How Do You Make a Flex Application Send Data to a PHP Server? - liwanag</title>
+  <meta name="author" content="nadine a.">
+
+  
+  <meta name="description" content="How do you make a Flex project able to read/write files?There are a couple objects like File and FileStream which make it so that an Adobe AIR &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://neauro.github.io/blog/2011/01/30/how-do-you-make-flex-application">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="liwanag" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Metrophobic:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46467190-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">liwanag</a></h1>
+  
+    <h2>things i learn, things i like</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:neauro.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How Do You Make a Flex Application Send Data to a PHP Server?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-30T00:00:00-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><div class='post'>
+How do you make a Flex project able to read/write files?<br />There are a couple objects like <code>File</code> and <code>FileStream</code> which make it so that an Adobe AIR application can access the user&#8217;s filesystem, but to send and load data from a server, you can use <code>URLLoader</code>, <code>URLRequest</code>, and <code>URLVariables</code>.<br /><br />A summary:<ul><li><strong>URLLoader</strong> downloads data from a URL as text, binary data, or URL-encoded variables.  It&#8217;s useful for downloading textfiles, XML, etc. to be used in a data-driven application.  So: it&#8217;s for use by a Flash application to retrieve data from a URL.</li><li><strong>URLRequest</strong> is an object which contains all of the information in one HTTP request.  It initiates URL downloads by being passed to the <code>load()</code> methods of <code>Loader, URLLoader</code> classes.  Note: By default you can only load data if the application loading and the URL it&#8217;s loading from at in the same domain.  So an application on whatever.com can only load data from somewhere else on whatever.com.</li><li><strong>URLVariables</strong> allow you to transfer variables between an application and a server.  It&#8217;s used with methods of the <code>URLLoader</code> class, with the <code>data</code> property of the <code>URLRequest</code> class, and additional functions in the <code>flash.nete</code> package.</li></ul><br />Basic workflow goes like:<ol><li>In the Flash/Flex application, create an instance of <code>URLVariables</code>, and add variables to it.  For instance, if you want to be able to retrieve data associated with &#8220;username,&#8221; you&#8217;ll want to do something like <code>URLVariablesObject.username = "username"</code></li><li>Make a page on your server which will extract the variables and work with them.  For example, a page <code>login.php</code>, with code like <code>$username = $_POST["username"]</code></li><li><code>URLRequest</code> contains the data you want to send to the server.  Specify the URL of the server page you want to send data to, set its <code>data</code> to be your URLVariables object, and set its <code>method</code> to be <code>URLRequestMethod.POST</code> if you want to send data to the server page as POST.</li><li><code>URLLoader</code> sends the <code>URLRequest</code> to the server and handles the return.  Create an instance of <code>URLLoader</code>, specify its <code>dataFormat</code> to be that of <code>URLLoaderDataFormat.VARIABLES</code>, and then use the <code>load</code> function to load the <code>URLRequest</code> object specifed earlier.  Add event listeners to handle what happens when the data has been sent to the URL, and what happens if there is an error loading the URL.</li><li>Make server page read the URLVariables with something that looks like <code>$username = $_POST["username"];</code></li></ol><br />A good way to send data to a server page is to wrap up the <code>URLRequest</code> and <code>URLLoader</code> stuff into one class or function, which will receive only the url to send the data to, and URLVariables to send.<br /><br />So, here&#8217;s an example which sends a simple &#8220;test&#8221; string to some server page somewhere.  If it&#8217;s a success, it changes a <code>Label</code> to say so, and if it&#8217;s an error, it changes a <code>Label</code> to say that too.  (I&#8217;ve pretty much taken and only slightly altered from <a href="http://tush.wordpress.com/2007/07/20/actionscript-3-using-urlloader-to-send-and-load-server-variables/">another blog</a>):<br /><pre class="brush:xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"><br /> <fx:Script><br />  &lt;![CDATA[<br />   // send test data to server page<br />   protected function sendDataToServer(event:MouseEvent):void<br />   {<br />    var request:URLRequest = new URLRequest(sendToURL);<br />    var loader:URLLoader = new URLLoader();<br />    var variables:URLVariables = new URLVariables();<br />  <br />    variables.test = "test";<br />    loader.dataFormat = URLLoaderDataFormat.TEXT;<br />    request.data = variables;<br />    request.method = URLRequestMethod.POST;<br />    loader.addEventListener(Event.COMPLETE, onSuccess);<br />    loader.addEventListener(IOErrorEvent.IO_ERROR, onError);<br />    loader.load(request);<br />    sendDataToServerLabel.text= "Data sent: '" + variables.test + "'";<br />   }<br /> <br /><br />   // called when URLLoader returns successfully<br />   // prints parameters and messages of event<br />   private function onSuccess(event:Event):void<br />   {<br />    var loader:URLLoader = URLLoader(event.target);<br />    dataReceivedLabel.text = "Data received by server: success!"<br />   }<br />   <br />   // called when URLLoader returns unsucessfully<br />   // prints error message<br />   private function onError(event:IOErrorEvent):void<br />   {<br />    dataReceivedLabel.text = "Error loading URL.";<br />   }<br />  ]]&gt;<br /> </fx:Script><br /><s:Label x="715" y="444" id="dataReceivedLabel"/><br /></pre><br /><span class="sig">Possible errors:</span><br /><code>Error: Error #2101: The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs.</code><br /><br />I got this error fixed after changing this line &#8211;<br /><br /><code>loader.dataFormat = URLLoaderDataFormat.VARIABLES;</code><br /><br />to<br /><br /><code>loader.dataFormat = URLLoaderDataFormat.TEXT;</code><br /><br />What this does (I think) is makes it so that the returning HTML page data from the server page is encoded into a <code>TEXT</code> type instead of a <code>VARIABLES</code> type.  That Flash can&#8217;t reconstruct the HTML data into <code>VARIABLES</code> seems to be a known error, and all you can do now is convert the returning HTML data into <code>TEXT</code>, and then into <code>VARIABLES</code> pairs.<br /><br /><br /><br /><span class="sig">How do you send an array to a PHP page?</span><br />For now, I just want a PHP file on the webserver to take the data the Flex app gives it, and then write it to a file.  The <code>variables</code> object (of type <code>URLVariables</code>)  <br />above has a &#8221;<code>test</code>&#8221; field, which I can retrieve easily in PHP by writing something like <code>$var = $_POST["test"]</code>, but I guess if you want to send an array this way, the easiest way to do it would be to first format the array.  i.e.<ol><li>In Flex, convert the array to a string</li><li>In PHP, retrieve the array, and then split the string and use it.</li></ol><br />Alternatively, you could use <code><a href="http://livedocs.adobe.com/flex/3/html/data_access_2.html">HTTPService</a></code> (which also works with Rails, wooo).  But reading about it in the Adobe documentation, it seems that <code>HTTPService</code> might be more useful for when you&#8217;re working with PHP and a database and want to perform queries or format query results.  All I want to do is send an array of points (each containing x, y, and z) coordinates over, so&#8230;splitting and joining stuff up in PHP it is.<br /><br /><br /><br />Sources: <br />Adobe: <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=Filesystem_08.html">Workflow for reading and writing files</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLLoader.html">URLLoader</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html">URLRequest</a>, <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=data_access_2.html">Using HTTPService components</a><br /><a href="http://tush.wordpress.com/2007/07/20/actionscript-3-using-urlloader-to-send-and-load-server-variables/">Tushar Wadekar: ActionScript 3: Using URLLoader to send and load server variables</a><br /><a href="http://www.kirupa.com/forum/showthread.php?t=277069">Kirupa: String passed to URLVariables.decode() must be a URL-encoded query string&#8230;</a><br />StackOverflow: <a href="http://stackoverflow.com/questions/252915/how-to-send-array-throught-httpservice-in-adobe-flex-3">How to send array throught HTTPservice in Adobe Flex 3</a><br /><a href"http://groups.google.com/group/flex_india/browse_thread/thread/19d081e295905d28">Google Groups: Flex India Community: Flex to PHP variables array</a></div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">nadine a.</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-30T00:00:00-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://neauro.github.io/blog/2011/01/30/how-do-you-make-flex-application/" data-via="" data-counturl="http://neauro.github.io/blog/2011/01/30/how-do-you-make-flex-application/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/01/21/how-do-you-populate-flex-spark-list/" title="Previous Post: How do you populate a Flex Spark List with information from an array?">&laquo; How do you populate a Flex Spark List with information from an array?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/01/30/incorporating-actionscript-30-code-with/" title="Next Post: Incorporating ActionScript 3.0 code with a Flex Project">Incorporating ActionScript 3.0 code with a Flex Project &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  I'm Nadine. I like various things.  
+</section>
+<section>
+  <h1>Other Places</h1>
+  <ul>
+    <li><a href="http://uxunicorn.com">Portfolio</a></li>
+    <li><a href="http://neauro.tumblr.com">Tumblr</a></li>
+    <li><a href="http://github.com/neauro">Github</a></li>
+    </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - nadine a. -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

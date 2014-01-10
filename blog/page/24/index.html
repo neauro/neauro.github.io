@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>liwanag</title>
+  <meta name="author" content="nadine a.">
+
+  
+  <meta name="description" content="Operating Systems: File Systems, Journaling File Systems Mar 4th, 2011 It&#8217;s Thursday night/Friday morning, which means it&#8217;s time to cram &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://neauro.github.io/blog/page/24">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="liwanag" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Metrophobic:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-46467190-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body    class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">liwanag</a></h1>
+  
+    <h2>things i learn, things i like</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:neauro.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/04/operating-systems-file-systems/">Operating Systems: File Systems, Journaling File Systems</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-04T00:00:00-08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+It&#8217;s Thursday night/Friday morning, which means it&#8217;s time to cram-study for the OS quiz tomorrow!  <span class="shh">This cram session brought to you by coke obtained at a Rails party at Joshu&#8217;s place.</span><br /><br /><br /><span class="sig">File Systems</span><br />So we&#8217;ve most recently gone over file system stuff, <a href="http://nuubu.blogspot.com/2011/02/operating-system-notes-fat-file-system.html">a little bit</a> of which I&#8217;ve talked about (mostly FAT file systems.)<br /><br />File system in general have a couple simple roles:<ul><li>they implement an abstraction (files/directories) for storage of data</li><li>they logically organize files (i.e. into a hierarchy of directories)</li><li>they allow people to share data (in terms of access control, consistency)</li></ul><br />A <strong>file</strong> is basically just a collection of data which also has certain properties (i.e. size, owner, last modified date, etc.) Files also have &#8220;types&#8221; which allow them to be understood by the file system or by other programs &#8211; i.e., a file can be a .txt, or an .exe, or a directory, which is actually just a generic &#8220;file&#8221; which contains a list of other files.  Types are encoded in a file&#8217;s extension.<br /><br />Some file systems allow applications to access data in different ways &#8211; i.e. sequentially (reading bytes one at a time), or by direct access (giving the application a block/byte number), or by indexed access (like a database), etc.<br /><br />Given some path name, like <code>C:\one\two\three</code>, the file system will access that folder first by opening <code>C:</code>, then searching for <code>one\</code>, then opening <code>one\</code>, then searching for <code>two\</code>, then opening <code>two\</code>&#8230;basically the file system spends a lot of time walking down directory paths, which is why &#8220;open&#8221; is usually a separate function from &#8220;read/write.&#8221;  To make directory crawling go faster, the file system will cache some prefix lookups, like <code>C:\Windows</code>.<br /><br />File systems also have the happy job of implementing a protection system for its files, either by controlling who can access a file, or by controlling by whom a file is accessed.  Some models for representing protection are<ul><li><strong>access control lists (ACLs)</strong>, in which each object knows what user can do what with it, and</li><li><strong>capabilities</strong>, in which each user knows what they can do with each object.</li></ul><br />Capabilities can be handed off, which makes sharing easier; but ACLs are easier to manage, since you can just have a file and say, &#8220;This is system32, <em>no one write to this ever</em>.&#8221;  ACLs can grow pretty large when an object is heavily shared between a lot of users, though they can be simplified by categorizing the users into &#8220;groups&#8221; (i.e. an object knows it can be altered by admins, but only read by normal users).<br /><br /><br /><span class="sig">Disks</span><br />So the file system goes on top of the disk, which has all dat memorys.  Disks are always divided into five parts:<ol><li>boot block, which contains information to boot the system</li><li>superblock, which specified boundaries of next areas and contains head of freelists of inodes and file blocks</li><li>i-node area, which contains descriptors for each file on disk</li><li>file contents area, the head of which is in the super-block, and the</li><li>swap area, which holds processes which have been swapped out of memory.</li></ol><br />An i-node is a data structure traditional to a Unix-style file system, and basically stores all the information about a regular file, directory, or file system object, other than its data and name.  Each file in a file system correspondes to one i-node.  I-nodes also contain a &#8220;block list,&#8221; in the form of 13 block pointers, 10 of which are &#8220;direct pointers&#8221; to a block of data corresponding to a file.  The last 3 are pointers to pointers.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-_-IcQmBgdJQ/TXCzs3P_nAI/AAAAAAAAAJU/1kKKk4i5l4E/s1600/inodes.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="174" width="320" src="http://1.bp.blogspot.com/-_-IcQmBgdJQ/TXCzs3P_nAI/AAAAAAAAAJU/1kKKk4i5l4E/s320/inodes.jpg" /></a></div><br />I-nodes and file blocks are both cached in memory, only forced to be written to disk when the command &#8220;sync&#8221; is called by the operating system (every couple seconds).  If the computer crashes or has a power failure (i.e. you get frustrated with your computer and do a hard reset), you can have an inconsistent disk.  So, avoid hard resets!<br /><br />To make sure flat file systems are consistent, ask yourself: Does each block belong precisely to one file, or else is it free?  If you&#8217;re looking at the consistency of a directory structure, do all the directories form a tree, and do the number of inodes equal the number of directories you&#8217;ll find if you start crawling through all of them?<br /><br /><br /><br /><span class="sig">Journaling File Systems</span><br />So in light of the fact that crashes can and probably will happen when something is being written to disk, how do you make sure stuff stays consistent?  Here is where OS takes a lot of ideas from databases, specifically, atomicity and logs.  <strong>Atomicity</strong> is when you ensure that an action/set of actions are executed completely and perfectly, or else not at all.  <strong>Logs</strong> are a record of the actions that you&#8217;ve done to date.<br /><br /><strong>Journaling file systems</strong> are a special (yet dated to the 80s) type of file system which takes a advantage of redo logs.  The general idea is:<ul><li>always have a &#8220;home copy&#8221; of your data in a consistent/up-to-date state</li><li>make updates persistent by writing them in order to a &#8220;journal&#8221; partition or file on disk</li><li>at your leisure, push updates to the home copies to free up space in the journal</li><li>make sure that you&#8217;ve written a record of your action to your log before updating the disk</li></ul><br />Once an action/transaction has been &#8220;committed&#8221; to the log, you know for sure that you want it on disk.  So, if you crash, recover your log and redo all of the actions that you did there.  This fixes the problem that you might have committed something &#8211; i.e. intended to write it to the disk &#8211; but ran into a problem before you were actually able to write to disk.  Redo logs are the easiest type of log to implement.  <br /><br />Once you&#8217;ve got a log of your &#8220;committed&#8221; data, you can have another thread walk through it and flush items to disk.  Once an item has been flushed, it can be deleted from the log.<br /><br />The problem with the log is that it&#8217;s one, big contiguous write &#8211; so though it&#8217;s efficient, it is another I/O, so it&#8217;s really costly performance-wise.  Thus, journaling file systems can improve performance and make recovery really efficient, but isn&#8217;t worth it in a really busy system.<br /><br /><br /><br />Sources:<br />lecture 14 notes<br />Wikipedia: <a href="http://en.wikipedia.org/wiki/I-node">inode</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/01/au-apocalypse/">AU: Apocalypse</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-01T00:00:00-08:00" pubdate data-updated="true">Mar 1<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-2e21IUCgRCc/TW06UeSH6II/AAAAAAAAAJM/zpnDdAVS7wo/s1600/DSC_0335.JPG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="426" src="http://4.bp.blogspot.com/-2e21IUCgRCc/TW06UeSH6II/AAAAAAAAAJM/zpnDdAVS7wo/s640/DSC_0335.JPG" width="640" /></a></div><br />The new issue of <a href="http://strayingfromreality.webs.com/">AU</a> came out!  It&#8217;s now a now-two-issues old literary journal of speculative fiction on UW.  Some of the submissions were really gorgeous, so I was really happy that <a href="http://neauro.com/content/writing/thecrash/writing.php">my (somewhat silly) submission</a> was also featured.<br /><br />I got my issue last night at the release party.  I didn&#8217;t stay for the sci-fi Jeopardy game afterward (as I never really did get into the Star Wars/Star Trek/Dr. Who nerd-dom), but it was really nice to see that handful of people gather and be so excited about this little quarterly journal.  It&#8217;s always cool to think that AU was just started up by the whim of three girls.  <span class="shh">If you want something, go get it!</span><br /><br />Haha!  And I just discovered this poem at the end of the issue, which contains the last word of every submission in the journal:<br /><br /><em>Sigh lost angels,<br />rewind the night.<br />Jefferson cares<br />to follow lines of<br />sons.</em></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/au/'>AU</a>, <a class='category' href='/blog/categories/writing/'>writing</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/28/operating-systems-symbol-files-kernel/">Operating Systems: Symbol Files, Kernel Debugging</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-28T00:00:00-08:00" pubdate data-updated="true">Feb 28<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+I&#8217;m working on the last OS project, using windbg, and the kernel keeps crashing due to something that looks like<br /><br /><pre class="brush:cpp">*** ERROR: Module load completed but symbols could not be loaded for mssmbios.sys<br />*** ERROR: Symbol file could not be found.  Defaulted to export symbols for fltmgr.sys - <br />*** ERROR: Symbol file could not be found.  Defaulted to export symbols for SHELL32.dll - <br />*** ERROR: Symbol file could not be found.  Defaulted to export symbols for USER32.dll - <br />*** ERROR: Symbol file could not be found.  Defaulted to export symbols for COMCTL32.dll - <br />*** ERROR: Symbol file could not be found.  Defaulted to export symbols for comdlg32.dll - <br />*** ERROR: Module load completed but symbols could not be loaded for NOTEPAD.EXE<br />*** ERROR: Symbol file could not be found.  Defaulted to export symbols for kernel32.dll - <br />Probably caused by : fltmgr.sys ( fltmgr!FltProcessFileLock+2049 )<br /></pre><br />I had trouble with symbol files in my previous OS project so finally decided to look them up.<br /><br />A symbol file contains debugging information, which is normally stored separate from the compiled executable to limit the size of the executable, as well as to save disk storage and reduce the time it takes to load the data.  This also makes it so that an executable can be distributed without some essential information which would make it easier for people to reverse engineer it.  Another thing that keeping debugging information separate allowed was to allow incremental linking of debug versions of programs; since the linker and integrated debugger could now use separate PDBs during debugging, the linker has less work to do.<br /><br />Concerning all modern Microsoft compilers (Visual C++ 1.0 and later), that separate file for the debugging information is called a <i>program database</i> (.pdb) file.  PDB files are created when an executable is built, given you&#8217;ve directed your build tools appropriately.<br /><br />In this case, the symbol file for some module couldn&#8217;t be found, which means what caused the crash was third-party software that didn&#8217;t have its symbols listed in a PDB.  If you had a crash, you can type <code>!analyze -v</code> in the kernel debugger window, which will show you a lot of verbose information, including the contents of the stack.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://lh6.googleusercontent.com/-kIaAvrF3BzM/TWxT24ESLPI/AAAAAAAAAI8/2OtdPaREX-M/s1600/kernelverbose.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="400" src="https://lh6.googleusercontent.com/-kIaAvrF3BzM/TWxT24ESLPI/AAAAAAAAAI8/2OtdPaREX-M/s400/kernelverbose.png" width="387" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">oh, look.&nbsp; the stack</td></tr></tbody></table><br />I&#8217;ve underlined the names of the modules in the stack in red.  To find out more information about a module, you can type <code>lmvs <i>moduleName</i></code>, where <code><i>moduleName</i></code> is the name of the module.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-V4DFp7WLtYE/TWxUz03FKfI/AAAAAAAAAJE/GSTiQBfaVM8/s1600/kernelverbose2.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="155" src="http://3.bp.blogspot.com/-V4DFp7WLtYE/TWxUz03FKfI/AAAAAAAAAJE/GSTiQBfaVM8/s320/kernelverbose2.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">cool story, bro</td></tr></tbody></table><br /><br /><br />Sources:<br /><a href="http://msdn.microsoft.com/en-us/library/aa363368%28v=vs.85%29.aspx">MSDN: Symbol Files</a><br /><a href="http://support.microsoft.com/kb/121366">Microsoft Support: Description of the .PDB files and of the .DBG files</a><br /><a href="http://blogs.technet.com/b/askperf/archive/2007/05/29/basic-debugging-of-an-application-crash.aspx">TechNet: Basic Debugging of an Application Crash</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/28/all-of-sudden-his-code-started-throwing/">All of a Sudden His Code Started Throwing Compile Errors &#8211; Incorrect Syntax, Undefined Variables.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-28T00:00:00-08:00" pubdate data-updated="true">Feb 28<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+He dug through the source and saw her note, words inserted across the lines &#8211; a greeting here, with the global declarations &#8211; a nostalgic recollection of a summer day pinched between the paranthesees of a couple method calls.  He traced every error to a memory, an endearment, an apology.  At the end, just before the closing bracket, there was a farewell.<br /><br /><code>i'll miss you;</code></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/drabble/'>drabble</a>, <a class='category' href='/blog/categories/writing/'>writing</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/25/operating-system-notes-fat-file-system/">Operating System Notes: FAT File System</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">Disk Geometry Definitions</span><br />So now we&#8217;re learning about disks (which I always end up spelling as &#8220;discs&#8221; somehow) as well as file systems.<br /><br />Some pertinent disk parts (which I always forget the definition of):<ul><li>the disk&#8217;s data is stored on concentric bands called <strong>tracks</strong>; tracks are more densely populated with data at the center of the disk than on the other edges (to ensure that a <strike>discked</strike> fixed amount of data can be read in a constant time, despite disk surface speed moving fast on the outer tracks)</li><li>tracks are divided into sections called <strong>sectors</strong>, which are the smallest unit of physical storage on the disk; the data size of a sector is always a power of two, and almost always 512 bytes</li><li>a <strong>cluster</strong> is what the Windows NT file systems use to allocate storage; a cluster is one or more contiguous sectors.</li></ul><br />As a file is written to the disk, the file system decides the appropriate number of clusters needed to store the file&#8217;s data.  For instance, if each cluster is 512 bytes and the file being written is 800 bytes, then two clusters are allocated for the file.  If the file size changes later, then more clusters are allocated to that file.<br /><br /><br /><br /><span class="sig">One type of file system: File Allocation Table (FAT)</span><br />So, a file system is a method of storing and organizing files and data on a computer.  Essentially, a file system organizes the files into a database so that the operating system can organize, manipulate, and retrieve them.<br /><br />Some basic differences (between FAT and NTFS file systems):<ul><li>The FAT file system can only use 16 bits for the cluster number, which means that volumes using the FAT format of file system can be larger than 65,535 sectors</li><li>Because of the overhead in the FAT file system, it&#8217;s not good for volumes larger than 511 MB (wait, isn&#8217;t this&#8230;all volumes nowadays?;;)</li><li>FAT is a better choice than NTFS for volumes that are smaller than ~400-500 MBs though, because of the disk overhead in NTFS.  I guess that&#8217;s the tradeoff</li><li>FAT file systems can be used with operating systems other than Windows NT, i.e. Windows 95, MS-DOS, etc.</li><li>FAT is simpler</li><li>FAT folder size is smaller for an equal number of files</li><li>FAT has no controls regarding whether a user can access a file or folder, which means the system doesn&#8217;t need to check permissions for an individual file or user, to see if the user has access to the file.  But Windows NT operating systems will have to check if a file is read-only anyway, whether it&#8217;s FAT or NTFS, which is why FAT may provide faster access to files in this respect</li></ul><br />FAT is a simple file system that was originally designed for small disks and simple folder structures. A FAT-formatted volume is allocated in clusters, the size of which is determined by the size of the volume, which must fit in 16 bits and must be a power of 2.<br /><br />FAT is named for the file allocation table, which lives at the beginning of a FAT-formatted volume.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-jw8lKfAxw60/TWX-0tUJQVI/AAAAAAAAAIs/9T9URTfof_c/s1600/FATvolume.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="62" width="320" src="http://3.bp.blogspot.com/-jw8lKfAxw60/TWX-0tUJQVI/AAAAAAAAAIs/9T9URTfof_c/s320/FATvolume.jpg" /></a></div><br />What do all of these areas do?  <strong>FAT1</strong> and <strong>FAT2</strong> contain the file allocation table, which contains information about a cluster on the volume, specifically whether that cluster is:<ul><li>unused</li><li>a cluster in use by a file</li><li>a bad cluster</li><li>the last cluster in a file</li></ul><br />The <strong>root folder</strong> contains an entry for each file and folder on the root.  The only difference between the root folder and other folders is that the root folder is in a specified location on the disk, and has a fixed size.  (On a hard disk, the size is 512 entries; on a floppy disk, it depends on the size of the floppy.)<br /><br />For every file and folder contained in a folder (as directories are really just a special type of file), there is a 32-byte entry, which contains the following information:<ul><li>name (eight-plus-three characters)</li><li>attribute byte (8 bits)</li><li>create time (24 bits)</li><li>create date (16 bits)</li><li>last access date (16 bits)</li><li>last modified time (16 bits)</li><li>last modified date (16 bits)</li><li>starting cluster number in the file allocation table (16 bits)</li><li>file size (32 bits)</li></ul><br />As for the FAT folder structure, there is no real organization &#8211; when a new file comes in, it is placed in the first available location on the volume.  The &#8221;<strong>starting cluster number</strong>&#8221; is the address of the first cluster used by the file.  Each cluster points to the next cluster used in the file, or else to a terminating cluster that signals the end of the file.<br /><br />Since all entries in a folder are the same size, the <strong>attribute byte</strong> for each entry in a folder describes what kind of entry it is: one bit indicating that it&#8217;s a subfolder, another bit marking the entry as a volume label, etc.  The OS controls the settings of these bits.  The user can control four other attribute bits, which indicate the entry is an archive file, system file, hidden file, and/or read-only file.<br /><br /><br /><br />More later.<br /><br /><br />Sources:<br />Microsoft TechNet: <a href="http://technet.microsoft.com/en-us/library/cc750198.aspx">Disk and File System Basics</a>, <a href="http://technet.microsoft.com/en-us/library/cc750355.aspx">Choosing a File System</a><br />Wikipedia: <a href="http://en.wikipedia.org/wiki/File_system">File system</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/25/aaaahhhh-rails/">AAAAHHHH RAILS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+I had a Rails work party with Joshu the other night (after which Rosanna served us basil-pesto pasta and lamb steak) and now I just want to do EVERYTHING IN RAILS.  It is SO COOL.  It&#8217;s so easy to work with databases and set everything up&#8230;.eeeeek &lt;3<br /><br /><span class="shh">Why am I taking operating systems when what I really want to do is just make sleek Rails apps/portfolio things .____.</span><br /><br />My main resources are <a href="http://railsforzombies.org/">Rails for Zombies</a> (a pretty site with cute, intelligible tutorials and nice lab sessions <span class="shh">which I mostly skipped, but, whatever</span>) and Kelly, who&#8217;s the best. :D<br /><br />Once I can figure out something to really make, and once I figure out how to get <a href="http://heroku.com">heroku</a> working, this world is going to be so much more fun.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/fangirling/'>fangirling</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/17/operating-systems-notes-disk-caching/">Operating Systems Notes [Disk Caching, RAID Levels, Flash Memory)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-17T00:00:00-08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+This is a quick rehash of what we&#8217;ve learned in the previous week!<br /><br /><span class="sig">Disk Caching</span><br />So the OS can optimize operations done by scheduling things, either <a href="http://nuubu.blogspot.com/2011/01/operating-systems-notes-chapter-5-cpu.html">CPU</a> or <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">memory</a>.  The operating system can also schedule disk operations, which are reads/writes from/to the disk (that far-off entity which stores the data you want, yet is time-consuming and expensive to reach).<br /><br /><strong>Disk scheduling</strong> is optimized especially through <strong>disk caching</strong>.  Disk caching can come in two flavors.  <strong>Write caching</strong> is when the user has the data that they want to write to disk, and the OS, rather than writing that data directly to the disk, instead writes it to a cache.  Then, sometime later, the OS writes everything in the cache to the disk.  There&#8217;s a sort of &#8220;five minute rule&#8221; to this, where (very roughly) every &#8220;five minutes or so,&#8221; the cache gets &#8220;flushed&#8221; to disk.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-wDujboA5CPU/TV4Ffh_w4XI/AAAAAAAAAHs/qyHyYUHJcPs/s1600/writecaching.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="81" src="http://3.bp.blogspot.com/-wDujboA5CPU/TV4Ffh_w4XI/AAAAAAAAAHs/qyHyYUHJcPs/s320/writecaching.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">our TA&#8217;s lecture notes are so cool</td></tr></tbody></table><br />There&#8217;s also <strong>read caching</strong>, which is when the operating system reads data from the disk into a cache, so as to be easily and quickly accessed by the user later.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-6A1WwUsxBH8/TV4FjpY-ETI/AAAAAAAAAH0/UahzFruaJtY/s1600/readcaching.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="83" src="http://1.bp.blogspot.com/-6A1WwUsxBH8/TV4FjpY-ETI/AAAAAAAAAH0/UahzFruaJtY/s320/readcaching.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">look at this. &nbsp;just look how understandable this is</td></tr></tbody></table><br /><br />One way to take advantage of disk caching is to use <strong>memory mapped I/O</strong>.  The data in a disk cache exists in kernel space, so what&#8217;s an easy way for a process in user-space to get a hold of it?  To have the process contain a mapping directly to that disk cache!<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-OU-tACxsM5Q/TV4GYm7X0jI/AAAAAAAAAH8/BQaW5asqgME/s1600/memorymappedio.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="126" src="http://2.bp.blogspot.com/-OU-tACxsM5Q/TV4GYm7X0jI/AAAAAAAAAH8/BQaW5asqgME/s320/memorymappedio.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">these colors are just so neat</td></tr></tbody></table><br />The segment of a process&#8217;s <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">virtual address</a> which has been mapped is called a <strong>memory-mapped file</strong>; in this case, it&#8217;s the blue part.<br /><br />As the process uses the file, it may need to write to it, which means eventually that the pages that the user-space process altered will need to be flushed to disk, or written out to disk.  The OS will know which pages to write thanks to the alteration of a dirty bit.  When the ditry bit is high, that means that the page has been altered and will need to be flushed.  <span class="shh">(Somehow this whole paragraph feels a little gross&#8230;)</span><br /><br /><br /><span class="sig">RAID Levels</span><br />are another thing that we&#8217;ve been talking about in lecture.  The thing about disks in general is that though they are a pretty useful/necessary storage device for computers, they&#8217;re super messy &#8211; they run into errors all the time, like bad blocks, or missed seeks.  Part of the job of the operating system is to hide all this messy-ness from higher-level software (i.e. software that other, more sane programmers will write to be run on the computer).  The OS will provide different levels of access to different clients &#8211; for instance, allowing them to access physical disk blocks (a specific head, or cylinder of the disk) or just logical disk blocks (i.e. a program says &#8220;I want disk 6&#8221; and the OS retrieves the real location of &#8220;disk 6&#8221; itself).<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-pZ8QGur6iSg/TV4MPA-H3hI/AAAAAAAAAIE/Sv47rFhynK0/s1600/harddrive.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="223" src="http://4.bp.blogspot.com/-pZ8QGur6iSg/TV4MPA-H3hI/AAAAAAAAAIE/Sv47rFhynK0/s320/harddrive.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">this is what a disk looks like, by the way</td></tr></tbody></table><br />It takes time for an OS to find something on a disk.  The performance is based on three main things:<br /><ol><li><strong>Seeking</strong>: how long it takes to move the disk arm to the correct cylinder on the disk</li><li><strong>Rotation</strong>: how long it takes to wait for the sector you want to rotate under the head of the reader.  This depends on the rotation rate of the disk, which is not increasing that quickly, mainly because the way disks are made now, if they spin any faster they&#8217;ll fall apart</li><li><strong>Transfer</strong>: how long it takes to transfer data from the surface of the disk into the disk controller, and from there back to the process that wants the data</li></ol><br />The OS mainly tries to reduce seek times and rotation.<br /><br />So, since disk transfer rates in general are improving, and since CPU performance isn&#8217;t, what you can do to improve performance is have multiple disks containing/transferring data.  In particular, you can &#8220;stripe&#8221; files across multiple disks by placing parts of each file on a different disk, making it so that you can read parts of a file simultaneously (i.e. use <strong>parallel I/O</strong> to read a single file).<br /><br />The problem with striping is that it&#8217;s not very reliable.  To improve its reliability, you can add redundant data to the disks, along with striping, and thus &#8211; <strong>RAID: Redundant Array of Inexpensive Disks</strong>.  Since disks are physically small and cheap, you can just stick a lot of them into one box to increase storage, performance, and availability.  Depending on how you stripe data, you can affect resulting performance and reliability in different ways.<br /><br />What are some things to consider in different methods of striping?  Firstly, <strong>granularity</strong>.  If you stripe each file across multiple disks (&#8220;fine-grained&#8221; granularity), you will get high throughput for reading the file, but limit overall transfer to one file at a time.  If you stripe each file over only a few disks (&#8220;coarse-grained&#8221; granularity), you limit throughput for 1 file, but can have concurrent access to multiple files.<br /><br />Another thing to think about is the <strong>redundancy</strong> itself.  If you uniformly distribute redundancy, then you&#8217;ll avoid load-balancing problems.  You can also concentrate redundancy information on a subset of your total disks, and make it so that some of your total disks are &#8220;data disks&#8221; and the others are &#8220;redundancy disks.&#8221;<br /><br />So what are the different types of RAID?<br /><br /><strong>RAID Level 0</strong> is when you have a non-redundant disk array &#8211; files are just striped across disks, with no redundant info saved at all.  There&#8217;s high read throughput (since you can do the parallel I/O thing), and also high write throughput (since you don&#8217;t need to write redundant info).  However, if one of your disks fails, then you can lose the file and sometimes the entire volume, which is horrible. D: D:<br /><br /><strong>RAID Level 1</strong> is also known as &#8220;mirrored disks.&#8221; Files are striped across half the disks, and when you write data, it gets written to both a &#8220;data disk&#8221; and the &#8220;mirror disks,&#8221; which are copies of the data disk.  This way, if the data disks fail, you can just use the surviving disks.  A downside to this technique is that you need to have 2N the amount of space to hold N amount of data, understandably.<br /><br /><strong>RAID Level 2, 3, 4</strong> all pretty much have the same idea, I guess &#8211; they all use error correcting code (ECC) or <strong>parity disks</strong> to provide fault tolerance.  Each byte on a parity disks is a parity function of the corresponding bytes on all the other disks.  This way, a read accesses all data disks.  A write accesses all data disks, as well as the parity disk.  If the disk fails, read what you have of the file and then use the parity disk to compute the missing data.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-hxvTkkUW3Bs/TV4N-F5JUiI/AAAAAAAAAIM/CHZ7y8sofE0/s1600/parity%2Bdrives.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="105" src="http://2.bp.blogspot.com/-hxvTkkUW3Bs/TV4N-F5JUiI/AAAAAAAAAIM/CHZ7y8sofE0/s320/parity%2Bdrives.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">yeah! &nbsp;go parity drive, go!</td></tr></tbody></table><br />But, <strong>what is parity, again?</strong> I guess, given a byte, you want to add a bit set so that the total number of 1&#8217;s in the byte is even; that way, any single missing bit can be reconstructed.  Parity bites are used as the simplest form of error detecting.<br /><br /><strong>RAID Level 5</strong> uses <strong>block interleaved distributed parity</strong>, which is just like the parity scheme of earlier RAIDs, but instead of having one parity disk, the parity info is distributed across all disks.  For each block, one disk holds the parity, and the other disks hold the data.  This type of RAID has significantly better performance, since the parity disk is not a hot spot.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-MwfHA3qWfcQ/TV4O_26wZlI/AAAAAAAAAIU/FyZ1f6cnCsA/s1600/raid5.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="150" src="http://4.bp.blogspot.com/-MwfHA3qWfcQ/TV4O_26wZlI/AAAAAAAAAIU/FyZ1f6cnCsA/s320/raid5.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">RAID Level 5 disk layout</td></tr></tbody></table><br />So when you use RAID, you can also use a <strong>RAID controller</strong>, which is embedded in the hardware.  A RAID controller can make it seem to the OS like the many disks you&#8217;re using is actually just one disk.<br /><br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-gvTCVSUmMAU/TV4PdUh6pbI/AAAAAAAAAIc/qiESnTQW4-M/s1600/raidcontroller.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="135" src="http://4.bp.blogspot.com/-gvTCVSUmMAU/TV4PdUh6pbI/AAAAAAAAAIc/qiESnTQW4-M/s320/raidcontroller.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">&#8220;What&#8217;s that? &nbsp;I only have one disk? &nbsp;Oh, cool&#8221;</td></tr></tbody></table><br />The advantages of putting <em>policy</em> in the RAID controller is that it makes the OS&#8217;s job easier.  The disadvantage is that every time you put a layer of abstraction into something, you ruin the chance of optimizing it.  So, putting this layer of abstraction makes the OS a little simpler to program, but now you can&#8217;t optimize the OS (like, using disk scheduling effectively) the way you could if the OS <em>did</em> have control of and was aware of all of its assets.<br /><br /><br /><span class="sig">Solid State Disks (Flash)</span><br />We also talked about flash drives, which was pretty interesting.  Like disks, the data on a flash drive is stored in blocks.  Since there aren&#8217;t any spinning platters, random access is fast, and you don&#8217;t need disk scheduling algorithms.  It&#8217;s very fast to read from a flash drive thanks to the random access, but slower to write to a flash drive, because the flash media must be erased before it can be written to.  So, when you&#8217;re writing to a solid state drive like a flash drive, you&#8217;re actually a) reading some block, b) erasing that block, c) writing back the modified block.  But, there are ways of &#8220;hiding the warts of an SSD&#8221; (as these section notes put it), mostly by virtualizing pages and blocks on the drive (so you&#8217;re working with logical pages, not physical pages), and doing &#8220;wear-leveling,&#8221; which is when you try to spread our the erasure of blocks evenly over the drive.<br /><br />Meanwhile, what is a solid-state drive?  Evidently it&#8217;s just a data storage device toat uses solid-state memory to store persistent data.  &#8220;Solid-state&#8221; refers to a type of electronics which are build entirely from solid materials, within which electrons or other charge carriers are confined within the solid material.  Solid-state memory I think is like RAM, which gets erased once you shut down your computer, but as of 2010, most solid-state drives use NAND-based flash memory, which can hold memory even if there&#8217;s no power running through it.  &#8220;NAND flash&#8221; just refers to the way that the transistors are hooked up in the flash drive: in a way that resembles a NAND gate.<br /><br />Sources:<br />section 7 notes<br /><a href="http://en.wikipedia.org/wiki/Memory-mapped_file">Wikipedia: Memory-mapped file</a>, <a href="http://en.wikipedia.org/wiki/Parity_disk">Parity Drive</a>, <a href="http://en.wikipedia.org/wiki/Parity_bit">Parity bit</a>, <a href="http://en.wikipedia.org/wiki/Solid_state_drive">Solid-state drive</a>, <a href="http://en.wikipedia.org/wiki/Solid-state_(electronics)">Solid state (electronics)</a>, <a href="http://en.wikipedia.org/wiki/Flash_memory#NAND_flash">NAND flash</a><br />lecture 12 notes (&#8220;Disk&#8221;)<br />lecture 13 notes (&#8220;Raid and Volumes&#8221;)</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/16/game-bonding-time/">Game: Bonding Time</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-16T00:00:00-08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-u0vR2MtUWDw/TVyji_MufeI/AAAAAAAAAHU/eDXX8Sa_udg/s1600/bondingtime_titlescreen.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="239" src="http://4.bp.blogspot.com/-u0vR2MtUWDw/TVyji_MufeI/AAAAAAAAAHU/eDXX8Sa_udg/s320/bondingtime_titlescreen.png" width="320" /></a></div><br />So yesterday we finally finished the atom game that me, Jimmy, Leilani, and Chris have been trying to do for the <a href="http://www.facebook.com/haproject">Zynga &amp; Hidden Agenda</a> competition.  The point of the competition is to make a game which will &#8220;teach high school students&#8221; someting.  We all signed up around September and November with the initial idea of making something that would be like Oregon Trail but for ethnic studies, but eventually decided against it because ethnic studies (done right) is a subject that&#8217;s not taught properly in high school for a reason (i.e. general controversy), I think :/<br /><br /><span class="shh">So, that game will come later.</span><br /><br />Over winter break (during which I was rabidly playing <a href="http://nuubu.blogspot.com/2010/12/9-hours-9-persons-9-doors.html">999</a>) there was one scene (spoilers?) with a passcode that you figured out based on the number of atoms in a molecule, so I got the idea of making a game based on how atoms bond with respect to valence electrons, and how (most) atoms strive to have eight valence electrons and will form bonds with other atoms to achieve this.<br /><br />Since 90% of my AP Chem course in high school was all about memorization, I thought that some advantages of a game like this would:<br /><ul><li>provide a slightly more fun way to memorize things like all the polyatomic ions that the College Board decided were important to memorize</li><li>also help people visualize more how atoms get bonded together, hopefully leading to understanding of why something like organic chemistry is its own course (apparently because carbon is super good at bonding with itself; who knew)</li></ul><br />I met with Alex over winter break and to get a refresher on chemistry (which I haven&#8217;t thought about since those ancient high school times) and (in between greeting people returning to Homedale Mall for the holidays <span class="shh">(Maggie and Colin are getting married!!)</span>) we went over a couple concepts.  He pointed out that rather than rote memorization, it would be more helpful to remember certain patterns of bonding (somthing related to alkanes and alkenes, etc.) and also had good ideas of a sort of RPG-style game where you could level up and create different types of bonds by applying heat and other chemicals and stuff. In the end I think that will be saved for another possible game, since I couldn&#8217;t understand it myself well enough to try and teach it to other people (despite the fact that I realize teaching something is the best way to learn it).  In any case, I wanted to keep it pretty simple.<br /><br />So then the gameflow started to look like:<br /><ol><li>Game gives players a molecule to assemble (i.e. &#8220;OH,&#8221; H20&#8221;), as well as a random assortment of atom sprites</li><li>Player tries assembling putting the required atoms together (i.e. pushing together an &#8220;O&#8221; and an &#8220;H&#8221; atom)</li><li>Player is rewarded with points and a mildly amusing (yet honest) description of what role that molecule plays in Everyday Life</li><li>Rinse, lather, repeat</li></ol><br />After that, we all met and broke down into separate teams.  We decided to use <a href="http://flixel.org/">Flixel</a> (which Kathleen showed me and I was super excited to use! :D) and then tried to work out the implementation.  Other than managing the state of the game (i.e. points, timer, propagating atoms to the screen) the main difficulties turned out to be <strong>bonding</strong> atoms, and <strong>validating</strong> bonds that the player had made.  I wanted the game not just to see that the molecules players assembled where all together, but that they were bonded in the right places &#8211; so if a player were trying to bond H20, a bond that went like<br /><br /><br /><center>H-H-O</center><br /><br />would be invalid, whereas something like<br /><br /><br /><center>H-O-H</center><br /><br />would be, since the real-life situation is that a pair of H atoms bond to an O.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-Zyh-voWylFI/TVyyl3vz5-I/AAAAAAAAAHk/YH9wL6cdILk/s1600/Covalent_H2O.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="310" src="http://1.bp.blogspot.com/-Zyh-voWylFI/TVyyl3vz5-I/AAAAAAAAAHk/YH9wL6cdILk/s320/Covalent_H2O.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">like so! (<a href="http://commons.wikimedia.org/wiki/File:Covalent_H2O.png">source</a>)</td></tr></tbody></table><br />In the end, the bonding function came to deal purely with atom behavior, i.e. atoms being moved about by the player and sticking together and then moving as one once they were &#8220;bonded.&#8221; Atoms contained data about who their neighboring atoms were.  Validation took a single molecule, then compared the connections and neighbors against a &#8220;validation code.&#8221;<br /><br />So, if we had the case of H-O-H, we could make a &#8220;validation code&#8221; which would contain data about the correct neighbors of each atom &#8211; in this case, <code>h_o1-o_h2-h_o1</code>, which meant &#8220;a hydrogen with 1 oxygen neighbor, an oxygen with 2 hydrogen neighbors, a hydrogen with 1 oxygen neighbor.&#8221;<br /><br />It worked :D And it meant that atoms could be bonded in any order, yay!<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-ZWKDaDp6U4k/TVysvYL3ycI/AAAAAAAAAHc/Mgg9I_Hfu7Y/s1600/bondingtime_firstbond.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="238" src="http://3.bp.blogspot.com/-ZWKDaDp6U4k/TVysvYL3ycI/AAAAAAAAAHc/Mgg9I_Hfu7Y/s320/bondingtime_firstbond.png" width="320" /></a></div><br />The game is <a href="http://neauro.com/flash/atomgame.swf">here</a>.  We&#8217;ve turned it in, but I can&#8217;t help thinking of all the things that I would have wanted to change if we had more time&#8230; (.___.  I guess I can add it in the future.  Specifically:<br /><ul><li>put in some visual cue about which molecule is &#8220;selected&#8221; to bond (right now, the molecule which will get checked is just the last one clicked)</li><li>put in more visual cues about how electrons get shared between atoms (i.e. if two fluorine atoms get placed together, it should show that they both share one electron to bring each one&#8217;s total number of valence electrons to 8)</li><li>put in more visual cues about the nature of bonds in a molecule (i.e. if it&#8217;s a single or double bond)</li><li>put an undo button, for goodness sake; if someone makes a mistake right now, you just have to refresh the whole set of atoms on screen D:</li><li>better icons for bond/reset/skip functions (since according to <em>The Design of Everyday Things</em>, text labels on anything indicate poor design)</li><li>add more, and more interesting, atoms</li><li>add a bonus round of some sorts, where maybe the objective would be to just try and get as many atoms as you can bonded together&#8230;I don&#8217;t know -shrug-</li></ul><br /><br /><br />&#8230;my very first game!  I&#8217;m still pretty proud. :D</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>nadine a.</div>
+<div class='content'>
+Haha, thanks. :D But c&#39;mon, you have done some pretty amazing stuff as well!  You do a ton more little experiments then I do, and have been learning about things for much longer!</div>
+</div>
+<div class='comment'>
+<div class='author'>axcho</div>
+<div class='content'>
+Wow, you actually did this? That&#39;s awesome. I wanted to do something like this back when I was taking chemistry classes. I feel like a loser who comes up with ideas and then never actually does them. You&#39;ve done all this cool stuff and found people to do them with.<br /><br />I congratulate you!</div>
+</div>
+</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/project/'>project</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/15/chocobos-nooooo/">CHOCOBOS. NOOOOO</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-15T00:00:00-08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-HRBgV5lMWMQ/TVq_JofqSRI/AAAAAAAAAHM/09kAvAvaRVA/s1600/chochoco.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="574" src="http://1.bp.blogspot.com/-HRBgV5lMWMQ/TVq_JofqSRI/AAAAAAAAAHM/09kAvAvaRVA/s640/chochoco.jpg" width="640" /></a></div><br />So I&#8217;ve been playing social games as research for my Informatics class, and in general been pretty skeptical of the whole thing (outside of FarmVille, which I find myself enjoying slightly more than the others, maybe just because it&#8217;s a farm sim and it feeds my &#8220;pastoral ideal,&#8221; which I recently learned that I possess thanks to <em>The Omnivore&#8217;s Dilemma</em>) &#8211; and then.<br /><br /><em>A chocobo game?</em><br /><br /><span class="shh"><em>I love birds/chickens/chocobos/the pastoral ideal.  It&#8217;s even red.  Red is my favorite color.</em></span><br /><br />It&#8217;s over.  It&#8217;s over for me.<br /><br />.___.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/11/operating-systems-notes-virtual-memory/">Operating Systems Notes [Virtual Memory, Page Tables, TLBs]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-11T00:00:00-08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So in case <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">it wasn&#8217;t clear already</a>, <a href="http://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> is a memory management technique which accomplishes these things:<ul><li>hides fragmentation of physical memory from programs</li><li>uses hardware memory more efficiently than systems without virtual memory</li><li>lets a program be designed as though there&#8217;s only one hardware memory (rather than one memory split up between different processes, I think?)</li></ul><br />An important aspect of implementing virtual memory is page tables.  A page table translates a program&#8217;s virtual address (used to refer to a function or variable or whatnot) into a physical address (which is the actual location of that function&#8217;s code data, or the variable&#8217;s value data).  Page tables make it so that programs can only be partially loaded into memory.  <strong>So, what happens when a program tries to access a part of its code which isn&#8217;t loaded into memory?<br /><br />A PAGE FAULT.</strong><br /><br />When a page fault happens,<ol><li>the OS is given an <a href="http://nuubu.blogspot.com/2011/01/operating-system-notes-chapter-1.html">interrupt</a></li><li>the OS saves the state of the running process, then searches (in the appropriate vector) for the page fault handler routine)</li><li>the page fault handler routine will find or create (through eviction) a page frame into which to load the page that the program needs</li><li>then it will find that page on the disk and place it into the now-free page frame</li><li>then it will fix up the page table entry &#8211; marking it &#8220;valid,&#8221; setting the &#8220;referenced&#8221; and &#8220;modified&#8221; bits to false, setting the pointers properly</li><li>finally, the process is placed back into the ready queue</li></ol><br />Anyway, it&#8217;s getting late and I want to go to bed so for now I&#8217;ll just skip to<br /><br /><br /><span class="sig">Translation Lookaside Buffers (TLBs)</span><br />to whom we must extend our gratitude for not making page tables awful.  Think about it: if you have a virtual address and you need to look into the page table and then into the physical address in order to actually obtain some value, that&#8217;s a <em>lot</em> of overhead.<br /><br />To make this more efficient, you want to make fetching from a virtual address just about as efficient as fetching from a physical address.  Which you can do with an extra piece of hardware, a cache inside the CPU.<br /><br />Thus, virtual-to-physical translations are cached in the hardware itself, the TLB.  The TLB translates virtual page numbers into page frame numbers (<em>not physical addresses</em>), and can do it in a single machine cycle.  The TLB in turn is managed by the memory management unit (MMU), which is what calculates the physical address from the page table entry and an offset.<br /><br />TLBs exploit the fact that processes have good temporal locality and spatial locality.  This is a fancy way of saying that processes tend to<ul><li>use data/code they have recently used</li><li>use data/code that is close to data/code they have recently used</li></ul>Which is why <em>caching</em>, or saving that data in an easily accessible place (as you may cache your potato chips, water bottles, and chocolate beneath the bedside  table) is a good idea.<br /><br />So, the TLB does the translation between virtual addresses and page frame numbers, and when it misses &#8211; when it can&#8217;t find a page frame number &#8211; the translation is saved into the TLB by the OS.<br /><br />In order for TLBs to work, the OS must make sure the TLB and page tables are consistent and up-to-date, and <strong>when a context switch happens, the TLB must be completely flushed</strong>, which means that context switching is still an expensive operation &#8211; all those cached translations, that optimization, disappears.  (The TLB needs to be flushed rather than saved and loaded with the rest of the process state because there&#8217;s no guarantee that other processes wouldn&#8217;t mess around with the data the TLB was keeping track of, and to keep the TLB up-to-date when it isn&#8217;t being presently used by a process is expensive.)<br /><br /><br /><br />Sources:<br /><a href="http://en.wikipedia.org/wiki/Virtual_memory">Wikipedia: Virtual memory</a><br />lecture 11a notes</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/25/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/blog/page/23/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>About</h1>
+  I&#8217;m Nadine. I like various things.  
+</section>
+<section>
+  <h1>Other Places</h1>
+  <ul>
+    <li><a href="http://uxunicorn.com">Portfolio</a></li>
+    <li><a href="http://neauro.tumblr.com">Tumblr</a></li>
+    <li><a href="http://github.com/neauro">Github</a></li>
+    </li>
+  </ul>
+</section>
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - nadine a. -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

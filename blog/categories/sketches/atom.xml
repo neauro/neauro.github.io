@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Sketches | liwanag]]></title>
+  <link href="http://neauro.github.io/blog/categories/sketches/atom.xml" rel="self"/>
+  <link href="http://neauro.github.io/"/>
+  <updated>2014-01-10T08:28:07-08:00</updated>
+  <id>http://neauro.github.io/</id>
+  <author>
+    <name><![CDATA[nadine a.]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Game: Invent-o-thon]]></title>
+    <link href="http://neauro.github.io/blog/2014/01/08/inventathon/"/>
+    <updated>2014-01-08T16:09:18-08:00</updated>
+    <id>http://neauro.github.io/blog/2014/01/08/inventathon</id>
+    <content type="html"><![CDATA[<p>A is starting a certificate program in game design this quarter and I&rsquo;ve been helping him with his card game, Invent-o-thon.</p>
+
+<p>The prompt being something related to <em>Victorian Combat</em>, he first went around researching what people &ldquo;first thought of when they think about the Victorian Era,&rdquo; and I was happy to hammer in the presence of Ada Lovelace, <a href="http://en.wikipedia.org/wiki/Ada_Lovelace">The World&rsquo;s First Computer Programmer</a>. Because I&rsquo;m more interested in stories, I also talked with him about stories — in particular, making noteworthy experiences that people are excited to talk to each other about after the fact. Or, in general, creating situations in which people&rsquo;s imaginations are prompted and stretch and fill in ridiculous gaps.</p>
+
+<p><img class="book-cover" src="/images/inventothon/playtest1.jpg" alt="What is a faith-powered tummy mobile?"/></p>
+
+<p class="caption">what is a faith-powered tummy mobile FIGURE IT OUT DO IT</p>
+
+
+<p>A obtained a bunch of card sleeves and post-it notes for our paper prototyping. The point of the game is to create an invention over several rounds, then present it at &ldquo;showtime&rdquo; to everyone and roll dice to see if your invention explodes. Thus far, players construct machines using three decks: one deck to describe a &ldquo;power source&rdquo; (like &ldquo;electric&rdquo;), one deck to describe a &ldquo;subject&rdquo; (like &ldquo;kittens&rdquo;), and one deck to describe the actual invention (like &ldquo;generator&rdquo;).</p>
+
+<p><img class="book-cover" src="/images/inventothon/playtest1_cards.jpg" alt="Playtest cards"/></p>
+
+<p class="caption">physically impossible bathtub packer</p>
+
+
+<p>We also gathered friends to do a playtest at a cafe.</p>
+
+<p><img class="book-cover" src="/images/inventothon/playtest2.jpg" alt="Playtest cards"/></p>
+
+<p class="caption">kind of pathetic pleasure chamber...and others</p>
+
+
+<p>One of the most valuable things learned from prototyping was which cards were compelling and funny, and which cards weren&rsquo;t — descriptive cards that seemed perfectly fine, like &ldquo;hydro-powered&rdquo; or &ldquo;solar-powered,&rdquo; were just not as fun to use as &ldquo;perfectly ordinary&rdquo; or &ldquo;rather moist&rdquo; and never quite made it to showtime. It makes sense that something like &ldquo;perfectly ordinary&rdquo; lights up more parts of your story-minded brain than &ldquo;hydro-powered,&rdquo; and overall could have more flavor. (What&rsquo;s a &ldquo;perfectly ordinary kitten-mobile&rdquo;?)</p>
+
+<p>I sketched out some possibilities for card designs&hellip;</p>
+
+<p><img class="book-cover" src="/images/inventothon/cardsketch.jpg" alt="Sketches of cards"/></p>
+
+<p class="caption">sketches of cards</p>
+
+
+<p>&hellip;and A also reined in his sister for some concept art of character roles that players could have that affected their inventions. For example, someone who was Benjamin Franklin might be able to totally swap inventions with someone else before showtime. (Oo! Sick burn!)</p>
+
+<p><img class="book-cover" src="/images/inventothon/concept.jpg" alt="Concept art of Nikola Tesla"/></p>
+
+<p class="caption">concept art of Nikola Tesla</p>
+
+
+<p></p>
+]]></content>
+  </entry>
+  
+</feed>
