@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Sketches | liwanag]]></title>
-  <link href="http://neauro.github.io/blog/categories/sketches/atom.xml" rel="self"/>
-  <link href="http://neauro.github.io/"/>
-  <updated>2014-01-10T08:28:07-08:00</updated>
-  <id>http://neauro.github.io/</id>
+  <link href="http://blog.neauro.com/blog/categories/sketches/atom.xml" rel="self"/>
+  <link href="http://blog.neauro.com/"/>
+  <updated>2014-01-10T09:29:55-08:00</updated>
+  <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Game: Invent-o-thon]]></title>
-    <link href="http://neauro.github.io/blog/2014/01/08/inventathon/"/>
+    <link href="http://blog.neauro.com/blog/2014/01/08/inventathon/"/>
     <updated>2014-01-08T16:09:18-08:00</updated>
-    <id>http://neauro.github.io/blog/2014/01/08/inventathon</id>
+    <id>http://blog.neauro.com/blog/2014/01/08/inventathon</id>
     <content type="html"><![CDATA[<p>A is starting a certificate program in game design this quarter and I&rsquo;ve been helping him with his card game, Invent-o-thon.</p>
 
 <p>The prompt being something related to <em>Victorian Combat</em>, he first went around researching what people &ldquo;first thought of when they think about the Victorian Era,&rdquo; and I was happy to hammer in the presence of Ada Lovelace, <a href="http://en.wikipedia.org/wiki/Ada_Lovelace">The World&rsquo;s First Computer Programmer</a>. Because I&rsquo;m more interested in stories, I also talked with him about stories — in particular, making noteworthy experiences that people are excited to talk to each other about after the fact. Or, in general, creating situations in which people&rsquo;s imaginations are prompted and stretch and fill in ridiculous gaps.</p>

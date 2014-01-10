@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Game | liwanag]]></title>
-  <link href="http://neauro.github.io/blog/categories/game/atom.xml" rel="self"/>
-  <link href="http://neauro.github.io/"/>
-  <updated>2014-01-10T08:28:07-08:00</updated>
-  <id>http://neauro.github.io/</id>
+  <link href="http://blog.neauro.com/blog/categories/game/atom.xml" rel="self"/>
+  <link href="http://blog.neauro.com/"/>
+  <updated>2014-01-10T09:29:55-08:00</updated>
+  <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Some Thoughts Re: Thomas Was Alone]]></title>
-    <link href="http://neauro.github.io/blog/2014/01/08/thomas-was-alone/"/>
+    <link href="http://blog.neauro.com/blog/2014/01/08/thomas-was-alone/"/>
     <updated>2014-01-08T09:52:26-08:00</updated>
-    <id>http://neauro.github.io/blog/2014/01/08/thomas-was-alone</id>
+    <id>http://blog.neauro.com/blog/2014/01/08/thomas-was-alone</id>
     <content type="html"><![CDATA[<p><img class="book-cover" src="/images/twa.png" alt="Screenshot of Thomas Was Alone"/></p>
 
 <p class="caption">(<a href="http://www.mobygames.com/game/windows/thomas-was-alone/screenshots/gameShotId,566500/">via</a>)</p>

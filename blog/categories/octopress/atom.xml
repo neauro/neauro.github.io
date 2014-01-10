@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopress | liwanag]]></title>
-  <link href="http://neauro.github.io/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://neauro.github.io/"/>
-  <updated>2014-01-10T08:28:07-08:00</updated>
-  <id>http://neauro.github.io/</id>
+  <link href="http://blog.neauro.com/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://blog.neauro.com/"/>
+  <updated>2014-01-10T09:29:55-08:00</updated>
+  <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Moving to Octopress From Blogger]]></title>
-    <link href="http://neauro.github.io/blog/2013/12/15/test/"/>
+    <link href="http://blog.neauro.com/blog/2013/12/15/test/"/>
     <updated>2013-12-15T15:17:07-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/12/15/test</id>
+    <id>http://blog.neauro.com/blog/2013/12/15/test</id>
     <content type="html"><![CDATA[<p>After eight years using Blogger, I&rsquo;ve finally decided to move away. One of the first reasons I first started using it in high school was because Blogger was one of the only free hosting services I knew where I could also control the styling; but after several Blogger updates, and several years of telling myself I&rsquo;d eventually learn Blogger syntax well enough to style as I like, I&rsquo;ve given up. I have other things I&rsquo;d rather do than invest time parsing Blogger, and Octopres offers more built-in tools <em>and</em> flexibility: I can have <a href="http://octopress.org/docs/blogging/code/">nice code snippets</a> and have whatever extra scripts I&rsquo;d like without worrying they&rsquo;d interfere with Blogger esoterica. Additionally, after reading <a href="https://medium.com/p/c7cc156bc5d9">this article</a> I&rsquo;ve been a little more wary of data ownership, and with Octopress, I can host on Github where I know everything is mine.</p>
 
 <p>I&rsquo;ve also been eyeing <a href="https://ghost.org/">ghost</a> recently and though it looks awesome, I decided against it for now for several reasons. Currently, there&rsquo;s no easy way to import posts from Blogger, and I didn&rsquo;t want to deal with the extra overhead of figuring out where to host. A couple days ago I received access to Ghost&rsquo;s subscription hosting, but I don&rsquo;t want to commit to paying money when this blog is mostly for lolzy purposes.</p>

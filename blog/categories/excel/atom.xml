@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Excel | liwanag]]></title>
-  <link href="http://neauro.github.io/blog/categories/excel/atom.xml" rel="self"/>
-  <link href="http://neauro.github.io/"/>
-  <updated>2014-01-10T08:28:07-08:00</updated>
-  <id>http://neauro.github.io/</id>
+  <link href="http://blog.neauro.com/blog/categories/excel/atom.xml" rel="self"/>
+  <link href="http://blog.neauro.com/"/>
+  <updated>2014-01-10T09:29:55-08:00</updated>
+  <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[[ Excel ] How to Count the Number of Occurrences of Given String in All Cells of a Column]]></title>
-    <link href="http://neauro.github.io/blog/2012/02/02/excel-how-to-count-number-of-cells-in/"/>
+    <link href="http://blog.neauro.com/blog/2012/02/02/excel-how-to-count-number-of-cells-in/"/>
     <updated>2012-02-02T00:00:00-08:00</updated>
-    <id>http://neauro.github.io/blog/2012/02/02/excel-how-to-count-number-of-cells-in</id>
+    <id>http://blog.neauro.com/blog/2012/02/02/excel-how-to-count-number-of-cells-in</id>
     <content type="html"><![CDATA[<div class='post'>
 <div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-_vByBoIjQ4k/TysFzMr7liI/AAAAAAAAAok/OnJOhzTJYqM/s1600/cells2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="163" src="http://2.bp.blogspot.com/-_vByBoIjQ4k/TysFzMr7liI/AAAAAAAAAok/OnJOhzTJYqM/s640/cells2.png" width="640" /></a></div><br />Surprisingly annoying to figure out how to do. &nbsp;This one counts the number of times the words "normal" or "forest" occur in cells A75 through A79.<br /><br />Source:<br /><a href="http://www.excel-answers.com/microsoft/Excel-Worksheet/32639561/how-to-count-if-cell-contains-a-word.aspx">Excel Answers</a></div>
 

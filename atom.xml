@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[liwanag]]></title>
-  <link href="http://neauro.github.io/atom.xml" rel="self"/>
-  <link href="http://neauro.github.io/"/>
-  <updated>2014-01-10T08:28:07-08:00</updated>
-  <id>http://neauro.github.io/</id>
+  <link href="http://blog.neauro.com/atom.xml" rel="self"/>
+  <link href="http://blog.neauro.com/"/>
+  <updated>2014-01-10T09:29:55-08:00</updated>
+  <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
     
@@ -15,12 +15,12 @@
   
   <entry>
     <title type="html"><![CDATA[Short Story: Monsterfolk]]></title>
-    <link href="http://neauro.github.io/blog/2014/01/09/monsterfolk/"/>
+    <link href="http://blog.neauro.com/blog/2014/01/09/monsterfolk/"/>
     <updated>2014-01-09T14:32:33-08:00</updated>
-    <id>http://neauro.github.io/blog/2014/01/09/monsterfolk</id>
+    <id>http://blog.neauro.com/blog/2014/01/09/monsterfolk</id>
     <content type="html"><![CDATA[<p>The most recent issue of AU is out at Bulldog News!</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/monsterfolk1.jpg" alt="AU Issue X at Bulldog News"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/monsterfolk1.jpg" alt="AU Issue X at Bulldog News"/></p>
 
 <p class="caption">Such AU Issue X!</p>
 
@@ -29,7 +29,7 @@
 
 <p>I&rsquo;m still working on a place to host my writing online. For now, if you&rsquo;re in Seattle, you can pick up a copy at Bulldog News!</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/monsterfolk2.jpg" alt="Monsterfolk at Bulldog News"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/monsterfolk2.jpg" alt="Monsterfolk at Bulldog News"/></p>
 
 <p class="caption"><em>Monsterfolk</em>, complete with some sketches I did, which the editors asked to add!</p>
 
@@ -38,17 +38,17 @@
   
   <entry>
     <title type="html"><![CDATA[Short Story: Chronectomy]]></title>
-    <link href="http://neauro.github.io/blog/2014/01/09/au13-submissions/"/>
+    <link href="http://blog.neauro.com/blog/2014/01/09/au13-submissions/"/>
     <updated>2014-01-09T13:06:27-08:00</updated>
-    <id>http://neauro.github.io/blog/2014/01/09/au13-submissions</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://neauro.github.io/images/chronectomy1.jpg" alt="AU Issue VIII at Bulldog News"/></p>
+    <id>http://blog.neauro.com/blog/2014/01/09/au13-submissions</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/chronectomy1.jpg" alt="AU Issue VIII at Bulldog News"/></p>
 
 <p class="caption">AU Issue VIII at Bulldog News</p>
 
 
-<p>I&rsquo;m into my last couple months as a UW student, and these are my last couple months to submit to <a href="http://strayingfromreality.wordpress.com/">AU</a>, UW&rsquo;s speculative fiction journal. Since the <a href="http://neauro.github.io/blog/2012-12-30-short-story-golemists-work.html">last time I&rsquo;ve written about it</a> I&rsquo;ve had two more acceptances! The story that I&rsquo;ll talk about in this post is <em>Chronectomy</em>, written for the Winter 2012, Issue VIII prompt: <em>chronos</em>, or time.</p>
+<p>I&rsquo;m into my last couple months as a UW student, and these are my last couple months to submit to <a href="http://strayingfromreality.wordpress.com/">AU</a>, UW&rsquo;s speculative fiction journal. Since the <a href="http://blog.neauro.com/blog/2012-12-30-short-story-golemists-work.html">last time I&rsquo;ve written about it</a> I&rsquo;ve had two more acceptances! The story that I&rsquo;ll talk about in this post is <em>Chronectomy</em>, written for the Winter 2012, Issue VIII prompt: <em>chronos</em>, or time.</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/chronectomy2.jpg" alt="Chronectomy!"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/chronectomy2.jpg" alt="Chronectomy!"/></p>
 
 <p class="caption">Chronectomy! I LOVE what the editors did with the &#8220;O&#8217;s.&#8221;</p>
 
@@ -189,28 +189,28 @@
   
   <entry>
     <title type="html"><![CDATA[Game: Invent-o-thon]]></title>
-    <link href="http://neauro.github.io/blog/2014/01/08/inventathon/"/>
+    <link href="http://blog.neauro.com/blog/2014/01/08/inventathon/"/>
     <updated>2014-01-08T16:09:18-08:00</updated>
-    <id>http://neauro.github.io/blog/2014/01/08/inventathon</id>
+    <id>http://blog.neauro.com/blog/2014/01/08/inventathon</id>
     <content type="html"><![CDATA[<p>A is starting a certificate program in game design this quarter and I&rsquo;ve been helping him with his card game, Invent-o-thon.</p>
 
 <p>The prompt being something related to <em>Victorian Combat</em>, he first went around researching what people &ldquo;first thought of when they think about the Victorian Era,&rdquo; and I was happy to hammer in the presence of Ada Lovelace, <a href="http://en.wikipedia.org/wiki/Ada_Lovelace">The World&rsquo;s First Computer Programmer</a>. Because I&rsquo;m more interested in stories, I also talked with him about stories — in particular, making noteworthy experiences that people are excited to talk to each other about after the fact. Or, in general, creating situations in which people&rsquo;s imaginations are prompted and stretch and fill in ridiculous gaps.</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/inventothon/playtest1.jpg" alt="What is a faith-powered tummy mobile?"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/inventothon/playtest1.jpg" alt="What is a faith-powered tummy mobile?"/></p>
 
 <p class="caption">what is a faith-powered tummy mobile FIGURE IT OUT DO IT</p>
 
 
 <p>A obtained a bunch of card sleeves and post-it notes for our paper prototyping. The point of the game is to create an invention over several rounds, then present it at &ldquo;showtime&rdquo; to everyone and roll dice to see if your invention explodes. Thus far, players construct machines using three decks: one deck to describe a &ldquo;power source&rdquo; (like &ldquo;electric&rdquo;), one deck to describe a &ldquo;subject&rdquo; (like &ldquo;kittens&rdquo;), and one deck to describe the actual invention (like &ldquo;generator&rdquo;).</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/inventothon/playtest1_cards.jpg" alt="Playtest cards"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/inventothon/playtest1_cards.jpg" alt="Playtest cards"/></p>
 
 <p class="caption">physically impossible bathtub packer</p>
 
 
 <p>We also gathered friends to do a playtest at a cafe.</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/inventothon/playtest2.jpg" alt="Playtest cards"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/inventothon/playtest2.jpg" alt="Playtest cards"/></p>
 
 <p class="caption">kind of pathetic pleasure chamber&#8230;and others</p>
 
@@ -219,14 +219,14 @@
 
 <p>I sketched out some possibilities for card designs&hellip;</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/inventothon/cardsketch.jpg" alt="Sketches of cards"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/inventothon/cardsketch.jpg" alt="Sketches of cards"/></p>
 
 <p class="caption">sketches of cards</p>
 
 
 <p>&hellip;and A also reined in his sister for some concept art of character roles that players could have that affected their inventions. For example, someone who was Benjamin Franklin might be able to totally swap inventions with someone else before showtime. (Oo! Sick burn!)</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/inventothon/concept.jpg" alt="Concept art of Nikola Tesla"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/inventothon/concept.jpg" alt="Concept art of Nikola Tesla"/></p>
 
 <p class="caption">concept art of Nikola Tesla</p>
 
@@ -237,10 +237,10 @@
   
   <entry>
     <title type="html"><![CDATA[Some Thoughts Re: Thomas Was Alone]]></title>
-    <link href="http://neauro.github.io/blog/2014/01/08/thomas-was-alone/"/>
+    <link href="http://blog.neauro.com/blog/2014/01/08/thomas-was-alone/"/>
     <updated>2014-01-08T09:52:26-08:00</updated>
-    <id>http://neauro.github.io/blog/2014/01/08/thomas-was-alone</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://neauro.github.io/images/twa.png" alt="Screenshot of Thomas Was Alone"/></p>
+    <id>http://blog.neauro.com/blog/2014/01/08/thomas-was-alone</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/twa.png" alt="Screenshot of Thomas Was Alone"/></p>
 
 <p class="caption">(<a href="http://www.mobygames.com/game/windows/thomas-was-alone/screenshots/gameShotId,566500/">via</a>)</p>
 
@@ -255,12 +255,12 @@
   
   <entry>
     <title type="html"><![CDATA[Running IE7, IE8, and IE9 on a Mac, Using VirtualBox]]></title>
-    <link href="http://neauro.github.io/blog/2014/01/08/virtualbox/"/>
+    <link href="http://blog.neauro.com/blog/2014/01/08/virtualbox/"/>
     <updated>2014-01-08T09:07:20-08:00</updated>
-    <id>http://neauro.github.io/blog/2014/01/08/virtualbox</id>
+    <id>http://blog.neauro.com/blog/2014/01/08/virtualbox</id>
     <content type="html"><![CDATA[<p>I&rsquo;ve been putting off getting a virtual machine running on the Mac computer I use for work, mostly because I wanted to forget the existence of &lt;IE9 browsers entirely. Unfortunately, the visual bugs accumulating across my projects were starting to get a little ridiculous.</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/proleft.png" alt="Screenshot of IE8 errors"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/proleft.png" alt="Screenshot of IE8 errors"/></p>
 
 <p class="caption">omg why</p>
 
@@ -275,7 +275,7 @@
 
 <p>That&rsquo;s it! Once that&rsquo;s finished, you can open VirtualBox and you&rsquo;ll see your boxes all ready to go.</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/virtualbox.png" alt="Screenshot of IE8 in VirtualBox"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/virtualbox.png" alt="Screenshot of IE8 in VirtualBox"/></p>
 
 <p class="caption">only IE8 is pictured above</p>
 
@@ -294,10 +294,10 @@
   
   <entry>
     <title type="html"><![CDATA[New Tumblr: Delightful UX]]></title>
-    <link href="http://neauro.github.io/blog/2014/01/07/delightful-ux/"/>
+    <link href="http://blog.neauro.com/blog/2014/01/07/delightful-ux/"/>
     <updated>2014-01-07T14:39:07-08:00</updated>
-    <id>http://neauro.github.io/blog/2014/01/07/delightful-ux</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://neauro.github.io/images/delightful-ux.png" alt="Screenshot of delightful-ux.tumblr.com"/></p>
+    <id>http://blog.neauro.com/blog/2014/01/07/delightful-ux</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/delightful-ux.png" alt="Screenshot of delightful-ux.tumblr.com"/></p>
 
 <p class="caption">(<A href="http://delightful-ux.tumblr.com">via</a>)</p>
 
@@ -316,10 +316,10 @@
   
   <entry>
     <title type="html"><![CDATA[Some Thoughts Re: Phoenix Wright: Dual Destinies]]></title>
-    <link href="http://neauro.github.io/blog/2013/12/23/phoenix-wright/"/>
+    <link href="http://blog.neauro.com/blog/2013/12/23/phoenix-wright/"/>
     <updated>2013-12-23T11:03:14-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/12/23/phoenix-wright</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://neauro.github.io/images/aceattorney5.png" alt="Apollo Justice, Phoenix Wright, and Athena Cykes from Phoenix Wright: Dual Destinies"/></p>
+    <id>http://blog.neauro.com/blog/2013/12/23/phoenix-wright</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/aceattorney5.png" alt="Apollo Justice, Phoenix Wright, and Athena Cykes from Phoenix Wright: Dual Destinies"/></p>
 
 <p class="caption">(<A href="http://www.joystiq.com/2013/10/24/phoenix-wright-dual-destinies-review-f8ea4d29/">via</a>)</p>
 
@@ -340,10 +340,10 @@
   
   <entry>
     <title type="html"><![CDATA[Netflix: Such Killer Whales]]></title>
-    <link href="http://neauro.github.io/blog/2013/12/20/on-netflix-killer-whales/"/>
+    <link href="http://blog.neauro.com/blog/2013/12/20/on-netflix-killer-whales/"/>
     <updated>2013-12-20T06:55:33-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/12/20/on-netflix-killer-whales</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://neauro.github.io/images/blackfish-poster.jpg" alt="Blackfish poster"/></p>
+    <id>http://blog.neauro.com/blog/2013/12/20/on-netflix-killer-whales</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/blackfish-poster.jpg" alt="Blackfish poster"/></p>
 
 <p class="caption">(<A href="http://www.magpictures.com/blackfish/">via</a>)</p>
 
@@ -360,10 +360,10 @@
   
   <entry>
     <title type="html"><![CDATA[Frozen]]></title>
-    <link href="http://neauro.github.io/blog/2013/12/18/frozen/"/>
+    <link href="http://blog.neauro.com/blog/2013/12/18/frozen/"/>
     <updated>2013-12-18T09:24:39-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/12/18/frozen</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://neauro.github.io/images/frozen-poster.jpg" alt="Frozen poster"/></p>
+    <id>http://blog.neauro.com/blog/2013/12/18/frozen</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/frozen-poster.jpg" alt="Frozen poster"/></p>
 
 <p class="caption">(<A href="http://www.comingsoon.net/news/movienews.php?id=109012">via</a>)</p>
 
@@ -390,7 +390,7 @@
 
 <p>Given that the movie&rsquo;s main conflict is Elsa and Anna&rsquo;s relationship, and true love, the other major characters — Kristoff, Olaf, and Hans — all felt thrown in. I would have loved to see them all focused to serve the &ldquo;true love&rdquo; theme by addressing love in different ways. Treated differently, Kristoff could have been a great catalyst for Anna&rsquo;s development of her version of love. I&rsquo;m inagining him, a character distrusting of other humans, teaching her about the horrible things humans do; she fights it (&ldquo;No way, humans are inherently Lawful Good!&rdquo;); Kristoff then points out that her sister is laying waste to their kingdom and also has been pretty mean in general to people; Anna cracks a bit; and then, right on cue, Anna is betrayed again by Hans.</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/anna.jpg" alt="Frozen poster"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/anna.jpg" alt="Frozen poster"/></p>
 
 <p class="caption">omg will she now become totally jaded? or will she still choose looove? (<A href="http://turntherightcorner.com/2013/09/27/movie-trailer-for-disneys-frozen/disneys-frozen-2013-screenshot-princess-anna/">via</a>)</p>
 
@@ -399,14 +399,14 @@
 
 <p>Olaf was a character I grimaced at in the movie trailers and ended up being pleasantly entertained by.</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/olaf.gif" alt="Frozen poster"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/olaf.gif" alt="Frozen poster"/></p>
 
 <p class="caption">oh youu (<A href="http://worldbuiltfor2.tumblr.com/post/69015715475/when-someone-emotionally-hurts-you-but-you-have-to">via</a>)</p>
 
 
 <p>Even though his main purpose is comedic entertainment, it would have been nice to see more about what he means to Anna and Elsa&rsquo;s relationship. He&rsquo;s their precious childhood snowman, and is really the only indication Anna has that Elsa still treasures her after years of being isolated.</p>
 
-<p><img class="book-cover" src="http://neauro.github.io/images/olaf.jpg" alt="Frozen poster"/></p>
+<p><img class="book-cover" src="http://blog.neauro.com/images/olaf.jpg" alt="Frozen poster"/></p>
 
 <p class="caption">love again, anna! do iiit! (<A href="http://www.rotoscopers.com/2013/09/27/ten-things-we-loved-about-the-new-frozen-trailer/">via</a>)</p>
 
@@ -421,10 +421,10 @@
   
   <entry>
     <title type="html"><![CDATA[Fire, Kristin Cashore]]></title>
-    <link href="http://neauro.github.io/blog/2013/12/16/fire/"/>
+    <link href="http://blog.neauro.com/blog/2013/12/16/fire/"/>
     <updated>2013-12-16T12:36:17-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/12/16/fire</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://neauro.github.io/images/cover_fire.jpg" alt="Fire cover"/></p>
+    <id>http://blog.neauro.com/blog/2013/12/16/fire</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/cover_fire.jpg" alt="Fire cover"/></p>
 
 <p class="caption">(<A href="https://www.goodreads.com/book/show/6137154-fire?from_search=true">via</a>)</p>
 
@@ -442,7 +442,7 @@
 
 <p>[spoilers below]</p>
 
-<p><em>Fire</em> was alright. I liked the strangeness of monsters and their many colors; I liked all the politics, the twist that Fire had killed her own father and the general confusion of royal bloodlines. As in <em><a href="http://neauro.github.io/blog/2013-12-16-graceling/"/>Graceling</a></em>, the non-drama of sexual relationships is a relief. While reading, I hated Archer for being a posessive male character that we are meant to sympathize with; but thinking back, I don&rsquo;t think that his possessive behavior was ever excused by the story&hellip;except, I guess, for Fire&rsquo;s musing about how her innate monster beauty may have compelled Archer to become as horribly possessive as he was. This is uncomfortable because of its similarity to modern &ldquo;victim-blaming&rdquo; narratives, even if <em>Fire</em> explores Fire&rsquo;s strange ability to compel all humans when they look at her, not just men. It&rsquo;s also nice to see a romance not totally typical of YA: a non-virgin woman who falls in love with a man who already has a child.</p>
+<p><em>Fire</em> was alright. I liked the strangeness of monsters and their many colors; I liked all the politics, the twist that Fire had killed her own father and the general confusion of royal bloodlines. As in <em><a href="http://blog.neauro.com/blog/2013-12-16-graceling/"/>Graceling</a></em>, the non-drama of sexual relationships is a relief. While reading, I hated Archer for being a posessive male character that we are meant to sympathize with; but thinking back, I don&rsquo;t think that his possessive behavior was ever excused by the story&hellip;except, I guess, for Fire&rsquo;s musing about how her innate monster beauty may have compelled Archer to become as horribly possessive as he was. This is uncomfortable because of its similarity to modern &ldquo;victim-blaming&rdquo; narratives, even if <em>Fire</em> explores Fire&rsquo;s strange ability to compel all humans when they look at her, not just men. It&rsquo;s also nice to see a romance not totally typical of YA: a non-virgin woman who falls in love with a man who already has a child.</p>
 
 <p>One downside is that the voice of Fire herself doesn&rsquo;t differ too much from Katsa&rsquo;s in <em>Graceling</em>. Fire feels like a parallel universe Katsa, whose story ultimately isn&rsquo;t as interesting. One of the main reasons I was so attracted to the <em>Graceling</em> was — well — the Graces — and since the Dell doesn&rsquo;t have them, and since Katsa&rsquo;s world doesn&rsquo;t have monsters, this book feels like it&rsquo;s set in an entirely different universe. There&rsquo;s none of the excitement of familiarity, the fun of adding to the breadth and meaning of <em>Graceling</em>&rsquo;s world. The one connection between <em>Graceling</em> and <em>Fire</em> is Leck, but we barely know him from the first book, and I&rsquo;m not interested in any mysteries about how he came to be, since by the end of <em>Graceling</em> he&rsquo;s already dead. Leck&rsquo;s descent into sadism in <em>Fire</em> isn&rsquo;t particularly complex, either; he is shown to be a sociopath from the very beginning, and all interactions that he has with Fire feel tacked on and separate from Fire&rsquo;s own character growth. Had there been more of a commonality with <em>Graceling</em>, <em>Fire</em> would have been more of a hit with me.</p>
 ]]></content>
@@ -450,10 +450,10 @@
   
   <entry>
     <title type="html"><![CDATA[Graceling, Kristin Cashore]]></title>
-    <link href="http://neauro.github.io/blog/2013/12/16/graceling/"/>
+    <link href="http://blog.neauro.com/blog/2013/12/16/graceling/"/>
     <updated>2013-12-16T11:26:00-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/12/16/graceling</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://neauro.github.io/images/cover_graceling.jpg" alt="Graceling cover"/></p>
+    <id>http://blog.neauro.com/blog/2013/12/16/graceling</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/cover_graceling.jpg" alt="Graceling cover"/></p>
 
 <p class="caption">(<A href="https://www.goodreads.com/book/show/3236307-graceling">via</a>)</p>
 
@@ -481,9 +481,9 @@
   
   <entry>
     <title type="html"><![CDATA[Moving to Octopress From Blogger]]></title>
-    <link href="http://neauro.github.io/blog/2013/12/15/test/"/>
+    <link href="http://blog.neauro.com/blog/2013/12/15/test/"/>
     <updated>2013-12-15T15:17:07-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/12/15/test</id>
+    <id>http://blog.neauro.com/blog/2013/12/15/test</id>
     <content type="html"><![CDATA[<p>After eight years using Blogger, I&rsquo;ve finally decided to move away. One of the first reasons I first started using it in high school was because Blogger was one of the only free hosting services I knew where I could also control the styling; but after several Blogger updates, and several years of telling myself I&rsquo;d eventually learn Blogger syntax well enough to style as I like, I&rsquo;ve given up. I have other things I&rsquo;d rather do than invest time parsing Blogger, and Octopres offers more built-in tools <em>and</em> flexibility: I can have <a href="http://octopress.org/docs/blogging/code/">nice code snippets</a> and have whatever extra scripts I&rsquo;d like without worrying they&rsquo;d interfere with Blogger esoterica. Additionally, after reading <a href="https://medium.com/p/c7cc156bc5d9">this article</a> I&rsquo;ve been a little more wary of data ownership, and with Octopress, I can host on Github where I know everything is mine.</p>
 
 <p>I&rsquo;ve also been eyeing <a href="https://ghost.org/">ghost</a> recently and though it looks awesome, I decided against it for now for several reasons. Currently, there&rsquo;s no easy way to import posts from Blogger, and I didn&rsquo;t want to deal with the extra overhead of figuring out where to host. A couple days ago I received access to Ghost&rsquo;s subscription hosting, but I don&rsquo;t want to commit to paying money when this blog is mostly for lolzy purposes.</p>
@@ -528,9 +528,9 @@ From one of the previous links, I learned how to convert all my old posts to a f
   
   <entry>
     <title type="html"><![CDATA[Allegiant, Veronica Roth]]></title>
-    <link href="http://neauro.github.io/blog/2013/11/19/allegiant/"/>
+    <link href="http://blog.neauro.com/blog/2013/11/19/allegiant/"/>
     <updated>2013-11-19T20:40:01-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/11/19/allegiant</id>
+    <id>http://blog.neauro.com/blog/2013/11/19/allegiant</id>
     <content type="html"><![CDATA[<p>Well! It&rsquo;s over.</p>
 
 <p>I download <em>Allegiant</em> from the Seattle Public Library&rsquo;s eBook collection as soon as it became available, and read it over the course of a couple days, despite the looming presence of NaNoWriMo (which I&rsquo;ve been keeping track of in <a href="http://neauro.tumblr.com/tagged/nnwm2013">my Tumblr</a>).</p>
@@ -586,9 +586,9 @@ From one of the previous links, I learned how to convert all my old posts to a f
   
   <entry>
     <title type="html"><![CDATA[Cultural Differences Across Pokemon X & Y Websites]]></title>
-    <link href="http://neauro.github.io/blog/2013/11/04/cultural-differences-across-pokemon-x-y/"/>
+    <link href="http://blog.neauro.com/blog/2013/11/04/cultural-differences-across-pokemon-x-y/"/>
     <updated>2013-11-04T00:00:00-08:00</updated>
-    <id>http://neauro.github.io/blog/2013/11/04/cultural-differences-across-pokemon-x-y</id>
+    <id>http://blog.neauro.com/blog/2013/11/04/cultural-differences-across-pokemon-x-y</id>
     <content type="html"><![CDATA[<div class='post'>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-IZKxZeym4hI/UnhNh5LTGHI/AAAAAAAAER8/ijPCNF5uWhM/s1600/pokemonxy.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="640" src="http://4.bp.blogspot.com/-IZKxZeym4hI/UnhNh5LTGHI/AAAAAAAAER8/ijPCNF5uWhM/s640/pokemonxy.jpg" width="510" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">screenshots of the websites for Pokemon X &amp; Y<br />Japan (above), Netherlands (bottom)</td></tr></tbody></table><div class="p1"><br /></div><div class="p1">A couple weeks ago we analyzed the marketing sites for Pokemon X and Y across different countries. It turns out that all sites for Pokemon X and Y are the same — except for the one in Japan, which is shown at the top of the screenshot above.</div><div class="p2"><br /></div><div class="p1">The differences between the Japanese site and the rest-of-the-world sites include:</div><div class="p1"><br /></div><div class="p1"><br /></div><h4>Feature Descriptions</h4><div>Non-Japanese sites contain more information about the game, for example, direct links to features like the Pokemon Global Link; on the Japanese site, these are internal.</div><div><br /></div><div><h4>Hype</h4><div>Non-Japanese sites feature a large image carousel on their homepage, which shows other features of the game, all shown to excite:&nbsp;<i>Discover the Might of Mega-Evolved Pokemon! A New World of Amazing Pokemon!</i></div><div><i><br /></i></div><div>In contrast, the front page of the Japanese site merely says:&nbsp;<i>Pokemon, heading to a brand new dimension</i>! (Referring, I think, to the 3D?)</div></div><div><br /></div><div><h4>Obvious Marketing</h4><div>Non-Japanese sites contain immediate links to buy the game, as well as the 3DS; the Japanese site does not. (According to Julius, the 2DS isn&#8217;t even available in Japan, perhaps because &#8220;Everyone there already has a 3DS!&#8221;)</div></div><div><h4><br /></h4><h4>JavaScript</h4><div>The Japanese site has very little Javascript, and each page looks to be straight HTML. Additionally, text is often baked straight into the images, rather than being left as straight text, which is often the case in websites due to accessibility issues. (Text on images cannot be easily parsed by screenreaders. Some users also prefer to render text on websites to be more readable, for example, through the excellent&nbsp;<a href="http://www.beelinereader.com/">BeeLine</a>&nbsp;app.</div></div><div><br /></div><div><h4>Description vs. Instruction</h4><div>The Japanese site is more descriptive of the story and characters of the game; the non-Japanese site is more instructive of how to play the Pokemon game.</div></div><div><br /></div><div><br /></div><div class="p1">We chalked up the majority of the differences the fact that Pokemon is more popular in Japan; Japanese game-players may not need to be particularly taught about Pokemon, or persuaded to buy it. But, this exercise makes me more interested in other facets of Japanese web design. Why is there so much baked-in text, why aren&#8217;t there fancy hover menu states, why is the design so flat compared to the chrome and bevels of the non-Japanese sites? Is web accessibility less important in the Japanese corner of the internet, or is it handled in a way that&#8217;s different in the US?</div><div class="p2"><br /></div><div class="p1">One final note: out class lecture that week was done by Kate Edwards, current Executive Director of IGDA, who shared some cool stories regarding the &#8220;culturization&#8221; problems she&#8217;s encountered when helping to ship games across international borders. Something she noted was that, in the Netherlands, &#8220;adult&#8221; games don&#8217;t need to be localized into Dutch because the adults there prefer to play the games in English. So, the fact that the Pokemon X and Y site text is all written in Dutch…</div><div class="p2"><br /></div><br /><div class="p1">…well…you can totally still enjoy the world of Kalos as a grown-up grad student with a full-time job. Just saying!</div></div>
 ]]></content>
@@ -596,9 +596,9 @@ From one of the previous links, I learned how to convert all my old posts to a f
   
   <entry>
     <title type="html"><![CDATA[Gravity]]></title>
-    <link href="http://neauro.github.io/blog/2013/10/14/gravity/"/>
+    <link href="http://blog.neauro.com/blog/2013/10/14/gravity/"/>
     <updated>2013-10-14T00:00:00-07:00</updated>
-    <id>http://neauro.github.io/blog/2013/10/14/gravity</id>
+    <id>http://blog.neauro.com/blog/2013/10/14/gravity</id>
     <content type="html"><![CDATA[<div class='post'>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-XVx7HSeNFGk/UlyxJK2BGrI/AAAAAAAAENQ/_LOgJ75VR8U/s1600/gravity-movie-poster.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://3.bp.blogspot.com/-XVx7HSeNFGk/UlyxJK2BGrI/AAAAAAAAENQ/_LOgJ75VR8U/s320/gravity-movie-poster.jpg" width="216" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://www.scified.com/news/1190">source</a>)</td></tr></tbody></table><br /><blockquote>Dr. Ryan Stone is a brilliant medical engineer on her first shuttle mission, with veteran astronaut Matt Kowalsky. But on a seemingly routine spacewalk, disaster strikes. The shuttle is destroyed, leaving Stone and Kowalsky completely alone - tethered to nothing but each other and spiraling out into the blackness. The deafening silence tells them they have lost any link to Earth&#8230;and any chance for rescue. As fear turns to panic, every gulp of air eats away at what little oxygen is left. But the only way home may be to go further out into the terrifying expanse of space.</blockquote><div class="p1"><br /></div><div class="p1">I saw <i>Gravity </i>with A last week. It was alright. People warn that the movie will cultivate in you a brand-new fear of nothingness but I have to say that what terrified me the most was the crescendo of the soundtrack, thickening and filling me with anxiousness before anything had even happened. The death of Goerge Clooney&#8217;s Matt also seemed to me to be unreasonably tragic, especially given the fact that he could have been <a href="https://twitter.com/neiltyson/status/386990527406563329">easily rescued</a>.</div><div class="p2"><br /></div><div class="p1">I would have liked Matt&#8217;s sacrifice to be foreshadowed more clearly; the reasons for his final no-nonsense altruism were unclear. Did he sacrifice himself out of a sense of duty? Out of logic? Out of love for Ryan? The story poses life as utterly valuable — worth proceeding with, despite internal struggles and pain — yet allows Matt to give up his existence so easily. I don&#8217;t understand how he came to decide Ryan&#8217;s life was valuable. I don&#8217;t even understand how Ryan herself decided this about her own life at the end, laughing and monologuing and screaming as she fell back to the earth.</div><div class="p2"><br /></div><div class="p1">I&#8217;m biased, maybe — why someone would want to cling to life in the immensity of space is something I was anticipating this movie would explore. Since my personal contemplation of space eventually lends itself to existential panic and dismay that my life is so small compared to a millennia of life and death and nothingness,&nbsp;I wanted to see how this movie would handle it, to see how many mad hyperventilating spirals it would take to get down to hell and come out the other side. I wanted to know what it was people were really missing out there in space, and what was it that kept pulling them back to Earth.</div><div class="p1"><br /></div><div class="p1">(&#8230;.eh? <i>Ehhhh?</i>)</div><div class="p2"><br /></div><div class="p2">On a completely different note, the morning before I watched <i>Gravity </i>was the morning I started reading about the Kessler syndrome in <i>Best American Nature and Science Writing 2011</i>…what a weirdly exciting coincidence. I wanted to stand up in the theater. &#8220;Guys! GUYS&#8230;IT&#8217;S THE KESSLER SYNDROME!&#8221;</div></div>
 ]]></content>
@@ -606,9 +606,9 @@ From one of the previous links, I learned how to convert all my old posts to a f
   
   <entry>
     <title type="html"><![CDATA[Delicious Bookmarklet UI]]></title>
-    <link href="http://neauro.github.io/blog/2013/09/25/delicious-bookmarklet-ui/"/>
+    <link href="http://blog.neauro.com/blog/2013/09/25/delicious-bookmarklet-ui/"/>
     <updated>2013-09-25T00:00:00-07:00</updated>
-    <id>http://neauro.github.io/blog/2013/09/25/delicious-bookmarklet-ui</id>
+    <id>http://blog.neauro.com/blog/2013/09/25/delicious-bookmarklet-ui</id>
     <content type="html"><![CDATA[<div class='post'>
 <div class="p1"><div class="separator" style="clear: both; text-align: center;"></div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-w1-3NA9zSXA/UkMSEAhleKI/AAAAAAAAELo/VeKHZG8pTwU/s1600/Screen+Shot+2013-09-25+at+Wed%252C+Sep25%252C+2013.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="430" src="http://1.bp.blogspot.com/-w1-3NA9zSXA/UkMSEAhleKI/AAAAAAAAELo/VeKHZG8pTwU/s640/Screen+Shot+2013-09-25+at+Wed%252C+Sep25%252C+2013.png" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">screenshot of bookmarklet &#8220;save&#8221; view</td></tr></tbody></table><br />I received <a href="http://www.delicious.com/">Delicious</a>&#8217; bookmarklet layout change today and it&#8217;s a lot prettier — I wish I could compare it to the previous one — but for whatever reason I couldn&#8217;t immediately tell where to input my tags. The light lines, the title <i>beneath </i>the input — it&#8217;s weird — it&#8217;s like the hospital or government forms that I always take two of whenever I need to fill one out, because I always put my address and phone number in the wrong box.</div><div class="p2"><br /></div><div class="p1">This is the sort of impediment you feel only at first glance, maybe. I hitched for a couple minutes but now I get it. However, with the previous bookmarklet, I liked that &#8220;tags&#8221; was a huge box, and I could click anywhere within it to start input. Now I have to click either the invisible input box, or the light &#8220;tags&#8221; title. (Though I notice now that when you hover over tags, it does darken the input line somewhat.)<br /><br /><div class="separator" style="clear: both; text-align: center;"></div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-PY693rjnR4A/UkMR-Zp9rcI/AAAAAAAAELg/O7obxicF4GI/s1600/Screen+Shot+2013-09-25+at+Wed%252C+Sep25%252C+2013+1.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="566" src="http://2.bp.blogspot.com/-PY693rjnR4A/UkMR-Zp9rcI/AAAAAAAAELg/O7obxicF4GI/s640/Screen+Shot+2013-09-25+at+Wed%252C+Sep25%252C+2013+1.png" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">screenshot of bookmarklet &#8220;home&#8221; view</td></tr></tbody></table></div><div class="p2"><br /></div><div class="p1">Another improvement to the bookmarklet: before, after saving a link to Delicious, the pop-up turned completely white and there was no indication that your link was saved successfully. This time, you see a small version of your Delicious homepage, with your newly-saved link at the top. This still doesn&#8217;t give you feedback if you open the bookmarklet on an already-saved page and alter tags or comments, however.</div><div class="p2"><br /></div><div class="p1">In other news, this review on <i><a href="http://www.gamasutra.com/view/news/200648/Opinion_The_tragedy_of_Grand_Theft_Auto_V.php">Grand Theft Auto 5</a> </i>by Leigh Alexander is great.</div></div>
 ]]></content>
@@ -616,9 +616,9 @@ From one of the previous links, I learned how to convert all my old posts to a f
   
   <entry>
     <title type="html"><![CDATA[Upstream Color]]></title>
-    <link href="http://neauro.github.io/blog/2013/09/16/upstream-color/"/>
+    <link href="http://blog.neauro.com/blog/2013/09/16/upstream-color/"/>
     <updated>2013-09-16T00:00:00-07:00</updated>
-    <id>http://neauro.github.io/blog/2013/09/16/upstream-color</id>
+    <id>http://blog.neauro.com/blog/2013/09/16/upstream-color</id>
     <content type="html"><![CDATA[<div class='post'>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-RI85LsClieI/UjesMLwjybI/AAAAAAAAECM/mTlTcUEZGQY/s1600/Upstream_Color_poster.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="http://2.bp.blogspot.com/-RI85LsClieI/UjesMLwjybI/AAAAAAAAECM/mTlTcUEZGQY/s1600/Upstream_Color_poster.jpg" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://en.wikipedia.org/wiki/Upstream_Color">source</a>)</td></tr></tbody></table><blockquote>A man and woman are drawn together, entangled in the life cycle of an ageless organism. Identity becomes an illusion as they struggle to assemble the loose fragments of wrecked lives. (<a href="http://www.imdb.com/title/tt2084989/">via</a>)</blockquote><div class="p2">[spoilers]<br /><br /></div><div class="p1">A and I watched <i>Upstream Color </i>this weekend, per the recommendations of various friends and coworkers. As someone on Reddit stated, one great thing about it is that the director does not underestimate the intelligence of his audience. As a viewer, I felt as if I was running to keep up —pausing at one scene with just enough time to grasp at understanding — before rushing on to the next — the next — the next.</div><div class="p2"><br /></div><div class="p1">A and I noted some scenes with awe at the &#8220;show, don&#8217;t tell&#8221; attention to detail. For example, at some point, the female protagonist says to her love interest, &#8220;Let&#8217;s buy a car,&#8221; and the next scene shows them driving an old vehicle with the price still painted on the windshield. I found the first &#8220;hyponosis&#8221; scene awesome for its strangeness, and yet so disturbing that I couldn&#8217;t bear to watch parts of the protagonist&#8217;s violation.</div><div class="p2"><br /></div><div class="p1">I loved that the medium so closely reflects the characters&#8217; mental state; the choppiness of the timeline mirrors the difficulty that I imagine they must have had trying to reconstruct their lives after having been so compromised. The story also explores some facets (symptoms?) of the hypnotic state that I enjoyed; for example, once the main characters start telling stories to each other, they begin accepting them as their own, and begin arguing about whose memories actually belong to whom.</div><br /><div class="p1"><i>Upstream Color </i>is great in its focus; it address the exploitation of hypnosis, and the repercussions of it on a human&#8217;s brain. (Will the victims ever be okay again? What does &#8220;okay&#8221; even look like anymore?) <i>Upstream Color </i>requires an intellectual athleticism that leaves you a little sore by the end, in a way that&#8217;s not unpleasant.</div></div>
 ]]></content>
@@ -626,9 +626,9 @@ From one of the previous links, I learned how to convert all my old posts to a f
   
   <entry>
     <title type="html"><![CDATA[I Thought My Father Was God: And Other True Tales, NPR National Story Project]]></title>
-    <link href="http://neauro.github.io/blog/2013/09/16/i-thought-my-father-was-god-and-other/"/>
+    <link href="http://blog.neauro.com/blog/2013/09/16/i-thought-my-father-was-god-and-other/"/>
     <updated>2013-09-16T00:00:00-07:00</updated>
-    <id>http://neauro.github.io/blog/2013/09/16/i-thought-my-father-was-god-and-other</id>
+    <id>http://blog.neauro.com/blog/2013/09/16/i-thought-my-father-was-god-and-other</id>
     <content type="html"><![CDATA[<div class='post'>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-oYqP_v-5c7M/UjerqjIrGlI/AAAAAAAAECE/M4ABcNm-wNw/s1600/50617.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="http://1.bp.blogspot.com/-oYqP_v-5c7M/UjerqjIrGlI/AAAAAAAAECE/M4ABcNm-wNw/s320/50617.jpg" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://www.goodreads.com/book/show/50617.I_Thought_My_Father_Was_God_and_Other_True_Tales_from_NPR_s_National_Story_Project">source</a>)</td></tr></tbody></table><br /><blockquote>The true-life stories in this unique collection provide &#8220;a window into the American mind and heart&#8221; (<i>The Daily News</i>). One hundred and eighty voices - male and female, young and old, from all walks of life and all over the country - talk intimately to the reader. Combining great humor and pathos this remarkable selection of stories from the thousands submitted to NPR&#8217;s Weekend <i>All Things Considered</i> National Story Project gives the reader a glimpse of America&#8217;s soul in all its diversity.</blockquote><br /><div class="p1"><i>I Thought My Father was God </i>is a compilation of short stories submitted by listeners to NPR&#8217;s National Story Project, and is fantastic. The events of each story are poignant in their mundanity; the fact that some of these stories were carried throughout the years and then threaded into words gives them a special impact, even if the events themselves are ordinary.</div><div class="p2"><br /></div><div class="p1">I was the third to be passed this book, after S and A, who read it over the course of several weeks. They found the stories too emotionally heavy to read more than a handful at a time; I found them too delicious to restrain myself. Each story is a good example of how small moments in someone&#8217;s life can resonate through years, through actions, through all parts of you; each one reminds me of the impact my own actions can make, however small, and reminds me the the lives of people around me are larger than the glances we exchange as we pass by on the sidewalk.</div><br /><div class="p1">My favorite story is <i>Iceman of Market Street</i>, especially given recent discussions about <a href="http://grist.org/cities/the-dark-side-of-startup-city/">the dark side of San Francisco&#8217;s transformations</a>.</div></div>
 ]]></content>
@@ -636,9 +636,9 @@ From one of the previous links, I learned how to convert all my old posts to a f
   
   <entry>
     <title type="html"><![CDATA[Siege and Storm, Leigh Bardugo]]></title>
-    <link href="http://neauro.github.io/blog/2013/09/05/siege-and-storm-leigh-bardugo/"/>
+    <link href="http://blog.neauro.com/blog/2013/09/05/siege-and-storm-leigh-bardugo/"/>
     <updated>2013-09-05T00:00:00-07:00</updated>
-    <id>http://neauro.github.io/blog/2013/09/05/siege-and-storm-leigh-bardugo</id>
+    <id>http://blog.neauro.com/blog/2013/09/05/siege-and-storm-leigh-bardugo</id>
     <content type="html"><![CDATA[<div class='post'>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-xiWrBBQYpts/UilJkkSwlbI/AAAAAAAAEBw/W_xwd15K-oU/s1600/14061955.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="http://2.bp.blogspot.com/-xiWrBBQYpts/UilJkkSwlbI/AAAAAAAAEBw/W_xwd15K-oU/s320/14061955.jpg" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://www.goodreads.com/book/show/14061955-siege-and-storm">source</a>)</td></tr></tbody></table><br /><blockquote><em>Darkness never dies.<br /><br />Hunted across the True Sea, haunted by the lives she took on the Fold, Alina must try to make a life with Mal in an unfamiliar land, all while keeping her identity as the Sun Summoner a secret. But she can&#8217;t outrun her past or her destiny for long.<br /><br />The Darkling has emerged from the Shadow Fold with a terrifying new power and a dangerous plan that will test the very boundaries of the natural world. With the help of a notorious privateer, Alina returns to the country she abandoned, determined to fight the forces gathering against Ravka. But as her power grows, Alina slips deeper into the Darkling&#8217;s game of forbidden magic, and farther away from Mal. Somehow, she will have to choose between her country, her power, and the love she always thought would guide her&#8211;or risk losing everything to the oncoming storm.</em></blockquote><br /><div class="p1"><i>Siege and Storm </i>is the second book in The Grisha Trilogy, and I picked it up because <i><a href="http://nuubu.blogspot.com/2012/12/shadow-and-bone-leigh-bardugo.html">Shadow and Bone</a> </i>was alright, and I like finishing what I start. <i>Siege, </i>unfortunately, felt much messier than <i>Shadow — </i>details and characters were everywhere — they didn&#8217;t seem to stick to their identities, and sometimes did things or were capable of things I didn&#8217;t understand. Why does Alina, on page 200, suddenly cite an &#8220;inner cartographer&#8221; when cartography doesn&#8217;t affect anything but her description of a single room? How do Mal&#8217;s tracking skills lead to him being able to track what should have been a mythical creature, in an environment he&#8217;s presumably never been in before? Why is he capable of such observance that he can track animals, but can&#8217;t parse Alina&#8217;s secrets, despite being her childhood friend? Why does Genya stay with the Darkling in the beginning, instead of fleeing?</div><div class="p2"><br /></div><div class="p1">Speaking of Genya, when she re-appears later in the story, mutilated, what is it supposed to accomplish? It isn&#8217;t to show that the Darkling is evil — we already know that — he&#8217;s murdered people and blinded his own mother. Did the Darkling torture Genya for fun? Did he do it because Genya tried to fight him or escape? Did he do it just to bother Alina? The treatment of Genya in particular sickens me, because it accomplishes nothing significant story-wise, and is violent. It reeks of <a href="http://geekfeminism.wikia.com/wiki/Women_in_refrigerators">fridging</a> (even though Alina, the protagonist, is female), especially since it was hinted that Genya was sexually assaulted in the first book.</div><div class="p1"><br /></div><div class="p1">Genya is a flat character; she exists in <i>Siege</i>&nbsp;to be beautiful and then to be &#8220;ruined&#8221; for no given reason, so harshly that Alina finally develops into someone ruthless. Alina snaps not when she learns thousands have lost their lives to the Darkling and his actions, and not when she learns Ravka&#8217;s monarchy is incompetent at best and cruel at worst — she snaps when she learns that there are peasants who call Genya &#8220;The Ruined.&#8221; Alina thereafter orders repeat offenders to have their tongues cut out.</div><div class="p2"><br /></div><div class="p1">Maybe the reason why Genya is Alina&#8217;s breaking point is because the Darkling&#8217;s actions are finally personal to Alina now, but even so, I don&#8217;t feel that I have enough of a grasp on Alina&#8217;s motivations and feelings to understand how Genya in particular affected her. Throughout the book Alina cites her desire to save her country, to prevent unnecessary deaths; but the deaths of anonymous villagers and even of almost all of the Grisha don&#8217;t move her the same way Genya&#8217;s mutilation does. Alina&#8217;s overall motivations through the book feel hand-waved. Why does she want to save Ravka? Just Because? What has it ever done for her?</div><div class="p2"><br /></div><div class="p1">The world-building felt especially messy. Both the sea whip and the firebird are creatures that are supposedly famous and well-told in Ravkan stories, but we never hear these stories being told. It&#8217;s tough to feel that either are so notorious or venerable without evidence, though I would have really enjoyed reading about them if they had been alluded to more in the first book. I&#8217;m also still not clear on what exactly &#8220;sun summoning&#8221; is, and since there&#8217;s a lot made of how Ravka&#8217;s canon magic &#8220;only messes with what exists, and doesn&#8217;t create anything new from nothing&#8221; I&#8217;m not sure how Alina can just summon light out of nowhere in the first place.</div><div class="p2"><br /></div><div class="p1">I&#8217;m also not a fan of the Russian (Russian-esque?) words thrown into the book at various places. I&#8217;m not sure what they&#8217;re supposed to accomplish. A sense of exoticism? Why are some words italicized and some not, like &#8220;Etherealki&#8221; versus &#8221;<i>grenatki,</i>&#8221; or &#8220;samovar&#8221; versus &#8221;<i>kvas</i>&#8221;? The flavor is too inconsistent — and for me, too meaningless — to enjoy.</div><br /><div class="p2">Though I still didn&#8217;t find many reasons to like Mal, I <i>really </i>enjoyed reading about<i>&nbsp;Siege</i>&#8217;s&nbsp;newest character, Nikolai, to extent that I wished that the entire book was about him instead, haha. Nikolai, a rebellious privateer prince who desperately cares for others and deeply understands human nature, is way more compelling than another naturally handsome teenage peasant whose biggest problem is his commoner&#8217;s bloodline. Bardugo&#8217;s dialogue in general also has Whedon-esque punchyquipness and I loved reading it.</div><div class="p2"><br /></div><div class="p2">For the third book: I&#8217;m excited to see what reasons the Darkling had to commit all the atrocities he did. I really am! I also hoped Nikolai survived. <i>Please. Think of the quips!</i></div></div>
 ]]></content>
@@ -646,9 +646,9 @@ From one of the previous links, I learned how to convert all my old posts to a f
   
   <entry>
     <title type="html"><![CDATA[Lone Survivor & Meaningfulness]]></title>
-    <link href="http://neauro.github.io/blog/2013/09/05/lone-survivor-meaningfulness/"/>
+    <link href="http://blog.neauro.com/blog/2013/09/05/lone-survivor-meaningfulness/"/>
     <updated>2013-09-05T00:00:00-07:00</updated>
-    <id>http://neauro.github.io/blog/2013/09/05/lone-survivor-meaningfulness</id>
+    <id>http://blog.neauro.com/blog/2013/09/05/lone-survivor-meaningfulness</id>
     <content type="html"><![CDATA[<div class='post'>
 <div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-VLOhbqzGTUk/UBggO-tiRlI/AAAAAAAAB3g/4k3a6a5Q5kg/s1600/lonesurvivor.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-VLOhbqzGTUk/UBggO-tiRlI/AAAAAAAAB3g/4k3a6a5Q5kg/s1600/lonesurvivor.jpg" /></a></div><div class="separator" style="clear: both; text-align: center;"></div><div class="p1"><br /></div><div class="p1"><br /></div><div class="p1"><h2>0.</h2></div><div class="p1"><i>Lone Survivor </i>was the game I was most excited to obtain through a Humble Indie Bundle months ago, because the big grainy pixels looked so delicious, so fat with mood and atmosphere. And weirdness! And mysteriousness!</div><div class="p2"><br /></div><div class="p1">Spoilers ahead.</div><div class="p2"><br /></div><div class="p2"><br /></div><div class="p1"><h2>1.</h2></div><div class="p1">One of my favorite parts of adventure games is the characterization that rises through interaction with items. Do characters like a certain item, or dislike it? Does the item bring up deep heartbroken memories of the past? How do they parse and react, and what does their rumination say for who they are? I&#8217;m reminded of Nancy Drew&#8217;s endearing enthusiasm for lifting up random objects (&#8220;This plastic DNA model will be useful!&#8221;) and Phoenix Wright&#8217;s skeptical amusement when things like puppies are added to his inventory.</div><div class="p2"><br /></div><div class="p1">The most interesting item in the game for me was the toy cat, which I enjoyed petting all the time to accrue invisible &#8220;sanity&#8221; points. Engaging with the cat toy in particular puts you in the shoes and brain of the lone survivor himself, tinkering with a plush at the end of the world, just to have something light-hearted to do.</div><div class="p2"><br /></div><div class="p2"><br /></div><div class="p2"><br /></div><div class="p1"><h2>2.</h2></div><div class="p1">Speaking of the cat plush, I loved the detail of this game — the unidentifiable flesh-like substances stretching across the wall — the way your map was dark unless you viewed it under sources of light — the specific food items like Delicious Ham, the creepy bottomless repositories of pills and Rotten Meats.</div><div class="p2"><br /></div><div class="p2"><br /></div><div class="p2"><br /></div><div class="p1"><h2>3.</h2></div><div class="p1">A criticism of <i>Lone Survivor</i> seems to be that it was not scary enough. I played it at the height of summer and even then it was plenty terrifying, even if most of my stress and fear stemmed from being unable to hoard my bullets as obsessively as I would have liked.</div><div class="p2"><br /></div><div class="p1">Another scary part: putting your hand in that horrifying pink-red flesh-pixel hole. I <i>really </i>did not want to do that.</div><div class="p2"><br /></div><div class="p2"><br /></div><div class="p1"><h2>4.</h2></div><div class="p1">The dream sequences were cool, and the characters therein intriguingly surreal, which I loved. Ultimately, however, I didn&#8217;t feel that these scenes contributed to a larger understanding of what was going on, which was disappointing. Rather than deep, the first ending I received was vague, and a letdown. After carrying and caring for this dude I&#8217;d wanted a little more than a whiff of a broken heart. I wanted to know more about what this girl meant to the protagonist, how her departure left his life with zombie-filled corridors.</div><div class="p2"><br /></div><div class="p2"><br /></div><div class="p1"><h2>5.</h2></div><div class="p1">I got my ending by playing as paragon as possible. I wanted to see if other endings would give me closure, so I found them on Youtube. Each one seemed vaguer than the last, and didn&#8217;t interest me that much. I don&#8217;t have a particular love of multiple endings and for me it&#8217;s because they lack impact: I&#8217;ve only rarely encountered any set that comfortably resolves all issues and tension introduced in the game, and the way that such endings are reached never quite seems to match the decisions you made to get there.</div><div class="p2"><br /></div><div class="p1">In the case of <i>Lone Survivor, </i>the decisions that you make add to an invisible calculator which eventually spits out one of these endings: for example, killing more monsters gives you endings that imply you&#8217;re mentally unstable. But why? What is it about killing these things makes you this way? The worst ending can also be achieved not just by killing monsters, but &#8220;eating food when not hungry or hurt&#8221; and &#8220;sleeping for no reason&#8221; (per <a href="http://lonesurvivor.wikia.com/wiki/Endings">this wiki</a>). What&#8217;s <i>that </i>connection?</div><div class="p2"><br /></div><div class="p2"><br /></div><div class="p1"><h2>6.</h2></div><div class="p1">This was my other favorite part: getting that white cat to come live with me. I guess it&#8217;s strange to be saying that after my demands for meaningfulness, since other than the invisible points, hanging out with the cat doesn&#8217;t reveal any more of the protagonist&#8217;s inner story. But playing with the cat, I felt for the first time that I was doing something in the game that I personally wanted, like it was really <i>me</i> in there, and not me poking through things in a dude-shaped glove.<br /><br />Come here! Come <i>here</i>, little digital thing!<br /><br /></div><div class="p1"><i>come and be with me forever</i><br /><i><br /></i><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-3tvhPIy5tDo/UilDcBOQcrI/AAAAAAAAEBc/f6aLd4GxHlk/s1600/Sunny.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" src="http://2.bp.blogspot.com/-3tvhPIy5tDo/UilDcBOQcrI/AAAAAAAAEBc/f6aLd4GxHlk/s1600/Sunny.jpg" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://lonesurvivor.wikia.com/wiki/Category:Characters">source</a>)</td></tr></tbody></table><i><br /></i></div></div>
 ]]></content>
