@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="[Q&a] Standard Annotation Language (SAL) Jan 16th, 2011 What does __inout, etc. mean?For OS I&#8217;m plumbing the depths of a Windows kernel and &hellip;">
+  <meta name="description" content="Last Night Andou Asked Me, if You Started Writing a Book Right Now, What Would It Be About? Jan 18th, 2011 That morning at the last stop, when Sara &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/18/last-night-andou-asked-me-if-you/">Last Night Andou Asked Me, if You Started Writing a Book Right Now, What Would It Be About?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T00:00:00-08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">That morning at the last stop, when Sara unzipped her lunchbox to trade her mother&#8217;s lasagna (secretly full of vegetables) for a bag of chips, a man walked onto the school bus, shot the bus driver, kicked his body out the door, and took the steering wheel.</span></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/drabble/'>drabble</a>, <a class='category' href='/blog/categories/writing/'>writing</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -493,52 +539,6 @@ An operating system provides <a href="http://nuubu.blogspot.com/2011/01/operatin
 <span class="categories">
   
     <a class='category' href='/blog/categories/cooking/'>cooking</a>, <a class='category' href='/blog/categories/food/'>food</a>, <a class='category' href='/blog/categories/recipe/'>recipe</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/04/remote-procedure-calls-rpc/">Remote Procedure Calls (RPC)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-04T00:00:00-08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<span class="sig">What is a remote procedure call (RPC)?</span><br />RPC is a paradigm for providing communication across a network between programs written in a high-level language.  &#8220;Procedure calls&#8221; in general are a well-known and well-understood way of transferring control and data within a program on a single computer &#8211; a program calls a procedure, giving it certain arguments, and receives some output from the procedure back.  So, a remote procedure call &#8211; when a program calls a procedure that is not necessarily on the same system that the program is on &#8211; should be workable as well.<br /><br />An RPC &#8220;cycle&#8221; goes like this:<br /><ol><li>A remote procedure is invoked by a caller, who passes the procedure parameters</li><li>The caller&#8217;s environment is suspended as it waits for a response</li><li>The parameters are passed across the network to the environment where the procedure will execute</li><li>The desired procedure is executed</li><li>When the procedure finishes executing, the results are passed back to the calling environment</li><li>The caller&#8217;s environment resumes with the new data (or else fails, I assume, because of a timeout&#8230;though the &#8220;Implemented remote procedure calls&#8221; didn&#8217;t use timeouts, since single-machine systems don&#8217;t)</li></ol><br /><br /><span class="sig">What are the advantages of RPC?</span><br /><ol><li><strong>Clean and simple semantics.</strong>  <a href="http://nuubu.blogspot.com/2011/01/intro-to-distributed-systems.html">Distributed systems</a> are complicated because communication throughout one is complicated, so simplicity is good.</li><li><strong>Simplicity.</strong>  Which means it&#8217;s probably fast.</li><li><strong>Generality.</strong>  Procedure calls work in single-machine systems, besides being usable in distributed systems.</li></ol><br /><br /><span class="sig">What are the disadvantages of RPC?</span><br />There are some design issues &#8211;<br /><ul><li>What semantics do you use when the machine fails, or when communication fails?</li><li>What are the semantics when a caller does something address-specific, and the caller and callee don&#8217;t have a shared address space?</li><li>How do you integrate RPC into existing/future programming systems?</li><li>How does a caller figure out the location and identity of the procedure it wants?</li><li>What&#8217;s a suitable protocol for the transfer of data?</li><li>How do you provide data integrity and security in an open communication network?</li></ul><br /><br /><span class="sig">Really general implementation</span><br />The structure of RPC is based on the concept of <em>stubs</em>; the parts of the program involved in an RPC (the user, the user-stub, the RPC communications package, the server-stub, and the server) are all executed on their respective places, and when a user wants to use an RPC, it really just calls its user-stub, which is what makes the RPC.  This way, specifying the target procedure and the arguments is sent in a &#8220;call packet&#8221; to the server-side stuff, which is handled similarly: the server-stub unpacks the packet, makes a local call to the procedure on the server, and packs it up again in a &#8220;result packet&#8221; to be sent to the caller.  This serves to encapsulate everything (I think?).<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TSPV2_29a7I/AAAAAAAAADs/WoPFIW0-3zM/s1600/rpc%2Bstubs.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="161" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TSPV2_29a7I/AAAAAAAAADs/WoPFIW0-3zM/s320/rpc%2Bstubs.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">from &#8220;Implementing Remote Procedure Calls&#8221;</td></tr></tbody></table><br />The RPCRuntime handles the actual handling-off between the user-stub and the server-stub.<br /><br />The semantics of RPCs can also be handled without needing a specialized packet-level protocol.  <br /><br /><br /><span class="sig">Other notes:</span><br /><ul><li>RPC is supposed to make distributed computation more easy; in the &#8220;Implementing Remote Procedure Calls&#8221; paper, the authors hoped to solve the difficulty of distributed systems communication and leave only the problems of timing, independent failure of components, and the coexistence of independent execution environments.</li></ul><br /><br />Source:<br /><a href="http://portal.acm.org/citation.cfm?id=357392">Andrew Birrell and Bruce Nelson. Implementing Remote Procedure Calls. ACM TOCS 1984.</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/distributed-systems/'>distributed systems</a>, <a class='category' href='/blog/categories/notes/'>notes</a>
   
 </span>
 
