@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Operating Systems Notes [Memory Management] Feb 11th, 2011 What&#8217;s so cool about memory management anyway broSo unlike way back when in the &hellip;">
+  <meta name="description" content="Operating Systems Notes [Virtual Memory, Page Tables, TLBs] Feb 11th, 2011 So in case it wasn&#8217;t clear already, virtual memory is a memory &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/11/operating-systems-notes-virtual-memory/">Operating Systems Notes [Virtual Memory, Page Tables, TLBs]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-11T00:00:00-08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So in case <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">it wasn&#8217;t clear already</a>, <a href="http://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> is a memory management technique which accomplishes these things:<ul><li>hides fragmentation of physical memory from programs</li><li>uses hardware memory more efficiently than systems without virtual memory</li><li>lets a program be designed as though there&#8217;s only one hardware memory (rather than one memory split up between different processes, I think?)</li></ul><br />An important aspect of implementing virtual memory is page tables.  A page table translates a program&#8217;s virtual address (used to refer to a function or variable or whatnot) into a physical address (which is the actual location of that function&#8217;s code data, or the variable&#8217;s value data).  Page tables make it so that programs can only be partially loaded into memory.  <strong>So, what happens when a program tries to access a part of its code which isn&#8217;t loaded into memory?<br /><br />A PAGE FAULT.</strong><br /><br />When a page fault happens,<ol><li>the OS is given an <a href="http://nuubu.blogspot.com/2011/01/operating-system-notes-chapter-1.html">interrupt</a></li><li>the OS saves the state of the running process, then searches (in the appropriate vector) for the page fault handler routine)</li><li>the page fault handler routine will find or create (through eviction) a page frame into which to load the page that the program needs</li><li>then it will find that page on the disk and place it into the now-free page frame</li><li>then it will fix up the page table entry &#8211; marking it &#8220;valid,&#8221; setting the &#8220;referenced&#8221; and &#8220;modified&#8221; bits to false, setting the pointers properly</li><li>finally, the process is placed back into the ready queue</li></ol><br />Anyway, it&#8217;s getting late and I want to go to bed so for now I&#8217;ll just skip to<br /><br /><br /><span class="sig">Translation Lookaside Buffers (TLBs)</span><br />to whom we must extend our gratitude for not making page tables awful.  Think about it: if you have a virtual address and you need to look into the page table and then into the physical address in order to actually obtain some value, that&#8217;s a <em>lot</em> of overhead.<br /><br />To make this more efficient, you want to make fetching from a virtual address just about as efficient as fetching from a physical address.  Which you can do with an extra piece of hardware, a cache inside the CPU.<br /><br />Thus, virtual-to-physical translations are cached in the hardware itself, the TLB.  The TLB translates virtual page numbers into page frame numbers (<em>not physical addresses</em>), and can do it in a single machine cycle.  The TLB in turn is managed by the memory management unit (MMU), which is what calculates the physical address from the page table entry and an offset.<br /><br />TLBs exploit the fact that processes have good temporal locality and spatial locality.  This is a fancy way of saying that processes tend to<ul><li>use data/code they have recently used</li><li>use data/code that is close to data/code they have recently used</li></ul>Which is why <em>caching</em>, or saving that data in an easily accessible place (as you may cache your potato chips, water bottles, and chocolate beneath the bedside  table) is a good idea.<br /><br />So, the TLB does the translation between virtual addresses and page frame numbers, and when it misses &#8211; when it can&#8217;t find a page frame number &#8211; the translation is saved into the TLB by the OS.<br /><br />In order for TLBs to work, the OS must make sure the TLB and page tables are consistent and up-to-date, and <strong>when a context switch happens, the TLB must be completely flushed</strong>, which means that context switching is still an expensive operation &#8211; all those cached translations, that optimization, disappears.  (The TLB needs to be flushed rather than saved and loaded with the rest of the process state because there&#8217;s no guarantee that other processes wouldn&#8217;t mess around with the data the TLB was keeping track of, and to keep the TLB up-to-date when it isn&#8217;t being presently used by a process is expensive.)<br /><br /><br /><br />Sources:<br /><a href="http://en.wikipedia.org/wiki/Virtual_memory">Wikipedia: Virtual memory</a><br />lecture 11a notes</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -485,52 +531,6 @@ So a <strong>cooperating process</strong> is one that can affect or be affected 
 <span class="categories">
   
     <a class='category' href='/blog/categories/drabble/'>drabble</a>, <a class='category' href='/blog/categories/writing/'>writing</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/16/q-standard-annotation-language-sal/">[Q&a] Standard Annotation Language (SAL)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-16T00:00:00-08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<span class="sig">What does <code>__inout</code>, etc. mean?</span><br />For OS I&#8217;m plumbing the depths of a Windows kernel and keep running into these things in the code that look like <code>__in</code>, or <code>__out</code>, or even <code>__inout</code>&#8230;for example:<br /><br /><pre class="brush:xml">NTKERNELAPI<br />VOID<br />FASTCALL<br />ExAcquireFastMutexUnsafe (<br />    __inout PFAST_MUTEX FastMutex<br />    );<br /></pre><br />I initially found <a href="http://nuubu.blogspot.com/2011/01/q-operating-systems-etc.html">something</a> about the usage of <code>_</code> and <code>__</code> in code, and it turns out that <code>__</code> is just an annotation which will help programmers know more about the intended usage of the code, like comments, and are ignored by the compiler.  <code>__inout</code> stuff is no different.<br /><br />These annotations are part of Microsoft&#8217;s SAL, or, Standard Annotation Language, and define the proper use of buffers, which are regions of data that have been allocated and are represented as pointers.  If a pointer is pointing to a buffer, there&#8217;s no good way to know how big a buffer is in compile time; with usage of SAL, you can make explicit exactly how big a buffer is.  It also helps to show how a function uses its parameters &#8211; what it thinks that the parameter is, and what it will do with that parameter when it finishes.<br /><br />This is relevant because in C, a function can take a value or a pointer as an argument.  Arguments can be used as input (i.e. taking values to add together), or as output (i.e. taking a pointer to something which will store your output value.) But, if you were to leave out these annotations, you wouldn&#8217;t know if an argument a function takes is supposed to be used as function input or output.<br /><br /><code>__in</code>, <code>__out</code>, and <code>__inout</code> are all examples of &#8220;Usage&#8221; annotations.<br /><br />So, if you see something like<br /><br /><pre class="brush: xml">void * memset(<br /> __out_bcount(s) char *p,<br /> __in int v, <br /> __in size_t s);<br /></pre><br />This means that the function <code>memset</code> expects variables <code>int v</code> and <code>size_t s</code> to be valid when the function is called (also called &#8220;valid on input&#8221;).  Also, the buffer <code>char *p</code> will be initialized by this function, will be written to by this function, and will be valid when the function returns.<br /><br />In simpler terms &#8211; <code>v</code> and <code>s</code> are definitely meant to be <code>memset</code>&#8217;s input, and <code>p</code> is meant to be the output.<br /><br /><br />Sources:<br /><a href="http://207.46.16.248/en-us/library/ff550230%28VS.85%29.aspx">MSDN: Overview of Annotations for Drivers</a><br /><a href="http://msdn.microsoft.com/en-us/library/ms235402%28v=vs.80%29.aspx">MSDN: SAL Annotations</a><br /><a href="http://blogs.msdn.com/b/michael_howard/archive/2006/05/19/602077.aspx">MSDN: A Brief Introduction to the Standard Annotation Language</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
   
 </span>
 

@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="The Ancient Lack of Blue Apr 18th, 2011 (source)I&#8217;m reading Through The Language Glass by Guy Deutscher because there it was sitting in the &hellip;">
+  <meta name="description" content="Bunnies and Lozenges Apr 18th, 2011 Exercise game, previously called &#8220;Bunnies and Monsters,&#8221; is moving smoothly.Thanks for the lozenge, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/18/bunnies-and-lozenges/">Bunnies and Lozenges</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-18T00:00:00-07:00" pubdate data-updated="true">Apr 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-JW-pVscwaS0/Tayu5BUus6I/AAAAAAAAAME/uBGOdUevr-s/s1600/bunnyscreen.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="360" src="http://1.bp.blogspot.com/-JW-pVscwaS0/Tayu5BUus6I/AAAAAAAAAME/uBGOdUevr-s/s640/bunnyscreen.png" width="640" /></a></div><br />Exercise game, previously called &#8220;Bunnies and Monsters,&#8221; is moving smoothly.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-1OWMm4MSXiI/TaywZfKQcnI/AAAAAAAAAMM/oQBou52MVK8/s1600/monsterscreen.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="360" src="http://4.bp.blogspot.com/-1OWMm4MSXiI/TaywZfKQcnI/AAAAAAAAAMM/oQBou52MVK8/s640/monsterscreen.png" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">Thanks for the lozenge, Teddy!</td></tr></tbody></table><br />I believe to make the models Teddy used either Blender or Maya to create a .fbx file.  At first I tried to copy the downloaded .fbx model into one of the assets folders, and then tried to make a prefab, but for some reason there was a problem generating colliders; things fared better when I<br /><ol><li>Went to <strong>Assets &gt; Import Package&#8230;</strong> and found the .fbx file</li><li>Selected the imported model, then selected <strong>Generate Colliders</strong> in the <strong>FBXImporter</strong> tab of the Inspector</li><li>Created a new prefab, then dragged the model into it</li></ol></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/game-dev/'>game dev</a>, <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/heartrate-games/'>heartrate games</a>, <a class='category' href='/blog/categories/project/'>project</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -490,52 +536,6 @@ And even when I received the confirming e-mail, I honestly didn&#8217;t think th
   
   
   <div class="category-bit">Categories: 
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/03/04/operating-systems-system-calls-and-io/">Operating Systems: System Calls and I/O</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-03-04T00:00:00-08:00" pubdate data-updated="true">Mar 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-Okay so, applications go through the operating system to obtain data from the disk, using system calls.  There are a couple types of system calls.<br /><br />When an application makes a <strong>blocking system call</strong>, the application stops executing, and moves into the operating system&#8217;s wait queue.  When the system call completes, the application gets placed back to the run queue, and when it&#8217;s ready to execute, it gets the response back from the completed system call.  Most operating systems use blocking system calls because blocking application code is easier to understand.<br /><br />But some user-side processes need non-blocking I/O and so make <strong>non-blocking system calls</strong>, a good example of which are human-interface devices: i.e. the mouse, the keyboard.  Input has to be taken and used, and can&#8217;t be delayed until later.  When an operating system supports non-blocking system calls, a call doesn&#8217;t stop execution of the application, but rather returns quickly, indicating how much data that it was able to read immediately.<br /><br />One way that a programmer can deal with overlapping execution of code and I/O is to write a multi-threaded application, so that some threads can do blocking system calls while others execute code.<br /><br />An alternative to non-blocking system calls are <strong>asynchronous system calls</strong>, which also return immediately, and allow the application to continue executing code.  Later, when the I/O finishes, the application is notified via some shared variable or a call-back routine or an interrupt.  The main difference is that with a non-blocking system call, the immediate return contains whatever data it was able to read immediately, whereas an asynchronous system call will eventually finish reading everything it was supposed to and return that data later.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
-  
-</span>
 
 </a>
 
