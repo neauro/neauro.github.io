@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Web Design | liwanag]]></title>
   <link href="http://blog.neauro.com/blog/categories/web-design/atom.xml" rel="self"/>
   <link href="http://blog.neauro.com/"/>
-  <updated>2014-01-13T21:23:27-08:00</updated>
+  <updated>2014-01-15T12:05:25-08:00</updated>
   <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Website: Fong Baatz Portfolio]]></title>
+    <link href="http://blog.neauro.com/blog/2014/01/15/fongbaatz/"/>
+    <updated>2014-01-15T10:32:12-08:00</updated>
+    <id>http://blog.neauro.com/blog/2014/01/15/fongbaatz</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="/images/fongbaatz.png" alt="Screenshot of Fong Baatz portfolio"/></p>
+
+<p class="caption">screenshot of <A href="http://fongbaatz.com">fong baatz portfolio</a></p>
+
+
+<p>For some weeks now I&rsquo;ve been working on the portfolio site of a local artist (who is also A&rsquo;s mother). It&rsquo;s been fun. The website can be accessed <a href="http://fongbaatz.com">here</a>. Parts of the process are documented on <a href="http://neauro.tumblr.com/tagged/fongportfolio">my Tumblr</a>.</p>
+
+<p>This weekend she and other artists are having an open house at Magnuson Building 30, which was repurposed by the city of Seattle for their work. The open house is on January 19th, from 2:00 to 5:00 pm. Check it out!</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Kickstarter and Completion]]></title>
+    <link href="http://blog.neauro.com/blog/2014/01/15/kickstarter/"/>
+    <updated>2014-01-15T09:03:10-08:00</updated>
+    <id>http://blog.neauro.com/blog/2014/01/15/kickstarter</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="/images/kickstarter1.png" alt="A screenshot of my Kickstarter profile"/></p>
+
+<p class="caption">a screenshot of <A href="http://www.kickstarter.com/profile/endian">my kickstarter profile</a></p>
+
+
+<p>After reading of a case in which <A href="http://rosalarian.tumblr.com/post/66303922266/alexds1-alexheberling-encik-farhan-is-a">a Kickstarter backer scammed dozens of artists</a>, one phrase stuck out to me. The phrase isn&rsquo;t in that link, and unfortunately, I can&rsquo;t find it in any others, but it goes something like: <em>[The scammer] doesn&rsquo;t give them any money, and gets to have all these projects shown on his profile</em>.</p>
+
+<p>It made me realize Kickstarter&rsquo;s profiles worth looking at as a thing that people can actually be proud of. That appeal to a persons&rsquo;s sense of progress, and the desire to gather things. The little pie chat, especially, could be an example of <a href="http://www.psychologyofgames.com/2010/11/endowed-progress-effect-and-game-quests/">endowed progress</a>. Even if there&rsquo;s nothing necessarily telling you, &ldquo;Go fill in your pie chart!&rdquo; the fact that it&rsquo;s <em>there</em>, and it&rsquo;s <em>incomplete</em>&hellip;</p>
+
+<p>Well, I feel compelled to fill it up. But I&rsquo;m also the type of person that restarted my Metroid Prime save file when I realized I missed scanning the first boss.</p>
+
+<p>Kickstarter also offers some encouragement when you click the empty slice of your pie chart.</p>
+
+<p><img class="book-cover" src="/images/kickstarter2.png" alt="A screenshot of my Kickstarter profile, after clicking on the 'design' slice"/></p>
+
+<p class="caption">"Let's change that!"</a></p>
+
+
+<p>It&rsquo;s pretty cute that the slices are all (presumably) different colors, and I&rsquo;m really tempted to fill them in with $1 pledges to relevant projects. I wonder how Kickstarter encourages users to back more projects if they have filled in all their slices?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Web Design: UniCycle]]></title>
@@ -102,7 +145,7 @@
 <h2>In Conclusion</h2>
 
 
-<p>I don&rsquo;t know that I&rsquo;ll return to UniCycle given the plethora of other projects I have, but it would be great to see it go places, especially given the need for it at UW. Too much goes wasted; and I&rsquo;d love to see people get into the habit of asking their community for needed items, as well as help others when it&rsquo;s needed.</p>
+<p>I don&rsquo;t know that I&rsquo;ll return to UniCycle given the plethora of other projects I have, but it would be great to see it go places, especially given the need for it at UW. Too much goes wasted, and I&rsquo;d love to see people get into the habit of asking their community for needed items, as well as help others when it&rsquo;s needed.</p>
 
 <p>I&rsquo;ve also made a <a href="/files/hcde518_portfolio_deck.pdf">portfolio deck</a> that goes over other details for this project.</p>
 ]]></content>
@@ -126,17 +169,6 @@
     <id>http://blog.neauro.com/blog/2012/12/09/new-portfolio-layout-woo</id>
     <content type="html"><![CDATA[<div class='post'>
 <div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-e6tfGFyuM-U/UMVfgWS2toI/AAAAAAAAC30/-5C26iIsSOw/s1600/neauro2.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="216" src="http://3.bp.blogspot.com/-e6tfGFyuM-U/UMVfgWS2toI/AAAAAAAAC30/-5C26iIsSOw/s400/neauro2.jpg" width="400" /></a></div><br /><a href="http://neauro.com/">Hurray!</a><br /><br />I have to say it's a pretty huge improvement over <a href="http://nuubu.blogspot.com/2011/07/neaurocom-finally-up.html">the old layout</a> I've had for over a year now, and it's due to the fact that I can do a ton of front-end work at my new job. I can't believe how much I've learned over the past four months, including but not limited to standard stuff like jQuery that I have always wanted to practice but hadn't found the time for.<br /><br />This particular layout makes use of a new CSS trick that I learned, and really like -- a way to resize the "top" div of a website so that it always fits in the space above the fold, no matter the size. All you need is a container div, and inside that two more divs: one for the area above the fold (the "landing"), and one for your "main" information.<br /><br />The CSS looks like:<br /><br /><pre class="brush:js">html,body {<br />margin:0px auto;<br />height:100%;<br />}<br /><br />div#container {<br />min-width:100%;<br />height:100%;<br />}<br /><br />div#landing {<br />width:100%;<br />height:100%;<br />background: #5d5d5d url("../images/header_bg.jpg") center center no-repeat;<br />background-size:cover;<br />}<br /><br />div#main {<br />background-color:#eeeee2;<br />}<br /></pre><br />And the HTML should be like:<br /><pre class="brush:xml">&lt;body&gt;<br /><div id="container">&nbsp;<br /><div id="landing">&nbsp;&nbsp;&nbsp;&nbsp;top part of page<br />&nbsp;&nbsp;</div>&nbsp;<br /><div id="main">&nbsp;&nbsp;&nbsp;&nbsp;the rest of the page<br />&nbsp;&nbsp;</div></div>&lt;/body&gt;<br /></pre><br />How exciting.</div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[A Suggestion for Padmapper]]></title>
-    <link href="http://blog.neauro.com/blog/2011/09/11/suggestion-for-padmapper/"/>
-    <updated>2011-09-11T00:00:00-07:00</updated>
-    <id>http://blog.neauro.com/blog/2011/09/11/suggestion-for-padmapper</id>
-    <content type="html"><![CDATA[<div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-eUiU2nnjNe8/Tm0rUBAvT6I/AAAAAAAAAdU/qOiVzuxBMYo/s1600/padmap.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="300" src="http://3.bp.blogspot.com/-eUiU2nnjNe8/Tm0rUBAvT6I/AAAAAAAAAdU/qOiVzuxBMYo/s640/padmap.jpg" width="640" /></a></div><br />It would be nice if, alongside the other constraints for searching, you could input locations -- i.e. "Downtown Seattle," "University District." Then, along with the <a href="http://www.walkscore.com/">Walkscore</a> and Street View of an individual listing, you could see how long it takes to get to these locations via nearby bus lines.  I'm finding myself making sure that locations on Padmapper are near bus lines by typing in addresses into Google Maps, and I did this too when trying to find a place to live in San Francisco this summer.<br /><br />Actually, even listing "nearby bus lines" would just be helpful.  (Though not as helpful if you're not familiar with a city's public transportation, as was the case with me, SF, and BART.)<br /><br />That being said, using Padmapper thus far instead of just scrolling text ads on Craigslist has made apartment hunting a little more fun.  But it may be because I have a fondness of maps in general.</div>
 
 ]]></content>
   </entry>
