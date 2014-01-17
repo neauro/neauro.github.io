@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="AAAAHHHH RAILS Feb 25th, 2011 I had a Rails work party with Joshu the other night (after which Rosanna served us basil-pesto pasta and lamb steak) &hellip;">
+  <meta name="description" content="Operating System Notes: FAT File System Feb 25th, 2011 Disk Geometry DefinitionsSo now we&#8217;re learning about disks (which I always end up &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/25/operating-system-notes-fat-file-system/">Operating System Notes: FAT File System</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">Disk Geometry Definitions</span><br />So now we&#8217;re learning about disks (which I always end up spelling as &#8220;discs&#8221; somehow) as well as file systems.<br /><br />Some pertinent disk parts (which I always forget the definition of):<ul><li>the disk&#8217;s data is stored on concentric bands called <strong>tracks</strong>; tracks are more densely populated with data at the center of the disk than on the other edges (to ensure that a <strike>discked</strike> fixed amount of data can be read in a constant time, despite disk surface speed moving fast on the outer tracks)</li><li>tracks are divided into sections called <strong>sectors</strong>, which are the smallest unit of physical storage on the disk; the data size of a sector is always a power of two, and almost always 512 bytes</li><li>a <strong>cluster</strong> is what the Windows NT file systems use to allocate storage; a cluster is one or more contiguous sectors.</li></ul><br />As a file is written to the disk, the file system decides the appropriate number of clusters needed to store the file&#8217;s data.  For instance, if each cluster is 512 bytes and the file being written is 800 bytes, then two clusters are allocated for the file.  If the file size changes later, then more clusters are allocated to that file.<br /><br /><br /><br /><span class="sig">One type of file system: File Allocation Table (FAT)</span><br />So, a file system is a method of storing and organizing files and data on a computer.  Essentially, a file system organizes the files into a database so that the operating system can organize, manipulate, and retrieve them.<br /><br />Some basic differences (between FAT and NTFS file systems):<ul><li>The FAT file system can only use 16 bits for the cluster number, which means that volumes using the FAT format of file system can be larger than 65,535 sectors</li><li>Because of the overhead in the FAT file system, it&#8217;s not good for volumes larger than 511 MB (wait, isn&#8217;t this&#8230;all volumes nowadays?;;)</li><li>FAT is a better choice than NTFS for volumes that are smaller than ~400-500 MBs though, because of the disk overhead in NTFS.  I guess that&#8217;s the tradeoff</li><li>FAT file systems can be used with operating systems other than Windows NT, i.e. Windows 95, MS-DOS, etc.</li><li>FAT is simpler</li><li>FAT folder size is smaller for an equal number of files</li><li>FAT has no controls regarding whether a user can access a file or folder, which means the system doesn&#8217;t need to check permissions for an individual file or user, to see if the user has access to the file.  But Windows NT operating systems will have to check if a file is read-only anyway, whether it&#8217;s FAT or NTFS, which is why FAT may provide faster access to files in this respect</li></ul><br />FAT is a simple file system that was originally designed for small disks and simple folder structures. A FAT-formatted volume is allocated in clusters, the size of which is determined by the size of the volume, which must fit in 16 bits and must be a power of 2.<br /><br />FAT is named for the file allocation table, which lives at the beginning of a FAT-formatted volume.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-jw8lKfAxw60/TWX-0tUJQVI/AAAAAAAAAIs/9T9URTfof_c/s1600/FATvolume.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="62" width="320" src="http://3.bp.blogspot.com/-jw8lKfAxw60/TWX-0tUJQVI/AAAAAAAAAIs/9T9URTfof_c/s320/FATvolume.jpg" /></a></div><br />What do all of these areas do?  <strong>FAT1</strong> and <strong>FAT2</strong> contain the file allocation table, which contains information about a cluster on the volume, specifically whether that cluster is:<ul><li>unused</li><li>a cluster in use by a file</li><li>a bad cluster</li><li>the last cluster in a file</li></ul><br />The <strong>root folder</strong> contains an entry for each file and folder on the root.  The only difference between the root folder and other folders is that the root folder is in a specified location on the disk, and has a fixed size.  (On a hard disk, the size is 512 entries; on a floppy disk, it depends on the size of the floppy.)<br /><br />For every file and folder contained in a folder (as directories are really just a special type of file), there is a 32-byte entry, which contains the following information:<ul><li>name (eight-plus-three characters)</li><li>attribute byte (8 bits)</li><li>create time (24 bits)</li><li>create date (16 bits)</li><li>last access date (16 bits)</li><li>last modified time (16 bits)</li><li>last modified date (16 bits)</li><li>starting cluster number in the file allocation table (16 bits)</li><li>file size (32 bits)</li></ul><br />As for the FAT folder structure, there is no real organization &#8211; when a new file comes in, it is placed in the first available location on the volume.  The &#8221;<strong>starting cluster number</strong>&#8221; is the address of the first cluster used by the file.  Each cluster points to the next cluster used in the file, or else to a terminating cluster that signals the end of the file.<br /><br />Since all entries in a folder are the same size, the <strong>attribute byte</strong> for each entry in a folder describes what kind of entry it is: one bit indicating that it&#8217;s a subfolder, another bit marking the entry as a volume label, etc.  The OS controls the settings of these bits.  The user can control four other attribute bits, which indicate the entry is an archive file, system file, hidden file, and/or read-only file.<br /><br /><br /><br />More later.<br /><br /><br />Sources:<br />Microsoft TechNet: <a href="http://technet.microsoft.com/en-us/library/cc750198.aspx">Disk and File System Basics</a>, <a href="http://technet.microsoft.com/en-us/library/cc750355.aspx">Choosing a File System</a><br />Wikipedia: <a href="http://en.wikipedia.org/wiki/File_system">File system</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -498,52 +544,6 @@ So my project of <a href="http://nuubu.blogspot.com/2010/12/problem-how-do-i-use
 <span class="categories">
   
     <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/sandy3d/'>sandy3d</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/30/how-do-you-make-flex-application/">How Do You Make a Flex Application Send Data to a PHP Server?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-30T00:00:00-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-How do you make a Flex project able to read/write files?<br />There are a couple objects like <code>File</code> and <code>FileStream</code> which make it so that an Adobe AIR application can access the user&#8217;s filesystem, but to send and load data from a server, you can use <code>URLLoader</code>, <code>URLRequest</code>, and <code>URLVariables</code>.<br /><br />A summary:<ul><li><strong>URLLoader</strong> downloads data from a URL as text, binary data, or URL-encoded variables.  It&#8217;s useful for downloading textfiles, XML, etc. to be used in a data-driven application.  So: it&#8217;s for use by a Flash application to retrieve data from a URL.</li><li><strong>URLRequest</strong> is an object which contains all of the information in one HTTP request.  It initiates URL downloads by being passed to the <code>load()</code> methods of <code>Loader, URLLoader</code> classes.  Note: By default you can only load data if the application loading and the URL it&#8217;s loading from at in the same domain.  So an application on whatever.com can only load data from somewhere else on whatever.com.</li><li><strong>URLVariables</strong> allow you to transfer variables between an application and a server.  It&#8217;s used with methods of the <code>URLLoader</code> class, with the <code>data</code> property of the <code>URLRequest</code> class, and additional functions in the <code>flash.nete</code> package.</li></ul><br />Basic workflow goes like:<ol><li>In the Flash/Flex application, create an instance of <code>URLVariables</code>, and add variables to it.  For instance, if you want to be able to retrieve data associated with &#8220;username,&#8221; you&#8217;ll want to do something like <code>URLVariablesObject.username = "username"</code></li><li>Make a page on your server which will extract the variables and work with them.  For example, a page <code>login.php</code>, with code like <code>$username = $_POST["username"]</code></li><li><code>URLRequest</code> contains the data you want to send to the server.  Specify the URL of the server page you want to send data to, set its <code>data</code> to be your URLVariables object, and set its <code>method</code> to be <code>URLRequestMethod.POST</code> if you want to send data to the server page as POST.</li><li><code>URLLoader</code> sends the <code>URLRequest</code> to the server and handles the return.  Create an instance of <code>URLLoader</code>, specify its <code>dataFormat</code> to be that of <code>URLLoaderDataFormat.VARIABLES</code>, and then use the <code>load</code> function to load the <code>URLRequest</code> object specifed earlier.  Add event listeners to handle what happens when the data has been sent to the URL, and what happens if there is an error loading the URL.</li><li>Make server page read the URLVariables with something that looks like <code>$username = $_POST["username"];</code></li></ol><br />A good way to send data to a server page is to wrap up the <code>URLRequest</code> and <code>URLLoader</code> stuff into one class or function, which will receive only the url to send the data to, and URLVariables to send.<br /><br />So, here&#8217;s an example which sends a simple &#8220;test&#8221; string to some server page somewhere.  If it&#8217;s a success, it changes a <code>Label</code> to say so, and if it&#8217;s an error, it changes a <code>Label</code> to say that too.  (I&#8217;ve pretty much taken and only slightly altered from <a href="http://tush.wordpress.com/2007/07/20/actionscript-3-using-urlloader-to-send-and-load-server-variables/">another blog</a>):<br /><pre class="brush:xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"><br /> <fx:Script><br />  &lt;![CDATA[<br />   // send test data to server page<br />   protected function sendDataToServer(event:MouseEvent):void<br />   {<br />    var request:URLRequest = new URLRequest(sendToURL);<br />    var loader:URLLoader = new URLLoader();<br />    var variables:URLVariables = new URLVariables();<br />  <br />    variables.test = "test";<br />    loader.dataFormat = URLLoaderDataFormat.TEXT;<br />    request.data = variables;<br />    request.method = URLRequestMethod.POST;<br />    loader.addEventListener(Event.COMPLETE, onSuccess);<br />    loader.addEventListener(IOErrorEvent.IO_ERROR, onError);<br />    loader.load(request);<br />    sendDataToServerLabel.text= "Data sent: '" + variables.test + "'";<br />   }<br /> <br /><br />   // called when URLLoader returns successfully<br />   // prints parameters and messages of event<br />   private function onSuccess(event:Event):void<br />   {<br />    var loader:URLLoader = URLLoader(event.target);<br />    dataReceivedLabel.text = "Data received by server: success!"<br />   }<br />   <br />   // called when URLLoader returns unsucessfully<br />   // prints error message<br />   private function onError(event:IOErrorEvent):void<br />   {<br />    dataReceivedLabel.text = "Error loading URL.";<br />   }<br />  ]]&gt;<br /> </fx:Script><br /><s:Label x="715" y="444" id="dataReceivedLabel"/><br /></pre><br /><span class="sig">Possible errors:</span><br /><code>Error: Error #2101: The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs.</code><br /><br />I got this error fixed after changing this line &#8211;<br /><br /><code>loader.dataFormat = URLLoaderDataFormat.VARIABLES;</code><br /><br />to<br /><br /><code>loader.dataFormat = URLLoaderDataFormat.TEXT;</code><br /><br />What this does (I think) is makes it so that the returning HTML page data from the server page is encoded into a <code>TEXT</code> type instead of a <code>VARIABLES</code> type.  That Flash can&#8217;t reconstruct the HTML data into <code>VARIABLES</code> seems to be a known error, and all you can do now is convert the returning HTML data into <code>TEXT</code>, and then into <code>VARIABLES</code> pairs.<br /><br /><br /><br /><span class="sig">How do you send an array to a PHP page?</span><br />For now, I just want a PHP file on the webserver to take the data the Flex app gives it, and then write it to a file.  The <code>variables</code> object (of type <code>URLVariables</code>)  <br />above has a &#8221;<code>test</code>&#8221; field, which I can retrieve easily in PHP by writing something like <code>$var = $_POST["test"]</code>, but I guess if you want to send an array this way, the easiest way to do it would be to first format the array.  i.e.<ol><li>In Flex, convert the array to a string</li><li>In PHP, retrieve the array, and then split the string and use it.</li></ol><br />Alternatively, you could use <code><a href="http://livedocs.adobe.com/flex/3/html/data_access_2.html">HTTPService</a></code> (which also works with Rails, wooo).  But reading about it in the Adobe documentation, it seems that <code>HTTPService</code> might be more useful for when you&#8217;re working with PHP and a database and want to perform queries or format query results.  All I want to do is send an array of points (each containing x, y, and z) coordinates over, so&#8230;splitting and joining stuff up in PHP it is.<br /><br /><br /><br />Sources: <br />Adobe: <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=Filesystem_08.html">Workflow for reading and writing files</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLLoader.html">URLLoader</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html">URLRequest</a>, <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=data_access_2.html">Using HTTPService components</a><br /><a href="http://tush.wordpress.com/2007/07/20/actionscript-3-using-urlloader-to-send-and-load-server-variables/">Tushar Wadekar: ActionScript 3: Using URLLoader to send and load server variables</a><br /><a href="http://www.kirupa.com/forum/showthread.php?t=277069">Kirupa: String passed to URLVariables.decode() must be a URL-encoded query string&#8230;</a><br />StackOverflow: <a href="http://stackoverflow.com/questions/252915/how-to-send-array-throught-httpservice-in-adobe-flex-3">How to send array throught HTTPservice in Adobe Flex 3</a><br /><a href"http://groups.google.com/group/flex_india/browse_thread/thread/19d081e295905d28">Google Groups: Flex India Community: Flex to PHP variables array</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
   
 </span>
 

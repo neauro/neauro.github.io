@@ -4,7 +4,7 @@
   <title><![CDATA[liwanag]]></title>
   <link href="http://blog.neauro.com/atom.xml" rel="self"/>
   <link href="http://blog.neauro.com/"/>
-  <updated>2014-01-15T12:05:25-08:00</updated>
+  <updated>2014-01-16T19:43:58-08:00</updated>
   <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[In Praise of #vscocam]]></title>
+    <link href="http://blog.neauro.com/blog/2014/01/16/vsco/"/>
+    <updated>2014-01-16T09:16:32-08:00</updated>
+    <id>http://blog.neauro.com/blog/2014/01/16/vsco</id>
+    <content type="html"><![CDATA[<p>After about seven years with the same litle phone, I finally decided to upgrade. If I&rsquo;m being honest, I did it because the iPhone 5S/5C camera seemed like such an improvement over the previous, and I really wanted to have access to a camera usable in ordinary situations. (My old Motorola was also starting to have problems — bad audio, bad button sensitivity.)</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/vsco0.jpg" alt="My old phone."/></p>
+
+<p class="caption">goodbye dear friend</p>
+
+
+<p>The pictures that my phone takes are great — better than the pictures my old work iPod had, and definitely better than no pictures taken at all. But, what makes my silly phone photos really fun and gorgeous is the <a href="http://vsco.co/vscocam">VSCO Cam app</a>.</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/vsco1.jpg" alt="the foggy ferry dock on thanksgiving"/></p>
+
+<p class="caption">the foggy ferry dock on thanksgiving</p>
+
+
+<p>You can take pictures from the app or import them, and then control expore, temperature, white balance, saturation&hellip;I have to admit, though, that it took me forever to realize that bottom bar that showed all these editing options is actually something you can scroll from left to right.</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/vscobar.png" alt="a photo of a girl"/></p>
+
+<p class="caption">these colors were seriously bland and boring before i edited it.<br/>and,there&#8217;s that bar. it doesn&#8217;t look scrollable at all.</p>
+
+
+<p>There are also a variety of filters which, to me, are way more subtle and attractive than Instagram&rsquo;s filters. I admit that I use the F2 filter way more than the others.</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/vsco2.jpg" alt="foggy seattle"/></p>
+
+<p class="caption">foggy cityline</p>
+
+
+<p>Feel free to check out <a href="http://instagram.com/neauro">my Instagram</a> for more photos.</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/vsco3.jpg" alt="the cranes at seattle pier"/></p>
+
+<p class="caption">the dinosaur-like cranes at the pier</p>
+
+
+<p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Website: Fong Baatz Portfolio]]></title>
@@ -799,16 +843,6 @@ From one of the previous links, I learned how to convert all my old posts to a f
     <id>http://blog.neauro.com/blog/2013/11/04/cultural-differences-across-pokemon-x-y</id>
     <content type="html"><![CDATA[<div class='post'>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-IZKxZeym4hI/UnhNh5LTGHI/AAAAAAAAER8/ijPCNF5uWhM/s1600/pokemonxy.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="640" src="http://4.bp.blogspot.com/-IZKxZeym4hI/UnhNh5LTGHI/AAAAAAAAER8/ijPCNF5uWhM/s640/pokemonxy.jpg" width="510" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">screenshots of the websites for Pokemon X &amp; Y<br />Japan (above), Netherlands (bottom)</td></tr></tbody></table><div class="p1"><br /></div><div class="p1">A couple weeks ago we analyzed the marketing sites for Pokemon X and Y across different countries. It turns out that all sites for Pokemon X and Y are the same — except for the one in Japan, which is shown at the top of the screenshot above.</div><div class="p2"><br /></div><div class="p1">The differences between the Japanese site and the rest-of-the-world sites include:</div><div class="p1"><br /></div><div class="p1"><br /></div><h4>Feature Descriptions</h4><div>Non-Japanese sites contain more information about the game, for example, direct links to features like the Pokemon Global Link; on the Japanese site, these are internal.</div><div><br /></div><div><h4>Hype</h4><div>Non-Japanese sites feature a large image carousel on their homepage, which shows other features of the game, all shown to excite:&nbsp;<i>Discover the Might of Mega-Evolved Pokemon! A New World of Amazing Pokemon!</i></div><div><i><br /></i></div><div>In contrast, the front page of the Japanese site merely says:&nbsp;<i>Pokemon, heading to a brand new dimension</i>! (Referring, I think, to the 3D?)</div></div><div><br /></div><div><h4>Obvious Marketing</h4><div>Non-Japanese sites contain immediate links to buy the game, as well as the 3DS; the Japanese site does not. (According to Julius, the 2DS isn&#8217;t even available in Japan, perhaps because &#8220;Everyone there already has a 3DS!&#8221;)</div></div><div><h4><br /></h4><h4>JavaScript</h4><div>The Japanese site has very little Javascript, and each page looks to be straight HTML. Additionally, text is often baked straight into the images, rather than being left as straight text, which is often the case in websites due to accessibility issues. (Text on images cannot be easily parsed by screenreaders. Some users also prefer to render text on websites to be more readable, for example, through the excellent&nbsp;<a href="http://www.beelinereader.com/">BeeLine</a>&nbsp;app.</div></div><div><br /></div><div><h4>Description vs. Instruction</h4><div>The Japanese site is more descriptive of the story and characters of the game; the non-Japanese site is more instructive of how to play the Pokemon game.</div></div><div><br /></div><div><br /></div><div class="p1">We chalked up the majority of the differences the fact that Pokemon is more popular in Japan; Japanese game-players may not need to be particularly taught about Pokemon, or persuaded to buy it. But, this exercise makes me more interested in other facets of Japanese web design. Why is there so much baked-in text, why aren&#8217;t there fancy hover menu states, why is the design so flat compared to the chrome and bevels of the non-Japanese sites? Is web accessibility less important in the Japanese corner of the internet, or is it handled in a way that&#8217;s different in the US?</div><div class="p2"><br /></div><div class="p1">One final note: out class lecture that week was done by Kate Edwards, current Executive Director of IGDA, who shared some cool stories regarding the &#8220;culturization&#8221; problems she&#8217;s encountered when helping to ship games across international borders. Something she noted was that, in the Netherlands, &#8220;adult&#8221; games don&#8217;t need to be localized into Dutch because the adults there prefer to play the games in English. So, the fact that the Pokemon X and Y site text is all written in Dutch…</div><div class="p2"><br /></div><br /><div class="p1">…well…you can totally still enjoy the world of Kalos as a grown-up grad student with a full-time job. Just saying!</div></div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Gravity]]></title>
-    <link href="http://blog.neauro.com/blog/2013/10/14/gravity/"/>
-    <updated>2013-10-14T00:00:00-07:00</updated>
-    <id>http://blog.neauro.com/blog/2013/10/14/gravity</id>
-    <content type="html"><![CDATA[<div class='post'>
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-XVx7HSeNFGk/UlyxJK2BGrI/AAAAAAAAENQ/_LOgJ75VR8U/s1600/gravity-movie-poster.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://3.bp.blogspot.com/-XVx7HSeNFGk/UlyxJK2BGrI/AAAAAAAAENQ/_LOgJ75VR8U/s320/gravity-movie-poster.jpg" width="216" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://www.scified.com/news/1190">source</a>)</td></tr></tbody></table><br /><blockquote>Dr. Ryan Stone is a brilliant medical engineer on her first shuttle mission, with veteran astronaut Matt Kowalsky. But on a seemingly routine spacewalk, disaster strikes. The shuttle is destroyed, leaving Stone and Kowalsky completely alone - tethered to nothing but each other and spiraling out into the blackness. The deafening silence tells them they have lost any link to Earth&#8230;and any chance for rescue. As fear turns to panic, every gulp of air eats away at what little oxygen is left. But the only way home may be to go further out into the terrifying expanse of space.</blockquote><div class="p1"><br /></div><div class="p1">I saw <i>Gravity </i>with A last week. It was alright. People warn that the movie will cultivate in you a brand-new fear of nothingness but I have to say that what terrified me the most was the crescendo of the soundtrack, thickening and filling me with anxiousness before anything had even happened. The death of Goerge Clooney&#8217;s Matt also seemed to me to be unreasonably tragic, especially given the fact that he could have been <a href="https://twitter.com/neiltyson/status/386990527406563329">easily rescued</a>.</div><div class="p2"><br /></div><div class="p1">I would have liked Matt&#8217;s sacrifice to be foreshadowed more clearly; the reasons for his final no-nonsense altruism were unclear. Did he sacrifice himself out of a sense of duty? Out of logic? Out of love for Ryan? The story poses life as utterly valuable — worth proceeding with, despite internal struggles and pain — yet allows Matt to give up his existence so easily. I don&#8217;t understand how he came to decide Ryan&#8217;s life was valuable. I don&#8217;t even understand how Ryan herself decided this about her own life at the end, laughing and monologuing and screaming as she fell back to the earth.</div><div class="p2"><br /></div><div class="p1">I&#8217;m biased, maybe — why someone would want to cling to life in the immensity of space is something I was anticipating this movie would explore. Since my personal contemplation of space eventually lends itself to existential panic and dismay that my life is so small compared to a millennia of life and death and nothingness,&nbsp;I wanted to see how this movie would handle it, to see how many mad hyperventilating spirals it would take to get down to hell and come out the other side. I wanted to know what it was people were really missing out there in space, and what was it that kept pulling them back to Earth.</div><div class="p1"><br /></div><div class="p1">(&#8230;.eh? <i>Ehhhh?</i>)</div><div class="p2"><br /></div><div class="p2">On a completely different note, the morning before I watched <i>Gravity </i>was the morning I started reading about the Kessler syndrome in <i>Best American Nature and Science Writing 2011</i>…what a weirdly exciting coincidence. I wanted to stand up in the theater. &#8220;Guys! GUYS&#8230;IT&#8217;S THE KESSLER SYNDROME!&#8221;</div></div>
 ]]></content>
   </entry>
   

@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="How Do You Populate a Flex Spark List With Information From an Array? Jan 21st, 2011 First, you have to wrap the array up in a Collection class, and &hellip;">
+  <meta name="description" content="How Do You Make a Flex Application Send Data to a PHP Server? Jan 30th, 2011 How do you make a Flex project able to read/write files?There are a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/30/how-do-you-make-flex-application/">How Do You Make a Flex Application Send Data to a PHP Server?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-30T00:00:00-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+How do you make a Flex project able to read/write files?<br />There are a couple objects like <code>File</code> and <code>FileStream</code> which make it so that an Adobe AIR application can access the user&#8217;s filesystem, but to send and load data from a server, you can use <code>URLLoader</code>, <code>URLRequest</code>, and <code>URLVariables</code>.<br /><br />A summary:<ul><li><strong>URLLoader</strong> downloads data from a URL as text, binary data, or URL-encoded variables.  It&#8217;s useful for downloading textfiles, XML, etc. to be used in a data-driven application.  So: it&#8217;s for use by a Flash application to retrieve data from a URL.</li><li><strong>URLRequest</strong> is an object which contains all of the information in one HTTP request.  It initiates URL downloads by being passed to the <code>load()</code> methods of <code>Loader, URLLoader</code> classes.  Note: By default you can only load data if the application loading and the URL it&#8217;s loading from at in the same domain.  So an application on whatever.com can only load data from somewhere else on whatever.com.</li><li><strong>URLVariables</strong> allow you to transfer variables between an application and a server.  It&#8217;s used with methods of the <code>URLLoader</code> class, with the <code>data</code> property of the <code>URLRequest</code> class, and additional functions in the <code>flash.nete</code> package.</li></ul><br />Basic workflow goes like:<ol><li>In the Flash/Flex application, create an instance of <code>URLVariables</code>, and add variables to it.  For instance, if you want to be able to retrieve data associated with &#8220;username,&#8221; you&#8217;ll want to do something like <code>URLVariablesObject.username = "username"</code></li><li>Make a page on your server which will extract the variables and work with them.  For example, a page <code>login.php</code>, with code like <code>$username = $_POST["username"]</code></li><li><code>URLRequest</code> contains the data you want to send to the server.  Specify the URL of the server page you want to send data to, set its <code>data</code> to be your URLVariables object, and set its <code>method</code> to be <code>URLRequestMethod.POST</code> if you want to send data to the server page as POST.</li><li><code>URLLoader</code> sends the <code>URLRequest</code> to the server and handles the return.  Create an instance of <code>URLLoader</code>, specify its <code>dataFormat</code> to be that of <code>URLLoaderDataFormat.VARIABLES</code>, and then use the <code>load</code> function to load the <code>URLRequest</code> object specifed earlier.  Add event listeners to handle what happens when the data has been sent to the URL, and what happens if there is an error loading the URL.</li><li>Make server page read the URLVariables with something that looks like <code>$username = $_POST["username"];</code></li></ol><br />A good way to send data to a server page is to wrap up the <code>URLRequest</code> and <code>URLLoader</code> stuff into one class or function, which will receive only the url to send the data to, and URLVariables to send.<br /><br />So, here&#8217;s an example which sends a simple &#8220;test&#8221; string to some server page somewhere.  If it&#8217;s a success, it changes a <code>Label</code> to say so, and if it&#8217;s an error, it changes a <code>Label</code> to say that too.  (I&#8217;ve pretty much taken and only slightly altered from <a href="http://tush.wordpress.com/2007/07/20/actionscript-3-using-urlloader-to-send-and-load-server-variables/">another blog</a>):<br /><pre class="brush:xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"><br /> <fx:Script><br />  &lt;![CDATA[<br />   // send test data to server page<br />   protected function sendDataToServer(event:MouseEvent):void<br />   {<br />    var request:URLRequest = new URLRequest(sendToURL);<br />    var loader:URLLoader = new URLLoader();<br />    var variables:URLVariables = new URLVariables();<br />  <br />    variables.test = "test";<br />    loader.dataFormat = URLLoaderDataFormat.TEXT;<br />    request.data = variables;<br />    request.method = URLRequestMethod.POST;<br />    loader.addEventListener(Event.COMPLETE, onSuccess);<br />    loader.addEventListener(IOErrorEvent.IO_ERROR, onError);<br />    loader.load(request);<br />    sendDataToServerLabel.text= "Data sent: '" + variables.test + "'";<br />   }<br /> <br /><br />   // called when URLLoader returns successfully<br />   // prints parameters and messages of event<br />   private function onSuccess(event:Event):void<br />   {<br />    var loader:URLLoader = URLLoader(event.target);<br />    dataReceivedLabel.text = "Data received by server: success!"<br />   }<br />   <br />   // called when URLLoader returns unsucessfully<br />   // prints error message<br />   private function onError(event:IOErrorEvent):void<br />   {<br />    dataReceivedLabel.text = "Error loading URL.";<br />   }<br />  ]]&gt;<br /> </fx:Script><br /><s:Label x="715" y="444" id="dataReceivedLabel"/><br /></pre><br /><span class="sig">Possible errors:</span><br /><code>Error: Error #2101: The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs.</code><br /><br />I got this error fixed after changing this line &#8211;<br /><br /><code>loader.dataFormat = URLLoaderDataFormat.VARIABLES;</code><br /><br />to<br /><br /><code>loader.dataFormat = URLLoaderDataFormat.TEXT;</code><br /><br />What this does (I think) is makes it so that the returning HTML page data from the server page is encoded into a <code>TEXT</code> type instead of a <code>VARIABLES</code> type.  That Flash can&#8217;t reconstruct the HTML data into <code>VARIABLES</code> seems to be a known error, and all you can do now is convert the returning HTML data into <code>TEXT</code>, and then into <code>VARIABLES</code> pairs.<br /><br /><br /><br /><span class="sig">How do you send an array to a PHP page?</span><br />For now, I just want a PHP file on the webserver to take the data the Flex app gives it, and then write it to a file.  The <code>variables</code> object (of type <code>URLVariables</code>)  <br />above has a &#8221;<code>test</code>&#8221; field, which I can retrieve easily in PHP by writing something like <code>$var = $_POST["test"]</code>, but I guess if you want to send an array this way, the easiest way to do it would be to first format the array.  i.e.<ol><li>In Flex, convert the array to a string</li><li>In PHP, retrieve the array, and then split the string and use it.</li></ol><br />Alternatively, you could use <code><a href="http://livedocs.adobe.com/flex/3/html/data_access_2.html">HTTPService</a></code> (which also works with Rails, wooo).  But reading about it in the Adobe documentation, it seems that <code>HTTPService</code> might be more useful for when you&#8217;re working with PHP and a database and want to perform queries or format query results.  All I want to do is send an array of points (each containing x, y, and z) coordinates over, so&#8230;splitting and joining stuff up in PHP it is.<br /><br /><br /><br />Sources: <br />Adobe: <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=Filesystem_08.html">Workflow for reading and writing files</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLLoader.html">URLLoader</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html">URLRequest</a>, <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=data_access_2.html">Using HTTPService components</a><br /><a href="http://tush.wordpress.com/2007/07/20/actionscript-3-using-urlloader-to-send-and-load-server-variables/">Tushar Wadekar: ActionScript 3: Using URLLoader to send and load server variables</a><br /><a href="http://www.kirupa.com/forum/showthread.php?t=277069">Kirupa: String passed to URLVariables.decode() must be a URL-encoded query string&#8230;</a><br />StackOverflow: <a href="http://stackoverflow.com/questions/252915/how-to-send-array-throught-httpservice-in-adobe-flex-3">How to send array throught HTTPservice in Adobe Flex 3</a><br /><a href"http://groups.google.com/group/flex_india/browse_thread/thread/19d081e295905d28">Google Groups: Flex India Community: Flex to PHP variables array</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -493,52 +539,6 @@ Nice solution, it worked great for me.  I only needed to reference the stage at 
 <span class="categories">
   
     <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/06/q-operating-systems-etc/">[Q&a] Operating Systems, C, Etc.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-06T00:00:00-08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<b>How do you switch drives with Windows command line?</b><br />If you want to go to drive <code>Z:</code>, rather than <code>cd Z:</code>, you can just type <code>Z:</code>.<br /><br /><br /><b>What do you do when you demux something?</b><br />A demultiplexer is a device that takes a single input signal and routes it to one of many output lines.  It&#8217;s often used with a multiplexer on the sending end.  So, when you demux a signal, you accept it, and then based on some parameter send it to a different function or something. <span class="shh">I think?</span><br /><br /><br /><b>What&#8217;s a virtual machine?</b><br />&#8220;A software implementation of a programmable machine&#8221; &#8211; so, a simulation of a computer, on a computer.<br /><br /><br /><b>What&#8217;s the difference between a function in C and a method in Java?</b><br />All C/C++ programs require a function named <code>main</code> and besides that can have numerous other functions.  In Java, functions can&#8217;t stand by themselves &#8211; they have to be part of a class.  Functions that are part of a class are usually called methods.<br /><br />Also, it seems that methods are called by reference values, which are objects, perhaps like <code>Object.method()</code>, as opposed to just <code>value = function()</code>?  Also, &#8220;method&#8221; is used more often in Java, most likely because Java has objects and C/C++ does not.<br /><br /><br /><b>What&#8217;s Windows NT?</b><br />It&#8217;s a family of operating systems created by Microsoft, which were meant to complement consumer versions of Windows that were based on MS-DOS.  NT was the first fully 32-bit version of Windows.  Windows 2000, Windows XP, Windows Server 2003, Windows Vista, Windows 7, etc., are based on Windows NT, though they aren&#8217;t branded the same way.  NT was once expanded to mean &#8220;New Technology&#8221; and stood originally for &#8220;N-Ten,&#8221; the codename of the Intell i860 XR processor that the OS was originally developed for, but NT has no particular meaning anymore.  Sidenote: it is really confusing that there&#8217;s an operating system called Windows <i>Server</i> 2003.  <i>Wat.</i>  I guess this calls into question what exactly a server is supposed to be.<br /><br /><br /><b>What is a server?</b><br />A server can refer to:<br /><ul><li>a computer program running as <a href="http://nuubu.blogspot.com/2011/01/intro-to-distributed-systems.html">a service</a>, to serve the needs or requests of other programs</li><li>a physical computer running one or more such services, to serve the needs of programs running on other computers in the same network</li><li>a software/hardware system such as a database server, file server, mail server, print server</li></ul>I guess server operating systems are operating systems that have certain features which make them good servers &#8211; such as limited GUI, flexible/advanced networking capability, tight security, backup securities, transparent data transfer between different volumes or devices &#8211; and maybe that&#8217;s what the Windows Server operating systems are all about.<br /><br /><br /><b>How do you press Ctrl+Alt+Delete in a virtual machine?</b><br />In a virtual machine in MS Virtual PC 2007, rather than pressing the keys, go to the <code>Action</code> tab and select <code>Ctrl+Alt+Delete</code>.<br /><br /><br /><b>What does the <code>_</code> or <code>__</code> mean in C programs?</b><br />There&#8217;s no particular meaning.  <code>_</code> is meant to identify system variables/functions, <code>__</code> is meant to identify metadata.  Additionally, when you include headers in C, you <br />add in a lot of code and functions and variables; to prevent these imported names from causing duplicates with the variables/names of your own stuff, it&#8217;s best to avoid using variables/functions which start with underscores in your own program.<br /><br /><br /><br /><br />Source:<br />Jimmy<br />Wikipedia: <a href="http://en.wikipedia.org/wiki/Multiplexer">1</a>, <a href="http://en.wikipedia.org/wiki/Virtual_machine">2</a>, <a href="http://en.wikipedia.org/wiki/Windows_NT">3</a>, <a href="http://en.wikipedia.org/wiki/Server_%28computing%29">4</a><br /><a href="http://www.geekinterview.com/question_details/31163">GeekInterview: What is the difference between methods and functions?</a><br /><a href="http://www.dickbaldwin.com/java/Java008.htm">Dick Baldwin: Similarities and Differences between Java and C++</a><br /><a href="http://bytes.com/topic/c/answers/540408-_-__-significance">Bytes: _ and __ significance</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
   
 </span>
 
