@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Player.IO &#8211; Thoughts on the BigDB Administration UI May 8th, 2011 I&#8217;m in Intro to Human Centered Interaction this quarter and so can&# &hellip;">
+  <meta name="description" content="Get Across: More Avatars! Jun 1st, 2011 Well, it&#8217;s 5am and I just finished up coding up the backend for avatar switching and stuff, as well as &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,111 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/01/get-across-more-avatars/">Get Across: More Avatars!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-01T00:00:00-07:00" pubdate data-updated="true">Jun 1<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-V_xr734U594/TeYrnWE5eaI/AAAAAAAAAOs/206U0CFY8Go/s1600/getacross_avatars.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="264" width="320" src="http://3.bp.blogspot.com/-V_xr734U594/TeYrnWE5eaI/AAAAAAAAAOs/206U0CFY8Go/s320/getacross_avatars.png" /></a></div><br />Well, it&#8217;s 5am and I just finished up coding up the backend for avatar switching and stuff, as well as drawing these icons and their respective animation sprite things.  Not so hard, as Charlie had already implemented the store-type setup, and I really just needed to change a couple variables here and there and add the right checks to make sure the avatars loaded properly.  The hardest thing was testing each little avatar and making sure that the frames were all separated &#8211; if the images on the frames are too close together, then you can see bits of them leaking onto other frames of an animation.  There&#8217;s probably a smarter way to figure out where the delineation is in Flixel sprite animations, but I haven&#8217;t been able to find it yet.<br /><br />Hopefully this will make our Facebook release even just a little bit more fun/appealing.  FB release will happen at the latest this Thursday, if another team-member hasn&#8217;t already pushed it.  Player.IO was apparently pretty easy to hook up to Facebook if you subscribe to Sitebox, which is a relief; I&#8217;m planning to get more details later on how exactly Charlie did it.</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>nadine a.</div>
+<div class='content'>
+Haha I warn you I&#39;m not super amazing at it; but it definitely would be fun to collaborate with you sometime!</div>
+</div>
+<div class='comment'>
+<div class='author'>axcho</div>
+<div class='content'>
+Awesome, they are so cute! I forgot that you draw also. Maybe I&#39;ll have to get you to do the art on one of my games sometime. :)</div>
+</div>
+</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/drawing/'>drawing</a>, <a class='category' href='/blog/categories/get-across/'>get across</a>, <a class='category' href='/blog/categories/project/'>project</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/23/get-across-kongregate-release/">Get Across: Kongregate Release</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-23T00:00:00-07:00" pubdate data-updated="true">May 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-FS01GyXZtMU/TdtOqq5GybI/AAAAAAAAAOM/KqG4OmKmecU/s1600/kongregate_users.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="197" src="http://2.bp.blogspot.com/-FS01GyXZtMU/TdtOqq5GybI/AAAAAAAAAOM/KqG4OmKmecU/s320/kongregate_users.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">the first 200-some players of our silly capstone game</td></tr></tbody></table><br />It&#8217;s been about 24 hours since <a href="http://www.kongregate.com/games/getAcross/get-across">our first online release of Get Across</a>.  Our capstone class recommends moving from Newgrounds, to Kongregate, but then to Facebook, but it&#8217;s taken us such a long time to learn Player.IO that we skipped straight to Kongregate, as <a href="http://playerio.com/documentation/quickconnect/kongregate">Player.IO already supports this.</a>.<br /><br />Still, our release was (to me) a little rushed, and I would have loved nothing better than to clutch the game even tighter and keep anyone from seeing it at all.  We have presentations on Tuesday on what our first round of releasing reveals to us about the game, and I haven&#8217;t parsed through the data that we&#8217;ve collected yet, but an onslaught of a mysterious error regarding null quest objects made me really self-conscious about what was going on.  <em>I don&#8217;t want anyone to play a game that is still buggy.  Nononononono!</em><br /><br />It&#8217;s hard to debug from Player.IO&#8217;s error log, though it is very informative concerning what errors popped up, whether they were serverside or clientside, when they happened, and how often.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-UwlYNphQNgA/TdtRshfzMqI/AAAAAAAAAOU/u3pc3S_SXdQ/s1600/playerio_errorlog.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="186" src="http://3.bp.blogspot.com/-UwlYNphQNgA/TdtRshfzMqI/AAAAAAAAAOU/u3pc3S_SXdQ/s320/playerio_errorlog.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">just look at those graphs, dude!</td></tr></tbody></table><br />Some of the players on Kongregate have been really helpful in leaving comments about their thoughts and the bugs they&#8217;ve encountered; but there are about 6 of these comments, and 200+ registered players, most of whom didn&#8217;t really make it through the tutorial levels.  I have a good guess why: <em>the tutorials take forever to load</em>.<br /><br />I&#8217;m not sure why, but I&#8217;m guessing it might be because we have a lot of objects in the database, and a lot of the properties of those objects are nested objects or arrays, which must take longer to retrieve.  Seeing as tutorial levels are pretty essential for hooking in initial players, I&#8217;m hoping to make it so that the tutorial levels are completely static and client-side &#8211; no saving data into the database, nothing.  If a player comes back, they&#8217;ll just have to start over.  Hopefully this will make it so that we only really save &#8220;real&#8221; player data in the database as well, and keep out the clutter.<br /><br />So even though I really wouldn&#8217;t have wanted to release the game this soon, this little bit of playtesting illuminated something that we otherwise would have learned at the last awful minute, for the final Facebook release.  Which is nice.<br /><br />As a sidenote, the last push I made to Get Across before the release were updated character sprites for our classes, &#8220;Cook,&#8221; &#8220;Crafter,&#8221; and &#8220;Planter.&#8221;  Charlie drew the first set, which were endearingly derpy &#8211;<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-BpSQDmsoKDg/TdtS8xpShpI/AAAAAAAAAOc/xeVTMU2HQDw/s1600/old_classes.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="131" width="320" src="http://3.bp.blogspot.com/-BpSQDmsoKDg/TdtS8xpShpI/AAAAAAAAAOc/xeVTMU2HQDw/s320/old_classes.png" /></a></div><br />And these are the more recent ones &#8211;<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-X1nWWgR4z_E/TdtTFRAwnII/AAAAAAAAAOk/QkC5Sdg-LI0/s1600/getacross_classes.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="131" width="320" src="http://3.bp.blogspot.com/-X1nWWgR4z_E/TdtTFRAwnII/AAAAAAAAAOk/QkC5Sdg-LI0/s320/getacross_classes.png" /></a></div><br />Hopefully more character customization will come soon, though it&#8217;s hard to say what we&#8217;ll have time for.  2 weeks left to polish up the back-end code and the mechanics!</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/drawing/'>drawing</a>, <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/game-dev/'>game dev</a>, <a class='category' href='/blog/categories/get-across/'>get across</a>, <a class='category' href='/blog/categories/playerio/'>playerio</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/project/'>project</a>, <a class='category' href='/blog/categories/school/'>school</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -439,98 +544,6 @@ I&#8217;m in Intro to Human Centered Interaction this quarter and so can&#8217;t
 <span class="categories">
   
     <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/game-dev/'>game dev</a>, <a class='category' href='/blog/categories/heartrate-games/'>heartrate games</a>, <a class='category' href='/blog/categories/project/'>project</a>, <a class='category' href='/blog/categories/unity3d/'>unity3d</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/16/so-many-things-to-click-so-little/">So Many Things to Click, So Little Energy</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-16T00:00:00-07:00" pubdate data-updated="true">Apr 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-So a couple of days ago I attended <a href="http://seattletimes.nwsource.com/html/technologybrierdudleysblog/2014767469_zynga_launches_seattleville_be.html">the launch of Zynga&#8217;s Seattle office</a>.  It was pretty delicious; I guess Zynga has their own pomegranate martini with Pop Rocks in it.  They sank to the bottom though and become saturated with t3h alcohols pretty quickly.  My other favorite food was this sort of fried wonton with the most melty sashimi in it, which came with a sort of guacamole-with-edamame substance.  Also present: hand-made marshmallows dipped in chocolate and covered in nuts and thinly sliced almonds.<br /><br />I went with David and Fransiskus and we all managed to get pictures with Mark Pincus XD<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-X94S1A0OyYk/TaoFcg39kjI/AAAAAAAAALM/2cX_OsjL8G4/s1600/photo.JPG" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="240" src="http://4.bp.blogspot.com/-X94S1A0OyYk/TaoFcg39kjI/AAAAAAAAALM/2cX_OsjL8G4/s320/photo.JPG" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">and then he went off to mingle elsewhere</td></tr></tbody></table><br />Then we chatted with some of the other engineers at the event, who all seemed to be peripheral to games in some way &#8211; I even saw the guy who gave the original concept for <a href="http://heartrategames.com/">one of my research projects</a>.  Mostly I was pretty hyped to get Zynga-world money, which we did end up getting at the very end in a gift bag, along with a nifty thermos.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-NzqAbYNCcdM/TaoHnkqJOxI/AAAAAAAAALU/F2A-SnJaRrA/s1600/DSC_0390.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="213" src="http://4.bp.blogspot.com/-NzqAbYNCcdM/TaoHnkqJOxI/AAAAAAAAALU/F2A-SnJaRrA/s320/DSC_0390.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">swag, yeeee</td></tr></tbody></table><br />Then, because David and Fransiskus like it so much, I started playing CityVille.  Which has actually turned out to be really fun o___o I&#8217;ve already been playing <a href="http://nuubu.blogspot.com/2011/02/okay-dude-so-planting-nachos-is.html">FarmVille</a> for a while, and I started FrontierVille because of hearing the Civilization designer created it, but CityVille strikes a perfect balance in between them.  I like the clean artwork and the little people that wave at you and the general friendliness of the whole thing.  The sound effects for when you pick up different resources are also really happy-inducing somehow.  For seriose.  They&#8217;re on par with Zelda SFX for uncovering mystery doors and opening treasure chests.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-n_pMrKX-Dxk/TaoIAi5v67I/AAAAAAAAALc/yb0iVhSjdU8/s1600/cityville.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="249" src="http://2.bp.blogspot.com/-n_pMrKX-Dxk/TaoIAi5v67I/AAAAAAAAALc/yb0iVhSjdU8/s320/cityville.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">so many things to click and feel productive with &lt;3</td></tr></tbody></table><br />Though, I guess a Zynga game is also much more fun definitively if you have a ton of people to play it with, unlike in FrontierVille, where I desperately keep posting requests for Juicy Berries and Critter Milk and have been getting no response.  There have been shy and sick baby creatures on my homestead for months.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-owd_CkgAro4/TaoJ4CfgVII/AAAAAAAAALk/sx-86Dv4v3M/s1600/frontierville.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="257" src="http://1.bp.blogspot.com/-owd_CkgAro4/TaoJ4CfgVII/AAAAAAAAALk/sx-86Dv4v3M/s320/frontierville.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">none of you are ever getting help. &nbsp;ever</td></tr></tbody></table><br />I definitely want to incorporate the &#8220;popping out of things&#8221; like coins and XP in Get Across too, maybe so that when you move onto a tile or something you get rewarded with little coins and bits.  I&#8217;m not sure if that&#8217;s too much of a &#8220;casual&#8221; mechanic that will end up turning people off, though&#8230;I guess for now we&#8217;ll put it off into an advanced feature.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/get-across/'>get across</a>, <a class='category' href='/blog/categories/project/'>project</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/15/look-at-them-theyre-so-courageous/">Look at Them! They&#8217;re So Courageous!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-15T00:00:00-07:00" pubdate data-updated="true">Apr 15<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-kk9yDoGNiYQ/Takq_XGYa0I/AAAAAAAAALE/bgIcJBuSC5Y/s1600/socourageous.PNG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="427" src="http://1.bp.blogspot.com/-kk9yDoGNiYQ/Takq_XGYa0I/AAAAAAAAALE/bgIcJBuSC5Y/s640/socourageous.PNG" width="640" /></a></div><br />I&#8217;m still working on <a href="http://nuubu.blogspot.com/2011/04/social-games-capstone.html">Get Across</a>, and Andou keeps suggesting different games it&#8217;s similar to, such as Lemmings.  I looked for Youtube videos and then just decided to download an emulator.  It&#8217;s quite fun. :D<br /><br /><span class="shh">It&#8217;s amazing how much you can feel for the fate of a couple pixels.</span></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/project/'>project</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
   
 </span>
 

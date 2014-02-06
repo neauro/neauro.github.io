@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Paula Deen&#8217;s Easy Cheesecake Cupcakes Aug 20th, 2012 The other day HC came over and we decided to make cupcakes. Given my limited store of &hellip;">
+  <meta name="description" content="Pong Aug 22nd, 2012 I&#8217;ve been working on a simple Pong game, to elaborate on the stuff I learned a couple days ago.Insidiously small bugs &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/22/pong/">Pong</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T00:00:00-07:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-eIQZzcRHBoE/UDVb_WiTvVI/AAAAAAAACTc/TFLyM5mSpvc/s1600/pongu.jpg" imageanchor="1"><img border="0" height="286" src="http://4.bp.blogspot.com/-eIQZzcRHBoE/UDVb_WiTvVI/AAAAAAAACTc/TFLyM5mSpvc/s400/pongu.jpg" width="400" /></a></div><br />I&#8217;ve been working on a simple Pong game, to elaborate on <a href="http://nuubu.blogspot.com/2012/08/some-html5javascript-links.html">the stuff I learned a couple days ago</a>.<br /><br />Insidiously small bugs learned about thus far include this: if your JavaScript file loads before you make a <code>canvas</code> object in HTML, it won&#8217;t know about <code>canvas</code>. For example, the following is wrong:<br /><br /><pre class="brush: html"><script src="game.js"></script> <!-- "WHERE IS #CANVAS" --><br /><canvas id="canvas"></canvas><br /></pre><br />In trying to do collision stuff, I also ran into a curious problem where the following did not work:<br /><br /><pre class="brush: js">if ( ((that.X-that.radius) &lt;= (player.X+player.width)) &amp;&amp;<br />(that.Y &gt;= player.Y) &amp;&amp;<br />(that.Y &lt; (player.y+player.height)))<br />collided = PADDLE;<br /></pre><br />But this <em>did</em>:<br /><br /><pre class="brush: js">var hit_paddle_side = beneath_paddle_top = above_paddle_bottom = false;<br /><br />if (((that.X-that.radius) &lt;= (player.X+player.width))) hit_paddle_side = true;                 if ((that.Y &gt;= player.Y)) beneath_paddle_top = true;<br />if ((that.Y &lt; (player.Y+player.height))) above_paddle_bottom = true;<br /><br />if (hit_paddle_side &amp;&amp; beneath_paddle_top &amp;&amp; above_paddle_bottom)<br />    collided = PADDLE;<br /></pre><br />Not sure why yet.<br /><br />All the code is <a href="https://github.com/neauro/html5pong">on my Github</a> for now.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/game-dev/'>game dev</a>, <a class='category' href='/blog/categories/html5/'>html5</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/project/'>project</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/22/august-sedum-growth/">August Sedum Growth</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T00:00:00-07:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: left;">The plants I got at the <a href="http://nuubu.blogspot.com/2012/07/lavender-festival-hurricane-ridge.html">Lavender Festival</a>&nbsp;have been thriving, some more than others. The one that looks like an ice plant is doing the best&#8230;</div><div class="separator" style="clear: both; text-align: center;"><br /></div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-lJWYNjnjPZU/UDJ8mr9msiI/AAAAAAAACSM/4FiZzGYnXhs/s1600/DSC_0004_08172012.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://1.bp.blogspot.com/-lJWYNjnjPZU/UDJ8mr9msiI/AAAAAAAACSM/4FiZzGYnXhs/s640/DSC_0004_08172012.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">ice plant sedum?</td></tr></tbody></table><br />And the one with bundles of little &#8220;chicks&#8221; is practically on the verge of escape.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-nl8H8GwdwaQ/UDJ8njiszZI/AAAAAAAACSc/W-r65ftO_rU/s1600/DSC_0008_08172012.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://2.bp.blogspot.com/-nl8H8GwdwaQ/UDJ8njiszZI/AAAAAAAACSc/W-r65ftO_rU/s640/DSC_0008_08172012.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">let me ouuttt</td></tr></tbody></table><br />Of all of them, the two that have the most supple leaves &#8211; including my green &#8220;grape-looking&#8221; sedum below &#8211; have started harboring aphid eggs, the destruction of which I have attempted with soap-soaked paper towels.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-yWIRSGozqvY/UDJ8myNFg9I/AAAAAAAACSU/e5RqXEsZchU/s1600/DSC_0005_08172012s.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://4.bp.blogspot.com/-yWIRSGozqvY/UDJ8myNFg9I/AAAAAAAACSU/e5RqXEsZchU/s640/DSC_0005_08172012s.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">leave my plants alone :(</td></tr></tbody></table></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/garden/'>garden</a>, <a class='category' href='/blog/categories/photo/'>photo</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -439,98 +531,6 @@ Having done few HTML5 things, I&#8217;ve dug up some tutorials and interesting l
 <span class="categories">
   
     <a class='category' href='/blog/categories/drawing/'>drawing</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/08/visual-merchandising-tony-morgan/">Visual Merchandising, Tony Morgan</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-08T00:00:00-07:00" pubdate data-updated="true">Aug 8<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-0isCSiBChlI/UCKf81WqqtI/AAAAAAAAB6Q/HKSB_hFA4LI/s1600/vm-book.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://2.bp.blogspot.com/-0isCSiBChlI/UCKf81WqqtI/AAAAAAAAB6Q/HKSB_hFA4LI/s320/vm-book.jpg" width="246" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">cover of visual merchandising (<a href="http://idowindows.wordpress.com/2010/02/05/visual-merchandising-by-tony-morgan/">source</a>)</td></tr></tbody></table><blockquote><i>A great introduction for retail students, this book offers a user-friendly reference guide to all aspects of visual merchandising and covers both window dressing and in-store areas. Using examples from a range of stores from fashion emporia to supermarkets, the book offers practical advice on the subject, supported by hints and tips from established visual merchandisers. It reveals the secrets of their tool kit, and information on the use of mannequins, the latest technology, how to construct and source props, and explains the psychology behind shopping and buyer behavior. </i><br /><i><br /></i><i>Presented through color photographs, diagrams of floor layouts, and store case studies, and including invaluable information such as a glossary of terms used in the industry, Visual Merchandising is an essential handbook for anyone working in and learning about this exciting area.</i></blockquote><br />This came up as a hit when I searched the public library database for books about stores and merchandising, which I was in turn searching for as a resource for free-to-play game design. <a href="http://www.npr.org/2012/06/11/154787321/game-maker-stunted-by-facebook-turns-to-mobile">As NPR uncovered</a>, free-to-play games are a lot like stores; you see the nice displays outside, shuffle in and around for a while, and if you discover something that you like, something that will, perhaps, make you feel like a better human being, you pay money to obtain that thing.<br /><br /><a href="http://www.electricrest.com/wordpress/?p=376">Electric Rest</a> details some other possible applications of store design to free-to-play games, and I thought I would try and find some myself.&nbsp;<i>Visual Merchandising </i>turns out to be something of a beautiful textbook, with a history of window displays that in Olden Times (a.k.a. early 1900s) displayed not fashionable&nbsp;manikins, but rotating displays of art and sometimes curiosities (like a plane that had fallen while attempting to cross the Atlantic, and was promptly reassembled in a department store window).<br /><br />With regards to a digital medium, the takeaways are a little harder to come by, though I guess you could force them out. For example, indoor arrangements depend on the store&#8217;s architecture, but there are a couple rules of thumb that help, such as &#8220;shelves that are angled rather than parallel to each other can draw people in to explore.&#8221; Could an interface be designed in such a way that the eye is drawn to viewing other goods for sale, rather than relying on a &#8220;Go to next page&#8221; click? How could you fashion an experience that allows someone to wander aimlessly, yet also not impede them if they want to get directly to Point B?<br /><br />The three-dimensional space and atmosphere afforded by a store can be impactful in ways that I think are hard to mirror to video games, or even shopping websites. There&#8217;s the three-dimensionality, of course, and the impact of sound and other people and smells set to artificially make you feel like you&#8217;re in a warm tropical clothing paradise ripe for bikini buying. Also, even though I&#8217;m sure people are aware of the fact that stores try and push cheap gum and parcels of assorted high fructose corn syrup at you as you&#8217;re paying for your Actual Purchases, I think it&#8217;s easy to write off a lot of store design as &#8220;Oh, they did that just because that&#8217;s the way the store is shaped, not because they&#8217;re <i>trying&nbsp;desperately to sink their hands into my wallet.</i>&#8221; Contrast to perpetual social game pop-ups rewarding you with discounts on virtual goods.<br /><br />Another thing that&nbsp;I believe stores will have going for them for a while is their ability to support social exploration, to serve as a bauble-filled backdrop to people&#8217;s wanderings as they share each other&#8217;s company. I can&#8217;t think of any games that do similar. (Though I suddenly imagine some WoW- or Second Life-esque scenario&#8230;ah, well, you could imagine an MMORPG fitting into <i>any</i> scenario, though.)<br /><br />In short: <i>Visual Merchandising</i> has gorgeous photos, some interesting history and details about things like department stores and manikins, and so on. It also features some ~*famous window displays*~ like the one from Selfridge&#8217;s which has all those inflatable boobs&#8230;what does it look like? Read the book!<br /><div class="separator" style="clear: both; text-align: center;"></div></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/book-review/'>book review</a>, <a class='category' href='/blog/categories/ui-slash-ux/'>ui/ux</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/08/the-fault-in-our-stars-john-green/">The Fault in Our Stars, John Green</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-08T00:00:00-07:00" pubdate data-updated="true">Aug 8<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-DHLTthBqZ3E/UCKgdv7kz2I/AAAAAAAAB6Y/jHVvt7lP8fM/s1600/The_Fault_in_Our_Stars.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://3.bp.blogspot.com/-DHLTthBqZ3E/UCKgdv7kz2I/AAAAAAAAB6Y/jHVvt7lP8fM/s320/The_Fault_in_Our_Stars.jpg" width="218" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://en.wikipedia.org/wiki/File:The_Fault_in_Our_Stars.jpg">source</a>)</td></tr></tbody></table><blockquote><i><br />Diagnosed with Stage IV thyroid cancer at 13, Hazel was prepared to die until, at 14, a medical miracle shrunk the tumours in her lungs&#8230; for now. <br /><br />Two years post-miracle, sixteen-year-old Hazel is post-everything else, too; post-high school, post-friends and post-normalcy. And even though she could live for a long time (whatever that means), Hazel lives tethered to an oxygen tank, the tumours tenuously kept at bay with a constant chemical assault. <br /><br />Enter Augustus Waters. A match made at cancer kid support group, Augustus is gorgeous, in remission, and shockingly to her, interested in Hazel. Being with Augustus is both an unexpected destination and a long-needed journey, pushing Hazel to re-examine how sickness and health, life and death, will define her and the legacy that everyone leaves behind.</i></blockquote><br />I finished this book in an evening and a morning. It is fantastic. <a href="http://meloukhia.net/2012/03/book_review_the_fault_in_our_stars_by_john_green.html">A review on this ain&#8217;t livin</a>&nbsp;sums it up more nicely than I feel I could: &#8221;<i>The Fault In Our Stars</i> basically took every cancer kid trope and shat on it, hilariously and sensitively and brilliantly.&#8221;<br /><br />s.e. smith continues:<br /><blockquote><i>The Fault In Our Stars</i> is a book that makes cancer funny, that pokes fun at cancer, that points out the absurdity of life and shows you that it’s okay to be, and feel, ridiculous while dealing with chronic illness at the same time that it can also be funny, and frustrating, and enraging, and depressing. It’s a far cry from the usual sombre texts about cancer or the media that suggest cancer patients need to crack jokes for the benefit of the people around them. The dark humour is about insider’s jokes: It’s for people with cancer, not for others. It’s funny if you’ve been chronically ill, and isn’t intended to amuse caregivers and family and friends, although some may well find it funny too.<br /><br />It’s also a book that unflinchingly faces tragedy without turning maudlin and ridiculously sentimental. The Fault In Our Stars points out that the facts of life are often really, really crappy. For a man dedicated to reducing world suck levels, I like that Green pointed out that sometimes, world suck levels are out of our control, and that some of the narratives for dealing with that are deeply unhelpful and unuseful.</blockquote>Sometimes the characters&#8217; dialogue reminded me of something out of <i>Juno, </i>a little long and strewn with witticisms, but this stuff struck me less as &#8220;Man this is so implausible :(&#8221; and more as &#8220;This is so much fun to read, why am I suddenly laughing <i>and</i>&nbsp;crying :):&#8221;<br /><br />Another (weird, flinchy) plus for me: Hazel has two friends that are guys. And yet.&nbsp;<i>A love triangle does not happen.</i><br /><br />What else can I say about it? Things happened. Characters did stuff. Most importantly, everything that happened had weight. Go read it already!</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/book-review/'>book review</a>
   
 </span>
 

@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="How Do You Make a Flex Application Send Data to a PHP Server? Jan 30th, 2011 How do you make a Flex project able to read/write files?There are a &hellip;">
+  <meta name="description" content="Operating Systems Notes [Deadlocks] Feb 4th, 2011 So. Real talk. I guess deadlocks kind of suck.A deadlock is an irreducible circular dependence. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/04/operating-systems-notes-deadlocks/">Operating Systems Notes [Deadlocks]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-04T00:00:00-08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So.  Real talk.  I guess deadlocks kind of suck.<br /><br /><strong>A deadlock is an irreducible circular dependence</strong>.  You would use locks  to <a href="http://nuubu.blogspot.com/2011/01/operating-systems-notes-chapter-6.html">synchronize</a> threads and keep them from messing with each other when they&#8217;re working on shared resources, like a global variable.<br /><br />When a deadlock happens, the two threads can&#8217;t advance because they each own a lock to a resource that the other one needs in order to continue on.<br /><br />Deadlocks can be visible as cycles.  In this next picture, process P1 has R1 and only needs R2 to proceed.  However, P2 owns R2 and needs R1 to proceed.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TUw0_-YLnBI/AAAAAAAAAFM/Fqt7QcRHTOM/s1600/deadlock1.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="166" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TUw0_-YLnBI/AAAAAAAAAFM/Fqt7QcRHTOM/s320/deadlock1.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">and so, unhappiness abounds</td></tr></tbody></table><br /><br />A cycle doesn&#8217;t necessarily always signal a deadlock, however, as in this picture.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TUw2F2J0RXI/AAAAAAAAAFU/WT2g1Yhukg8/s1600/deadlock2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TUw2F2J0RXI/AAAAAAAAAFU/WT2g1Yhukg8/s320/deadlock2.jpg" width="206" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">yaaaaay</td></tr></tbody></table><br />Here, you would think there would be a cycle involving the processes P1 and P3, and the resources R1 and R2.  But, P2 could potentially release its ownership of the resource R1, and then P1 would be able to advance, and then the cycle would be broken.   Thus the <em>irreducible</em> part of the definition of deadlocks.  A graph can be reduced if a thread within that graph can have all of its requests granted.<br /><br /><br />In the case of code, a deadlock could look something like this.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TUw4Mx7zGTI/AAAAAAAAAFc/11kExpNbcBs/s1600/deadlock3.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="124" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TUw4Mx7zGTI/AAAAAAAAAFc/11kExpNbcBs/s320/deadlock3.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">:(</td></tr></tbody></table><br />A deadlock happens in this case if Thread1 and Thread2 are running simultaneously, and Thread1 acquires lock A and Thread2 acquires lock B.  Then, they both need the lock that the other thread has to proceed.  No advancement.<br /><br />One way to deal with a case like this would be to make a function which would grab two locks for a thread simultaneously, instead of one at a time.<br /><br /><br /><span class="sig">Avoiding Deadlocks</span><br />There are three methods you can use to avoid deadlocks: preventative, avoidance, and detection.<br /><br /><strong>Prevention</strong> is a static method of avoidance.  You can make sure each thread obtains all the locks that it needs, and waits until all are available before moving.  The downside to this method is that you may end up making the system move more slowly &#8211; ideally you want some threads to do what work they can do with what they&#8217;ve got, not having to wait.  This is called <em>hold and wait</em>.<br /><br />In <em>circular wait</em>, resources are ordered, which means threads obtain locks to the resources in sequence.  This works because you won&#8217;t have threads grabbing things out of order and causing deadlocks.  But there&#8217;s disadvantages too: new locks will need to be added to the right spot, <em>all</em> resources would have to be ordered, including drives and networks and things, and how would you determine how to order those resources?  It&#8217;s kind of messy.<br /><br /><strong>Avoidance</strong> is a dynamic way of dealing with deadlocks, meaning I think that the system handles it, rather than the threads themselves.  There&#8217;s also a <em>circular wait</em>, but it&#8217;s different.  In avoidance, each thread states how many resources it needs max, and the system uses the Banker&#8217;s Algorithm on the request to see if the system could allocate that max to that thread, and still have enough resources remaining to let all the other threads finish their execution.<br /><br />Basically, with every thread&#8217;s request for its max resources, do this:<ul><li>Pretend that you granted the request</li><li>Pretend that you granted everyone else&#8217;s requests too</li><li>Can the resulting graph of threads and resources (as above) be reduced?</li><li>If yes, allocate the requested resource to that first requesting thread.  If not, block dat thread!</li></ul><br />With <strong>detection</strong>, also dynamic, the technique is to check to see if there&#8217;s a deadlock, and then eliminate it when you find one.  I&#8217;m pretty sure databases do a lot of stuff like this.  It&#8217;s easy to see if a deadlock has occurred already because the OS or relevant scheduler is aware of the processes and resources that are using/in use, so once you&#8217;ve found a deadlock, you should restart one of the threads, and hopefully that thread will have enough resources to run again in the next millisecond or two.  <br /><br /><br /><br />Sources:<br />section 5 notes<br />lecture 9 notes<br /><a href="http://en.wikipedia.org/wiki/Deadlock#Detection">Wikipedia: Deadlock Detection</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/30/incorporating-actionscript-30-code-with/">Incorporating ActionScript 3.0 Code With a Flex Project</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-30T00:00:00-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So my project of <a href="http://nuubu.blogspot.com/2010/12/problem-how-do-i-use-flex-components-to.html">incorporating Flex UI with an ActionScript project</a> has just become wanting to embed the entire ActionScript project into the Flex project, so that you don&#8217;t need to use the <code>SWFLoader</code> at all to show the project.<br /><br />Luckily this is pretty easy.  As an example, take the code from a previous small project like <a href="http://nuubu.blogspot.com/2010/12/getting-sandy3d-312-working-on-flash.html">this Sandy project</a>, which does nothing but show a cone shape.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TPh_TU109CI/AAAAAAAAAAM/q_A6cDrKYGE/s1600/hellosandy.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="267" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TPh_TU109CI/AAAAAAAAAAM/q_A6cDrKYGE/s320/hellosandy.jpg" width="320" /></a></div><br /><pre class="brush: text">package<br />{<br />import flash.display.Sprite;<br />import flash.events.Event;<br /><br />import sandy.core.Scene3D;<br />import sandy.core.data.*;<br />import sandy.core.scenegraph.*;<br />import sandy.primitive.*;<br /><br />public class HelloSandy extends Sprite<br />{<br />private var scene:Scene3D;<br />private var camera:Camera3D;<br /><br />public function HelloSandy()<br />{<br />// We create the camera<br />camera = new Camera3D( 300, 300 );<br />camera.x = 0;<br />camera.y = 100;<br />camera.z = -400;<br />camera.lookAt(0,0,0);<br /><br />var root:Group = new Group;<br /><br />var myCone:Cone = new Cone("theObj1",50, 100);<br /><br />root.addChild(myCone);<br /><br />scene = new Scene3D( "scene", this, camera, root );<br /><br />addEventListener( Event.ENTER_FRAME, enterFrameHandler );<br />}<br /><br />// The Event.ENTER_FRAME event handler tells the world to render<br />private function enterFrameHandler( event : Event ) : void<br />{<br />scene.render();<br />}<br /><br />}<br />}</pre><br />Then, make a <strong>New Flex Project</strong> in Adobe Flash Builder, and make it so that it says this:<br /><pre class="brush: xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx"<br />                           minWidth="955" minHeight="600"<br />      creationComplete="initApp()"&gt;<br /><fx:script><br />  &lt;![CDATA[<br />   import mx.core.UIComponent;<br />   <br />   public function initApp():void {<br />    var myApp:HelloSandy = new HelloSandy();<br />    var container:UIComponent = new UIComponent();<br />    container.height = 600;<br />    container.left = 200;<br />    addElement(container);<br />    container.addChild(myApp);<br />   }<br />  ]]&gt;<br /> </fx:script><br /> <s:button label="Button" x="140" y="355"><br /></s:button><br /></pre><br />What this does:<br />Line 12: create a new instance of the ActionScript project, HelloSandy<br />Line 13: create a new instance of <code>UIComponent</code><br />Line 14, 15: change the height and position of the <code>UIComponent</code><br />Line 16: add the <code>UIComponent</code> to the <code>stage</code>, which handles the display of objects (a little more on the stage <a href="http://nuubu.blogspot.com/2011/01/flexas3-errors-with-stage-and-event.html">here</a>)<br />Line 17: add the HelloSandy object as a child to <code>UIComponent</code>, which will make it display<br /><br />The button is just there to show that I can still use Flex UI components.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TUXuuNoxXlI/AAAAAAAAAFA/99rs1S3w-zw/s1600/helloflexsandy.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="287" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TUXuuNoxXlI/AAAAAAAAAFA/99rs1S3w-zw/s320/helloflexsandy.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">awwwww yeaahhh</td></tr></tbody></table><br /><br /><span class="sig">An extra note:</span><br />Once I did this with my real project (not the HelloSandy example above), I got this error:<br /><br /><code>Error #2044: Unhandled IOErrorEvent:. text=Error #2032: Stream Error URLStream</code><br /><br />I&#8217;m pretty sure it was because my &#8220;display&#8221; class, which was being added to the <code>UIComponent</code> had to make use of another class, which it made an instance of in its constructor.  This second class used <code>URLStream</code>, and got an error maybe because of variable scope.<br /><br />To solve this I basically just made a new instance of that second class, then passed it into the display class constructor, instead of letting the display class make an instance itself.<br /><br /><br />Sources:<br /><a href="http://livedocs.adobe.com/flex/3/html/help.html?content=components_04.html">Adobe: Using the UIComponent Class</a><br /><a href="http://www.judahfrangipane.com/blog/2007/01/01/error-2044-unhandled-ioerrorevent-texterror-2038-file-io-error/">judah&#8217;s blog: Error #2044: Unhandled IOErrorEvent:. text=Error #2038: File I/O Error.</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/sandy3d/'>sandy3d</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -439,106 +531,6 @@ So a <strong>cooperating process</strong> is one that can affect or be affected 
 <span class="categories">
   
     <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/14/flexas3-errors-with-stage-and-event/">Flex/AS3: Errors With Stage and Event Listeners</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-14T00:00:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-This is a continuation of myself attempting to find out how to <a href="http://nuubu.blogspot.com/2010/12/problem-how-do-i-use-flex-components-to.html">use Flex UI components with a previously created AS3 project</a>.<br /><br />And it works fine, except for this error which I get when running in debug mode:<br /><br /><code>TypeError: Error #1009: Cannot access a property or method of a null object reference.</code><br /><br />It turns out that this error refers to a part of the AS3 code which does something with this variable called the stage.  This stage variable was an instance of the <strong>Stage</strong> class, and it&#8217;s made when the Flash Player starts.  SWF files are loaded into the stage container, and all of their objects that display are DisplayObjects, and are children of the stage.  All DisplayObject instances also have a <code>stage</code> property which references the stage that is displaying them.  <span class="shh">Also: Stage is a singleton class, meaning there&#8217;s only one of them, and it can&#8217;t be modified by lowly programmers, and is always at the top level of the display hierarchy within a Flash Player.</span><br /><br />Anyway, the error occurs (I think) because my parent (UI) application loads onto the stage before the embedded (AS3) application.  The AS3 app then tries to use the <code>stage</code> property before it&#8217;s even on the stage.  The solution is to make sure that the embedded SWF is on the stage before you try instantiating or doing anything.<br /><br />To fix it, I essentially wrapped up offending code in an event listener which would wait until the stage was loaded to execute.  So, this code which lets the stage listen for keyboard input:<br /><br /><pre class="brush: cpp"><br />stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);<br /><br /></pre><br />became<br /><br /><pre class="brush: cpp"><br />addEventListener(Event.ADDED_TO_STAGE, function (e:Event):void {<br />  stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);<br />});<br /><br /></pre><br />Not sure if this is good style or not.<br /><br /><br />Sources:<br /><a href="http://www.kirupa.com/forum/showthread.php?p=2129548#post2129548">Kirupa: ActionScript 3 Tip of the Day</a><br /><a href="http://jaycsantos.com/flash/do-you-know-actionscript-as3-stage/">jaycsantos.com: Do you know ActionScript?  AS3 Stage</a><br /><a href="http://board.flashkit.com/board/showthread.php?t=792605">Flash Kit: TypeError: Error #1009</a></div>
-<h2>Comments</h2>
-<div class='comments'>
-<div class='comment'>
-<div class='author'>Lewis R Strasburg</div>
-<div class='content'>
-Nice solution, it worked great for me.  I only needed to reference the stage at the very beginning for a &quot;Press Any Key to Start&quot; scenario, and it wasn&#39;t working until now.  Thanks!</div>
-</div>
-</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/troubleshooting/'>troubleshooting</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/09/c-typedef-struct/">C: Typedef, Struct, Extern</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-09T00:00:00-08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<span class="sig">What is <code>typedef</code> and <code>struct</code>?</span><br />A struct in C is a structured type that combines a set of labeled objects of different types, into a single object.  So, kind of like a Java object with its own variables.<br /><br />An example of a struct you could make would be<br /><br /><pre class="brush: cpp">struct pokemon {<br />   char* nickname;<br />   char* species;<br />   int level;<br />   char* item;<br />};<br /></pre><br />Then, to create a new Pokemon struct, I could say<br /><br /><pre class="brush: cpp">struct Pokemon pikachu;<br /></pre><br />And to access the new struct&#8217;s nickname, I could say something like<br /><br /><pre class="brush: cpp">pikachu.nickname;<br /></pre><br />The keyword <code>typedef</code> is just meant so that you can assign different &#8220;names&#8221; to existing types, in case you may get confused.  For instance, you might have code that looks like<br /><br /><pre class="brush: cpp">char* pokemon_name;<br />char* item;<br /><br />void buy(char* item) {<br />   // remove money from the user<br />}<br /></pre><br />Though <code>buy</code> can take any char*, what you really want it to do is only accept char* that represent items, not Pokemon nicknames.  So, you can use typedef to distinguish that pokemon_name and item are completely unrelated variables which happen to both be of type char*.<br /><br /><pre class="brush: cpp">typedef char* pokemon_name;<br />typedef char* item;<br /><br />pokemon_name pokemon_nickname;<br />item item_name;<br /><br />void buy(char* item) {<br />   // remove money from the user<br />}<br /></pre><br />This distinction is only for the programmer; the C/C++ compiler considers both things to be char*, and won&#8217;t give any errors if you happen to try and purchase a Pokemon.  <span class="shh">You cheat.</span><br /><br /><code>typedef</code> can also make declarations easier; for instance, if I did something like<br /><br /><pre class="brush:cpp">typedef struct Pokemon {<br />   char* nickname;<br />   char* species;<br />   int level;<br />   char* item;<br />} Pokemon;<br /></pre><br />Then, instead of having to write <code>struct Pokemon pikachu;</code> like earlier, I could make a new Pokemon just by saying<br /><br /><pre class="brush: cpp">Pokemon pikachu;<br /></pre><br /><br /><span class="sig">What does <code>extern</code> mean?</span><br />The <code>extern</code> declaration indicates the existence of, and type of, a global variable or function.  <code>extern</code> means that something is defined externally to the current module (so if your current .c file is using it, that means that another, included file actually defined it?).  <code>extern</code> can be left off because the linker collapses the multiple definitions into a single one, but to use the <code>extern</code> keyword is cleaner because it defines the global variable in one place, and everything else makes <code>extern</code> references to it.  <br /><br />If a program has a variable that&#8217;s declared as <code>extern</code>, the program won&#8217;t reserve any memory for the variable in the scope that it was declared.  Which is why you need to use the <code>extern</code> keyword in programs that are using the declaration, but haven&#8217;t defined it.<br /><br /><br /><br />Source:<br /><a href="http://en.wikipedia.org/wiki/Struct_%28C_programming_language%29">Wikipedia: Struct (C programming language)</a><br /><a href="http://wiki.answers.com/Q/What_is_the_use_of_extern_in_C">Answers.com: What is the use of extern in C</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
   
 </span>
 
