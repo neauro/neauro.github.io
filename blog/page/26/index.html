@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Operating Systems Notes [Deadlocks] Feb 4th, 2011 So. Real talk. I guess deadlocks kind of suck.A deadlock is an irreducible circular dependence. &hellip;">
+  <meta name="description" content="Okay Dude, So, Planting Nachos Is Actually Kind of Cute Feb 5th, 2011 Other things I approve of:being able to sell bushels of stuffapparently being &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/05/okay-dude-so-planting-nachos-is/">Okay Dude, So, Planting Nachos Is Actually Kind of Cute</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-05T00:00:00-08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TU4ySbyJ4dI/AAAAAAAAAFk/Ipk2855l4uk/s1600/nachos1.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="534" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TU4ySbyJ4dI/AAAAAAAAAFk/Ipk2855l4uk/s640/nachos1.jpg" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TVBwgqjNpbI/AAAAAAAAAF0/qtPvgGw2FOI/s1600/nachos01.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="532" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TVBwgqjNpbI/AAAAAAAAAF0/qtPvgGw2FOI/s640/nachos01.jpg" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TVByO8ZIlfI/AAAAAAAAAF8/NTGFfh633Ko/s1600/nachos02.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="532" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TVByO8ZIlfI/AAAAAAAAAF8/NTGFfh633Ko/s640/nachos02.jpg" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TU4yXQ69pVI/AAAAAAAAAFs/Imea2ZBUA_I/s1600/nachos3.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="532" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TU4yXQ69pVI/AAAAAAAAAFs/Imea2ZBUA_I/s640/nachos3.jpg" width="640" /></a></div><br />Other things I approve of:<br /><ul><li>being able to sell bushels of stuff</li><li>apparently being able to craft stuff when I reach level 25 (after I get tons of people to help me build the wineries and craft areas and whatever, I guess)</li><li>FINALLY FINDING A QUEEN BEE OMG AUGH FINALLY</li></ul></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -485,52 +531,6 @@ So a <strong>cooperating process</strong> is one that can affect or be affected 
 <span class="categories">
   
     <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/14/operating-systems-notes-chapter-2-3/">Operating Systems Notes [Chapter 2, 3]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-14T00:00:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<span class="sig">OS Structures</span><br /><strong>Command shells</strong>, I guess, make it so that users can actually speak directly to the OS and do something, rather than writing a program to speak with the OS.  I didn&#8217;t realize this.<br /><br />To make requests of the OS otherwise, you&#8217;d need to do a <strong>system call</strong>.  Types of requests that you might make the the OS would involve process control, and file and device manipulation (i.e. writing, reading from a mouse or file).<br /><br />Since operating systems are huge and all its parts tend to be interconnected, some better ways to program them involve using <strong>layers</strong> or <strong>microkernels</strong>.<br /><br />In the layered system, the OS structure is broken into layers, with the lowest being hardware and the highest being the user interface.  Layers can speak to adjacent layers, but not further.  The advantage is that you could be working on one layer at a time, and assume that if it works that you can move on to the next layer.  The issue with this is that you make the assumption that layers would not need to have communication across layers, when really sometimes layers <em>do</em> need to speak across other layers in real life, i.e. a user program needing to alter a file.<br /><br />In a microkernel system, all non-essential kernel programs are implemented as system and user-level programs, which means that the kernel is as small as it can possibly be to code it.  In general, this minimal kernel would provide only process and memory management along with a way to communicate.  The main function of the microkernel now is only to facilitate communication between the client program and other services, with messages.  Advantage is that it&#8217;s also easy to extend a microkernel&#8217;s functionality.  Disadvantage: poor performance if you need to make tons of system calls.<br /><br />In general, modularity is important.<br /><br /><br /><span class="sig">Processes</span><br />A process is a program in execution.  It consists of an address space, at least one thread, and a set of OS resources.  The address space is memory which contains code and data for the running program, as well as data relevant to the threads: registers, instruction pointer, stack and stack pointer.  A process also has a set of OS resources, such as open files, network connections, etc.  A process contains everything you need to run the program, or to restart it, if it gets interrupted.<br /><br />Processes may be independent or cooperating, depending on how they interact with each other.  <strong>Cooperating processes</strong> require some way to communicate with each other: either through shared memory (through shared variables), or message passing (through a pipe).  With shared memory, application programmers manage the communication, whereas with message-passing, the operating system has to take care of communication.  Shared memory and message passing aren&#8217;t mutually exclusive.<br /><br />You can also communicate across computers in a client-server system using sockets, remote procedure calls, or pipes.  A socket is an endpoint for communication, so a connection between two applications consists of two sockets, one for each.  <a href="http://nuubu.blogspot.com/2011/01/remote-procedure-calls-rpc.html">Remote procedure calls</a> are when an application calls another application&#8217;s function across a system.  Pipes come in two flavors: ordinary, which allows parent and child processes to communicate; and named, which allows two unrelated processes to speak with each other.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
   
 </span>
 

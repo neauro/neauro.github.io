@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Problem: How Do I Use Flex Components to Make UI for an ActionScript Project? Dec 30th, 2010 I&#8217;ve got an ActionScript project which already &hellip;">
+  <meta name="description" content="Developing Protocol Buffers Jan 4th, 2011 Again taken from t3h googs, who developed protocol buffers in the first place.What are protocol buffers? &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/04/developing-protocol-buffers/">Developing Protocol Buffers</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-04T00:00:00-08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+Again taken from <a href="http://code.google.com/apis/protocolbuffers/docs/overview.html">t3h googs</a>, who developed protocol buffers in the first place.<br /><br /><br /><span class="sig">What are protocol buffers?</span><br />Protocol buffers are a &#8220;flexible, efficient, automated mechanism for serializing structured data&#8221; &#8211; like XML but smaller, faster, simpler.  In this case, I assume that &#8220;serializing data&#8221; refers to converting some data structure into an object that can be stored and then unpacked again into another computer environment, i.e. storing a list into a file or something so it can be sent over a network and then opened up again and read by someone else.  So, a protocol buffer provides a way for data to be moved across multiple computers, which explains why it&#8217;s relevant to <a href="http://nuubu.blogspot.com/2011/01/intro-to-distributed-systems.html">distributed systems</a>.<br /><br /><br /><span class="sig">How do protocol buffers work?</span><br />You have data, and you want to serialize it so that you can trasmit it to another network or computer in a message.  To specify how you want to serialize it, you have to <strong>define protocol buffer message types in <code>.proto</code> files</strong>.  Each protocol buffer message is a small, logical record of information with a series of name-value pairs.  A <code>.proto</code> file which defines a message containing information about a Pokemon would be like this:<br /><br /><pre class="brush: js">message Pokemon {<br />    required string species = 1;<br />    required int32 id = 2;<br />    optional string trainer = 3;<br />    optional string nickname = 4;<br /><br />    enum Type1 {<br />        FIRE = 0;<br />        WATER = 1;<br />        GRASS = 2;<br />    }<br />}       <br /></pre><br />So in this case, I&#8217;ve got a message that serializes data about a Pokemon.  The message contains information about a Pokemon, its trainer, its id, its nickname, and its type.  For a message to be a well-formed Pokemon message, it must contain exactly one of <code>species</code> and <code>id</code>, but can have zero or exactly one of <code>trainer</code> or <code>nickname</code>.  The <code>enum</code> means that the Pokemon will have only one of a predefined list of values &#8211; that is, only one type out of the three given types.<br /><br />Once the messages have been defined, they&#8217;re run against whatever protocol buffer compiler you have for your application&#8217;s language, which will generate <strong>data access classes</strong>.  These will provide a way to access each field defined in the message.  So, if you were using C++, the data access class created would be called <code>Pokemon</code>, and you could then use this <code>Pokemon</code> class to populate, serialize, and retrieve <code>Pokemon</code> protocol buffer messages.  Then you send out the message like,<br /><br /><pre class="brush:cpp">Pokemon pokemon;<br />pokemon.set_species("Charmander");<br />pokemon.set_id(4);<br />pokemon.set_trainer("Red");<br />fstream output("file", ios::out | ios::binary);<br />pokemon.SerializeToOsteam(&amp;output);<br /></pre><br />and read it like,<br /><br /><pre class="brush:cpp">fstream input("file", ios::in | ios:: binary);<br />Pokemon pokemon;<br />pokemon.ParseFromIsteam(&amp;input);<br />cout &lt;&lt; "Pokemon: " &lt;&lt; pokemon.species() &lt;&lt; endl;<br />cout &lt;&lt; "Trainer: " &lt;&lt; pokemon.trainer() &lt;&lt; endl;<br /></pre><br /><span class="sig">What are the advantages of protocol buffers?</span><br /><ul><li>You can add new fields to message formats without breaking backwards-compatibility; old binaries will just ignore the new field.  So, extending the protocol is simple, and you can do it without having to worry about breaking existing code.</li><li>It&#8217;s simpler, smaller, faster, and less ambiguous than XML.  Plus, it generates the data access classes, which are easier to use in programs.  I imagine that XML takes so much space and is harder to parse because you have to close tags.  Also, to manipulate XML you&#8217;d have to do things like finding a node &#8220;species&#8221; and then accessing its inner text, instead of just retrieving &#8220;species&#8221; immediately.</li></ul><br />Sources:<br /><a href="http://code.google.com/apis/protocolbuffers/docs/overview.html">Google: Protocol Buffers Developer Guide</a><br /><a href="http://en.wikipedia.org/wiki/Serialize">Wikipedia: Serialization</a><br /><a href="http://code.google.com/apis/protocolbuffers/docs/proto.html#enum">Google: Protocol Buffers Language Guide</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/distributed-systems/'>distributed systems</a>, <a class='category' href='/blog/categories/notes/'>notes</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -521,53 +567,9 @@ did this work?  i am having the same problem and i am going nuts with tech suppo
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/11/26/new-fancy-noobling-blog/">~*New, Fancy Noobling Blog*~</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-11-26T00:00:00-08:00" pubdate data-updated="true">Nov 26<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-My favorite thing to do is start projects, particularly those that involve huge copious amounts of writing, so it stands to reason that I&#8217;ve been wanting for like forever to make a blog in which I could attempt making pro conversation/discussion with myself about things that I want to learn/practice/improve upon in general.<br /><br />My project threads are as follows:<br /><ul><li><strong>Red Moleskine:</strong> For whatever form inspiration strikes in, including abruptly making some observation about the weather, drawing up a database schema for a web app (that I found out has already been done), sketching out shiba inu people, etc. etc.</li><li><strong>Spotty Daiso Notebook:</strong> For taking note of the myriad of programming/software-design related things that I have no idea about, so that I actually look them up later; also, to keep track of tasks for school research projects</li><li><strong><a href="opalitewires.blogspot.com">Opalite Wires</a>:</strong> For practicing writing something completely uncalled for every single day</li><li><strong>Normal Blog:</strong> Also for practicing writing something completely uncalled for every single day, but also for purposes of coming back months later to ooze nostalgically over whatever I wrote the previous year and see whether I&#8217;m still friends with the people that I talked about</li></ul>This makes for tons of ideas that are all over the place, and ANYWAY, the point is that, the objective of <em>this</em> blog is: to try and consolidate, into a relatively intelligible way, all the things that I do in all the other threads.<br /><br />IT WILL MAKE SENSE WHEN THERE&#8217;S MORE THINGS.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/projects/'>projects</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/29/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     

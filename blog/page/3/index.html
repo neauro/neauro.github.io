@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Allegiant, Veronica Roth Nov 19th, 2013 Well! It&rsquo;s over. I download Allegiant from the Seattle Public Library&rsquo;s eBook collection as soon &hellip;">
+  <meta name="description" content="Moving to Octopress From Blogger Dec 15th, 2013 After eight years using Blogger, I&rsquo;ve finally decided to move away. One of the first reasons I &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,89 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/12/15/test/">Moving to Octopress From Blogger</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-15T15:17:07-08:00" pubdate data-updated="true">Dec 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>After eight years using Blogger, I&rsquo;ve finally decided to move away. One of the first reasons I first started using it in high school was because Blogger was one of the only free hosting services I knew where I could also control the styling; but after several Blogger updates, and several years of telling myself I&rsquo;d eventually learn Blogger syntax well enough to style as I like, I&rsquo;ve given up. I have other things I&rsquo;d rather do than invest time parsing Blogger, and Octopres offers more built-in tools <em>and</em> flexibility: I can have <a href="http://octopress.org/docs/blogging/code/">nice code snippets</a> and have whatever extra scripts I&rsquo;d like without worrying they&rsquo;d interfere with Blogger esoterica. Additionally, after reading <a href="https://medium.com/p/c7cc156bc5d9">this article</a> I&rsquo;ve been a little more wary of data ownership, and with Octopress, I can host on Github where I know everything is mine.</p>
+
+<p>I&rsquo;ve also been eyeing <a href="https://ghost.org/">ghost</a> recently and though it looks awesome, I decided against it for now for several reasons. Currently, there&rsquo;s no easy way to import posts from Blogger, and I didn&rsquo;t want to deal with the extra overhead of figuring out where to host. A couple days ago I received access to Ghost&rsquo;s subscription hosting, but I don&rsquo;t want to commit to paying money when this blog is mostly for lolzy purposes.</p>
+
+<p>So, this is how I got my blog set up again:</p>
+
+<h2>Get Octopress Up and Running</h2>
+
+
+<p>To actually figure out how to get Octopress running, I referenced several tutorials:</p>
+
+<ol>
+<li><a href="http://octopress.org/docs/blogging/">Octopress: Blogging Basics</a></li>
+<li><a href="http://webdesign.tutsplus.com/tutorials/applications/getting-started-with-octopress/">Webdesign Tuts+: Getting started with Octopress</a></li>
+<li><a href="http://blog.ialja.com/2013/03/22/goodbye-blogger-hello-octopress/">iAlja&#8217;s Blog: Goodbye Blogger, Hello Octopress!</a></li>
+</ol>
+
+
+
+
+<h2>Convert Old Blogger Posts to Be Octopress-Readable</h2>
+
+
+<p>
+From one of the previous links, I learned how to convert all my old posts to a form Octopress could work with. To do it, open up your old blog in blogger, then go to <code>Settings &gt; Other &gt; Export</code> to download your blog as an XML file. Then, I used <a href="https://gist.github.com/juniorz/1564581">this script</a> to run the conversion.</p>
+
+<p>I ran into some issues here, mostly with titles that contained quotation marks or tags that contained colons; whenever this happened I went through the XML and just removed the symbols that were causing things to explode.</p>
+
+<h2>Deploy to Github Pages</h2>
+
+
+<p>Finally, I followed <a href="http://octopress.org/docs/deploying/github/">these instructions</a> to deploy my blog for free to Github Pages. I still ran into some problems here — when I deployed, the online version of the blog on Github lacked all styles and scripts — this requried a change to the <code>root</code> in config.yml to be <code>/liwanag</code>, since on Github the blog is acccessed through the URL <a href="http://neauro.github.io/liwanag.">http://neauro.github.io/liwanag.</a> Making this change to root upsets the styles and scripts linking locally, though&hellip;so I&rsquo;ve still got to iron this out and find the magical tweaks that will allow one root value to work both locally and online. There&rsquo;s also the matter that my blog is big enough that running &ldquo;rake generate&rdquo; takes a minute or so to run&hellip;but I&rsquo;m willing to accept that for now.</p>
+
+<h2>That&#8217;s it!</h2>
+
+
+<p>As one final change, I&rsquo;ve changed the name of this blog. Previously, it was &ldquo;nuubu&rdquo; — a romanization of &ldquo;noob&rdquo; spelled in Japanese, chosen offhandedly because I originally intended this blog to be my corner for new things I&rsquo;ve learned. Because &ldquo;nuubu&rdquo; may be appropriative, and because I don&rsquo;t feel particularly strongly about clinging to the identity of &ldquo;noob&rdquo; anyway, I&rsquo;ve now named it &ldquo;liwanag,&rdquo; which means &ldquo;light&rdquo; in Tagalog. To be honest, I couldn&rsquo;t really think of another name at the time, and &ldquo;liwanag&rdquo; just sounds nice and makes me think of how blog-writing (that is, writing for an unknwon audience, or &ldquo;bringing things to light&rdquo;) helps me think more clearly.</p>
+
+<p><a href="http://nuubu.blogspot.com">nuubu</a> remains active, because many of the images linked to here point to where they&rsquo;ve been uploaded on Blogger, and because I don&rsquo;t want to lose what little bit of popularity those posts have accumulated (specifically, the Rosetta Stone error, and Alpacasso). But overall I&rsquo;m excited and happy for this bright new world. ✧ʕ̢̣̣̣̣̩̩̩̩·͡˔·ོɁ̡̣̣̣̣̩̩̩̩✧</p>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/blog/'>blog</a>, <a class='category' href='/blog/categories/octopress/'>octopress</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -541,52 +624,6 @@ Several hundred years ago, humans were nearly exterminated by giants. Giants are
 <span class="categories">
   
     <a class='category' href='/blog/categories/cosplay/'>cosplay</a>, <a class='category' href='/blog/categories/photo/'>photo</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/25/ive-been-doing-some-mobile-web-work/">I&#8217;ve Been Doing Some Mobile Web Work Recently.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-07-25T00:00:00-07:00" pubdate data-updated="true">Jul 25<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="p1">I&#8217;m unenthusiastic when it comes to designing websites for small screens like phones, probably because I don&#8217;t have a smartphone. (No particular reason why — just that my 6-year-old palm-sized brick of a phone is sturdy and unexciting to steal, and I plan on staying with it as long as it stays with me.)</div><div class="p2"><br /></div><div class="p1"><a href="http://jquerymobile.com/">jQuery Mobile</a>&nbsp;is what I&#8217;ve been learning recently; it is a &#8220;mobile framework&#8221; and &#8220;HTML5-based user interface system,&#8221; which means that you can</div><ul class="ul1"><li class="li1">stick it in your project</li><li class="li1">throw in some common &#8220;mobile&#8221; UI elements like headers and buttons, or even switches</li><li class="li1">have those buttons be styled to look pretty good already!</li></ul><div class="p2"><br /></div><div class="p1">Function-wise, you can also use jQuery Mobile to</div><ul class="ul1"><li class="li1"><a href="http://jquerymobile.com/demos/1.2.0/docs/pages/page-transitions.html">transition very prettily between pages and dialog boxes</a></li><li class="li1">easily support <a href="http://stackoverflow.com/questions/4176844/can-someone-explain-the-html5-aria-attribute">ARIA attributes</a>&nbsp;for better accessibility across your UI elements</li></ul><br />jQuery mobile was confusing for me at first because I would write simple markup, but when viewing it online, my bare elements would suddenly have tons upon tons of classes — a div with a class of <code>mobile-header</code>, for example, would suddenly be a div with the classes <code>mobile-header ui-header ui-bar-a</code>, and would also have a <code>data-role="header"</code> as well. Links in my <code>mobile-header</code> would have also been transformed into elements with tons of classes: <code>icon ui-btn-left ui-btn ui-btn-up-a ui-shadow ui-btn-corner-all</code>…<br /><br /><div class="p1">Which brings me to my next point about jQuery Mobile: it is a <i>pain</i> to style into your theme. Because elements can be so deeply nested, it&#8217;s hard to figure out what exactly is making all of my links black when they should be blue, and so on. Trying to make a link blue may require that you overwrite not just one style but two. jQuery provides a <a href="http://jquerymobile.com/themeroller/index.php">theme roller</a>&nbsp;which you can use to change the default black style downloaded in the package, but as the things I want to make are radically different than the rounded, chrome buttons they offer, a theme roller doesn&#8217;t help much.</div><div class="p2"><br /></div><div class="p1">Regarding getting started, I found that <a href="http://thehungrycoder.com/jquery/jquery-mobile/jquery-mobile-part-1-making-your-first-mobile-page.html">this blog post</a>&nbsp;and the ones following were quite helpful. Additionally, this link on <a href="http://www.slideshare.net/bryanrieger/rethinking-the-mobile-web-by-yiibu">Rethinking the mobile web</a>&nbsp;is a great primer on why developing for the mobile web is important (despite all my eye-rolling/teeth-gnashing) and gives data and another perspective on &#8220;mobile-first&#8221; design processes.</div></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/web-dev/'>web dev</a>
   
 </span>
 
