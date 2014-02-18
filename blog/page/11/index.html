@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Glossy Button Tutorials Galore Aug 9th, 2012 Since I feel like my ~*graphic design skillz*~ could use some practice, here&#8217;s a list of a couple &hellip;">
+  <meta name="description" content="Some HTML5/JavaScript Links Aug 16th, 2012 Having done few HTML5 things, I&#8217;ve dug up some tutorials and interesting links.HTML5 canvas - the &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/16/some-html5javascript-links/">Some HTML5/JavaScript Links</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-16T00:00:00-07:00" pubdate data-updated="true">Aug 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+Having done few HTML5 things, I&#8217;ve dug up some tutorials and interesting links.<br /><br /><br /><h2><a href="http://dev.opera.com/articles/view/html-5-canvas-the-basics/">HTML5 canvas - the basics</a></h2>I guess the first cool thing about HTML5 is this canvas thing, which is basically like a drawing pad that HTML5 bestows upon you, eyes glowing with love. &#8220;Go,&#8221; it says. &#8220;Use this to create art with your present armory of JavaScript.&#8221;<br /><br />A canvas object has a bunch of contexts, the same way a drawing pad has a lot of pages. JavaScript can be used to draw onto a context. Most browsers allow JavaScript to draw 2D things; some have experimental 3D contexts.<br /><br />Unlike a drawing pad, once you&#8217;ve decided to use a canvas&#8217;s context, <i>that&#8217;s the only context you can use for that canvas, ever</i>. It&#8217;s kind of like you tore out a page from the drawing pad and all the other ones withered away in anguish.<br /><br />Interesting things canvases can do in HTML5:<br /><ul><li>draw lines, ex. <code>canvas.lineTo(xPos, yPos)</code></li><li>draw rectangles, ex. <code>canvas.fillRect(xPos,yPos,width,height)</code></li><li>draw images, ex. <code>canvas.drawImage(imgSource, xPos,yPos)</code></li><li>apply pixel manipulations to those images, ex. invert all colors</li><li>draw text (only in recent WebKit builds)</li><li>draw dropshadows and gradients for all your Web 2.0 needs</li></ul><br /><br /><h2><a href="http://html5.litten.com/understanding-save-and-restore-for-the-canvas-context/">Understanding save() and restore() for the Canvas Context</a></h2>When searching around for examples of canvas usage, I saw references to <code>canvas.save()</code> and <code>canvas.restore()</code> which were nicely explained in this article.<br /><br />In brief, every canvas contains a stack of &#8220;drawing states.&#8221; Drawing states are comprised of a lot of data, including the current transformation region, the current width of line being drawn, the current front, and so on.<br /><br />If you want to draw a shape like a diamond (or rotated square), the steps to do this involve:<br /><ol><li>Make a canvas, retrieve its 2D context</li><li>2Dcontext.save()</li><li>Rotate the context</li><li>Draw a square on the context (which, since the canvas is rotated, will be diamond-shaped)</li></ol>If you then wanted to draw a new shape, like a regular square, you could easily pop the present drawing state with <code>2Dcontext.restore()</code> to get back to an un-rotated coordinate system. The diamond should stay the way that it is presently.<br /><br />Similarly, objects on a canvas can&#8217;t be &#8220;just moved;&#8221; if you&#8217;re translating an object across the canvas, the steps go<br /><ol><li>Clear the canvas</li><li>Draw the object in its new position</li><li>Repeat</li></ol><br /><br /><h2>HTML5: Writing a game, by Jason Croucher</h2>The blogging process of someone creating a Breakaway-type game in HTML5 and JavaScript. The final product, named Bouncing Animals, is <a href="http://jacebook.co.uk/share/html5/">here</a>. It&#8217;s not really a tutorial, but I found it to be a good/simple primer.<br /><br /><ul><li><a href="http://jacebook.co.uk/blog/2010/09/11/html5-writing-a-game/">Part 1</a>&nbsp;involves: creating an HTML5 canvas, adding and drawing/playing images and sounds, how to make an event handler for a button and mouse, and starting/stopping a game.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-3xaUG-xxqks/UCp5hUePotI/AAAAAAAACGY/eNy17Hg8YJ4/s1600/bear1.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="290" src="http://2.bp.blogspot.com/-3xaUG-xxqks/UCp5hUePotI/AAAAAAAACGY/eNy17Hg8YJ4/s400/bear1.jpg" width="400" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">getting exciting yet?</td></tr></tbody></table><br /></li><li><a href="http://jacebook.co.uk/blog/2010/09/12/html5-writing-a-game-step2/">Part 2</a>&nbsp;involves making the mushroom &#8220;wobble&#8221; between two pngs (one normal-sized, one slightly flattened) whenever it&#8217;s hit by the bear.</li><li><a href="http://jacebook.co.uk/blog/2010/09/12/html5-writing-a-game-step-3/">Part 3</a>&nbsp;involves varying the bear&#8217;s speed and angle.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-dWVk26eCMu0/UCqP5OpkC1I/AAAAAAAACHQ/kv8sMErvNhs/s1600/bear2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="232" src="http://1.bp.blogspot.com/-dWVk26eCMu0/UCqP5OpkC1I/AAAAAAAACHQ/kv8sMErvNhs/s320/bear2.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">we gettin wild in here</td></tr></tbody></table><br /></li><li><a href="http://jacebook.co.uk/blog/2010/09/15/html5-writing-a-game-step-4/">Part 4</a>&nbsp;and <a href="http://jacebook.co.uk/blog/2010/09/20/html5-writing-a-game-step-5/">Part 5</a>&nbsp;talk about game objects and optimal FPS numbers for various browsers.</li></ul><div><br /><br /><h2><a href="http://michalbe.blogspot.com/2010/09/simple-game-with-html5-canvas-part-1.html">Tutorial: Simple game with HTML5 Canvas</a></h2></div><div>An actual game tutorial for a Doodle Jump clone that&#8217;s fairly comprehensive, and involves drawing objects on an HTML5 context, some animations, and so on.<br /><br /><br /><h2>JavaScript function declarations vs. function expressions</h2>In the previous tutorial, I encountered my first instance of a function expression. Essentially, a <strong>function definition</strong> looks like<br /><pre class="brush: js"> function function_name() {<br />   // stuff<br />  }<br /></pre><br />whereas a <strong>function expression</strong> looks like<br /><pre class="brush: js"> var = function function_name() {<br />   // stuff<br />  };<br /></pre></div><br />Some links I found which discussing declarations versus expressions are <a href="http://javascriptweblog.wordpress.com/2010/07/06/function-declarations-vs-function-expressions/">Function Declarations vs. Function Expressions</a> and <a href="http://kangax.github.com/nfe/">Named function expressions demystified</a>, and the differences include the following:<br /><br /><ul><li>Function expressions can be named or anonymous.</li><li>Function declarations are parsed and evaluated before any code is executed, whereas function expressions are evaluated at run-time. Therefore, if you call a declared function at any time, it should be okay, whereas function expressions must be defined before being called.</li><li>Function declarations should <i>not</i>&nbsp;be used in if-statements. In contrast, function expressions are okay to call in if-statements, and are sometimes used this way to allow for best performance (&#8220;don&#8217;t define this function unless it&#8217;s needed&#8221;).</li><li>Function expressions mimic what JavaScript is <i>actually</i>&nbsp;doing, which is creating an object every time a function is defined.</li></ul><div><br /></div><div>In general it seems that function expressions are the favored creature.</div></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/game-dev/'>game dev</a>, <a class='category' href='/blog/categories/html5/'>html5</a>, <a class='category' href='/blog/categories/javascript/'>javascript</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/web-dev/'>web dev</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/13/objectified/">Objectified</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-13T00:00:00-07:00" pubdate data-updated="true">Aug 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-HuIpXnHY_WM/UCKwdrpQ_QI/AAAAAAAAB8I/eG_d116_Jnk/s1600/objectified-poster-large.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://3.bp.blogspot.com/-HuIpXnHY_WM/UCKwdrpQ_QI/AAAAAAAAB8I/eG_d116_Jnk/s320/objectified-poster-large.jpg" width="216" /></a></div><br /><blockquote><i>Objectified is a feature-length documentary film examining the role of everyday non-living objects, and the people who design them, in our daily lives. The film is directed by Gary Hustwit. Objectified premiered at the South By Southwest Festival on March 14, 2009. </i><a href="http://en.wikipedia.org/wiki/Objectified" via="via" wikipedia="wikipedia">(via Wikipeda)</a></blockquote><br /><i>Objectified </i>has been languishing on my Netflix Instant Queue for the good part of a year or so. I finally watched it, and was glad! The film brings together a variety of designers from Across the World, who all talk about what they personally feel is Good Design. It&#8217;s refreshing to watch designers talk so passionately about chairs and personal marks on the world and shaving away at the superfluous &#8220;fat&#8221; of a toothbrush design until they eliminate the concept of a toothbrush from oral health completely. It&#8217;s amusing to see one designer swear that he&#8217;s always &#8220;lived in the future,&#8221; while another reaches into the past for <a href="http://davebmiller.wordpress.com/2010/06/10/spelunking-the-cell-phone/">a modern cellphone design inspired by childhood memories of peeling potatoes</a>.<br /><div class="separator" style="clear: both; text-align: center;"></div><br />In the end, I was relieved when the movie moved from &#8220;NEW THINGS! Aren&#8217;t they cool? <i>Buy all these new cool things!</i>&#8221; to &#8220;Do we <i>really</i>&nbsp;need new cool things? I mean, just <i>look</i>&nbsp;at all the things that we already have.&#8221;<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-20cHlJOlVXQ/UCKyaABIJSI/AAAAAAAAB8Y/f2sKV-TU3qE/s1600/2184_4.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="358" src="http://3.bp.blogspot.com/-20cHlJOlVXQ/UCKyaABIJSI/AAAAAAAAB8Y/f2sKV-TU3qE/s640/2184_4.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">just&#8230;look at them (<a href="http://www.blu-ray.com/movies/Objectified-Blu-ray/6861/">source</a>)</td></tr></tbody></table><br />The film points out the great problem of sustainability in product design, how it&#8217;s not just about recycling/upcycling but how sustainability must guide design from before the beginning to beyond the end. <i>Why</i>&nbsp;are you designing this thing? What will it add to the world that doesn&#8217;t already exist? And what will happen to the thing, when someone designs a new thing five seconds later?</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/movie/'>movie</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -431,98 +523,6 @@ I spent the week of the Fourth of July visiting Hawai&#8217;i for the first time
 
   <div class="entry-content"><div class='post'>
 <table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-JQd6Q9TXR70/UA1-MoE_1MI/AAAAAAAABvU/_vonhJbyc5s/s1600/thumbnail.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://3.bp.blogspot.com/-JQd6Q9TXR70/UA1-MoE_1MI/AAAAAAAABvU/_vonhJbyc5s/s320/thumbnail.png" width="233" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">&#8220;before and after&#8221; comparisons for racermate wireframes</td></tr></tbody></table><br />A couple days ago I made up wireframes for a theoretical redesign of the <a href="http://www.racermateinc.com/">Racermate</a>&nbsp;website, where a couple friends of mine work.<br /><br /><br /><h2> Front Page</h2>First was the front page, which I found personally bewildering: the buttons that frame either side of the wall of &#8220;newsletter&#8221; text at the center of the page don&#8217;t have much context, or direction.&nbsp;&#8220;MultiRider Software,&#8221; &#8220;MultiRider Center Locations&#8221; &#8211; what is that, what do I do with it, why is it relevant? &#8220;Wingate Testing with Velotron&#8221; &#8211; what does this indicate or mean to a new user? &#8220;ErgVideo.com&#8221; seems to open a new website completely, how is it affiliated to Racermate, what does it do?<br /><br />For the redesign, I focused on making the site informative to new users.&nbsp;I kept much of the information in the header &#8220;The WORLD LEADER in ELECTRONIC BICYCLE ERGOMETERS&#8230;&#8221; and &#8220;OFFICIAL BIKE TRAINERS OF&#8230;&#8221; &#8211; because they&#8217;re good explanations of &#8220;This is who we are, this is why we are trustworthy.&#8221;<br /><br />I made the top navigation buttons larger than in the original design, and made them more self-explanatory: &#8220;COACHES&#8221; in the original turned into &#8220;Find a coach;&#8221; &#8220;MultiRider&#8221; became &#8220;MultiRider: Ride Together&#8221; to give the user more grounding on what they would learn about when clicking through. This would also expand users&#8217; knowledge of Racermate products right on the front page; MultiRider can be immediately understood as a social application of a RacerMate product.<br /><br />The next two &#8220;rows&#8221; of information also serve to focus and explain Racermate through images, rather than text. The first row is a carousel of images, text description, and links to different Racermate products; the next, a much more involved &#8220;This is who we are&#8221; statement.<br /><br />Because word of mouth is important to this product, part of the front page is also devoted to testimonials sent in by happy consumers.<br /><br /><br /><h2> Product Display Page</h2>Talking with friends at Racermate, I learned that online orders make up a little more than half of the total number of orders that this company gets. But when I went through the website myself, I found the <a href="http://www.computrainer.com/rm_inc/sales/pricing_ordering.html">order page</a> bewildering and cluttered with a variety of colors of clots of text. As a new user unfamiliar with the product, I didn&#8217;t understand what exactly the product would be when I ordered it, or what would come with it, or what exactly it is meant to do. To get a full picture of what some products do requires that the user navigate to half a dozen completely different pages. Ordering information is also separated from a product overview, and ordering online requires that the user:<br /><br /><ol><li>Learn about the product by navigating around &#8220;Products&#8221; and all related pages in the top navigation</li><li>Click &#8220;Sales&#8221; in the top navigation</li><li>Hover over desired product</li><li>Click &#8220;Pricing &amp; Information&#8221;</li><li>Parse a long order page</li><li>Click &#8220;Add to Cart&#8221;</li><li>Complete order</li></ol><br />For the redesign, I made the product name and brief description most prominent, and after that, an easy way to switch between views of different product models. Another prominent part of the product display page are images of the product. Features can be described in the text to the right of the product images, or reviewed with more detail further down the page. In the redesign, the steps for ordering online now are:<br /><br /><ol><li>Click &#8220;Products&#8221; in the top navigation, or hover over &#8220;Products&#8221; and select desired product</li><li>Learn about product and its models on a single page</li><li>Click &#8220;Add to Cart&#8221;</li><li>Complete order</li></ol><div><br /></div><br /><h2> What&#8217;s next?</h2><br />A low-fidelity prototype would ensure that the navigation of the website actually makes sense; users would have to be able to know how to complete certain tasks, such as <i>Find out what exactly you get when you order a CompuTrainer</i>, and with real copy provided, we could ensure that the right kind of information is shown on the right pages. (For example, do people want to know more about certain complex features? Less?) User testing would also target current users who use the website as a hub for Racermate-related news, and ensure that they aren&#8217;t alienated.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/design/'>design</a>, <a class='category' href='/blog/categories/ui-slash-ux/'>ui/ux</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/23/okami-cosplay-pt-2/">Okami Cosplay Pt. 2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-23T00:00:00-07:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-It occurs to me that I never did update after <a href="http://nuubu.blogspot.com/2012/04/okami-cosplay.html">my previous post on our Okami cosplay</a>. Since then there have been some lovely photos by <a href="https://www.facebook.com/pan.jialing">Jia-Ling Pan</a>.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-9rEM7yYrrmc/UA2nemqWAsI/AAAAAAAABv4/GjiMb8BJ85I/s1600/150734_10150633782906971_1318607405_n.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="460" src="http://4.bp.blogspot.com/-9rEM7yYrrmc/UA2nemqWAsI/AAAAAAAABv4/GjiMb8BJ85I/s640/150734_10150633782906971_1318607405_n.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">okami celestial brush gods: group photo!</td></tr></tbody></table><br />By the time our tired merch staff had the time to finally be together, we were exhausted and it was past sunset, so we posed underneath some of the convention center lighting.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-4TAWqMnxqg8/UA2py41ywAI/AAAAAAAABwQ/M-_1m4EfTaY/s1600/552811_3751206788206_96666576_n.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="238" src="http://4.bp.blogspot.com/-4TAWqMnxqg8/UA2py41ywAI/AAAAAAAABwQ/M-_1m4EfTaY/s320/552811_3751206788206_96666576_n.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">werq that lighting</td></tr></tbody></table><br />I really appreciated Jia-Ling taking our photos&#8230;not only was she dedicated to making sure the lighting worked, but she also tried to get at the heart of our characters&#8217; personalities and making sure they showed through. Though, I have to admit that the Celetial Brush Gods don&#8217;t really have too much personality in the games.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-zOLKoy9OIeM/UA2oBnZQzLI/AAAAAAAABwA/FzuoMpr4ywM/s1600/150919_10150641457171971_148902420_n.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="420" src="http://2.bp.blogspot.com/-zOLKoy9OIeM/UA2oBnZQzLI/AAAAAAAABwA/FzuoMpr4ywM/s640/150919_10150641457171971_148902420_n.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">nuregami &amp; moegami: water and fire!</td></tr></tbody></table><br />And here&#8217;s one (of the very few photos I personally took) of our Tachigami:<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-CoVinuUPNWA/UA2o7W6F-GI/AAAAAAAABwI/Wq6_A1BpHiQ/s1600/559199_10151139265886349_816138555_n.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="400" src="http://3.bp.blogspot.com/-CoVinuUPNWA/UA2o7W6F-GI/AAAAAAAABwI/Wq6_A1BpHiQ/s400/559199_10151139265886349_816138555_n.jpg" width="263" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">tachigami cosplay</td></tr></tbody></table><br />I have no idea what I&#8217;m doing next year.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/cosplay/'>cosplay</a>, <a class='category' href='/blog/categories/photo/'>photo</a>, <a class='category' href='/blog/categories/sakura-con/'>sakura-con</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/23/craving-wireframes_23/">Craving Wireframes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-23T00:00:00-07:00" pubdate data-updated="true">Jul 23<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-UOK1u90PvxE/UAY-27akyRI/AAAAAAAABuw/sbJA9KIYHlg/s1600/craving.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="308" src="http://3.bp.blogspot.com/-UOK1u90PvxE/UAY-27akyRI/AAAAAAAABuw/sbJA9KIYHlg/s400/craving.jpg" width="400" /></a></div><br />These are mock-ups from an idea I had two years ago, for a website that would aggregate photos people took of food at restaurants. The idea was that if you were hungry, but not sure what exactly you wanted to eat, you could just sit here and click <i>Random picture!</i>&nbsp;until you saw something sufficiently appetizing, nearby, and cheap.<br /><br />The first thing to do was to make sure that this idea wasn&#8217;t already done. Looking around, we (me and <a href="http://joshuahou.com/">Joshua Hou</a>, my then partner) turned up a couple similar sites, including:<br /><br /><ul><li><b>Yelp</b>: the obvious comparison. But, though at the time it incorporated user-contributed photos of food, it didn&#8217;t do it to the extent that we wanted to support it.</li><li><b>Google Hotpot</b>: newly released at the time, but, despite its food-related name, still not all about photos of food.</li></ul><br />The main task that I wanted to support foremost was, <i>Look at pictures of food, and see where they are.</i>&nbsp;For that reason, the two main things on the front page are some random featured food (indicated by numeral 1), and a map (numeral 3). You can also specify and limit what area food is shown from (numeral 6).<br /><br />The other main task here is <i>Find a specific kind of food,</i>&nbsp;which is supported by the search bar at the top of the page.<br /><br />Another aspect of the site is the ability to comment and rate dishes &#8211; but since this should really be secondary to &#8220;Look at delicious things!&#8221; it&#8217;s limited to ratings on a five-star scale, and a short description.<br /><br />Views of specific dishes (the wireframe on the bottom-left) show all the photos associated with the dish, as well as comments and ratings. Views of specific restaurants show all photos associated with the dishes at that restaurant, with the idea that a restaurant-specific page would become a crowdsourced visual menu. Which brings me to one question that I have about the concept of this site: how does having photos of food affect the stakeholders here? Fancy restaurants seem fond of depicting menu items with a variety of delicious buzzwords and nothing else, and when you, as the diner, finally receive your food, part of the pleasure is the surprise of seeing what it looks like. Along with general usability testing, questions like this would be part of &#8220;next steps&#8221; for this design.</div>
 </div>
   
   

@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Okay Dude, So, Planting Nachos Is Actually Kind of Cute Feb 5th, 2011 Other things I approve of:being able to sell bushels of stuffapparently being &hellip;">
+  <meta name="description" content="Operating Systems Notes [Virtual Memory, Page Tables, TLBs] Feb 11th, 2011 So in case it wasn&#8217;t clear already, virtual memory is a memory &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/11/operating-systems-notes-virtual-memory/">Operating Systems Notes [Virtual Memory, Page Tables, TLBs]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-11T00:00:00-08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So in case <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">it wasn&#8217;t clear already</a>, <a href="http://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> is a memory management technique which accomplishes these things:<ul><li>hides fragmentation of physical memory from programs</li><li>uses hardware memory more efficiently than systems without virtual memory</li><li>lets a program be designed as though there&#8217;s only one hardware memory (rather than one memory split up between different processes, I think?)</li></ul><br />An important aspect of implementing virtual memory is page tables.  A page table translates a program&#8217;s virtual address (used to refer to a function or variable or whatnot) into a physical address (which is the actual location of that function&#8217;s code data, or the variable&#8217;s value data).  Page tables make it so that programs can only be partially loaded into memory.  <strong>So, what happens when a program tries to access a part of its code which isn&#8217;t loaded into memory?<br /><br />A PAGE FAULT.</strong><br /><br />When a page fault happens,<ol><li>the OS is given an <a href="http://nuubu.blogspot.com/2011/01/operating-system-notes-chapter-1.html">interrupt</a></li><li>the OS saves the state of the running process, then searches (in the appropriate vector) for the page fault handler routine)</li><li>the page fault handler routine will find or create (through eviction) a page frame into which to load the page that the program needs</li><li>then it will find that page on the disk and place it into the now-free page frame</li><li>then it will fix up the page table entry &#8211; marking it &#8220;valid,&#8221; setting the &#8220;referenced&#8221; and &#8220;modified&#8221; bits to false, setting the pointers properly</li><li>finally, the process is placed back into the ready queue</li></ol><br />Anyway, it&#8217;s getting late and I want to go to bed so for now I&#8217;ll just skip to<br /><br /><br /><span class="sig">Translation Lookaside Buffers (TLBs)</span><br />to whom we must extend our gratitude for not making page tables awful.  Think about it: if you have a virtual address and you need to look into the page table and then into the physical address in order to actually obtain some value, that&#8217;s a <em>lot</em> of overhead.<br /><br />To make this more efficient, you want to make fetching from a virtual address just about as efficient as fetching from a physical address.  Which you can do with an extra piece of hardware, a cache inside the CPU.<br /><br />Thus, virtual-to-physical translations are cached in the hardware itself, the TLB.  The TLB translates virtual page numbers into page frame numbers (<em>not physical addresses</em>), and can do it in a single machine cycle.  The TLB in turn is managed by the memory management unit (MMU), which is what calculates the physical address from the page table entry and an offset.<br /><br />TLBs exploit the fact that processes have good temporal locality and spatial locality.  This is a fancy way of saying that processes tend to<ul><li>use data/code they have recently used</li><li>use data/code that is close to data/code they have recently used</li></ul>Which is why <em>caching</em>, or saving that data in an easily accessible place (as you may cache your potato chips, water bottles, and chocolate beneath the bedside  table) is a good idea.<br /><br />So, the TLB does the translation between virtual addresses and page frame numbers, and when it misses &#8211; when it can&#8217;t find a page frame number &#8211; the translation is saved into the TLB by the OS.<br /><br />In order for TLBs to work, the OS must make sure the TLB and page tables are consistent and up-to-date, and <strong>when a context switch happens, the TLB must be completely flushed</strong>, which means that context switching is still an expensive operation &#8211; all those cached translations, that optimization, disappears.  (The TLB needs to be flushed rather than saved and loaded with the rest of the process state because there&#8217;s no guarantee that other processes wouldn&#8217;t mess around with the data the TLB was keeping track of, and to keep the TLB up-to-date when it isn&#8217;t being presently used by a process is expensive.)<br /><br /><br /><br />Sources:<br /><a href="http://en.wikipedia.org/wiki/Virtual_memory">Wikipedia: Virtual memory</a><br />lecture 11a notes</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/11/operating-systems-notes-memory/">Operating Systems Notes [Memory Management]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-11T00:00:00-08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">What&#8217;s so cool about memory management anyway bro</span><br />So unlike way back when in the time of punchcards &amp; etc., we use computers which are capable of <strong>multiprogramming</strong>, a feature of which is the ability to have multiple processes and jobs in memory all at once.<br /><br />We&#8217;ve already looked at ways that an operating system&#8217;s <a href="http://nuubu.blogspot.com/2011/01/operating-systems-notes-chapter-5-cpu.html">processing power</a> can be utilized effectively when you have many different processes executing simultaneously, but how can memory &#8211; also a scarce resource in a computer &#8211; be distributed across processes?  The goal of memory management is to <strong>maximize memory utilization and system throughput</strong>.<br /><br />You also have to make sure that you can manage memory so as to:<br /><ol><li><strong>Protect</strong>: that is, make sure processes execute in isolation, so they don&#8217;t interfere with each other</li><li><strong>Translate fast</strong>: that is, make sure that memory lookups are speedy despite the fact that protection kind of slows stuff down</li><li><strong>Context switch fast</strong>: that is, make sure memory hardware is updated when old processes are removed from the CPU and new processes are given to it</li></ol><br />On a hardware level, when you&#8217;re dealing with memory, you&#8217;re really messing around with <strong>base registers</strong> and <strong>limit registers</strong>.   Base registers contain the address of a start of a program,  and limit registers contain the length of the program.  Both of these things define the scope of a program&#8217;s memory.<br /><br />Programs get their code and data loaded into memory so that they can be run in processes.  It&#8217;s important to keep the memory that processes use separate, so that they don&#8217;t interfere with each other, overwriting the other program&#8217;s code and making it crash and such.  The memory that a program has is allocated is called its <strong>address space</strong>.  In the olden days, if a program couldn&#8217;t fit into memory, then you&#8217;d have to manually overwrite parts of the code that you weren&#8217;t using presently.<br /><br /><br /><span class="sig">Virtual Memory</span><br />Virtual memory is an abstraction provided by the operating system for memory management.  Thanks to virtual memory, we can do cool things like:<br /><ul><li>allow programs to execute even if their entire address space isn&#8217;t in physical memory</li><li>let programs execute with less RAM than they really &#8220;need&#8221;</li><li>isolate processes from each other so that they can&#8217;t name addresses that other processes can use</li></ul>This is mainly because programs don&#8217;t really use all of the code that they&#8217;re written with &#8211; for instance, a program with if-statements will either execute one branch of the if-statement or the other, and there&#8217;s no real need to allocate space for code that isn&#8217;t run.<br /><br />On a hardware level, virtual memory relies on translation-lookaside buffers (TLB&#8217;s), page tables, page fault handling&#8230;you&#8217;ll also need to deal with swapping and segmentation.  <strong>Swapping</strong> is the memory-equivalent of context switching for processing power.  When you do a context switch between processes, you remove the old process from using CPU and allocate that CPU to the new process; in swapping, you remove memory from the previous process and give it to the new one.<br /><br /><br /><span class="sig">Virtual Addresses</span><br />So, this whole time when we&#8217;ve been talking about how <a href="http://nuubu.blogspot.com/2011/01/operating-systems-notes-chapter-2-3.html">a process consists of an address space</a> (along with at least one thread and OS resources), what we&#8217;ve really meant is that processes have a set of <strong>virtual addresses</strong>.  Once more: a process&#8217;s address space is its set of virtual addresses.<br /><br />And what are virtual addresses?  They are the layer of abstraction between a process and physical memory.  When the CPU executes instructions from a loaded program, it uses the virtual addresses for pointers, arguments to load and store instructions, and so on.  Virtual addresses must be translated by hardware into physical addresses, the actual location of the data stored on disk.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-KotutHv0Kkk/TVTbDb2stkI/AAAAAAAAAGE/c_t2mc_tACA/s1600/viraddr1.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="226" src="http://4.bp.blogspot.com/-KotutHv0Kkk/TVTbDb2stkI/AAAAAAAAAGE/c_t2mc_tACA/s320/viraddr1.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">so, here we&#8217;ve got: process p&#8217;s pointer, which points to a virtual address in p&#8217;s address space. &nbsp;that in turn points to a physical address in physical memory.  the physical address is what points to the actual data.</td></tr></tbody></table><br /><br /><span class="sig">How do you translate virtual addresses into physical addresses?</span><br />Virtual addresses (in the process address space) and physical addresses (on disk) don&#8217;t correspond exactly to each other &#8211; that is, a virtual address in space 0 doesn&#8217;t necessarily point to a physical address in space 0.  So, how does a virtual address translate to a physical address?<br /><br />To translate in the olden days, the physical memory would be partitioned, in one of two ways:<br /><ol><li><strong>Fixed partitions.</strong>  The physical memory would be broken up into fixed-size partitions, so that the physical address could be obtained by adding the virtual address and the base register.  When a context switch happened, a new base register would be loaded.  This was a simple way of doing things but has <strong>fragmentation problems</strong> &#8211; both <strong>internal fragmentation</strong> (which happens when the physical memory partition is larger than what the program needs) and <strong>external fragmentation</strong> (which happens when you may have two small partitions remaining, and one large job which won&#8217;t fit into each separately).<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-Ty-M47nOJzo/TVTdQWMAdkI/AAAAAAAAAGM/ftBjaeeoabo/s1600/viraddr2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="203" src="http://4.bp.blogspot.com/-Ty-M47nOJzo/TVTdQWMAdkI/AAAAAAAAAGM/ftBjaeeoabo/s320/viraddr2.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">with fixed partitions,<br />physical address = virtual address + base register<br />the limit register check is to make sure you don&#8217;t overstep physical memory</td></tr></tbody></table><br /></li><li><strong>Variable partitions.</strong> In this case, the physical memory would be broken up into variable-size partitions, the size dependant on the program.  Again, the physical address is equal to the virtual address plus the base register.  Variable partitioning <strong>fixes internal fragmentation</strong>, since you won&#8217;t allocate more than a program needs and therefore waste space that other programs could use &#8211; <strong>but you still have external fragmentation</strong>, because as you load and unload jobs, holes are left scattered behind.  (This is slightly different than external fragmentation in fixed partition systems.)<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-4zihtB6CQNQ/TVTeWbpF6jI/AAAAAAAAAGU/0-y3xwKJIkI/s1600/viraddr3.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="245" src="http://1.bp.blogspot.com/-4zihtB6CQNQ/TVTeWbpF6jI/AAAAAAAAAGU/0-y3xwKJIkI/s320/viraddr3.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">with variable partitions,<br />physical address = virtual address + base register<br />the limit register makes sure you don&#8217;t overstep memory<br />the black parts denote unused holes in the memory 3:</td></tr></tbody></table></li></ol><br /><br />One way to deal with external fragmentation is to be like,<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-iVkxoUAgHa0/TVTfpWKPs_I/AAAAAAAAAGc/5ngILCCIYpQ/s1600/viraddr4.jpg" imageanchor="1"><img border="0" height="234" src="http://3.bp.blogspot.com/-iVkxoUAgHa0/TVTfpWKPs_I/AAAAAAAAAGc/5ngILCCIYpQ/s320/viraddr4.jpg" width="320" /></a></div><br />and basically push all the allocated physical memory together.  Which is bad because you have to do this manually and like, all the time.<br /><br />So, a better way to do things in general is to be like, PAGES, BRO.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-29MhcnKDPZQ/TVTf8yOllPI/AAAAAAAAAGk/xqYlIwU95HQ/s1600/viraddr5.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="250" src="http://3.bp.blogspot.com/-29MhcnKDPZQ/TVTf8yOllPI/AAAAAAAAAGk/xqYlIwU95HQ/s320/viraddr5.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">PAGES. &nbsp;YE</td></tr></tbody></table><br /><br /><span class="sig">Pages and Page Tables</span><br />So with pages, processes view their address space as some memory ranging from indexes 0 to N, but in reality the mapping of those address spaces to physical addresses points every which way all over the disk.  The program doesn&#8217;t know this at all, and isolation is still provided to all program&#8217;s because a program still can&#8217;t reference memory outside of its virtual address space.<br /><br />So.  A virtual address is comprised of a virtual page number (VPN), as well as some offset.  A physical address is comprised of a page frame number (PFN), as well as some offset.  Now, to translate from a virtual address to a physical address, you need to divide the address space into equal-sized &#8220;pages,&#8221; and then use one more thing: the <strong>page table</strong>.  The page table contains the mapping between a virtual address&#8217;s VPN and a physical address&#8217;s PFN, and this is how a program with a virtual address can access physical memory, memory on disk.  Once more, for good measure: a page table maps a <em>virtual address page</em> to a <em>physical page frame</em>.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TVThyWocAlI/AAAAAAAAAGs/cQVcDkDCC0U/s1600/viraddr6.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="215" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TVThyWocAlI/AAAAAAAAAGs/cQVcDkDCC0U/s320/viraddr6.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">it&#8217;s easy, right?</td></tr></tbody></table><br /><br />Page tables contain <strong>page table entries (PTEs)</strong>, which look something like this:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TVTiaKBOuiI/AAAAAAAAAG0/EutComkh8Jg/s1600/viraddr7.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="91" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TVTiaKBOuiI/AAAAAAAAAG0/EutComkh8Jg/s320/viraddr7.jpg" width="320" /></a></div><ul><li>the <strong>valid bit</strong> says whether or not this PTE can be used &#8211; that is, whether or not the virtual address is valid, meaning it actually maps to some physical address, which points to a location in physical memory.</li><li>the <strong>referenced bit</strong> says whether the page has been accessed &#8211; that is, whether it&#8217;s been read from or written to at all</li><li>the <strong>modified bit</strong> says whether or not the page is dirty, meaning a write has occurred to that page</li><li>the <strong>protection bits</strong> control which operations (read, write, execute, etc.) are allowed to be used on this page</li><li>and finally, the PFN determines the &#8220;physical page,&#8221; the location in physical memory that the given virtual address points to.  Like how a base register contains the starting address of a process&#8217;s virtual address space, a physical page&#8217;s start address is determined by the PFN.</li></ul><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-IjOgv0A9WCU/TVTurOC7yJI/AAAAAAAAAHE/1vfxhYR5OlA/s1600/viraddr9.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="232" src="http://2.bp.blogspot.com/-IjOgv0A9WCU/TVTurOC7yJI/AAAAAAAAAHE/1vfxhYR5OlA/s320/viraddr9.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">here&#8217;s the picture from earlier without the page table photoshopped out of it</td></tr></tbody></table><br /><br /><strong>The great thing about paging</strong> is that makes it easy to allocate physical memory to a program &#8211; physical memory is now ordered in a list of frames, and when you want to allocate it, just remove it from the list of &#8220;free&#8221; frames.  This solves external fragmentation and all the troublesome-ness of managing the holes left behind from loading and unloading programs.<br /><br />And, it lends itself naturally to <strong>virtual memory</strong>, because a program doesn&#8217;t need to be completely resident in the memory anymore &#8211; only partially, only the parts that you care about right now (or soon).  If it so happens that you need code that is not presently in memory (which you&#8217;ll know, because when you use a virtual address to access something not in memory, the valid bit in the PTE will cry out), you take a <strong>page fault</strong>, and the code or data that you need will be brought into memory.<br /><br />Remaining problems: internal fragmentation, since a process still may not use memory in exact multiples of pages.  Also, there&#8217;s a great overhead in referencing anything, since instead of accessing that thing directly, you&#8217;re making two look-ups, first through the page table, and then into physical memory itself.  <span class="shh">(This can be solved with TLBs &#8211; more on that later.)</span><br /><br />The other problem: page tables can be huge.  Consider that each process has its own address space, which means you need one page table entry per page in the address space.  Operating systems typically have separate page tables per process, and things can get huge fast.  The solution to this is to&#8230;page the page tables lol.<br /><br /><br /><span class="sig">And yet another way to translate virtual addresses into physical addresses: segmentation</span><br />To do segmentation, partition not the physical memory, but the address spaces, into logical units: one partition for stack, one for code, one for the heap, one for subroutines&#8230;<br /><br />A virtual address that is a part of this address space will then consist of a <strong>segment number</strong> and an <strong>offset</strong>.<br /><br /><strong>The good thing about this: it&#8217;s more logical</strong>, since without segmentation, what the linker does during compilation is take a bunch of modules that call each other and linearizes them.  These modules are all independent and are treated that way when the address space is segmented.  Segmentation is also a natural extension of variable-sized partitions; where there&#8217;s one variable partition per process, there&#8217;s many segments per process.  Segmentation also facilitates sharing and reuse of code.<br /><br /><strong>Disadvantages: just like a variable partition system, segmentation can have all the horrific external fragmentation, even if linking is simpler.</strong><br /><br />On a hardware level, you would need a segment table with multiple base/limit register pairs, one per segment in the address space.  The physical address would be yielded by adding the virtual address offset to the base address of the segment.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TVTsVUM3gXI/AAAAAAAAAG8/rfJKLzVUE18/s1600/viraddr8.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="238" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TVTsVUM3gXI/AAAAAAAAAG8/rfJKLzVUE18/s320/viraddr8.jpg" width="320" /></a></div><br />Anyway, to fix the problem that segmentation has with external fragmentation, you can mix segmentation and paging.  Use segments to manage logical units, and then use paging to partition segments into fixed-size chunks.  Each segment will have its own page table (rather than there being one page table per address space), and memory allocation once again becomes easy and cool, without external fragmentation problems.<br /><br /><br /><br />Sources:<br />lecture 10 notes<br /><a href="http://www.science-dictionary.com/definition/base-register.html">Science-Dictionary: base register</a><br /><a href="http://answers.yahoo.com/question/index?qid=20090520065552AAOWEvZ">Yahoo Answers: Base and limit register?</a><br />section 5 notes</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -439,98 +531,6 @@ So a <strong>cooperating process</strong> is one that can affect or be affected 
 <span class="categories">
   
     <a class='category' href='/blog/categories/drabble/'>drabble</a>, <a class='category' href='/blog/categories/writing/'>writing</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/16/q-standard-annotation-language-sal/">[Q&a] Standard Annotation Language (SAL)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-16T00:00:00-08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<span class="sig">What does <code>__inout</code>, etc. mean?</span><br />For OS I&#8217;m plumbing the depths of a Windows kernel and keep running into these things in the code that look like <code>__in</code>, or <code>__out</code>, or even <code>__inout</code>&#8230;for example:<br /><br /><pre class="brush:xml">NTKERNELAPI<br />VOID<br />FASTCALL<br />ExAcquireFastMutexUnsafe (<br />    __inout PFAST_MUTEX FastMutex<br />    );<br /></pre><br />I initially found <a href="http://nuubu.blogspot.com/2011/01/q-operating-systems-etc.html">something</a> about the usage of <code>_</code> and <code>__</code> in code, and it turns out that <code>__</code> is just an annotation which will help programmers know more about the intended usage of the code, like comments, and are ignored by the compiler.  <code>__inout</code> stuff is no different.<br /><br />These annotations are part of Microsoft&#8217;s SAL, or, Standard Annotation Language, and define the proper use of buffers, which are regions of data that have been allocated and are represented as pointers.  If a pointer is pointing to a buffer, there&#8217;s no good way to know how big a buffer is in compile time; with usage of SAL, you can make explicit exactly how big a buffer is.  It also helps to show how a function uses its parameters &#8211; what it thinks that the parameter is, and what it will do with that parameter when it finishes.<br /><br />This is relevant because in C, a function can take a value or a pointer as an argument.  Arguments can be used as input (i.e. taking values to add together), or as output (i.e. taking a pointer to something which will store your output value.) But, if you were to leave out these annotations, you wouldn&#8217;t know if an argument a function takes is supposed to be used as function input or output.<br /><br /><code>__in</code>, <code>__out</code>, and <code>__inout</code> are all examples of &#8220;Usage&#8221; annotations.<br /><br />So, if you see something like<br /><br /><pre class="brush: xml">void * memset(<br /> __out_bcount(s) char *p,<br /> __in int v, <br /> __in size_t s);<br /></pre><br />This means that the function <code>memset</code> expects variables <code>int v</code> and <code>size_t s</code> to be valid when the function is called (also called &#8220;valid on input&#8221;).  Also, the buffer <code>char *p</code> will be initialized by this function, will be written to by this function, and will be valid when the function returns.<br /><br />In simpler terms &#8211; <code>v</code> and <code>s</code> are definitely meant to be <code>memset</code>&#8217;s input, and <code>p</code> is meant to be the output.<br /><br /><br />Sources:<br /><a href="http://207.46.16.248/en-us/library/ff550230%28VS.85%29.aspx">MSDN: Overview of Annotations for Drivers</a><br /><a href="http://msdn.microsoft.com/en-us/library/ms235402%28v=vs.80%29.aspx">MSDN: SAL Annotations</a><br /><a href="http://blogs.msdn.com/b/michael_howard/archive/2006/05/19/602077.aspx">MSDN: A Brief Introduction to the Standard Annotation Language</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/14/q-semaphore-mutex/">[Q&a] Semaphore, Mutex</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-14T00:00:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<span class="sig">What&#8217;s a semaphore?</span><br />A semaphore is a procted variable or abstract data type.  It relates to controlling access to some resource shared by processes running simultaneously.  They&#8217;re useful in preventing race conditions and deadlocks (though they don&#8217;t prevent them completely).<br /><br />Semaphores don&#8217;t keep track of which resources are free or who is using the resources; they only keep track of whether resources are free.  There are two types of semaphores: <b>counting semaphores</b> and <b>binary semaphores</b>.  Counting semaphores only keep track of how much of the resource is available at a given time (i.e. &#8220;all of my resources are being used up now&#8230;oh, someone came back, okay, now I have one free which you can use&#8221;).  Binary semaphores only keep track of whether a resource is being used or not, i.e. whether it is presently unavailable or available.<br /><br />Semaphores can&#8217;t prevent errors that occur if a process that has acquired a lock for the resource forgets to release the lock, etc.<br /><br />Also, errors can still happen if there are different resources managed by different semaphores and processes need to use more than one resource at a time.  An interesting thing: the <a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">dining philosophers problem</a>, which illustrates the problems with multiple processes sharing multiple resources.  Essentially, five philosophers are sitting at a table, either eating or thinking.  They each have a fork to their left and right, and there is a bowl of spaghetti in the middle of the table.  The philosophers need to serve themselves and eat spaghetti with both forks, but don&#8217;t speak to each other, so one may pick up a left fork and wait for his right fork to become free so that he may eat.  Meanwhile, the guy using his right fork may be waiting for his own other fork to become free.  And so on, and so forth.<br /><br />A semaphore in this case would be like a person who is aware of which forks are being used and which ones are available, so that when the philosophers try to eat, they have to consult him first, and he&#8217;ll tell them whether there are any forks to pick up which they can use.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TS9WBJzlB7I/AAAAAAAAAEk/QEHATD_NLWw/s1600/proceed%2Bcat.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="283" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TS9WBJzlB7I/AAAAAAAAAEk/QEHATD_NLWw/s320/proceed%2Bcat.jpg" width="300" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">semaphore cat is semaphore</td></tr></tbody></table><br />One problem with semaphores: <strong>busy waiting</strong>, which is what you need to put into processes that are waiting for other processes to finish executing their critical section.  (Or, what philosophers are doing when they are waiting for their neighbors to finish eating.) The busy waiting is basically just a loop waiting for the mutex to free up, and it wastes CPU that another process could be productive with.  A process that does this is a <strong>spinlock</strong>, because &#8220;the process &#8216;spins&#8217; while waiting for the lock.&#8221;  Essentially, if a program knows it needs a lock before it does the next bit of code, it sits in a while loop until the needed lock is freed up.<br /><br /><br /><span class="sig">What&#8217;s a mutex?</span><br />A mutex is essentially a binary semaphore, though mutex specifically describes an abstraction which prevents two processes from executing the same piece of code or accessing the same data at the same time.  Basically, it limits access to a single resource, to one &#8220;owner&#8221; who is at that time allowed to do whatever it wants with it before releasing the mutex so someone else can do something.<br /><br /><br /><span class="sig">What does IRQL mean?</span><br />IRQL stands for Interrupt Request Level, and has something to do with a process, and, given incoming interrupts, which one of those interrupts should be able to interrupt the running process, and which should not.  For instance, if you&#8217;re just quickly trying to modify a single variable, then you don&#8217;t want anything to interrupt you.<br /><br />Basically (I think), each thread has its own IRQL.  If the OS receives another thread to run which has a higher IRQL than that first thread, however, then it will pause the lower-IRQL thread to run the higher-IRQL code.  Weird deadlocks may occur in this case, however, if:<br /><ol><li>lower-IRQL thread is running, and acquires a lock</li><li>lower-IRQL thread is interrupted; higher-IRQL thread begins execution</li><li>higher-IRQL thread needs the lock that lower-IRQL thread has</li><li>higher-IRQL lock cannot continue without that lock</li><li>lower-IRQL thread cannot continue without higher-IRQL finishing execution</li></ol>So, what you would want to do in this case is make sure that a thread that obtains a lock cannot be interrupted.<br /><br />If it does so happen that you don&#8217;t want any interrupts to your thread, then make sure that the IRQL is raised to <code>APC_LEVEL</code>.  This level is pretty much only run when you&#8217;re using Fast Mutexes.  Part of the reason why Fast Mutexes are faster than normal Mutexes in the Windows kernel is because they deny APC interrupts.  APC interrupts originate from the processor, toward itself or another processor.<br /><br /><br /><span class="sig">How do I use a mutex in the Windows NT kernel?</span><br /><a href="http://www-user.tu-chemnitz.de/~heha/oney_wdm/ch04f.htm">Here&#8217;s</a> a start&#8230;<br /><br /><br />Sources:<br /><a href="http://en.wikipedia.org/wiki/Semaphore_%28programming%29">Wikipedia: Semaphore (programming)</a><br /><a href="http://us.generation-nt.com/answer/fast-mutexes-guarded-mutexes-help-27627542.html">GNT: Fast mutexes and guarded mutexes?</a><br /><a href="http://blogs.technet.com/b/askperf/archive/2009/07/21/the-basics-of-mutexes-and-spin-locks.aspx">TechNet: The Basics of Mutexes and Spin Locks</a><br /><a href="http://blogs.msdn.com/b/doronh/archive/2010/02/02/what-is-irql.aspx">MSDN: What is IRQL?</a><br /><a href="http://www.google.com/url?sa=t&amp;source=web&amp;cd=1&amp;ved=0CBMQFjAA&amp;url=http%3A%2F%2Fdownload.microsoft.com%2Fdownload%2Fe%2Fb%2Fa%2Feba1050f-a31d-436b-9281-92cdfeae4b45%2FLocks.doc&amp;rct=j&amp;q=ex%20initialize%20fast%20mutex%20example&amp;ei=yJEzTf7ILIGqsAP4rqiFBg&amp;usg=AFQjCNEWYt0oNPRzKd8sXHFsm_CgrHKZBw&amp;sig2=4FQ-QHdGlj_42VPdrKqIxA&amp;cad=rja">Windows Hardware and Driver Central: Locks, Deadlocks, and Synchronization</a><br /><em>Operating System Concepts (8th Edition)</em>, Silberschatz, Galvin and Gagne, ISBN 978-0-470-12872-5.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
   
 </span>
 

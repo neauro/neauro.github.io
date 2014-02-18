@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Operating Systems Notes [Chapter 2, 3] Jan 14th, 2011 OS StructuresCommand shells, I guess, make it so that users can actually speak directly to the &hellip;">
+  <meta name="description" content="[Q&a] Standard Annotation Language (SAL) Jan 16th, 2011 What does __inout, etc. mean?For OS I&#8217;m plumbing the depths of a Windows kernel and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/16/q-standard-annotation-language-sal/">[Q&a] Standard Annotation Language (SAL)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-16T00:00:00-08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">What does <code>__inout</code>, etc. mean?</span><br />For OS I&#8217;m plumbing the depths of a Windows kernel and keep running into these things in the code that look like <code>__in</code>, or <code>__out</code>, or even <code>__inout</code>&#8230;for example:<br /><br /><pre class="brush:xml">NTKERNELAPI<br />VOID<br />FASTCALL<br />ExAcquireFastMutexUnsafe (<br />    __inout PFAST_MUTEX FastMutex<br />    );<br /></pre><br />I initially found <a href="http://nuubu.blogspot.com/2011/01/q-operating-systems-etc.html">something</a> about the usage of <code>_</code> and <code>__</code> in code, and it turns out that <code>__</code> is just an annotation which will help programmers know more about the intended usage of the code, like comments, and are ignored by the compiler.  <code>__inout</code> stuff is no different.<br /><br />These annotations are part of Microsoft&#8217;s SAL, or, Standard Annotation Language, and define the proper use of buffers, which are regions of data that have been allocated and are represented as pointers.  If a pointer is pointing to a buffer, there&#8217;s no good way to know how big a buffer is in compile time; with usage of SAL, you can make explicit exactly how big a buffer is.  It also helps to show how a function uses its parameters &#8211; what it thinks that the parameter is, and what it will do with that parameter when it finishes.<br /><br />This is relevant because in C, a function can take a value or a pointer as an argument.  Arguments can be used as input (i.e. taking values to add together), or as output (i.e. taking a pointer to something which will store your output value.) But, if you were to leave out these annotations, you wouldn&#8217;t know if an argument a function takes is supposed to be used as function input or output.<br /><br /><code>__in</code>, <code>__out</code>, and <code>__inout</code> are all examples of &#8220;Usage&#8221; annotations.<br /><br />So, if you see something like<br /><br /><pre class="brush: xml">void * memset(<br /> __out_bcount(s) char *p,<br /> __in int v, <br /> __in size_t s);<br /></pre><br />This means that the function <code>memset</code> expects variables <code>int v</code> and <code>size_t s</code> to be valid when the function is called (also called &#8220;valid on input&#8221;).  Also, the buffer <code>char *p</code> will be initialized by this function, will be written to by this function, and will be valid when the function returns.<br /><br />In simpler terms &#8211; <code>v</code> and <code>s</code> are definitely meant to be <code>memset</code>&#8217;s input, and <code>p</code> is meant to be the output.<br /><br /><br />Sources:<br /><a href="http://207.46.16.248/en-us/library/ff550230%28VS.85%29.aspx">MSDN: Overview of Annotations for Drivers</a><br /><a href="http://msdn.microsoft.com/en-us/library/ms235402%28v=vs.80%29.aspx">MSDN: SAL Annotations</a><br /><a href="http://blogs.msdn.com/b/michael_howard/archive/2006/05/19/602077.aspx">MSDN: A Brief Introduction to the Standard Annotation Language</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/14/q-semaphore-mutex/">[Q&a] Semaphore, Mutex</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-14T00:00:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">What&#8217;s a semaphore?</span><br />A semaphore is a procted variable or abstract data type.  It relates to controlling access to some resource shared by processes running simultaneously.  They&#8217;re useful in preventing race conditions and deadlocks (though they don&#8217;t prevent them completely).<br /><br />Semaphores don&#8217;t keep track of which resources are free or who is using the resources; they only keep track of whether resources are free.  There are two types of semaphores: <b>counting semaphores</b> and <b>binary semaphores</b>.  Counting semaphores only keep track of how much of the resource is available at a given time (i.e. &#8220;all of my resources are being used up now&#8230;oh, someone came back, okay, now I have one free which you can use&#8221;).  Binary semaphores only keep track of whether a resource is being used or not, i.e. whether it is presently unavailable or available.<br /><br />Semaphores can&#8217;t prevent errors that occur if a process that has acquired a lock for the resource forgets to release the lock, etc.<br /><br />Also, errors can still happen if there are different resources managed by different semaphores and processes need to use more than one resource at a time.  An interesting thing: the <a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">dining philosophers problem</a>, which illustrates the problems with multiple processes sharing multiple resources.  Essentially, five philosophers are sitting at a table, either eating or thinking.  They each have a fork to their left and right, and there is a bowl of spaghetti in the middle of the table.  The philosophers need to serve themselves and eat spaghetti with both forks, but don&#8217;t speak to each other, so one may pick up a left fork and wait for his right fork to become free so that he may eat.  Meanwhile, the guy using his right fork may be waiting for his own other fork to become free.  And so on, and so forth.<br /><br />A semaphore in this case would be like a person who is aware of which forks are being used and which ones are available, so that when the philosophers try to eat, they have to consult him first, and he&#8217;ll tell them whether there are any forks to pick up which they can use.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TS9WBJzlB7I/AAAAAAAAAEk/QEHATD_NLWw/s1600/proceed%2Bcat.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="283" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TS9WBJzlB7I/AAAAAAAAAEk/QEHATD_NLWw/s320/proceed%2Bcat.jpg" width="300" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">semaphore cat is semaphore</td></tr></tbody></table><br />One problem with semaphores: <strong>busy waiting</strong>, which is what you need to put into processes that are waiting for other processes to finish executing their critical section.  (Or, what philosophers are doing when they are waiting for their neighbors to finish eating.) The busy waiting is basically just a loop waiting for the mutex to free up, and it wastes CPU that another process could be productive with.  A process that does this is a <strong>spinlock</strong>, because &#8220;the process &#8216;spins&#8217; while waiting for the lock.&#8221;  Essentially, if a program knows it needs a lock before it does the next bit of code, it sits in a while loop until the needed lock is freed up.<br /><br /><br /><span class="sig">What&#8217;s a mutex?</span><br />A mutex is essentially a binary semaphore, though mutex specifically describes an abstraction which prevents two processes from executing the same piece of code or accessing the same data at the same time.  Basically, it limits access to a single resource, to one &#8220;owner&#8221; who is at that time allowed to do whatever it wants with it before releasing the mutex so someone else can do something.<br /><br /><br /><span class="sig">What does IRQL mean?</span><br />IRQL stands for Interrupt Request Level, and has something to do with a process, and, given incoming interrupts, which one of those interrupts should be able to interrupt the running process, and which should not.  For instance, if you&#8217;re just quickly trying to modify a single variable, then you don&#8217;t want anything to interrupt you.<br /><br />Basically (I think), each thread has its own IRQL.  If the OS receives another thread to run which has a higher IRQL than that first thread, however, then it will pause the lower-IRQL thread to run the higher-IRQL code.  Weird deadlocks may occur in this case, however, if:<br /><ol><li>lower-IRQL thread is running, and acquires a lock</li><li>lower-IRQL thread is interrupted; higher-IRQL thread begins execution</li><li>higher-IRQL thread needs the lock that lower-IRQL thread has</li><li>higher-IRQL lock cannot continue without that lock</li><li>lower-IRQL thread cannot continue without higher-IRQL finishing execution</li></ol>So, what you would want to do in this case is make sure that a thread that obtains a lock cannot be interrupted.<br /><br />If it does so happen that you don&#8217;t want any interrupts to your thread, then make sure that the IRQL is raised to <code>APC_LEVEL</code>.  This level is pretty much only run when you&#8217;re using Fast Mutexes.  Part of the reason why Fast Mutexes are faster than normal Mutexes in the Windows kernel is because they deny APC interrupts.  APC interrupts originate from the processor, toward itself or another processor.<br /><br /><br /><span class="sig">How do I use a mutex in the Windows NT kernel?</span><br /><a href="http://www-user.tu-chemnitz.de/~heha/oney_wdm/ch04f.htm">Here&#8217;s</a> a start&#8230;<br /><br /><br />Sources:<br /><a href="http://en.wikipedia.org/wiki/Semaphore_%28programming%29">Wikipedia: Semaphore (programming)</a><br /><a href="http://us.generation-nt.com/answer/fast-mutexes-guarded-mutexes-help-27627542.html">GNT: Fast mutexes and guarded mutexes?</a><br /><a href="http://blogs.technet.com/b/askperf/archive/2009/07/21/the-basics-of-mutexes-and-spin-locks.aspx">TechNet: The Basics of Mutexes and Spin Locks</a><br /><a href="http://blogs.msdn.com/b/doronh/archive/2010/02/02/what-is-irql.aspx">MSDN: What is IRQL?</a><br /><a href="http://www.google.com/url?sa=t&amp;source=web&amp;cd=1&amp;ved=0CBMQFjAA&amp;url=http%3A%2F%2Fdownload.microsoft.com%2Fdownload%2Fe%2Fb%2Fa%2Feba1050f-a31d-436b-9281-92cdfeae4b45%2FLocks.doc&amp;rct=j&amp;q=ex%20initialize%20fast%20mutex%20example&amp;ei=yJEzTf7ILIGqsAP4rqiFBg&amp;usg=AFQjCNEWYt0oNPRzKd8sXHFsm_CgrHKZBw&amp;sig2=4FQ-QHdGlj_42VPdrKqIxA&amp;cad=rja">Windows Hardware and Driver Central: Locks, Deadlocks, and Synchronization</a><br /><em>Operating System Concepts (8th Edition)</em>, Silberschatz, Galvin and Gagne, ISBN 978-0-470-12872-5.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -447,98 +539,6 @@ An operating system provides <a href="http://nuubu.blogspot.com/2011/01/operatin
 <span class="categories">
   
     <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/distributed-systems/'>distributed systems</a>, <a class='category' href='/blog/categories/notes/'>notes</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/04/intro-to-distributed-systems/">Intro to Distributed Systems</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-04T00:00:00-08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-So, for now at least, I&#8217;m taking a class on distributed systems.  <a href="http://code.google.com/edu/parallel/dsd-tutorial.html">Google</a> has a good tutorial on what a distributed system is, which I will take notes from/copy shamelessly.<br /><br />Firstly, definitions &#8211;<br /><strong>A protocol</strong> is &#8220;a formal description of message formats and the rules that two processes must follow in order to exchange those messages.&#8221;<br /><br /><strong>A network</strong> is &#8220;the infrastructure that links computers, workstations, terminals, servers, etc.  It consists of routers which are connected by communiation links.&#8221;<br /><br /><strong>A distributed system</strong> is &#8220;an application that executes a collection of protocols to coordinate the actions of multiple processes on a network, such that all components cooperate together to form a single or small set of related tasks.&#8221;<br /><br />My impression of it currently is also like this: a distributed system is a program that controls a ton of computers and with their powers combined accomplishes great things, like searching the internets for that picture of Maru wearing a crab hat.<br /><br /><br /><span class="sig">Advantages of a distributed system:</span> <br />Distributed systems can connect remote users with remote resources in an open and scalable way.  <em>Open</em> meaning that each component of the system can interact with other components at any time, <em>scalable</em> meaning that the system can be easily altered to accomodate changes in the amount of users or resources.<br /><br /><br /><span class="sig">Disadvantages of a distributed system:</span><br />A system of things working together is more complicated than a system of something working by itself.  An example of this is an airplane with two engines, which spend much more time on the ground than airplanes with a single engine, simply because planes cannot take off if anything is wrong with them, and there&#8217;s more to go wrong with an airplane that has more engines.<br /><br />Distributed systems have a lot of complexity because its components, the computers or servers or etc., have to interact properly.  An example of how difficuult the interaction can be can be found with the <strong>two generals problem</strong>, which goes like this:<br /><br /><blockquote>Two generals on opposite hillsides want to coordinate an attack.  General A sends a message &#8211; &#8220;Let&#8217;s attack at dawn!&#8221; &#8211; to General B.  How will General A know if General B agrees?  B will send a message in response &#8211; &#8220;Alright, let&#8217;s attack at dawn!&#8221; But then how will B know that A received his confirmation?  A will have to send a message back.  And then how will A know that B got the confirmation message?  B will have to send a message back&#8230;</blockquote><br />And so on and so forth.<br /><br /><br /><span class="sig">So, a well-designed distributed system will have these characteristics:</span><br /><ol><li>Fault-tolerant: if a components fails, it can recover without performing incorrect actions</li><li>Highly available: if a component fails, it can restore operations and continue to provide services</li><li>Recoverable: if a component fails, it can restart itself and rejoin the system after failure has been fixed</li><li>Consistent: in the event of failure, a system can still coordinate components</li><li>Scalable: if some aspect of the system is scaled to a larger size (i.e. if there are more users, or size of network increases), then the system can still work correctly</li><li>Predictable performance: the system can provide responsiveness in a timely fashion</li><li>Secure: the system can authenticate access to data and services</li></ol><br />With distributed systems, you have to <em>design for failure</em>.  If I told you to do something and you didn&#8217;t do it, is it because I didn&#8217;t tell you clearly what to do?  Or is it because you didn&#8217;t see me tell you?  Or is it because I didn&#8217;t get confirmation that you had done it?  This problem is the reason why distributed systems are so hard to debug &#8211; it&#8217;s hard to see where exactly the problem originated, or why it happened.<br /><br /><br /><span class="sig">Distributed systems design</span><br />Firstly, about client-server applications.  They work by having a <em>server</em> which provides some service, like processing database queries, and a <em>client</em> which uses the service, i.e. to show the database query results.  Different types of servers do different things: for instance, a database server houses databases and allows clients to access them, file servers manage disk storage, etc.  The communication between client and server needs to be reliable.<br /><br />Reliability is governed by protocols, like TCP/IP.  The Internet Protocol (IP) is a set of communication protocols that allow for communication on the internet and most commercial networks.  The Transmission Control Protocol (TCP) is a core part of IP, and allows clients and servers to create connections to one another and exchange data in &#8220;packets.&#8221; Protocol guarantees reliable and in-order delivery of data from sender to receiver.<br /><br />With a distributed system, there can be many types of servers, and <em>service</em> is a term that refers to a set of servers of a particular type.  &#8220;Binding&#8221; is when a process that needs to access a service becomes associated with a particular server which provides the service.  Programs which which server to associate with through binding policies.  For example, someone looking for certain information on a database may be connected to a server which is closest to them geographically, so that access is faster, or he or she may be connected to a database which has the least number of people presently accessing it.<br /><br />To keep things reliable, a distributed service may keep multiple copies of data so you can still access it if something goes wrong.  To keep things going fast, a distributed service may <em>cache</em> data, which is when it makes copies of the data and keeps a copy of it locally, so the data can be accessed quickly the next time it&#8217;s wanted.  <br /><br /><br /><span class="sig">More about TCP/IP</span><br />The IP &#8220;suite&#8221; can be viewed as a set of layers, in which each layer uses the functions of the layers below it and gives functionality to the layer above it.  The lower layers are typically implemented in hardware, whereas the higher layers are implemented in software.<br /><br />The layers:<br /><ol><li>Application layer: is used by most programs that require netwrok communication.  The program gives data to this layer of protocol, and then encapsulated in a transport layer protocol.  Examples of applications that use this layer: HTTP, FTP. </li><li>Transport layer: is responsible for end-to-end message transfer, along with error control, fragmentation, and flow control.  End-to-end message transmission can be categorized as <em>connection-oriented</em> (TCP) or <em>connectionless</em> (UDP), with TCP being the more sophisticated and reliable.<br /></li><ul><li>TCP works by: first, ensuring the receiving computer is ready to accept data by using a &#8220;three-packet handshake&#8221; in which the sender and receiver agree they&#8217;re ready to communicate.  Then, TCP makes sure data gets to its destination.  If the receiver doesn&#8217;t acknowledge a packet of the data, TCP will automatically transmit the packet three times, and also split the large packet into smaller ones if needed so that the data can travel more reliably.  TCP will also drop duplicate packets and rearrange the ones that arrive out of sequence.</li><li>Note for self: What&#8217;s the relationship between this and torrenting something?  Also, I understand that TCP is a protocol, which means that it&#8217;s a &#8220;formal description,&#8221; so what&#8217;s with this &#8220;TCP making sure data reaches&#8221; and &#8220;TCP automatically transmitting&#8221; stuff as if it&#8217;s a program which does something?</li></ul><li>Network layer: solves the problem of getting packets across a single network, or, getting packets from one network to another network by moving the packet across a network of networks, i.e. the Internets.  IP performs the basic task of getting packets of data from source to destination.</li><li>Link layer: deals with the physical transmission of data, i.e. placing frame headers and trailers on packets for travelling over the physical network, and dealing with physical components.</li></ol><br /><br /><span class="sig">Remote Procedure Calls (RPCs)</span><br />A remote procedure call (RPC) is another method besides TCP/IP that clients can use to interact with servers.  It&#8217;s based off the idea that the procedure that a client wants to use may not be in the same &#8220;address space,&#8221; i.e. the procedure is off on a different system with a network connecting them.<br /><br />So, when an RCP is made, the arguments are passed to a remote procedure and the caller waits for a response or a timeout.  Each incoming request to a server usually spawns a new thread, and a thread in the client issues an RPC and then waits, and resumes execution when it receives a reply.<br /><br />RPC-based code needs to do three things:<br /><ol><li>Specify the protocol for client-server communication</li><ul><li>The protocol is created by <em>stubs</em>, which are generated by a protocol compiler.  A stub is a routine that doesn&#8217;t do much other than to declare itself and the parameters it accepts &#8211; just enough to allow it to be compiled and linked.</li></ul><li>Develop the client program, which will call the remote procedure, pass it the required data, and receive returned data</li><li>Develop the server program, which will register the procedures that may be called by a client, and receive/return data required for processing.</li></ol><br />So, an RPC application uses classes made by the stub generator to execute an RPC, and then wait for it to finish.<br /><br />Some errors that may happen in RPC programming are binding errors, which will happen when a server isn&#8217;t running when a client is started); or version mismatches, if a client compiled against an outdated version of the server.  Timeouts will occur in the case of a server crash, network problem, or client computer problem.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TSN28QczM5I/AAAAAAAAADc/gDZxppbry4c/s1600/DSC_1015.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="240" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TSN28QczM5I/AAAAAAAAADc/gDZxppbry4c/s320/DSC_1015.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://sisinmaru.blog17.fc2.com/blog-entry-47.html">source</a>)</td></tr></tbody></table><br />Sources:<br /><a href="http://code.google.com/edu/parallel/dsd-tutorial.html">Google: Introduction to Distributed System Design</a><br />Lecture notes</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/distributed-systems/'>distributed systems</a>, <a class='category' href='/blog/categories/notes/'>notes</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/04/green-tea-cupcakes/">Green Tea Cupcakes</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-04T00:00:00-08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TSNlnVx-gAI/AAAAAAAAADA/BHAAV2qvsCc/s1600/DSC_0334_2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TSNlnVx-gAI/AAAAAAAAADA/BHAAV2qvsCc/s640/DSC_0334_2.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">mmmmm (pic by heatherchan)</td></tr></tbody></table><br />Yesterday Heatherchan came over and we made green tea cupcakes! <span class="shh">Also personally known to me as my cupcakes of revenge.</span> <em>Matcha</em> (抹茶) or green tea is a lovely/bitter powdered substance.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TSNoBFDqhRI/AAAAAAAAADM/K56Ce_KrZjM/s1600/DSC_0326_2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TSNoBFDqhRI/AAAAAAAAADM/K56Ce_KrZjM/s640/DSC_0326_2.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">i got this matcha from the internet somewhere<br />(pic by heatherchan)</td></tr></tbody></table><br />The cupcakes that I&#8217;ve made with green tea have the matcha flavor without too much bitterness.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TSNomdIq9hI/AAAAAAAAADQ/Uk9ctDoNDwg/s1600/DSC_0322_2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TSNomdIq9hI/AAAAAAAAADQ/Uk9ctDoNDwg/s640/DSC_0322_2.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">warm, not-too-sweet revenge<br />(pic by heatherchan)</td></tr></tbody></table><br />I altered/took the recipe from Taken/altered from a recipe <a href="http://www.eatmedelicious.com/2007/07/matcha-green-tea-cupcakes.html">here</a>.  It makes a batch of about <strong>24 cupcakes</strong>:<br /><br /><br /><strong>Ingredients</strong><br /><ul><li>1 cup (2 sticks) unsalted butter, room temperature</li><li>1 3/4 cups sugar</li><li>2 large eggs</li><li>2 large egg whites</li><li>3 cups all-purpose flour</li><li>2 teaspoons baking powder</li><li>1/8 teaspoon salt</li><li>1 cup milk</li><li>2 tablespoons matcha</li></ul><br /><strong>Instructions</strong><br /><ol><li>Preheat oven to 350 degrees.</li><li>If you&#8217;ve got your roommate&#8217;s plastic-rubber cupcake things, you&#8217;re all set.  Else, prepare paper cupcake things by spraying with butter stuff&#8230;I guess.  (This recipe apparently also makes a cake, so you could butter up a 1/2 pan.)</li><li>Put the butter in a mixing bowl.  Grab some object from your roommate that looks like it could suffice for mixing.  (I use a cake icing spreader, but a spatula will probably work too.) Sit down on the ground, set the bowl between your thighs, and beat furiously.  You could think about that ex-whatever that you had <span class="shh"><strike>(but avoid thinking about how green tea is his favorite flavor&#8230;oh)</strike></span>.  At the end, the butter should be kind of whippy.</li><li>Add sugar.  Repeat the between-legs beating thing.  The mixture should be light and fluffy and could possibly be on your pants and the cuff of your shirt.</li><li>Beat two eggs with a fork and add it to the mixture.  Walk around the kitchen if you want.  Skip some songs on your iPod until you have something sort of fast-paced. (Last Alliance&#8217;s &#8220;Katahiza no Yogore&#8221; is good.) By now your arm might be getting kind of tired.  Don&#8217;t worry.  Just keep thinking about green tea cupcakes.</li><li>Separate the whites from another two eggs, beat the whites with a fork, and add, and mix until&#8230;everything&#8217;s all mixed together.  <strong>Optional:</strong> You might accidentally allow the yolk to bleed into the whites.  This is (probably) okay.  Add it anyway.  <strong>Extra note:</strong> The initial recipe actually called for two yolks, but I read it as &#8220;whites&#8221; somehow, so&#8230;well&#8230;by the time of this writing I&#8217;ve actually made this recipe a couple of times, and it worked both ways, pretty much. <strong>Also:</strong> Save the yolks for breakfast tomorrow!</li><li><strike>Whisk</strike> Grab another fork and another bowl and mix together flour, baking powder, and salt in a bowl.  Add to batter and mix to combine.</li><li>Mix matcha in with the milk. Add to the batter and mix until combine.</li><li>Pour into cupcake things, about 3/4 of the way up.</li><li>Bake for 22-25 minutes until a cake tester comes out clean.</li><li>Remove from baking pans and then put something on them.  My favorite topping is cream cheese icing, but this time around we only put more green tea, which had the unfortunate side-effect of making the cupcakes look ominously moldy.</li><li>Set on a plate and offer to your roommates.  Take a bunch of pictures, pour out some sake, and consume~</li></ol><br /><strong>Notes:</strong><br />The green tea flavor in the cake is pretty subtle, so if you like matcha then you could probably get away with adding more.  I&#8217;ve tried using a matcha/sugar composite that I found in a store somewhere, but also powdered matcha itself, and they were both pretty good.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TSNrH_qbC7I/AAAAAAAAADY/NvZNYUUkNfQ/s1600/green+tea+cut.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TSNrH_qbC7I/AAAAAAAAADY/NvZNYUUkNfQ/s640/green+tea+cut.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">cupcake made with pure matcha</td></tr></tbody></table><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TSNrGLccecI/AAAAAAAAADU/_pdrQWkdIgI/s1600/green+tea.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TSNrGLccecI/AAAAAAAAADU/_pdrQWkdIgI/s640/green+tea.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">cupcake with matcha/sugar mix</td></tr></tbody></table></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/baking/'>baking</a>, <a class='category' href='/blog/categories/food/'>food</a>, <a class='category' href='/blog/categories/lol/'>lol</a>, <a class='category' href='/blog/categories/photo/'>photo</a>, <a class='category' href='/blog/categories/recipe/'>recipe</a>
   
 </span>
 
