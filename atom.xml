@@ -4,7 +4,7 @@
   <title><![CDATA[liwanag]]></title>
   <link href="http://blog.neauro.com/atom.xml" rel="self"/>
   <link href="http://blog.neauro.com/"/>
-  <updated>2014-02-18T10:18:09-08:00</updated>
+  <updated>2014-02-23T09:29:02-08:00</updated>
   <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
@@ -12,6 +12,283 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ConveyUX 2014, by Blink]]></title>
+    <link href="http://blog.neauro.com/blog/2014/02/23/convey-ux-notes/"/>
+    <updated>2014-02-23T08:48:33-08:00</updated>
+    <id>http://blog.neauro.com/blog/2014/02/23/convey-ux-notes</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/convey1.jpg" alt="First pages of my notes from ConveyUX"/></p>
+
+<p class="caption">first page of my notes from ConveyUX. all pages in their full nearly-illegible glory at <a href="http://neauro.tumblr.com/post/77602386103/finally-got-around-to-summarizing-all-the-notes-i">at my tumblr</a></p>
+
+
+<p>This past week I attended <a href="http://www.conveyux.com/">ConveyUX</a>, a now two-year-old UX conference presented by <a href="http://www.blinkux.com/">Blink</a>. I also attended last year, and was impressed by the growth that this conference has had since then. There were over twice the number of attendees, and everyone was incredibly friendly. Don Norman was the keynote speaker and I got him to sign my copy of <em>The Design of Everyday Things</em>!</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/doet.jpg" alt="The inside cover of Design of Everyday Things, and signature of its author, Don Norman"/></p>
+
+<p class="caption">yess!</p>
+
+
+<p>I took a lot of notes — not so much to help me remember stuff later (though notes are helpful for that purpose), but because it helps keep my mind from wandering, and helps ideas stick more tightly.</p>
+
+<p>The following are some of the interesting ideas I came away with from the talks I attended.</p>
+
+<h2>Day 1 Talks</h2>
+
+
+<h3>Keynote, Don Norman</h3>
+
+
+<ul>
+<li>UX is not about websites, it&#8217;s about life.</li>
+<li>Putting a picture of a button on a screen does not &#8220;afford&#8221; touching; it &#8220;signifies&#8221; that the user should touch</li>
+<li>Designers pride themselves on answering the right question, and not on solving the exact problem they&#8217;re trying to solve</li>
+<li>(Don) Norman&#8217;s Law: the day the product team is assembled, it&#8217;s over budget and behind schedule. (lolz)</li>
+<li>The most powerful questions are stupid: question fundamentals and change the world</li>
+<li>For people struggling with managers, remember: who are your users? It&#8217;s not the customers. It&#8217;s the people who are using you, your employers</li>
+<li>&#8220;Marketing was absolutely right to put a button on the radio that was labeled &#8216;better sound,&#8217; because otherwise people wouldn&#8217;t know it was there.&#8221;</li>
+</ul>
+
+
+
+
+<h3>Beyond Usable: Mapping Emotion to Experience, Kelly Goto</h3>
+
+
+<ul>
+<li><em>youyuu</em>: a Japanese idea related to &#8220;enjoying the time that you have between events;&#8221; for this, you arrive early and cherish the extra time you have</li>
+<li>&#8220;All our fields are moving so fast that we have no <em>youyuu</em></li>
+<li>It&#8217;s powerful to be present</li>
+<li>Kano surveys: you&#8217;re not impressed by a cup that doesn&#8217;t leak, but &#8220;not leaking&#8221; is necessary to function</li>
+<li><a href="http://en.wikipedia.org/wiki/Kansei_engineering">Kansei engineering</a>: aims the development or improvement of products and services by translating customer&#8217;s psychological feelings and needs into product design</li>
+<li>Keep drilling down into user&#8217;s experiences. Why why why do they enjoy something? What are the &#8220;kansei&#8221; words?</li>
+<li><a href="https://dscout.com/">Dscout</a>: see what people are doing on a daily basis</li>
+<li>Kaizen: continuous improvement — everyday — with everyone — everywhere.</li>
+</ul>
+
+
+
+
+<h3>Right Experience, Right People, Phillip Hunter</h3>
+
+
+<ul>
+<li>&#8220;Have you ever been to a restaurant that was just fine, but you&#8217;d never go back?&#8221;</li>
+<li>UX for &#8220;real people&#8221; is going to the dentist</li>
+<li>Google &#8220;mad at my phone&#8221; — there are millions of hits</li>
+<li>&#8220;Experiential equalities must be distinguished from properties of objects&#8221; — C. I. Lewis</li>
+<li>Qualia: intangible things that make up our experience. ex. our responses to color, taste, pain</li>
+<li>There are no &#8220;good&#8221; and &#8220;bad&#8221; words to describe experiences; for example, video games are &#8220;hard to use,&#8221; but this is makes them great games</li>
+</ul>
+
+
+
+
+<h3>Beyond Gamification, Catt Small</h3>
+
+
+<ul>
+<li>The field is constantly expanding because people are coming in and bringing their previous fields with them</li>
+<li>Since 2011, more smartphones have sold than computers</li>
+<li>Game players and game makers connect to each other with easter eggs</li>
+<li><a href="https://www.google.com/#q=zerg+rush">Zerg Rush!</a></li>
+<li>Capitalize on emotions for memorability</li>
+</ul>
+
+
+
+
+<h3>Designing for Engagement, Susan Weinschenk</h3>
+
+
+<ul>
+<li>People do as little as possible</li>
+<li>People have a maximum of 20 minutes of thinking time</li>
+<li>Most mental processing is unconscious — ex. you know what a penny looks like, but wouldn&#8217;t usually know how to draw one from memory.</li>
+<li>People can only deal with remembering 3 or 4 things (not 7).</li>
+<li>More people stopped to see jam when there were 24 jars; but more people BOUGHT jars when there were only 6 displayed.</li>
+<li>People are more motivated by fear of loss than anticipation of gain.</li>
+<li>People expect technology to follow human-to-human interaction rules. Thus don&#8217;t use phrases like &#8220;book a copy of the book from the full bib page.&#8221;</li>
+</ul>
+
+
+
+
+<h3>How to Get People to Do Stuff, Susan Weinschenk</h3>
+
+
+<ul>
+<li>People&#8217;s &#8220;self stories&#8221; govern who they think they are and what they do; so if you want to get them to do something, change those self stories. On that note, words like &#8220;Be a Donor&#8221; are more effective than &#8220;Donate now!&#8221;</li>
+<li>You can tell when someone is doing &#8220;slow&#8221; thinking — their pupils dilate.</li>
+<li>People solve logical problems correctly when the problem is written in a hard-to-read font.</li>
+<li>SALE ON SOUP! If &#8220;limit of 10 cans&#8221; on the sign, then people buy 7 cans on average; if &#8220;no limit&#8221; is written, people buy 3.</li>
+<li>To get people to build a habit around your product, tie it into someone people already do habitually, like checking e-mail in the morning.</li>
+</ul>
+
+
+
+
+<h2>Day 2 Talks</h2>
+
+
+<h3>Content &amp; Control, Sara Wachter-Boettcher</h3>
+
+
+<ul>
+<li>Content reveals a company&#8217;s values, beliefs, and baggage</li>
+<li>Don&#8217;t divide people into &#8220;the website team&#8221; and &#8220;everyone else;&#8221; when you let people into the process and help design style guide rules (and such), they get invested, and will actually follow the rules they&#8217;ve made for themselves, rather than the &#8220;arbitrary&#8221; style and design guides you&#8217;ve imposed on them</li>
+</ul>
+
+
+
+
+<h3>What We Can Leaern From Digital Outcasts, Kel Smith</h3>
+
+
+<ul>
+<li>People think &#8220;accessibility isn&#8217;t innovative,&#8221; but what requires more creativity than working underneath extreme constraints? Things like Hummers and Tang have already been created under incredible constraints.</li>
+<li>The typewriter was invented for a blind person who could not write</li>
+<li>&#8220;The future has arrived, it&#8217;s just not evenly distributed yet.&#8221; — William Gibson</li>
+<li>Competence is a spectrum, not a binary.</li>
+<li>Empathy allows for you to change &#8220;unchangeable&#8221; attributes</li> 
+</ul>
+
+
+
+
+<h3>The Four Most Common Mistakes in Mobile/Web App Designs, Mike Mace</h3>
+
+
+<ul>
+<li>DON&#8217;T make text too small, older folks can&#8217;t read it</li>
+<li>DON&#8217;T have low contrast; the sun will wash out words! (For that matter, test your interfaces outside)</li>
+<li>DON&#8217;T use sliders; they&#8217;re too hard to adjust when there are too many values.</li>
+<li>Respond fast.</li>
+<li>Provide help, not tooltips (that people on mobile don&#8217;t discover as easily)</li>
+<li>DON&#8217;T have an unintuitive success path.</li>
+<li>Mobile is &#8220;short attention span theatre;&#8221; people often forget what they&#8217;re doing or don&#8217;t understand.</li>
+</ul>
+
+
+
+
+<h3>Collaging: Getting Answers to the Questions You Didn&#8217;t Know to Ask, Kyle Soucy</h3>
+
+
+<ul>
+<li>Collaging is a &#8220;need evaluation&#8221; technique.</li>
+<li>Honestly, collaging is great and <a href="http://uxdesign.smashingmagazine.com/2012/02/06/collaging-getting-answers-questions-you-dont-know-ask/">this article</a> describes it better than I could here.</li>
+</ul>
+
+
+
+
+<h3>Agile UX: Embrace or Tolerate? Rob Keefer</h3>
+
+
+<ul>
+<li>People who struggle with agile dev so do because devs take over and do &#8220;cowboy development&#8221;</li>
+<li>Agile is developer-centric. There&#8217;s little time for design or testing.</li>
+<li>Remind people to value people over features, feedback over opinion, ease of use over ease of development, discovery over documentation (ex. don&#8217;t handhold)</li>
+<li>Doing things together is better!</li>
+</ul>
+
+
+
+
+<h2>Day 3 Talks</h2>
+
+
+<h3>Writing Great Persona Stories, Whitney Quesenbery</h3>
+
+
+<ul>
+<li>Stories are important because they help us remember people who are not in the room.</li>
+<li>Persona stories help communicate patterns of use</li>
+<li>If you don&#8217;t include people with disabilities in the beginning, they&#8217;re not going to be included later</li>
+<li>You might know your audience, but do you know how to use your knowledge of them?</li>
+<li>Make sure your stories are connecting people emotionally to your work. It&#8217;s the individual story that gets you to donate and work for someone, not the numbers of people that need help.</li>
+<li>Don&#8217;t tell stories of how your users are dumb, but of how they accomplish things</li>
+</ul>
+
+
+
+
+<h3>Tools for Mobile UX Design, Steven Hoober</h3>
+
+
+<ul>
+<li>To design for mobile:
+<ol>
+<li>DON&#8217;T draw (until you understand your solution). Otherwise, you&#8217;re going to lock yourself into interactions and events that might not even answer the problem.</li>
+<li>Ecosystems first. Figure out your user flows and platforms.</li>
+<li>Experience mobile daily. If you&#8217;re going to design for a Blackberry, get one.</li>
+<li>Work at scale. (ex. don&#8217;t work on mockups that aren&#8217;t at phone size)</li>
+<li>Annotate, describe, understand.</li>
+<li>Evaluate (early, as much as you can, before release).</li>
+</ol></li>
+<li>Define your design. What are the goals and objectives of your users and organization? What are users doing now to solve the problem you are trying to help them with?</li>
+<li>If you structure your processes correctly, they will be collaborative.</li>
+<li><a href="http://getlaunch.com">LAUNCH</a>: mobile prototyping</li>
+<li>Describing is more powerful than prototyping. Specying with words encourages people to design more lightweight-ly. ex. &#8220;use default icons&#8221; instead of finding logos to display at the right size and color for your prototype</li>
+<li>Evaluate: Does your information architecture make sense? Are there errors? Is there a &#8220;happy path&#8221;? ARE YOU LYING?</li>
+</ul>
+
+
+
+
+<h3>Anticipatory Services &amp; Ambient Personalisation, Oli Shaw</h3>
+
+
+<ul>
+<li>What&#8217;s our relationship to the invisible services that power our work?</li>
+<li>&#8220;You don&#8217;t know what&#8217;s going on in that black box, but install it and we&#8217;ll give you lower car insurance&#8221; — how can this be expanded?</li>
+<li>Uninvited personalisation is becoming more creepy</li>
+<li>London trash bins that are tracking wifi-connected smartphones: can tell who you&#8217;re with, where you work, where you&#8217;re at&#8230;.technology is evolving faster than our laws can protect us</li>
+<li>It&#8217;s the designer&#8217;s responsibility to push back and protect users</li>
+<li>DON&#8217;T patronize, obscure, confuse, dictate</li>
+<li>DO use discretion, appropriate, be relevant, and empathize.</li>
+<li>Design a relationship, not just an experience.</li>
+</ul>
+
+
+
+
+<h3>The World is a Screen, Andrew Hinton</h3>
+
+
+<ul>
+<li>&#8220;All our cognition is embedded&#8230;brains evolved in the service of cognition&#8221;</li>
+<li>&#8220;information is elements in the environment that tells us what the environment affords&#8221;</li>
+<li>Perception only exists insofar as we perceive affordances&#8230;&#8221; You don&#8217;t perceive anything unless you understand its structure and how to interact with it.</li>
+<li>Before being literate was a thing, buildings were the way we told stories — cathedrals, gargoyles&#8230;</li>
+<li>The way we talk and write about our shared environment makes that environment. ex. be careful about assuming things like &#8220;the TV is the second screen&#8221; — this isn&#8217;t true for everyone.</li>
+<li>Avocado: an app for couples that lets them send hugs to each other.</li>
+<li>Check: are the rules behind the environment clearly expressed in its information?</li>
+</ul>
+
+
+
+
+<h3>How People Really Touch and Feel, Steve Hoober</h3>
+
+
+<ul>
+<li>Mobile traffic outnumbers web traffic</li>
+<li>&#8220;phablet&#8221; — a phone tablet. omg</li>
+<li>People will slow to tap the edges of their phone screen; they are more inaccurate there</li>
+<li>Make sure your simple interactions just work before moving on to delightful animation</li>
+<li>Be consistent — make hitboxes conventionally large.</li>
+<li>A rule of thumb: don&#8217;t pr stuff about the target below the target, ex. with carousels, don&#8217;t put labels beneath the pictures because people&#8217;s thumbs will cover it.</li>
+<li>Minimum size of hitbox: 6mm. Preferred size: 8mm.</li>
+<li>Watch out for interference! Make a circle 8mm in diameter and center it on your hitbox. If the circle intersects with other items, those items will interfere.</li>
+<li>Anything in the edges of the screen or the top and bottom borders should be big.</li>
+<li>Design by zones. Put things you want people to use on the center.</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Champion, Marie Lu]]></title>
@@ -971,67 +1248,6 @@ But her assassin&#8217;s skills are little comfort when the convent returns her 
 <p>It&rsquo;s pretty hilarious to watch the footage of killer whales hunting seals in the first documentary, with a voiceover of a man marveling at their intelligence; and to watch this footage again in the second, where the background noise is preserved, and a woman is panicking, &ldquo;Oh no! Oh no! <em>On noooo</em>!&rdquo;</p>
 
 <p><em>Blackfish</em> also connected nicely with the last essay in <a href="http://www.amazon.com/Best-American-Science-Nature-Writing/dp/0547350635">The Best American Science and Nature Writing (2011)</a>, though the writer states there that one of the orca trainers was pulled by her hair into the water, whereas trainers in the <em>Blackfish</em> movie argue that this is a lie, another way to &ldquo;blame the victim&rdquo; of the orca attack, rather than the orca itself and the poor treatment that drove it to &ldquo;psychopathy.&rdquo;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Frozen]]></title>
-    <link href="http://blog.neauro.com/blog/2013/12/18/frozen/"/>
-    <updated>2013-12-18T09:24:39-08:00</updated>
-    <id>http://blog.neauro.com/blog/2013/12/18/frozen</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/frozen-poster.jpg" alt="Frozen poster"/></p>
-
-<p class="caption">(<A href="http://www.comingsoon.net/news/movienews.php?id=109012">via</a>)</p>
-
-
-<p>A and I went to see <em>Frozen</em>, a movie I had very little interest in seeing until I realized Idina Menzel was voicing a main character. There&rsquo;s been a lot said already for the lack of diversity amongst the characters (regarding both <a href="">race</a>, as well as <a href="http://sapphicdalliances.tumblr.com/post/68881922280">the representation of women</a>) and my disappointment about these issues in <em>Frozen</em> has exhausted me utterly. I don&rsquo;t want to talk about it. Instead, I want to note aspects of the overall story that A and I discussed after the movie.</p>
-
-<p>[ spoilers ahead ]</p>
-
-<h2><em>Frozen</em> is about Elsa and Anna</h2>
-
-<p>This is great. From the trailers, there was almost no indication that the story&rsquo;s main conflict involved the relationship between two women. Anna struggles somewhat with the men in the story, and though she desires &ldquo;true love&rdquo; at its beginning, lovers never usurp her existing relationship with her sister. At the end, Anna even plays the main role in saving both Elsa and herself, through the power of ~<em>True Love</em>~! Hurray!</p>
-
-<h2>But what does <em>Frozen</em> do with &ldquo;True Love&rdquo;?</h2>
-
-<p>&ldquo;True Love&rdquo; seems to be Frozen&rsquo;s main theme. Elsa&rsquo;s version of True Love is &ldquo;Don&rsquo;t harm those who you love,&rdquo; and requires her to isolate herself as a precaution to harming her sister; the fact that doing so makes both her and Anna unhappy are not as important as Anna&rsquo;s safety. At the end of the movie, Elsa realizes (somewhat abruptly) that her version of True Love is flawed, presumably because it&rsquo;s more about fearing herself, rather than loving someone else. (…right? This actually happened so suddenly that I&rsquo;m just going to believe that this is the case.)</p>
-
-<p>In contrast, Anna&rsquo;s version of true love — which could be described as &ldquo;Always believe in someone that you love&rdquo; — has absolutely no fear involved. Despite everyone&rsquo;s warnings and panic, Anna continues to believe the best of Elsa, even when Elsa actually <em>does</em> harm her.</p>
-
-<p>I like how Elsa and Anna&rsquo;s interpretations of love clash in this movie, but one thing I don&rsquo;t like is that, though Elsa&rsquo;s view of love evolves by the end of the movie, Anna&rsquo;s view remains static. From the beginning Anna is the same &ldquo;open to loving people!&rdquo; character that she&rsquo;s shown to be from the beginning, despite events that show people can harm her: Elsa ostracizes her, Love Interest #1 (Hans) betrays her. That these events don&rsquo;t change her outlook on life feels like a waste; rather than actively choosing to love people, for Anna it&rsquo;s just a given, and this takes away from her complexity and agency as a character.</p>
-
-<p>What&rsquo;s worse is that the events of the movie are put into motion by Elsa&rsquo;s fear that she might kill Anna, and by the end of the movie, it&rsquo;s revealed that there was no way that Elsa could have ever killed Anna at all. The entire time, Anna had a magical understanding of &ldquo;True Love&rdquo; that could have <em>always</em> saved her from Elsa&rsquo;s power, which makes the entire plot somewhat of a non-issue.</p>
-
-<h2>And what did the other characters do?</h2>
-
-<p>Given that the movie&rsquo;s main conflict is Elsa and Anna&rsquo;s relationship, and true love, the other major characters — Kristoff, Olaf, and Hans — all felt thrown in. I would have loved to see them all focused to serve the &ldquo;true love&rdquo; theme by addressing love in different ways. Treated differently, Kristoff could have been a great catalyst for Anna&rsquo;s development of her version of love. I&rsquo;m inagining him, a character distrusting of other humans, teaching her about the horrible things humans do; she fights it (&ldquo;No way, humans are inherently Lawful Good!&rdquo;); Kristoff then points out that her sister is laying waste to their kingdom and also has been pretty mean in general to people; Anna cracks a bit; and then, right on cue, Anna is betrayed again by Hans.</p>
-
-<p><img class="book-cover" src="http://blog.neauro.com/images/anna.jpg" alt="Frozen poster"/></p>
-
-<p class="caption">omg will she now become totally jaded? or will she still choose looove? (<A href="http://turntherightcorner.com/2013/09/27/movie-trailer-for-disneys-frozen/disneys-frozen-2013-screenshot-princess-anna/">via</a>)</p>
-
-
-<p>Kristoff&rsquo;s dislike of humans is played up without explanation of how it came to be, as if he had simply dropped out of the sky as a perfectly-formed gruff male love interest. I would have loved to see more time spent on him and his relationship with Sven and the snow trolls, rather than other seemingly extraneous details of his character. For example, why is it important that Kristoff is an ice merchant, and what was the point of the opening scene that is dedicated to showing his childlike failure at selling ice? You learn later that Kristoff was adopted by the trolls, and distrusts other humans; so if Kristoff was actually homeless at the beginning of the movie, why did he have a sled and ice-harvesting tools at his disposal? (Or was he not homeless? Are we just supposed to be okay with his abduction?) My headcanon involves Kristoff having saved Sven from the cruelties of humans in his life — meeting the trolls — realizing that they&rsquo;re way better.</p>
-
-<p>Olaf was a character I grimaced at in the movie trailers and ended up being pleasantly entertained by.</p>
-
-<p><img class="book-cover" src="http://blog.neauro.com/images/olaf.gif" alt="Frozen poster"/></p>
-
-<p class="caption">oh youu (<A href="http://worldbuiltfor2.tumblr.com/post/69015715475/when-someone-emotionally-hurts-you-but-you-have-to">via</a>)</p>
-
-
-<p>Even though his main purpose is comedic entertainment, it would have been nice to see more about what he means to Anna and Elsa&rsquo;s relationship. He&rsquo;s their precious childhood snowman, and is really the only indication Anna has that Elsa still treasures her after years of being isolated.</p>
-
-<p><img class="book-cover" src="http://blog.neauro.com/images/olaf.jpg" alt="Frozen poster"/></p>
-
-<p class="caption">love again, anna! do iiit! (<A href="http://www.rotoscopers.com/2013/09/27/ten-things-we-loved-about-the-new-frozen-trailer/">via</a>)</p>
-
-
-<p>As for the last major-ish character, Hans: I wasn&rsquo;t too interested in him, and wish that all the time devoted to him was given to the other characters instead. Hans is too flat, an antagonist that comes out of nowhere, affects no one uniquely, and isn&rsquo;t redeemed. Anna could have been betrayed by any other person; Kristoff could have found any other, more character-specific reason to back off from being with Anna.</p>
-
-<h2>In conclusion</h2>
-
-<p>I had a lot of fun watching <em>Frozen</em>, particularly with the ~<em>twist</em>~ of Anna saving herself. And her kiss at the end with Kristoff was such consensual wow! Also, the particle effects were great.</p>
 ]]></content>
   </entry>
   

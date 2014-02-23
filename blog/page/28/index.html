@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Intro to Distributed Systems Jan 4th, 2011 So, for now at least, I&#8217;m taking a class on distributed systems. Google has a good tutorial on what &hellip;">
+  <meta name="description" content="Remote Procedure Calls (RPC) Jan 4th, 2011 What is a remote procedure call (RPC)?RPC is a paradigm for providing communication across a network &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/04/remote-procedure-calls-rpc/">Remote Procedure Calls (RPC)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-04T00:00:00-08:00" pubdate data-updated="true">Jan 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">What is a remote procedure call (RPC)?</span><br />RPC is a paradigm for providing communication across a network between programs written in a high-level language.  &#8220;Procedure calls&#8221; in general are a well-known and well-understood way of transferring control and data within a program on a single computer &#8211; a program calls a procedure, giving it certain arguments, and receives some output from the procedure back.  So, a remote procedure call &#8211; when a program calls a procedure that is not necessarily on the same system that the program is on &#8211; should be workable as well.<br /><br />An RPC &#8220;cycle&#8221; goes like this:<br /><ol><li>A remote procedure is invoked by a caller, who passes the procedure parameters</li><li>The caller&#8217;s environment is suspended as it waits for a response</li><li>The parameters are passed across the network to the environment where the procedure will execute</li><li>The desired procedure is executed</li><li>When the procedure finishes executing, the results are passed back to the calling environment</li><li>The caller&#8217;s environment resumes with the new data (or else fails, I assume, because of a timeout&#8230;though the &#8220;Implemented remote procedure calls&#8221; didn&#8217;t use timeouts, since single-machine systems don&#8217;t)</li></ol><br /><br /><span class="sig">What are the advantages of RPC?</span><br /><ol><li><strong>Clean and simple semantics.</strong>  <a href="http://nuubu.blogspot.com/2011/01/intro-to-distributed-systems.html">Distributed systems</a> are complicated because communication throughout one is complicated, so simplicity is good.</li><li><strong>Simplicity.</strong>  Which means it&#8217;s probably fast.</li><li><strong>Generality.</strong>  Procedure calls work in single-machine systems, besides being usable in distributed systems.</li></ol><br /><br /><span class="sig">What are the disadvantages of RPC?</span><br />There are some design issues &#8211;<br /><ul><li>What semantics do you use when the machine fails, or when communication fails?</li><li>What are the semantics when a caller does something address-specific, and the caller and callee don&#8217;t have a shared address space?</li><li>How do you integrate RPC into existing/future programming systems?</li><li>How does a caller figure out the location and identity of the procedure it wants?</li><li>What&#8217;s a suitable protocol for the transfer of data?</li><li>How do you provide data integrity and security in an open communication network?</li></ul><br /><br /><span class="sig">Really general implementation</span><br />The structure of RPC is based on the concept of <em>stubs</em>; the parts of the program involved in an RPC (the user, the user-stub, the RPC communications package, the server-stub, and the server) are all executed on their respective places, and when a user wants to use an RPC, it really just calls its user-stub, which is what makes the RPC.  This way, specifying the target procedure and the arguments is sent in a &#8220;call packet&#8221; to the server-side stuff, which is handled similarly: the server-stub unpacks the packet, makes a local call to the procedure on the server, and packs it up again in a &#8220;result packet&#8221; to be sent to the caller.  This serves to encapsulate everything (I think?).<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TSPV2_29a7I/AAAAAAAAADs/WoPFIW0-3zM/s1600/rpc%2Bstubs.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="161" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TSPV2_29a7I/AAAAAAAAADs/WoPFIW0-3zM/s320/rpc%2Bstubs.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">from &#8220;Implementing Remote Procedure Calls&#8221;</td></tr></tbody></table><br />The RPCRuntime handles the actual handling-off between the user-stub and the server-stub.<br /><br />The semantics of RPCs can also be handled without needing a specialized packet-level protocol.  <br /><br /><br /><span class="sig">Other notes:</span><br /><ul><li>RPC is supposed to make distributed computation more easy; in the &#8220;Implementing Remote Procedure Calls&#8221; paper, the authors hoped to solve the difficulty of distributed systems communication and leave only the problems of timing, independent failure of components, and the coexistence of independent execution environments.</li></ul><br /><br />Source:<br /><a href="http://portal.acm.org/citation.cfm?id=357392">Andrew Birrell and Bruce Nelson. Implementing Remote Procedure Calls. ACM TOCS 1984.</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/distributed-systems/'>distributed systems</a>, <a class='category' href='/blog/categories/notes/'>notes</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -513,52 +559,6 @@ did this work?  i am having the same problem and i am going nuts with tech suppo
 <span class="categories">
   
     <a class='category' href='/blog/categories/troubleshooting/'>troubleshooting</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/12/26/9-hours-9-persons-9-doors/">9 Hours, 9 Persons, 9 Doors</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-12-26T00:00:00-08:00" pubdate data-updated="true">Dec 26<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TRglhlGN08I/AAAAAAAAABA/PNpzNMGiJPM/s1600/615TUJ3mI1L._SL500_.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="287" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TRglhlGN08I/AAAAAAAAABA/PNpzNMGiJPM/s320/615TUJ3mI1L._SL500_.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://pul.se/Gamertell-Review-999-9-Hours-9-Persons-9-Doors-for-DS_Gaming-Reviews-Exclusives-Originals-Handhelds-PSP-and-PSPgo-Game-Companies-Developers-Publishers-Genres-2D-Adventure-Game-Genres-Other-2nJObgsL997,uqCjaOHySfE">source</a>)</td></tr></tbody></table><br />Purchased this at the last leg of autumn quarter, right before finals, at which point Amazon decided to hold a sale that made me feel better about buying this at full price since I&#8217;d be getting Rune Factory 3 for $15 alongside it.  Since all the rave reviews on it made it so that it was sold out immediately at normal prices and is now being sold for $75 new, <em>best impulse buy ever</em>.  Plus, it&#8217;s the first new (which for me means it came out in the past year) game that I&#8217;ve bought since Persona 3.<br /><br /><span class="shh"><em>jock jock jock jock jock</em></span><br /><br />(spoilers, etc.)<br /><br />Even though I heard <a href="http://30ninjas.com/blog/999-9-hours-9-persons-9-doors-review-a-triumph-of-narrative">the story was pretty good</a>, I was completely unprepared for HOW COMPLETELY AMAZING IT WAS.  All of the characters, despite being pretty average for an anime cast (one loli-ish girl, one intensely well-endowed woman, one trustworthy-looking old guy, one slim main character with long brown hair and bangs, etc.), turned out to be super interesting, even the girl characters, though I found the three of them in general to be rotating between three states:<br /><ol><li>being coddled (as with Clover being sulky about Snake, or June being head-patted or cooed at)</li><li>being grumbled at/teased for being bitchy (as with Lotus, everywhere&#8230;<span class="shh">though I did really like how she turned out to be a programmer, wooo</span>)</li><li>being held hostage (all three of them)</li></ol>Also, at the end, everyone was pretty much disambiguated except for Lotus; the only thing that&#8217;s explained about her background is that she&#8217;s a mother, and other than her daughters being a part of the original experiment, her connection with the game nine years ago doesn&#8217;t seem to be as strong.  Seven was the detective who saved all the children, Ace was the object of revenge, Junpei was there for the ~*time-bending craziness*~ &#8211; but why Lotus?  Her children weren&#8217;t even prominent characters in the game nine years ago; they&#8217;re only mentioned, and their actions have no weight on the story at all.<br /><br />Plus, if Lotus is a mother who is a programmer and also well-read enough to know about prosopagnosia and the various morphic resonance experiments, why the hell is she dressed like a dancer?<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TRgvOsmT63I/AAAAAAAAABI/lvzJDGdQGrs/s1600/999-9-hours-9-persons-9-doors-20101216021437355.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="287" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TRgvOsmT63I/AAAAAAAAABI/lvzJDGdQGrs/s320/999-9-hours-9-persons-9-doors-20101216021437355.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://ds.ign.com/articles/114/1140602p2.html">source</a>)</td></tr></tbody></table><br />I mean, I&#8217;m not saying that being scantily clad, being a programmer, being well-read, being the bitch of the story, and being a mother are mutually exclusive &#8211; just that they&#8217;re all character traits that aren&#8217;t supported or explained at all, which makes Lotus completely flat.  In one otherwise great and well-thought-out narrative you have one character, a female, who is essentially just there so you can break up your visual novel and intense puzzle-ing with boobs.  But &#8211; but it&#8217;s fine, right?  She hits the men characters and knows about proso-whatever, so it&#8217;s not like she&#8217;s just there to be seen as sexual, right?<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TRgx4c-zoDI/AAAAAAAAABQ/r3HJmZldBeE/s1600/lotus2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="192" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TRgx4c-zoDI/AAAAAAAAABQ/r3HJmZldBeE/s320/lotus2.jpg" width="256" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">DUNNO, BRO. (<a href="http://voiceactingalliance.com/board/showthread.php?t=60911">source</a>)</td></tr></tbody></table><br />That was pretty much the only problem I had with a story that otherwise had me playing for nearly a week straight and throughout the night/morning by the time I reached the True Ending, though that was less a fault of compelling gameplay and more because I suddenly became terrified of everything and couldn&#8217;t sleep until around 3am.<br /><br />Other notes:<br /><ul><li>The puzzles were really great, though if you click things enough times the characters will start to explain things/give them away.  I suppose this is good for the people who would just give up in exasperation if a game is too hard (the casual players everyone tries to cater to nowadays?) but it did mean that the game is considerably easier than Nancy Drew PC games, lululu</li><li>Super great localization&#8230;everything sounds really natural and there are even video game references, <em>waaaat</em></li><li>MINDBLOWING/INTERTWINING STORYLINES FTW &lt;3</li></ul></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/fangirling/'>fangirling</a>, <a class='category' href='/blog/categories/game-recs/'>game recs</a>, <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/story/'>story</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
   
 </span>
 
