@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Last Night Andou Asked Me, if You Started Writing a Book Right Now, What Would It Be About? Jan 18th, 2011 That morning at the last stop, when Sara &hellip;">
+  <meta name="description" content="Operating Systems Notes [Chapter 5: CPU Scheduling] Jan 18th, 2011 SchedulingRecap: multiprogramming takes advantage of the fact that no one process &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/18/operating-systems-notes-chapter-5-cpu/">Operating Systems Notes [Chapter 5: CPU Scheduling]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T00:00:00-08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">Scheduling</span><br /><a href="http://nuubu.blogspot.com/2011/01/operating-system-notes-chapter-1.html">Recap</a>: <strong>multiprogramming</strong> takes advantage of the fact that no one process can keep the CPU busy at all times, so the CPU switches between different jobs so that it&#8217;s always busy executing something.  This makes the computer more productive in general.<br /><br />A process is comprised of an address space, OS resources, and <em>at least one thread of execution</em>, and it&#8217;s threads that get scheduled.  The operating system specifically schedules kernel-threads, which are threads of execution for programs that are part of the kernel.<br /><br />Scheduling is what a scheduler does.  Scheduling is concerned with two things:<ol><li>How long will the current process run on the CPU?</li><li>What process will get the CPU next?</li></ol><br />Actually, resources other than the CPU can be scheduled, like threads or devices or I/O access or pretty much everything else in a computer.  But, for now, just the CPU.<br /><br />Some challenges to scheduler design are<ul><li>There are new jobs all the time</li><li>How can you schedule a process when you&#8217;re not sure how long it will take to run completely?</li></ul><br /><br /><span class="sig">Process Cycles</span><br />Essential to scheduling is the idea that processes execute in a <strong>cycle</strong>, which is comprised of a <strong>CPU burst</strong> and an <strong>I/O burst</strong>, and then another CPU burst, and then another I/O burst, and so on until execution is terminated.<br /><br />During the CPU burst, the process is doing things like loading memory, incrementing variables, reading from file, writing to file, etc.  During the I/O burst, the process is just waiting for something (like input it needs to go on).  A program which depends a lot on I/O will have many short CPU bursts, whereas a program which is CPU-bound will have a few long CPU bursts.  CPU bursts vary hugely but tend to last around 1 or 2 milliseconds.  <span class="shh">Computers, you are amazing.</span><br /><br /><br /><span class="sig">Scheduling Schemes</span><br />The <strong>short-term scheduler</strong> (or CPU scheduler) decides, when the CPU becomes idle, what process to run from a list of processes which are ready to execute, and gives that process CPU.  The list of &#8220;ready&#8221; processes can be a queue, or a priority queue, or a tree, or a linked list, etc.<br /><br />Here&#8217;s a picture of the states of a process&#8217;s thread:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TTZSV_VgYpI/AAAAAAAAAEs/lJ40rGVHVbo/s1600/states%2Bof%2Ba%2Bthread.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="285" width="320" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TTZSV_VgYpI/AAAAAAAAAEs/lJ40rGVHVbo/s320/states%2Bof%2Ba%2Bthread.jpg" /></a></div><br /><br />The scheduler has two different types of schemes.<br /><br />In the <strong>nonpreemptive/cooperative</strong> scheduling scheme, once a process gets CPU allocated to it, the process keeps it until it terminates or goings into the waiting state.  It happens when <ul><li>a process goes from running to waiting state (i.e. because of an I/O request or when a child is being terminated)</li><li>a process terminates</li></ul><br /><strong>Preemptive</strong> scheduling is the opposite; if a process has CPU allocated to it, it still might be interrupted and have its resources allocated to another process.  Preemptive scheduling or nonpreemptive scheduling happens when<ul><li>a process switches from waiting to ready state (i.e. because completion of I/O)</li><li>a process goes from running state to ready state (i.e. because of an interrupt)</li></ul><br />In preemptive scheduling, since data is shared, you can run into concurrency problems where one of the processes sharing data alters it while others are reading it, giving everyone else different information then you may have intended them to have.<br /><br />Since interrupts can happen at any time, and since they can&#8217;t always be ignored by the kernel, code that can be affected by interrupts by be guarded from being used by something else, probably using mutexes, though the book doesn&#8217;t say that right now.<br /><br /><br /><span class="sig">Dispatcher</span><br />The dispatcher is what grants a process control to the CPU, once its been scheduled to have it.  The dispatcher takes care of switching context, switching to user mode, and jumping to the proper space in the user program to execute.<br /><br /><br /><span class="sig">Scheduling Criteria</span><br />Scheduling performance looks to do these things:<ul><li>CPU utilization: keep CPU has busy as possible</li><li>Throughput: make sure that the number of processes that are completed per unit of time is high (i.e. optimize so that 6 processes are completed per second)</li><li>Turnaround time: make sure that processes get completed fast</li><li>Waiting time: make sure that processes do not wait in the ready queue for a long time (and how long it takes a process to execute doesn&#8217;t matter)</li><li>Response time: make sure that processes&#8217; first output is fast (the ones following do as well; but response time refers to the time it takes for a process to give its first output)</li><li>Fairness: make sure that all the processes get a chance at using the resources</li><li>No starvation: make sure that no process never get a chance to run</li><li>Deadlines: make sure jobs finish by the time they need to</li><li>Thread locality: threads that are part of the same process run faster when they&#8217;re on the same processor (because they share memory), so it&#8217;s best to make sure this happens</li><li>etc: etc etc</li></ul><br />Obviously one algorithm can&#8217;t do all of these things though, so you&#8217;ll have to decide which algorithm is best for which kind of system.<br /><br /><br /><span class="sig">Scheduling Algorithms</span><br />All scheduling is concerned with is which of the processes in the ready queue should be allocated to the CPU.<br /><br />In <strong>first-come, first-served</strong> scheduling, the process that requests the CPU first gets the CPU first.  The ready queue in this case can be implemented as a FIFO queue.  The code is simple, but it&#8217;s slow.  One example of how it can be inefficient:<ol><li>In a ready queue, there&#8217;s one CPU-bound process, and many I/O-bound processes.</li><li>The CPU-bound process gets the CPU.  The I/O-bound processes wait.</li><li>The CPU-bound finishes, goes through its I/O burst.  With the CPU freed up, the I/O-bound processes use up the CPU for their CPU bursts &#8211; all quickly, since the CPU burst for an I/O-bound process is short &#8211; and then go back to the queue.</li><li>CPU is now idle, and eventually moved to the ready queue.  Once it gets the CPU, the other I/O-bound processes are left waiting again.</li></ol><br />This situation, where a lot of processes are waiting for one big processes to finish, is a <strong>convoy effect</strong>.  It means that the available CPU is lowered, and device utilization is poor.  Also, since a process that gets the CPU keeps it until the end, first-come first-serve scheduling is nonpreemptive.<br /><br /><br />In <strong>shortest-job-first scheduling</strong> (SJF), each process is associated with the length of its next CPU burst, and the process that gets chosen to have the CPU next is the one which has the smallest CPU burst.  This algorithm gives the minimum average waiting time for a given set of processes.  Disadvantage: it&#8217;s hard to know the length of the next CPU request.  Therefore, it&#8217;s best for long-term scheduling, when you can predict the length of a CPU burst since it will likely be close to the length of the CPU bursts before it.  The SJF algorithm is <em>optimal</em>, and can be either preemptive or nonpreemptive, where the difference is that the scheduler may allow interruptions to a currently running process.<br /><br /><br />The <strong>priority scheduling algorithm</strong> is a more general case of the SJF algorithm.  In this algorithm, each process is associated with a certain priority, and the processes with the greatest priority are chosen to run next.  Processes with equal priority are executed first-come, first-serve.  Priorities can be defined internally, in which case priority would be based on things like time limits or memory requirements.  Externally-defined processes would be set by criteria like whether the process is more important and stuff.<br /><br />Disadvantage: <strong>indefinite blocking</strong> or <strong>starvation</strong>, which can happen if some low-priority processes are kept waiting forever because there&#8217;s always someone more important to be resource-fed.  One solution: <strong>aging</strong>, which would increase the priority of a process the longer it&#8217;s been waiting.<br /><br /><br /><strong>Round-robin scheduling</strong> is especially for timesharing systems, and it&#8217;s like first-come first-serve scheduling but with preemption so that the system can switch between processes.  The ready queue is FIFO and circular, and the scheduler allocates CPU to each process, up to one unit of time, or a &#8220;time quantum.&#8221; Processes are chosen from the top of the ready queue and dispatched.  If the processes has a CPU burst of less than 1 time quantum, then it is allowed to continue; if not, then an interrupt will go off, and after having run for a quantum, that process will be placed at the tail of the ready queue.  This means: fairness, because all processes get a turn at the CPU, and also no starvation, because nothing will get ignored.<br /><br />Disadvantage: average waiting time if you&#8217;re going by RR scheduling is long, and the performance depends a lot on the size of the time quantum.  If it&#8217;s too large, than RR is the same as first-come first-serve; but if it&#8217;s too small, than it becomes like &#8220;processor sharing&#8221; and rather than each of n processes getting the whole CPU for a little bit, each process will get 1/nth of CPU.<br /><br /><br />In <strong>multilevel queue scheduling</strong>, processes are classified into different groups, i.e. <strong>foreground</strong> for interactive processes and <strong>background</strong> for batch processes, which have different scheduling needs.  In a multilevel queue schedule algorithm, the ready queue is split up into several separate queues and processes are assigned permanently to one queue based on some characteristic like process type or priority.  Each queue would have its own scheduling algorithm, and each queue would have its own priority, so that a lower-priority queue would be unable to execute anything until higher-priority queues are empty.<br /><br /><br /><br /><span class="sig">Thread Scheduling</span><br />Since we&#8217;re talking about the OS here, we&#8217;re talking about scheduling kernel-level threads, not user-level threads.  User-level threads are scheduled to run in a scheme using <strong>process-contention scope</strong>, where threads are chosen to run based on priority.  Kernel-threads are scheduled with <strong>system-contention scope</strong>.<br /><br /><br /><span class="sig">Other notes because I&#8217;m too lazy to finish this chapter in its entirety</span><br />If a system has multiple processors, usually each processor is allowed to schedule itself independently, with its own private queue of processes or threads.<br /><br /><br />Sources:<br /><em>Operating System Concepts (8th Edition)</em>, Silberschatz, Galvin and Gagne, ISBN 978-0-470-12872-5.<br />Class lecture 4 notes<br />Class section 3 notes</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -493,52 +539,6 @@ An operating system provides <a href="http://nuubu.blogspot.com/2011/01/operatin
 <span class="categories">
   
     <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/06/avocado-tempura/">Avocado Tempura</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-06T00:00:00-08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://www.flickr.com/photos/auroraki/4065116387/" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="424" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TSa1P1Ne_TI/AAAAAAAAAEc/d8x3in3nEos/s640/avocado%2Btop.jpg" width="640" /></a></div><br />Vegetable tempura is my favorite, and I once tried making avocado tempura, which was pretty alright, though it had kind of a strange smell and after-taste and was in general a little unremarkable.  (Better use for avocados: as a substitute for cream cheese on bagels.)<br /><br />That being said, I&#8217;m pretty sure the recipe involved doing something like this:<br /><ol><li>Cut up some firm avocadoes</li><li>Whisk around an egg</li><li>Dip the avocado pieces in egg</li><li>Roll them around in a composite of flour, salt, and pepper</li><li>Deep-fry them until the coating is browned</li><li>Eat with soy sauce and sake!</li></ol><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://www.flickr.com/photos/auroraki/4065865690/" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="424" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TSa0jsWlQEI/AAAAAAAAAEM/Rdo7V18jRj4/s640/avocado%2B2.jpg" width="640" /></a></div><br />I&#8217;m definitely going to try and find a better way to do this.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://www.flickr.com/photos/auroraki/4065119421/" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="424" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TSa0uHf0YDI/AAAAAAAAAEU/ZZe16RIhgXE/s640/avocado%2Bmany.jpg" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">not giving up on you just yet, bro</td></tr></tbody></table></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/cooking/'>cooking</a>, <a class='category' href='/blog/categories/food/'>food</a>, <a class='category' href='/blog/categories/recipe/'>recipe</a>
   
 </span>
 
