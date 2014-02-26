@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Game: Bonding Time Feb 16th, 2011 So yesterday we finally finished the atom game that me, Jimmy, Leilani, and Chris have been trying to do for the &hellip;">
+  <meta name="description" content="AAAAHHHH RAILS Feb 25th, 2011 I had a Rails work party with Joshu the other night (after which Rosanna served us basil-pesto pasta and lamb steak) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,98 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/25/aaaahhhh-rails/">AAAAHHHH RAILS</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00-08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+I had a Rails work party with Joshu the other night (after which Rosanna served us basil-pesto pasta and lamb steak) and now I just want to do EVERYTHING IN RAILS.  It is SO COOL.  It&#8217;s so easy to work with databases and set everything up&#8230;.eeeeek &lt;3<br /><br /><span class="shh">Why am I taking operating systems when what I really want to do is just make sleek Rails apps/portfolio things .____.</span><br /><br />My main resources are <a href="http://railsforzombies.org/">Rails for Zombies</a> (a pretty site with cute, intelligible tutorials and nice lab sessions <span class="shh">which I mostly skipped, but, whatever</span>) and Kelly, who&#8217;s the best. :D<br /><br />Once I can figure out something to really make, and once I figure out how to get <a href="http://heroku.com">heroku</a> working, this world is going to be so much more fun.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/fangirling/'>fangirling</a>, <a class='category' href='/blog/categories/rails/'>rails</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/02/17/operating-systems-notes-disk-caching/">Operating Systems Notes [Disk Caching, RAID Levels, Flash Memory)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-17T00:00:00-08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+This is a quick rehash of what we&#8217;ve learned in the previous week!<br /><br /><span class="sig">Disk Caching</span><br />So the OS can optimize operations done by scheduling things, either <a href="http://nuubu.blogspot.com/2011/01/operating-systems-notes-chapter-5-cpu.html">CPU</a> or <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">memory</a>.  The operating system can also schedule disk operations, which are reads/writes from/to the disk (that far-off entity which stores the data you want, yet is time-consuming and expensive to reach).<br /><br /><strong>Disk scheduling</strong> is optimized especially through <strong>disk caching</strong>.  Disk caching can come in two flavors.  <strong>Write caching</strong> is when the user has the data that they want to write to disk, and the OS, rather than writing that data directly to the disk, instead writes it to a cache.  Then, sometime later, the OS writes everything in the cache to the disk.  There&#8217;s a sort of &#8220;five minute rule&#8221; to this, where (very roughly) every &#8220;five minutes or so,&#8221; the cache gets &#8220;flushed&#8221; to disk.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-wDujboA5CPU/TV4Ffh_w4XI/AAAAAAAAAHs/qyHyYUHJcPs/s1600/writecaching.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="81" src="http://3.bp.blogspot.com/-wDujboA5CPU/TV4Ffh_w4XI/AAAAAAAAAHs/qyHyYUHJcPs/s320/writecaching.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">our TA&#8217;s lecture notes are so cool</td></tr></tbody></table><br />There&#8217;s also <strong>read caching</strong>, which is when the operating system reads data from the disk into a cache, so as to be easily and quickly accessed by the user later.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-6A1WwUsxBH8/TV4FjpY-ETI/AAAAAAAAAH0/UahzFruaJtY/s1600/readcaching.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="83" src="http://1.bp.blogspot.com/-6A1WwUsxBH8/TV4FjpY-ETI/AAAAAAAAAH0/UahzFruaJtY/s320/readcaching.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">look at this. &nbsp;just look how understandable this is</td></tr></tbody></table><br /><br />One way to take advantage of disk caching is to use <strong>memory mapped I/O</strong>.  The data in a disk cache exists in kernel space, so what&#8217;s an easy way for a process in user-space to get a hold of it?  To have the process contain a mapping directly to that disk cache!<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-OU-tACxsM5Q/TV4GYm7X0jI/AAAAAAAAAH8/BQaW5asqgME/s1600/memorymappedio.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="126" src="http://2.bp.blogspot.com/-OU-tACxsM5Q/TV4GYm7X0jI/AAAAAAAAAH8/BQaW5asqgME/s320/memorymappedio.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">these colors are just so neat</td></tr></tbody></table><br />The segment of a process&#8217;s <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">virtual address</a> which has been mapped is called a <strong>memory-mapped file</strong>; in this case, it&#8217;s the blue part.<br /><br />As the process uses the file, it may need to write to it, which means eventually that the pages that the user-space process altered will need to be flushed to disk, or written out to disk.  The OS will know which pages to write thanks to the alteration of a dirty bit.  When the ditry bit is high, that means that the page has been altered and will need to be flushed.  <span class="shh">(Somehow this whole paragraph feels a little gross&#8230;)</span><br /><br /><br /><span class="sig">RAID Levels</span><br />are another thing that we&#8217;ve been talking about in lecture.  The thing about disks in general is that though they are a pretty useful/necessary storage device for computers, they&#8217;re super messy &#8211; they run into errors all the time, like bad blocks, or missed seeks.  Part of the job of the operating system is to hide all this messy-ness from higher-level software (i.e. software that other, more sane programmers will write to be run on the computer).  The OS will provide different levels of access to different clients &#8211; for instance, allowing them to access physical disk blocks (a specific head, or cylinder of the disk) or just logical disk blocks (i.e. a program says &#8220;I want disk 6&#8221; and the OS retrieves the real location of &#8220;disk 6&#8221; itself).<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-pZ8QGur6iSg/TV4MPA-H3hI/AAAAAAAAAIE/Sv47rFhynK0/s1600/harddrive.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="223" src="http://4.bp.blogspot.com/-pZ8QGur6iSg/TV4MPA-H3hI/AAAAAAAAAIE/Sv47rFhynK0/s320/harddrive.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">this is what a disk looks like, by the way</td></tr></tbody></table><br />It takes time for an OS to find something on a disk.  The performance is based on three main things:<br /><ol><li><strong>Seeking</strong>: how long it takes to move the disk arm to the correct cylinder on the disk</li><li><strong>Rotation</strong>: how long it takes to wait for the sector you want to rotate under the head of the reader.  This depends on the rotation rate of the disk, which is not increasing that quickly, mainly because the way disks are made now, if they spin any faster they&#8217;ll fall apart</li><li><strong>Transfer</strong>: how long it takes to transfer data from the surface of the disk into the disk controller, and from there back to the process that wants the data</li></ol><br />The OS mainly tries to reduce seek times and rotation.<br /><br />So, since disk transfer rates in general are improving, and since CPU performance isn&#8217;t, what you can do to improve performance is have multiple disks containing/transferring data.  In particular, you can &#8220;stripe&#8221; files across multiple disks by placing parts of each file on a different disk, making it so that you can read parts of a file simultaneously (i.e. use <strong>parallel I/O</strong> to read a single file).<br /><br />The problem with striping is that it&#8217;s not very reliable.  To improve its reliability, you can add redundant data to the disks, along with striping, and thus &#8211; <strong>RAID: Redundant Array of Inexpensive Disks</strong>.  Since disks are physically small and cheap, you can just stick a lot of them into one box to increase storage, performance, and availability.  Depending on how you stripe data, you can affect resulting performance and reliability in different ways.<br /><br />What are some things to consider in different methods of striping?  Firstly, <strong>granularity</strong>.  If you stripe each file across multiple disks (&#8220;fine-grained&#8221; granularity), you will get high throughput for reading the file, but limit overall transfer to one file at a time.  If you stripe each file over only a few disks (&#8220;coarse-grained&#8221; granularity), you limit throughput for 1 file, but can have concurrent access to multiple files.<br /><br />Another thing to think about is the <strong>redundancy</strong> itself.  If you uniformly distribute redundancy, then you&#8217;ll avoid load-balancing problems.  You can also concentrate redundancy information on a subset of your total disks, and make it so that some of your total disks are &#8220;data disks&#8221; and the others are &#8220;redundancy disks.&#8221;<br /><br />So what are the different types of RAID?<br /><br /><strong>RAID Level 0</strong> is when you have a non-redundant disk array &#8211; files are just striped across disks, with no redundant info saved at all.  There&#8217;s high read throughput (since you can do the parallel I/O thing), and also high write throughput (since you don&#8217;t need to write redundant info).  However, if one of your disks fails, then you can lose the file and sometimes the entire volume, which is horrible. D: D:<br /><br /><strong>RAID Level 1</strong> is also known as &#8220;mirrored disks.&#8221; Files are striped across half the disks, and when you write data, it gets written to both a &#8220;data disk&#8221; and the &#8220;mirror disks,&#8221; which are copies of the data disk.  This way, if the data disks fail, you can just use the surviving disks.  A downside to this technique is that you need to have 2N the amount of space to hold N amount of data, understandably.<br /><br /><strong>RAID Level 2, 3, 4</strong> all pretty much have the same idea, I guess &#8211; they all use error correcting code (ECC) or <strong>parity disks</strong> to provide fault tolerance.  Each byte on a parity disks is a parity function of the corresponding bytes on all the other disks.  This way, a read accesses all data disks.  A write accesses all data disks, as well as the parity disk.  If the disk fails, read what you have of the file and then use the parity disk to compute the missing data.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-hxvTkkUW3Bs/TV4N-F5JUiI/AAAAAAAAAIM/CHZ7y8sofE0/s1600/parity%2Bdrives.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="105" src="http://2.bp.blogspot.com/-hxvTkkUW3Bs/TV4N-F5JUiI/AAAAAAAAAIM/CHZ7y8sofE0/s320/parity%2Bdrives.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">yeah! &nbsp;go parity drive, go!</td></tr></tbody></table><br />But, <strong>what is parity, again?</strong> I guess, given a byte, you want to add a bit set so that the total number of 1&#8217;s in the byte is even; that way, any single missing bit can be reconstructed.  Parity bites are used as the simplest form of error detecting.<br /><br /><strong>RAID Level 5</strong> uses <strong>block interleaved distributed parity</strong>, which is just like the parity scheme of earlier RAIDs, but instead of having one parity disk, the parity info is distributed across all disks.  For each block, one disk holds the parity, and the other disks hold the data.  This type of RAID has significantly better performance, since the parity disk is not a hot spot.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-MwfHA3qWfcQ/TV4O_26wZlI/AAAAAAAAAIU/FyZ1f6cnCsA/s1600/raid5.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="150" src="http://4.bp.blogspot.com/-MwfHA3qWfcQ/TV4O_26wZlI/AAAAAAAAAIU/FyZ1f6cnCsA/s320/raid5.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">RAID Level 5 disk layout</td></tr></tbody></table><br />So when you use RAID, you can also use a <strong>RAID controller</strong>, which is embedded in the hardware.  A RAID controller can make it seem to the OS like the many disks you&#8217;re using is actually just one disk.<br /><br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-gvTCVSUmMAU/TV4PdUh6pbI/AAAAAAAAAIc/qiESnTQW4-M/s1600/raidcontroller.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="135" src="http://4.bp.blogspot.com/-gvTCVSUmMAU/TV4PdUh6pbI/AAAAAAAAAIc/qiESnTQW4-M/s320/raidcontroller.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">&#8220;What&#8217;s that? &nbsp;I only have one disk? &nbsp;Oh, cool&#8221;</td></tr></tbody></table><br />The advantages of putting <em>policy</em> in the RAID controller is that it makes the OS&#8217;s job easier.  The disadvantage is that every time you put a layer of abstraction into something, you ruin the chance of optimizing it.  So, putting this layer of abstraction makes the OS a little simpler to program, but now you can&#8217;t optimize the OS (like, using disk scheduling effectively) the way you could if the OS <em>did</em> have control of and was aware of all of its assets.<br /><br /><br /><span class="sig">Solid State Disks (Flash)</span><br />We also talked about flash drives, which was pretty interesting.  Like disks, the data on a flash drive is stored in blocks.  Since there aren&#8217;t any spinning platters, random access is fast, and you don&#8217;t need disk scheduling algorithms.  It&#8217;s very fast to read from a flash drive thanks to the random access, but slower to write to a flash drive, because the flash media must be erased before it can be written to.  So, when you&#8217;re writing to a solid state drive like a flash drive, you&#8217;re actually a) reading some block, b) erasing that block, c) writing back the modified block.  But, there are ways of &#8220;hiding the warts of an SSD&#8221; (as these section notes put it), mostly by virtualizing pages and blocks on the drive (so you&#8217;re working with logical pages, not physical pages), and doing &#8220;wear-leveling,&#8221; which is when you try to spread our the erasure of blocks evenly over the drive.<br /><br />Meanwhile, what is a solid-state drive?  Evidently it&#8217;s just a data storage device toat uses solid-state memory to store persistent data.  &#8220;Solid-state&#8221; refers to a type of electronics which are build entirely from solid materials, within which electrons or other charge carriers are confined within the solid material.  Solid-state memory I think is like RAM, which gets erased once you shut down your computer, but as of 2010, most solid-state drives use NAND-based flash memory, which can hold memory even if there&#8217;s no power running through it.  &#8220;NAND flash&#8221; just refers to the way that the transistors are hooked up in the flash drive: in a way that resembles a NAND gate.<br /><br />Sources:<br />section 7 notes<br /><a href="http://en.wikipedia.org/wiki/Memory-mapped_file">Wikipedia: Memory-mapped file</a>, <a href="http://en.wikipedia.org/wiki/Parity_disk">Parity Drive</a>, <a href="http://en.wikipedia.org/wiki/Parity_bit">Parity bit</a>, <a href="http://en.wikipedia.org/wiki/Solid_state_drive">Solid-state drive</a>, <a href="http://en.wikipedia.org/wiki/Solid-state_(electronics)">Solid state (electronics)</a>, <a href="http://en.wikipedia.org/wiki/Flash_memory#NAND_flash">NAND flash</a><br />lecture 12 notes (&#8220;Disk&#8221;)<br />lecture 13 notes (&#8220;Raid and Volumes&#8221;)</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -452,98 +544,6 @@ How do you make a Flex project able to read/write files?<br />There are a couple
 <span class="categories">
   
     <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/21/how-do-you-populate-flex-spark-list/">How Do You Populate a Flex Spark List With Information From an Array?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-21T00:00:00-08:00" pubdate data-updated="true">Jan 21<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-First, you have to wrap the array up in a Collection class, and then you connect that Collection class to the Flex component.  Here&#8217;s my understanding of how the three of these things relate to each other in general:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TToSbSYmLXI/AAAAAAAAAE4/qklhGy7hiRs/s1600/nuubu%2Bflex%2Bcomps.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="230" width="320" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TToSbSYmLXI/AAAAAAAAAE4/qklhGy7hiRs/s320/nuubu%2Bflex%2Bcomps.png" /></a></div><br />In general, Collections also give you more functions to sort or filter arrays.  Also, if you alter the ArrayCollection &#8211; by adding or removing an item &#8211; you&#8217;ll affect the underlying array.<br /><br />In code, this is something that would (in general) work to link a List component to an array:<br /><br /><pre class="brush:cpp">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"><br /><br /> <fx:Script><br />  <![CDATA[<br />   import mx.collections.*;<br />   protected var array:Array;<br />   protected var arrayCollection:ArrayCollection = new ArrayCollection();<br /><br />   arrayCollection.source = array;<br />   list.dataProvider = arrayCollection;<br />  ]]><br /> </fx:Script><br /> <s:List x="642" y="183" id="list" height="200" width="100"></s:List><br /></s:Application><br /></pre><br /><br />Sources:<br /><a href="http://livedocs.adobe.com/flex/3/html/help.html?content=about_dataproviders_1.html">Adobe: Using Data Providers and Collections</a><br /><a href="http://livedocs.adobe.com/flex/3/html/help.html?content=dpcontrols_1.html#478370">Adobe: List control</a><br /><a href="http://blog.flexdevelopers.com/2009/03/flex-basics-arraycollection.html">Flex Developers & Development: ArrayCollection Basics</a><br /><a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html">Adobe: ArrayCollection documentation</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/18/operating-systems-notes-chapter-6/">Operating Systems Notes [Chapter 6: Process Synchronization]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-18T00:00:00-08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-So a <strong>cooperating process</strong> is one that can affect or be affected by other processes, because it shares address space (code, data) with other processes, or because it can share data through passing messages or files.  But, if you share data, then you can run into inconsistencies, i.e. if I&#8217;m reading a paper of numbers, adding them up, and halfway down while I&#8217;m reading it someone starts changing stuff.  By the time I get to the end of the paper, the answer that I get won&#8217;t properly reflect the sum of numbers that had originally been on the paper.<br /><br />The situation in which the outcome of the execution depends on the order of things that take place is a <strong>race condition</strong>.  So, the example earlier is a race condition, because the outcome will be different if I a) read and sum the paper, and then the paper gets rewritten, or if b) someone rewrites the paper, and then I read and sum the paper&#8217;s contents.<br /><br /><strong>Process synchronization</strong> concerns itself with making sure that the changes that result from different processes don&#8217;t interfere with what other processes are doing, even if they&#8217;re all sharing the same <strike>paper</strike> set of data.<br /><br />Parts of code to especially watch out for when trying to synchronize things are those parts that modify or write things, i.e. changing variables, outputting to file.  The part of a process which does this is called the <strong>critical section</strong> and to ensure consistency, you want to be sure you have critical sections which fulfill the following requirements:<ul><li><strong>mutual exclusion:</strong> only one thread is executing in the critical section at any time</li><li><strong>progress:</strong> if thread A and thread B are both outside of the critical section, neither can prevent the other from entering the critical section</li><li><strong>bounded waiting:</strong> (i.e. no starvation) if thread A is waiting to enter the critical section, it will enter it eventually</li><li><strong>performance:</strong> entering and exiting the critical section is small compared to the amount of work being done within it</li></ul><br />Critical sections can be built with <a href="http://nuubu.blogspot.com/2011/01/q-semaphore-mutex.html">semaphores and locks</a>, as well as monitors and messages.  Messages are when processes communicate to each other and have their synchronization taken care of through a communication layer; this is particularly important to <a href="http://nuubu.blogspot.com/2011/01/remote-procedure-calls-rpc.html">RPCs</a> in distributed systems.  Monitors are an abstract data structure which I talk more about below.<br /><br />Locks are the lowest-level mechanism you can use, and are really primitive.  Locks can be implemented either as spin-locks, which is when a process which needs a lock acquires it and goes; but if the lock is already posessed by another thread, the process will sit in a while loop, &#8220;spinning,&#8221; until the lock is free.  This is actually pretty bad because you&#8217;re using up CPU doing nothing, just&#8230;spinning around.<br /><br />You can also implement locks by disabling interrupts, and making sure that some process which is currently executing will not be interfered with by any other process.  But only the kernel should be able to disable interrupts, and if you have long periods of no interruptions then you can &#8220;wreak havoc&#8221; on certain devices.<br /><br />Both spinlocks and disabling interrupts should only be used to build higher-level constructs to ensure proper synchronization of processes.<br /><br /><br />Anyway, kernels can also run into race conditions.  For example, the kernel has a data structure that keeps track of all files that are presently open, and a race condition will occur if two processes open files simultaneously.  To handle critical sections in operating systems, there are <strong>preemptive kernels</strong> (which allow a process to be interrupted in kernel mode), and <strong>nonpreemptive kernels</strong> (which do not allow a process running in kernel mode to be preempted/interrupted, meaning a running kernel-mode process will run until it exits kernel mode).  Preemptive kernels, despite being prone to race conditions, are good for real-time programming scenarios, and are also more responsive since there&#8217;s less of a chance that you&#8217;ll have to wait for some arbitrary period until the processor is free to take on another process.<br /><br /><br /><span class="sig">Monitors</span><br />A monitor is an abstract data type which defines a set of operations which are allowed to be mutually exclusive.  It&#8217;s basically a class that allows shared private data, methods, and automatic synchronization.  A procedure defined in the monitor can only affect variables declared in the monitor, and variables defined in the monitor can only be accessed by functions in the monitor.  Within the monitor, only one process runs at a time.<br /><br />Monitors rely on a <strong>condition variable</strong>, which does three things:<ol><li><code>wait</code> &#8211; release a lock, wait for a signal, recapture a lock</li><li><code>signal</code> &#8211; wake up at most one thread which is waiting to access shared resource</li><li><code>broadcast</code> &#8211; wake up all waiting threads</li></ol>Monitors also manage queues of processes which are waiting to access the shared resource.<br /><br />A monitor can fix deadlocks in the dining philosophers problem.  A monitor would sit in the middle of the dining table, and the philosopher would first ask the monitor for forks.  The monitor would then make a couple of checks on the environment, see if there were any forks <strike>in the queue</strike> available, and if there is a good amount, then the monitor tell his pet condition construct, &#8220;Let the philosopher eat!&#8221;  The philosopher would then obtain forks, eat, and talk to the monitor again when he or she is done eating.<br /><br />There are two types of monitors: Hoare monitors, and Mesa monitors (the latter being the most prevalent today).  They differ in what action happens in the waiting queue after the condition variable signals.  In Hoare monitors, the waiting process is run immediately after <code>signal</code> is called, because it indicates that a resource that the process want has been freed.  In Mesa monitors, the signal doesn&#8217;t mean that a resource has been freed, rather only that something has changed.  Thus, when signal happens, the waiter is made ready to go, but only runs when the shared resource is completely for sure available.<br /><br />Unfortunately for monitors, they&#8217;re pretty heavyweight, so you can&#8217;t do any &#8220;fine-grained locking&#8221; &#8211; you have one thread in the monitor at a time, and that&#8217;s it.<br /><br /><br />Sources:<br /><em>Operating System Concepts (8th Edition)</em>, Silberschatz, Galvin and Gagne, ISBN 978-0-470-12872-5.<br /><a href="http://en.wikipedia.org/wiki/Atomicity">Wikipedia: Atomicity</a><br />lecture notes<br />section TA&#8217;s intensely well-designed slides</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
   
 </span>
 
