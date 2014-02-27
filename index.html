@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Manga: Noragami | ノラガミ, ADACHI Toka Feb 25th, 2014 (via) At the boundary between this realm and another, there live eight million gods, dead spirits &hellip;">
+  <meta name="description" content="Blurring Things With Javascript Feb 26th, 2014 Recently I was investigating different Javascript libraries for blurring things on mobile. In this &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,97 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/02/26/blurring-with-javascript/">Blurring Things With Javascript</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-26T15:11:18-08:00" pubdate data-updated="true">Feb 26<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently I was investigating different Javascript libraries for blurring things on mobile. In this case, blurring would act to obscure an image from the user.</p>
+
+<h3><a href="http://blurjs.com/?bg=1">Blur.js</a></h3>
+
+
+<p>Pros:</p>
+
+<ul>
+<li>It&#8217;s easy; plug and play. It also supports draggable elements (<a href="http://blurjs.com/simpledemo.html">and has a neat demo proving it</a>)</li>
+<li>You can specify your overlay color and blur radius, and it even supports caching.</li>
+<li>More hackproof; since (on first glance) it seems to replace your original image entirely, you can&#8217;t easily unblur it using developer tools.</li>
+</ul>
+
+
+<p>Cons:</p>
+
+<ul>
+<li>When I used this library for a div with a background-image, the entire image wasn&#8217;t blurred out; only part of it. It didn&#8217;t play nicely with my background-image having a <code>background-size:cover</code> style.</li>
+<li>Doesn&#8217;t seem to work for blurring text or colored divs; just elements with some image aspect.</li>
+<li>You need to provide a &#8220;source&#8221; of blurring for some reason.</li>
+</ul>
+
+
+
+
+<h3><a href="http://nbartlomiej.github.io/foggy/">Foggy</a></h3>
+
+
+<p>Pros:</p>
+
+<ul>
+<li>Uses the CSS &#8220;filter&#8221; and falls back to a &#8220;manual blur&#8221; if the browser doesn&#8217;t support it.</li>
+<li><em>Really</em> simple; at the most basic level, all you need is <code>$(".selector").foggy()</code></li>
+<li>It worked on mobile Safari! (And I haven&#8217;t yet tested it with anything else.)</li>
+<li>You can also unblur blurred objects!</li>
+</ul>
+
+
+<p>Cons:</p>
+
+<ul>
+<li>The manual blur creates duplicates of elements, so it could be pretty expensive? Especially for a mobile web app, my specific use case. (In my brief tests, I didn&#8217;t notice any particular behavior downgrade.)</li>
+<li>You could &#8220;hack&#8221; this by inspecting elements to see what the original image is.</li>
+</ul>
+
+
+<p>I ended up using Foggy so that I could grab multiple elements with one selector to blur (rather than needing to iterate through each and supply each one with its own &ldquo;source&rdquo;). Also, &ldquo;hacking&rdquo; via a developer tool is less of a risk. and, honestly, it just worked more quickly, though I do love the layout of Blur&rsquo;s page better.</p>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/frontend/'>frontend</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/webdev/'>webdev</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -1156,86 +1247,6 @@ JavaScript running on the Mini server will only run for a couple of seconds befo
 <span class="categories">
   
     <a class='category' href='/blog/categories/mobiledev/'>mobiledev</a>, <a class='category' href='/blog/categories/webdev/'>webdev</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/01/16/vsco/">In Praise of #vscocam</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-16T09:16:32-08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>After about seven years with the same litle phone, I finally decided to upgrade. If I&rsquo;m being honest, I did it because the iPhone 5S/5C camera seemed like such an improvement over the previous, and I really wanted to have access to a camera usable in ordinary situations. (My old Motorola was also starting to have problems — bad audio, bad button sensitivity.)</p>
-
-<p><img class="book-cover" src="/images/vsco0.jpg" alt="My old phone."/></p>
-
-<p class="caption">goodbye dear friend</p>
-
-
-<p>The pictures that my phone takes are great — better than the pictures my old work iPod had, and definitely better than no pictures taken at all. But, what makes my silly phone photos really fun and gorgeous is the <a href="http://vsco.co/vscocam">VSCO Cam app</a>.</p>
-
-<p><img class="book-cover" src="/images/vsco1.jpg" alt="the foggy ferry dock on thanksgiving"/></p>
-
-<p class="caption">the foggy ferry dock on thanksgiving</p>
-
-
-<p>You can take pictures from the app or import them, and then control expore, temperature, white balance, saturation&hellip;I have to admit, though, that it took me forever to realize that bottom bar that showed all these editing options is actually something you can scroll from left to right.</p>
-
-<p><img class="book-cover" src="/images/vscobar.png" alt="a photo of a girl"/></p>
-
-<p class="caption">these colors were seriously bland and boring before i edited it.<br/>and,there&#8217;s that bar. it doesn&#8217;t look scrollable at all.</p>
-
-
-<p>There are also a variety of filters which, to me, are way more subtle and attractive than Instagram&rsquo;s filters. I admit that I use the F2 filter way more than the others.</p>
-
-<p><img class="book-cover" src="/images/vsco2.jpg" alt="foggy seattle"/></p>
-
-<p class="caption">foggy cityline</p>
-
-
-<p>Feel free to check out <a href="http://instagram.com/neauro">my Instagram</a> for more photos.</p>
-
-<p><img class="book-cover" src="/images/vsco3.jpg" alt="the cranes at seattle pier"/></p>
-
-<p class="caption">the dinosaur-like cranes at the pier</p>
-
-
-<p></p>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/app-recs/'>app recs</a>, <a class='category' href='/blog/categories/photo/'>photo</a>
   
 </span>
 
