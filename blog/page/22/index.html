@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="On Speaking Through the Wires Aug 10th, 2011 I had an interview today! It was for a position that I felt was made for me &#8211; involving writing, &hellip;">
+  <meta name="description" content="Adding a New Model to a Database in Rails Aug 16th, 2011 For whatever reason, adding a model to a database in Rails took me forever to understand. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,65 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/08/16/adding-new-model-to-database-in-rails/">Adding a New Model to a Database in Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-16T00:00:00-07:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+For whatever reason, adding a model to a database in Rails took me forever to understand.  Thanks to <a href="https://github.com/kellydunn">Kelly</a>, I now have model-making in Rails down to an art.<br /><br />Want to add a new table or a new column to your Rails application?  This is what you do!<br /><br /><br /><h3>1. Create a new .rb file for your model</h3>Let&#8217;s say that, just like me, you want to create a new database table in your application to keep track of information about dogs.  We (by virtue of the same logic which affords physics problems friction-less vacuums with which to work in) already have a couple tables in our database: one pertaining to users (breeders or owners of dogs), and one pertaining to breeds.  We will keep it simple for now; all we want to know about a dog object for now is what its name is, what user it belongs to, and what breed it is.<br /><br />To add a Dogs table, we first need to create a file which will describe its model.  Part of this is describing what the relationship of the new model is to existing models, like User and Breed.  From real-world experience, we know that a dog generally has one user/owner, and one breed.<br /><br />So, create a file in <strong>app/models/</strong> called <strong>dog.rb</strong>, and type in the following:<br /><pre class="brush: cpp">class Dog &lt; ActiveRecord::Base<br />  belongs_to :user<br />  belongs_to :breed<br />end<br /></pre>Dog inherits Active Record.  Active Record&#8217;s sole purpose of existence is to help create associations between different objects.  This code will later be macro&#8217;ed out by Active Record into something more lower-level to create the associations.<br /><br />The lines that start with <code>belongs_to</code> describe the relationship that this new model has to existing ones.  Basically, a dog belongs to one owner/user, and to one breed.  <br /><br />Rails also has another keyword called <code>has_one</code>, which at first might also seem like an okay association to make between dogs and users; after all, a dog <em>has_one</em> user, right?  <a href="http://duanesbrain.blogspot.com/2006/05/ruby-on-rails-hasone-versus-belongsto.html">But belongs_to is more correct, because has_one implies more of a one-to-one relationship</a>, where you might be doing something like creating a new user every time you create a new dog.  Since users may later obtain more dogs, <code>belongs_to</code> would be more appropriate in the case you want to attach a new dog to an existing user.  (Note: belongs_to also makes it so that the Dogs table will have to be responsible for its foreign key with Users, whereas it would be the opposite case for has_one.)<br /><br /><br /><h3>2. Change your existing models to reflect their relationship to the new model</h3>Because a User can have many dogs, and have many different breeds of dogs, User should now look like this: <br /><pre class="brush: cpp">class User &lt; ActiveRecord::Base<br />&nbsp;&nbsp;acts_as_authentic<br />&nbsp;&nbsp;has_many :dogs<br />&nbsp;&nbsp;has_many :breeds, :through =&gt; :dogs<br />end<br /></pre>And because many dogs can be of a certain breed, and breeds can be owned by multiple owners, Breeds will look the same &#8211; <br /><pre class="brush: cpp">class Breed &lt; ActiveRecord::Base<br />&nbsp;&nbsp;has_many :dogs<br />&nbsp;&nbsp;has_many :users, :through =&gt; :dogs<br />end<br /></pre><br /><br /><h3>3. Generate a new migration</h3>Now you have to create a migration which, when run, will create the relevant tables in a structured manner.  You could also be hipster about it and edit SQL on your database by hand, but then you&#8217;d would have to tell the other people you&#8217;re working with of what you&#8217;ve done if they have local databases, or else run the same SQL on production databases.  With migrations, you can make changes modular, and even roll back changes easily.<br /><br />Run <code>rails g migration create_dogs_table</code>.  This will create a file in <strong>db/migrate</strong> which will look something like this: <br /><blockquote><strong>20110807213821_create_dogs_table.rb</strong></blockquote>The numbers on the left are a timestamp, which is needed by Active Record so it will know what migrations that you haven&#8217;t yet run, so that it can run them for you.<br /><br /><br /><br /><h3>4. Edit the migration file to describe what tables or columns should be added to your database.</h3>Open your migration file and type in these things: <br /><pre class="brush: cpp">class CreateDogTable &lt; ActiveRecord::Migration<br />  def self.up<br />  end<br /><br />  def self.down<br />  end<br />end<br /></pre><code>self.up</code> is executed when a database is updated; <code>self.down</code> is executed when a database is rolled back due to errors.  So, in <code>self.up</code> you want to create your new tables and columns; in <code>self.down</code> you want to define code to remove those tables and columns.  With dog objects, all we said we cared about earlier was the name, so let&#8217;s just make a table which will (automatically) contain a unique ID, a timestamp, and a string for each dog object.  <br /><pre class="brush: cpp">class CreateDog &lt; ActiveRecord::Migration<br />  def self.up<br />    create_table :dogs do | d |<br />      d.timestamps<br />      d.string :name<br />    end<br />  end<br /><br />  def self.down<br />    drop_table :dogs<br />  end<br />end<br /></pre><br /><br /><h3>5. Run the migration to create your table</h3>Run the migration by typing <code>rake db:migrate</code>.  Remember how the migration that we generated had a timestamp?  When you run <code>rake db:migrate</code>, Active Record can use those to figure out all the migrations that might have been added to your code base, which have not yet been run on a certain database (such as the one pertaining to production).  Also, because the code to create and drop data from a database is so high-level, it doesn&#8217;t really matter whether your actual code is in sqlite3 or in MySQL.  You can even use both depending on whether you&#8217;re in development or production stages.<br /><br />Hurray!  Now you have new tables and columns in your database!  <br /><br /><div class="separator" style="clear: both; text-align: center;"></div><br /><br />Sources: <br /><ul><li><a href="https://github.com/kellydunn">Kelly</a></li><li><a href="http://ar.rubyonrails.org/">RubyonRails.org: Active Record</a></li><li><a href="http://duanesbrain.blogspot.com/2006/05/ruby-on-rails-hasone-versus-belongsto.html">Duane&#8217;s Brain: Ruby on Rails : Has_One versus Belongs_To</a></li></ul></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>nadine a.</div>
+<div class='content'>
+Kelly has been being really hipster and avoiding auto-generating files :P But thanks!  Now that I know how to create stuff &quot;model dog&quot; should be easier.  Also, &quot;change&quot; sounds definitely more convenient.  Thanks!</div>
+</div>
+<div class='comment'>
+<div class='author'>jshou</div>
+<div class='content'>
+If you do &quot;rails g model dog&quot;, the model, migration, tests and test helper files are automatically generated.  <br /><br />Also, in Rails 3.1, you don&#39;t have to define both up and down methods if down is obvious from what up is.  You can just define a method &quot;change&quot; with the contents of &quot;up&quot; would have been, and rails can figure out &quot;down&quot; by itself.<br /><br />The only caveat is that if change is drop_table, you have to use down and up, because rails can&#39;t figure out what columns to add back if you roll back the drop.</div>
+</div>
+</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -516,52 +575,6 @@ Now I want to try shooting in RAW! I quietly lolled at several sentences in this
 <span class="categories">
   
     <a class='category' href='/blog/categories/feminism-thing/'>feminism thing</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/04/web-20-overload/">Web 2.0 Overload</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-04T00:00:00-07:00" pubdate data-updated="true">Jul 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-San Francisco has been great!  I&#8217;ve been spending most of the time trying to get acclimated to my work environment/coworkers, as well as to the passersby here, who all say &#8220;Hi&#8221; at the last possible moment.  I end up turning around hastily and yelling &#8220;Hi!&#8221; to their backs.<br /><br />I&#8217;ve come to an uncomfortable point in my life where I have so many Web 2.0 things that I have no idea what to update, when I feel like updating something.  Most of my SF adventures are detailed on <a href="http://neauro.tumblr.com/tagged/one_new_sf_thing_every_day">my Tumblr</a>, where I strive to do &#8220;one new thing a day.&#8221; My reasoning for not putting that sort of stuff here is that, the stuff I put on Tumblr is more personal?  And I would prefer to reserve this blog for stuff of more professional nature, i.e. learning about programming?  There&#8217;s also a different flavor to how things get shared on Tumblr that I&#8217;m mindful of, for example, if I&#8217;m uploading pictures, all the ones of dessert go to Tumblr, whereas all my super-nicer ones (even if they include family) all go to Flickr, and everything may go indiscriminately to Facebook, etc.<br /><br />I guess on the topic of learning new things, I&#8217;ve been trying to revamp my portfolio website, but been having fun just changing things here and there, searching for the right layout.  I&#8217;m trying to learn Sinatra and it&#8217;s going well, but since my Dreamhost account doesn&#8217;t really support Rails, I may have to do the site in PHP anyway if I want to get it up faster, and try using Heroku if I&#8217;d be okay with getting it up later.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/misc/'>misc</a>
   
 </span>
 

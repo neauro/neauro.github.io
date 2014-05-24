@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="How Do You Make a Flex Application Send Data to a PHP Server? Jan 30th, 2011 How do you make a Flex project able to read/write files?There are a &hellip;">
+  <meta name="description" content="Incorporating ActionScript 3.0 Code With a Flex Project Jan 30th, 2011 So my project of incorporating Flex UI with an ActionScript project has just &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/30/incorporating-actionscript-30-code-with/">Incorporating ActionScript 3.0 Code With a Flex Project</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-30T00:00:00-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So my project of <a href="http://nuubu.blogspot.com/2010/12/problem-how-do-i-use-flex-components-to.html">incorporating Flex UI with an ActionScript project</a> has just become wanting to embed the entire ActionScript project into the Flex project, so that you don&#8217;t need to use the <code>SWFLoader</code> at all to show the project.<br /><br />Luckily this is pretty easy.  As an example, take the code from a previous small project like <a href="http://nuubu.blogspot.com/2010/12/getting-sandy3d-312-working-on-flash.html">this Sandy project</a>, which does nothing but show a cone shape.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TPh_TU109CI/AAAAAAAAAAM/q_A6cDrKYGE/s1600/hellosandy.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="267" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TPh_TU109CI/AAAAAAAAAAM/q_A6cDrKYGE/s320/hellosandy.jpg" width="320" /></a></div><br /><pre class="brush: text">package<br />{<br />import flash.display.Sprite;<br />import flash.events.Event;<br /><br />import sandy.core.Scene3D;<br />import sandy.core.data.*;<br />import sandy.core.scenegraph.*;<br />import sandy.primitive.*;<br /><br />public class HelloSandy extends Sprite<br />{<br />private var scene:Scene3D;<br />private var camera:Camera3D;<br /><br />public function HelloSandy()<br />{<br />// We create the camera<br />camera = new Camera3D( 300, 300 );<br />camera.x = 0;<br />camera.y = 100;<br />camera.z = -400;<br />camera.lookAt(0,0,0);<br /><br />var root:Group = new Group;<br /><br />var myCone:Cone = new Cone("theObj1",50, 100);<br /><br />root.addChild(myCone);<br /><br />scene = new Scene3D( "scene", this, camera, root );<br /><br />addEventListener( Event.ENTER_FRAME, enterFrameHandler );<br />}<br /><br />// The Event.ENTER_FRAME event handler tells the world to render<br />private function enterFrameHandler( event : Event ) : void<br />{<br />scene.render();<br />}<br /><br />}<br />}</pre><br />Then, make a <strong>New Flex Project</strong> in Adobe Flash Builder, and make it so that it says this:<br /><pre class="brush: xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx"<br />                           minWidth="955" minHeight="600"<br />      creationComplete="initApp()"&gt;<br /><fx:script><br />  &lt;![CDATA[<br />   import mx.core.UIComponent;<br />   <br />   public function initApp():void {<br />    var myApp:HelloSandy = new HelloSandy();<br />    var container:UIComponent = new UIComponent();<br />    container.height = 600;<br />    container.left = 200;<br />    addElement(container);<br />    container.addChild(myApp);<br />   }<br />  ]]&gt;<br /> </fx:script><br /> <s:button label="Button" x="140" y="355"><br /></s:button><br /></pre><br />What this does:<br />Line 12: create a new instance of the ActionScript project, HelloSandy<br />Line 13: create a new instance of <code>UIComponent</code><br />Line 14, 15: change the height and position of the <code>UIComponent</code><br />Line 16: add the <code>UIComponent</code> to the <code>stage</code>, which handles the display of objects (a little more on the stage <a href="http://nuubu.blogspot.com/2011/01/flexas3-errors-with-stage-and-event.html">here</a>)<br />Line 17: add the HelloSandy object as a child to <code>UIComponent</code>, which will make it display<br /><br />The button is just there to show that I can still use Flex UI components.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TUXuuNoxXlI/AAAAAAAAAFA/99rs1S3w-zw/s1600/helloflexsandy.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="287" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TUXuuNoxXlI/AAAAAAAAAFA/99rs1S3w-zw/s320/helloflexsandy.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">awwwww yeaahhh</td></tr></tbody></table><br /><br /><span class="sig">An extra note:</span><br />Once I did this with my real project (not the HelloSandy example above), I got this error:<br /><br /><code>Error #2044: Unhandled IOErrorEvent:. text=Error #2032: Stream Error URLStream</code><br /><br />I&#8217;m pretty sure it was because my &#8220;display&#8221; class, which was being added to the <code>UIComponent</code> had to make use of another class, which it made an instance of in its constructor.  This second class used <code>URLStream</code>, and got an error maybe because of variable scope.<br /><br />To solve this I basically just made a new instance of that second class, then passed it into the display class constructor, instead of letting the display class make an instance itself.<br /><br /><br />Sources:<br /><a href="http://livedocs.adobe.com/flex/3/html/help.html?content=components_04.html">Adobe: Using the UIComponent Class</a><br /><a href="http://www.judahfrangipane.com/blog/2007/01/01/error-2044-unhandled-ioerrorevent-texterror-2038-file-io-error/">judah&#8217;s blog: Error #2044: Unhandled IOErrorEvent:. text=Error #2038: File I/O Error.</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/sandy3d/'>sandy3d</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -493,52 +539,6 @@ Nice solution, it worked great for me.  I only needed to reference the stage at 
 <span class="categories">
   
     <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/troubleshooting/'>troubleshooting</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/09/c-typedef-struct/">C: Typedef, Struct, Extern</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-09T00:00:00-08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<span class="sig">What is <code>typedef</code> and <code>struct</code>?</span><br />A struct in C is a structured type that combines a set of labeled objects of different types, into a single object.  So, kind of like a Java object with its own variables.<br /><br />An example of a struct you could make would be<br /><br /><pre class="brush: cpp">struct pokemon {<br />   char* nickname;<br />   char* species;<br />   int level;<br />   char* item;<br />};<br /></pre><br />Then, to create a new Pokemon struct, I could say<br /><br /><pre class="brush: cpp">struct Pokemon pikachu;<br /></pre><br />And to access the new struct&#8217;s nickname, I could say something like<br /><br /><pre class="brush: cpp">pikachu.nickname;<br /></pre><br />The keyword <code>typedef</code> is just meant so that you can assign different &#8220;names&#8221; to existing types, in case you may get confused.  For instance, you might have code that looks like<br /><br /><pre class="brush: cpp">char* pokemon_name;<br />char* item;<br /><br />void buy(char* item) {<br />   // remove money from the user<br />}<br /></pre><br />Though <code>buy</code> can take any char*, what you really want it to do is only accept char* that represent items, not Pokemon nicknames.  So, you can use typedef to distinguish that pokemon_name and item are completely unrelated variables which happen to both be of type char*.<br /><br /><pre class="brush: cpp">typedef char* pokemon_name;<br />typedef char* item;<br /><br />pokemon_name pokemon_nickname;<br />item item_name;<br /><br />void buy(char* item) {<br />   // remove money from the user<br />}<br /></pre><br />This distinction is only for the programmer; the C/C++ compiler considers both things to be char*, and won&#8217;t give any errors if you happen to try and purchase a Pokemon.  <span class="shh">You cheat.</span><br /><br /><code>typedef</code> can also make declarations easier; for instance, if I did something like<br /><br /><pre class="brush:cpp">typedef struct Pokemon {<br />   char* nickname;<br />   char* species;<br />   int level;<br />   char* item;<br />} Pokemon;<br /></pre><br />Then, instead of having to write <code>struct Pokemon pikachu;</code> like earlier, I could make a new Pokemon just by saying<br /><br /><pre class="brush: cpp">Pokemon pikachu;<br /></pre><br /><br /><span class="sig">What does <code>extern</code> mean?</span><br />The <code>extern</code> declaration indicates the existence of, and type of, a global variable or function.  <code>extern</code> means that something is defined externally to the current module (so if your current .c file is using it, that means that another, included file actually defined it?).  <code>extern</code> can be left off because the linker collapses the multiple definitions into a single one, but to use the <code>extern</code> keyword is cleaner because it defines the global variable in one place, and everything else makes <code>extern</code> references to it.  <br /><br />If a program has a variable that&#8217;s declared as <code>extern</code>, the program won&#8217;t reserve any memory for the variable in the scope that it was declared.  Which is why you need to use the <code>extern</code> keyword in programs that are using the declaration, but haven&#8217;t defined it.<br /><br /><br /><br />Source:<br /><a href="http://en.wikipedia.org/wiki/Struct_%28C_programming_language%29">Wikipedia: Struct (C programming language)</a><br /><a href="http://wiki.answers.com/Q/What_is_the_use_of_extern_in_C">Answers.com: What is the use of extern in C</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
   
 </span>
 

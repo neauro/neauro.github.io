@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Gaussian Blur, Yellow Tones, Desaturation, and a Serif Dec 30th, 2010 ehehehe.Not sure of the ultimate source of this pic, other than from Ryan. &hellip;">
+  <meta name="description" content="In Which I Am Confused About Flash, Flex, ActionScript, Etc. Dec 30th, 2010 So the reason why I was doing all that stuff earlier was because I have &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/30/in-which-i-am-confused-about-flash-flex/">In Which I Am Confused About Flash, Flex, ActionScript, Etc.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-12-30T00:00:00-08:00" pubdate data-updated="true">Dec 30<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So the reason why I was doing <a href="http://neaurobi.blogspot.com/2010/12/notes-from-me-trying-to-learn-flex.html">all that stuff earlier</a> was because I have to work on adding UI to an ActionScript 3.0 project in Flash Builder.<br /><br />But apparently ActionScript projects are made using the Flash API, whereas Flex projects are used with the Flex framework.  This means that you can&#8217;t use Flex UI components with ActionScript projects.<br /><br /><span class="shh">Shoot.</span><br /><br />So I wonder how can you have UI element like buttons and such in an ActionScript project?  Is it impossible?  Is it possible to import the ActionScript code into a Flex project?  The issue is that the program I have presently compiles into a SWF of such-and-such given height, and I don&#8217;t know how that SWF gets defined so you would be able to arrange it around.  For instance, in a Flex project you could use the Design tab to fit stuff together, but I assume that it wouldn&#8217;t know the size of a 600x400 coded something until it&#8217;s compiled, and wouldn&#8217;t know where to place it either.<br /><br /><br /><strong>Edit</strong><br />Okay, so here&#8217;s something else I found <a href="http://www.actionscript.org/forums/showthread.php3?t=119594">somewhere</a> while searching:<br /><br /><blockquote>There is not support for using the Flex Framework in an AS only project. While it is theoretically possible, you would have to manually bootstrap a lot of the application initialization code that Flex handles (something which would be rather complex).<br /><br />If you want to play with the framework, but don&#8217;t want to layout your app with mxml, then the easier way is to create a simple mxml file that contains an application tag, and a script tag that then points to your code.<br /><br />This way, the application tag will take care of all of the initialization, and you can then leverage the framework via ActionScript.</blockquote><br />SO I GUESS IT&#8217;S BETTER TO AVOID USING FLEX COMPONENTS IN AN ACTIONSCRIPT-ONLY PROJECT.<br /><br />Which kind of begs the question, what&#8217;s the difference between Flex and Flash anyway?  I mean, I guess I&#8217;ve kind of been running around in general because I still don&#8217;t quite get the difference between Flex and Flash and Flash Player and MXML and ActionScript and what, even Adobe Air.<br /><br />So!  Let&#8217;s have definitions:<br /><br /><strong>Application/Application software</strong>: software designed to help a user perform task(s), i.e. writing papers, drawing stuff, listening to music.<br /><br /><strong>Web application</strong>: an application that&#8217;s accessed over a network like The Internets.  It can also refer to an application that&#8217;s coded in a browser-supported language, like something that&#8217;s a mix of JavaScript and HTML.  These are good because web applications can be updated and maintained without distributing and installing software.  Examples of web apps: e-mail, online retail sales, wikis.<br /><br /><strong>Desktop application</strong>: I assume that an application is a desktop application unless it&#8217;s explicitly stated to be a web application?  So like, a desktop application for listening to music would be iTunes, but a web application for listening to music would be&#8230;like&#8230;Pandora.<br /><br /><strong>Software framework</strong> is an application skeleton where the application has already defined parts that are the most important &#8211; i.e. a software framework for a bank would already have withdraw/deposit methods coded up.  They&#8217;re a special case of software libraries in that they&#8217;re re-usable and have other special features, i.e. inversion of control, which is when the framework dictates the flow of control, and not the caller.  Frameworks can also be extended/added to, but not modified.<br /><br /><strong>Rich Internet Application (RIA)</strong>: &#8220;A web application that has many of the characteristics of desktop applications,&#8221; which are delivered by way of a browser or browser plug-in, of a sandbox, or a virtual machine.  A user would have to install a software framework before using the RIA, and the framework would download, update, verify, and execute the RIA.  The three most common platforms for RIAs are Adobe Flash, Java, and Microsoft Silverlight.  <br /><br /><strong>Runtime environment:</strong> software that supports the execution of computer programs.  So, you can&#8217;t run a Java program if you don&#8217;t have a Java Runetime Enfironment (JRE).<br /><br /><strong>Flash Player</strong>: a runtime environment that runs Flash-platform content and applications.  Flash Player is used for viewing animations and movies using a web browser.  It runs SWF files, which can be embedded in websites.  It was originally meant to display 2D vector animations (the likes of which you can build in Adobe Flash), but since then has been also used for making RIAs, and streaming video and audio.  And games, and GUI.<br /><br /><strong>Adobe Integrated Runtime (AIR)</strong>: a runtime environment for building RIAs with Adobe Flash, Adobe Flex, HTML, or Ajax, which can be deployed as desktop applications.  So, for a user to use an application executed in Adobe AIR, Adobe AIR must be installed onto the user&#8217;s computer at operating-system level.  (On a side-note, I noticed Adobe AIR being installed on my computer while installing Rosetta Stone&#8230;I guess that&#8217;s why.)<br /><br /><strong>Flash</strong>: Refers to Adobe Flash (the program), and the Flash Player.  Adobe Flash makes flash files, which Flash Player runs.<br /><br /><strong>Adobe Flex</strong>: an SDK released so as to develop/deploy RIAs based on Adobe Flash.  Flex applications can be written using Adobe Flash Builder (which you have to give moneys for), or just by using a text editor/Eclipse and a Flex compiler.  Flex applications are made using MXML and ActionScript.  It&#8217;s meant for creating RIAs, and provides a lot of useful things, like pretty-looking UI components (buttons, color pickers, grids).  Adobe Flex also outputs an SWF file.<br /><br /><strong>ActionScript (3.0)</strong>: an object-oriented language used for developing websites and software.  It outputs into an SWF file, which is then embedded into a website and run by Adobe Flash Player.  It was initially meant to control the 2D vector animations made in Adobe Flash.<br /><br /><strong>MXML</strong>: used in combination with ActionScript to create RIAs.  Flex uses MXML for the layout of the application, and ActionScript for the programming logic.  MXML is eventually compiled into ActionScript.  Adobe Flash Builder can compile MXML into a SWF file.<br /><br /><strong>SWF file</strong>: the output of compiling ActionScript.  SWF files can be used by Adobe Flash Player (for the web) and Adobe AIR (for the desktop).<br /><br /><br />I think the reason for all of my confusion was that &#8220;Flash&#8221; is apparently used for both Adobe Flash Player, the runtime, as well as Adobe Flash, the authoring environment, as well as like, &#8220;Flash games,&#8221; which kind of makes you think of some game that&#8217;s made &#8220;in Flash,&#8221; when really it&#8217;s written in ActionScript, and compiled to an SWF that is run by Flash Player.  And when people compare Flash and Flex on the internets, what they&#8217;re really comparing is Adobe Flash and Adobe Flash Builder, probably, not a set of two different languages.<br /><br />I&#8217;m such a noob &gt;____&gt;<br /><br />So maybe it&#8217;s still possible to use all of the ActionScript in the present project by just importing it into a Flex project and hooking up all the buttons?<br /><br />NEEDS MOAR SEARCHING.<br /><br /><br />Sources:<br /><a href="http://theresidentalien.typepad.com/ginormous/2009/02/the-difference-between-flex-and-flash.html">Ginormous: The Difference Between Flex and Flash</a><br />Some stackoverflow questions: <a href="http://stackoverflow.com/questions/148747/what-is-the-difference-between-a-framework-and-a-library">1</a>, <a href="http://stackoverflow.com/questions/2572109/whats-the-practical-definition-of-software-programming-framework">2</a><br />Essential ActionScript 3.0, O&#8217;Reilly Media<br />various Wikipedia articles</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>

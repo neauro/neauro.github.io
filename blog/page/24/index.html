@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Player.IO &#8211; Thoughts on the BigDB Administration UI May 8th, 2011 I&#8217;m in Intro to Human Centered Interaction this quarter and so can&# &hellip;">
+  <meta name="description" content="Get Across: Kongregate Release May 23rd, 2011 the first 200-some players of our silly capstone gameIt&#8217;s been about 24 hours since our first &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,6 +78,52 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/23/get-across-kongregate-release/">Get Across: Kongregate Release</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-23T00:00:00-07:00" pubdate data-updated="true">May 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-FS01GyXZtMU/TdtOqq5GybI/AAAAAAAAAOM/KqG4OmKmecU/s1600/kongregate_users.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="197" src="http://2.bp.blogspot.com/-FS01GyXZtMU/TdtOqq5GybI/AAAAAAAAAOM/KqG4OmKmecU/s320/kongregate_users.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">the first 200-some players of our silly capstone game</td></tr></tbody></table><br />It&#8217;s been about 24 hours since <a href="http://www.kongregate.com/games/getAcross/get-across">our first online release of Get Across</a>.  Our capstone class recommends moving from Newgrounds, to Kongregate, but then to Facebook, but it&#8217;s taken us such a long time to learn Player.IO that we skipped straight to Kongregate, as <a href="http://playerio.com/documentation/quickconnect/kongregate">Player.IO already supports this.</a>.<br /><br />Still, our release was (to me) a little rushed, and I would have loved nothing better than to clutch the game even tighter and keep anyone from seeing it at all.  We have presentations on Tuesday on what our first round of releasing reveals to us about the game, and I haven&#8217;t parsed through the data that we&#8217;ve collected yet, but an onslaught of a mysterious error regarding null quest objects made me really self-conscious about what was going on.  <em>I don&#8217;t want anyone to play a game that is still buggy.  Nononononono!</em><br /><br />It&#8217;s hard to debug from Player.IO&#8217;s error log, though it is very informative concerning what errors popped up, whether they were serverside or clientside, when they happened, and how often.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-UwlYNphQNgA/TdtRshfzMqI/AAAAAAAAAOU/u3pc3S_SXdQ/s1600/playerio_errorlog.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="186" src="http://3.bp.blogspot.com/-UwlYNphQNgA/TdtRshfzMqI/AAAAAAAAAOU/u3pc3S_SXdQ/s320/playerio_errorlog.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">just look at those graphs, dude!</td></tr></tbody></table><br />Some of the players on Kongregate have been really helpful in leaving comments about their thoughts and the bugs they&#8217;ve encountered; but there are about 6 of these comments, and 200+ registered players, most of whom didn&#8217;t really make it through the tutorial levels.  I have a good guess why: <em>the tutorials take forever to load</em>.<br /><br />I&#8217;m not sure why, but I&#8217;m guessing it might be because we have a lot of objects in the database, and a lot of the properties of those objects are nested objects or arrays, which must take longer to retrieve.  Seeing as tutorial levels are pretty essential for hooking in initial players, I&#8217;m hoping to make it so that the tutorial levels are completely static and client-side &#8211; no saving data into the database, nothing.  If a player comes back, they&#8217;ll just have to start over.  Hopefully this will make it so that we only really save &#8220;real&#8221; player data in the database as well, and keep out the clutter.<br /><br />So even though I really wouldn&#8217;t have wanted to release the game this soon, this little bit of playtesting illuminated something that we otherwise would have learned at the last awful minute, for the final Facebook release.  Which is nice.<br /><br />As a sidenote, the last push I made to Get Across before the release were updated character sprites for our classes, &#8220;Cook,&#8221; &#8220;Crafter,&#8221; and &#8220;Planter.&#8221;  Charlie drew the first set, which were endearingly derpy &#8211;<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-BpSQDmsoKDg/TdtS8xpShpI/AAAAAAAAAOc/xeVTMU2HQDw/s1600/old_classes.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="131" width="320" src="http://3.bp.blogspot.com/-BpSQDmsoKDg/TdtS8xpShpI/AAAAAAAAAOc/xeVTMU2HQDw/s320/old_classes.png" /></a></div><br />And these are the more recent ones &#8211;<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-X1nWWgR4z_E/TdtTFRAwnII/AAAAAAAAAOk/QkC5Sdg-LI0/s1600/getacross_classes.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="131" width="320" src="http://3.bp.blogspot.com/-X1nWWgR4z_E/TdtTFRAwnII/AAAAAAAAAOk/QkC5Sdg-LI0/s320/getacross_classes.png" /></a></div><br />Hopefully more character customization will come soon, though it&#8217;s hard to say what we&#8217;ll have time for.  2 weeks left to polish up the back-end code and the mechanics!</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/drawing/'>drawing</a>, <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/game-dev/'>game dev</a>, <a class='category' href='/blog/categories/get-across/'>get across</a>, <a class='category' href='/blog/categories/playerio/'>playerio</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/project/'>project</a>, <a class='category' href='/blog/categories/school/'>school</a>
+  
+</span>
+
+</a>
+
+
+    </article>
   
   
     <article>
@@ -485,52 +531,6 @@ So a couple of days ago I attended <a href="http://seattletimes.nwsource.com/htm
 <span class="categories">
   
     <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/get-across/'>get across</a>, <a class='category' href='/blog/categories/project/'>project</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/04/15/look-at-them-theyre-so-courageous/">Look at Them! They&#8217;re So Courageous!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-15T00:00:00-07:00" pubdate data-updated="true">Apr 15<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-kk9yDoGNiYQ/Takq_XGYa0I/AAAAAAAAALE/bgIcJBuSC5Y/s1600/socourageous.PNG" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="427" src="http://1.bp.blogspot.com/-kk9yDoGNiYQ/Takq_XGYa0I/AAAAAAAAALE/bgIcJBuSC5Y/s640/socourageous.PNG" width="640" /></a></div><br />I&#8217;m still working on <a href="http://nuubu.blogspot.com/2011/04/social-games-capstone.html">Get Across</a>, and Andou keeps suggesting different games it&#8217;s similar to, such as Lemmings.  I looked for Youtube videos and then just decided to download an emulator.  It&#8217;s quite fun. :D<br /><br /><span class="shh">It&#8217;s amazing how much you can feel for the fate of a couple pixels.</span></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/project/'>project</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
   
 </span>
 
