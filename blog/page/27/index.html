@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Incorporating ActionScript 3.0 Code With a Flex Project Jan 30th, 2011 So my project of incorporating Flex UI with an ActionScript project has just &hellip;">
+  <meta name="description" content="Operating Systems Notes [Chapter 6: Process Synchronization] Jan 18th, 2011 So a cooperating process is one that can affect or be affected by other &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,144 +78,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/30/incorporating-actionscript-30-code-with/">Incorporating ActionScript 3.0 Code With a Flex Project</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-30T00:00:00-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-So my project of <a href="http://nuubu.blogspot.com/2010/12/problem-how-do-i-use-flex-components-to.html">incorporating Flex UI with an ActionScript project</a> has just become wanting to embed the entire ActionScript project into the Flex project, so that you don&#8217;t need to use the <code>SWFLoader</code> at all to show the project.<br /><br />Luckily this is pretty easy.  As an example, take the code from a previous small project like <a href="http://nuubu.blogspot.com/2010/12/getting-sandy3d-312-working-on-flash.html">this Sandy project</a>, which does nothing but show a cone shape.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TPh_TU109CI/AAAAAAAAAAM/q_A6cDrKYGE/s1600/hellosandy.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="267" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TPh_TU109CI/AAAAAAAAAAM/q_A6cDrKYGE/s320/hellosandy.jpg" width="320" /></a></div><br /><pre class="brush: text">package<br />{<br />import flash.display.Sprite;<br />import flash.events.Event;<br /><br />import sandy.core.Scene3D;<br />import sandy.core.data.*;<br />import sandy.core.scenegraph.*;<br />import sandy.primitive.*;<br /><br />public class HelloSandy extends Sprite<br />{<br />private var scene:Scene3D;<br />private var camera:Camera3D;<br /><br />public function HelloSandy()<br />{<br />// We create the camera<br />camera = new Camera3D( 300, 300 );<br />camera.x = 0;<br />camera.y = 100;<br />camera.z = -400;<br />camera.lookAt(0,0,0);<br /><br />var root:Group = new Group;<br /><br />var myCone:Cone = new Cone("theObj1",50, 100);<br /><br />root.addChild(myCone);<br /><br />scene = new Scene3D( "scene", this, camera, root );<br /><br />addEventListener( Event.ENTER_FRAME, enterFrameHandler );<br />}<br /><br />// The Event.ENTER_FRAME event handler tells the world to render<br />private function enterFrameHandler( event : Event ) : void<br />{<br />scene.render();<br />}<br /><br />}<br />}</pre><br />Then, make a <strong>New Flex Project</strong> in Adobe Flash Builder, and make it so that it says this:<br /><pre class="brush: xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx"<br />                           minWidth="955" minHeight="600"<br />      creationComplete="initApp()"&gt;<br /><fx:script><br />  &lt;![CDATA[<br />   import mx.core.UIComponent;<br />   <br />   public function initApp():void {<br />    var myApp:HelloSandy = new HelloSandy();<br />    var container:UIComponent = new UIComponent();<br />    container.height = 600;<br />    container.left = 200;<br />    addElement(container);<br />    container.addChild(myApp);<br />   }<br />  ]]&gt;<br /> </fx:script><br /> <s:button label="Button" x="140" y="355"><br /></s:button><br /></pre><br />What this does:<br />Line 12: create a new instance of the ActionScript project, HelloSandy<br />Line 13: create a new instance of <code>UIComponent</code><br />Line 14, 15: change the height and position of the <code>UIComponent</code><br />Line 16: add the <code>UIComponent</code> to the <code>stage</code>, which handles the display of objects (a little more on the stage <a href="http://nuubu.blogspot.com/2011/01/flexas3-errors-with-stage-and-event.html">here</a>)<br />Line 17: add the HelloSandy object as a child to <code>UIComponent</code>, which will make it display<br /><br />The button is just there to show that I can still use Flex UI components.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TUXuuNoxXlI/AAAAAAAAAFA/99rs1S3w-zw/s1600/helloflexsandy.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="287" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TUXuuNoxXlI/AAAAAAAAAFA/99rs1S3w-zw/s320/helloflexsandy.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">awwwww yeaahhh</td></tr></tbody></table><br /><br /><span class="sig">An extra note:</span><br />Once I did this with my real project (not the HelloSandy example above), I got this error:<br /><br /><code>Error #2044: Unhandled IOErrorEvent:. text=Error #2032: Stream Error URLStream</code><br /><br />I&#8217;m pretty sure it was because my &#8220;display&#8221; class, which was being added to the <code>UIComponent</code> had to make use of another class, which it made an instance of in its constructor.  This second class used <code>URLStream</code>, and got an error maybe because of variable scope.<br /><br />To solve this I basically just made a new instance of that second class, then passed it into the display class constructor, instead of letting the display class make an instance itself.<br /><br /><br />Sources:<br /><a href="http://livedocs.adobe.com/flex/3/html/help.html?content=components_04.html">Adobe: Using the UIComponent Class</a><br /><a href="http://www.judahfrangipane.com/blog/2007/01/01/error-2044-unhandled-ioerrorevent-texterror-2038-file-io-error/">judah&#8217;s blog: Error #2044: Unhandled IOErrorEvent:. text=Error #2038: File I/O Error.</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/sandy3d/'>sandy3d</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/30/how-do-you-make-flex-application/">How Do You Make a Flex Application Send Data to a PHP Server?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-30T00:00:00-08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-How do you make a Flex project able to read/write files?<br />There are a couple objects like <code>File</code> and <code>FileStream</code> which make it so that an Adobe AIR application can access the user&#8217;s filesystem, but to send and load data from a server, you can use <code>URLLoader</code>, <code>URLRequest</code>, and <code>URLVariables</code>.<br /><br />A summary:<ul><li><strong>URLLoader</strong> downloads data from a URL as text, binary data, or URL-encoded variables.  It&#8217;s useful for downloading textfiles, XML, etc. to be used in a data-driven application.  So: it&#8217;s for use by a Flash application to retrieve data from a URL.</li><li><strong>URLRequest</strong> is an object which contains all of the information in one HTTP request.  It initiates URL downloads by being passed to the <code>load()</code> methods of <code>Loader, URLLoader</code> classes.  Note: By default you can only load data if the application loading and the URL it&#8217;s loading from at in the same domain.  So an application on whatever.com can only load data from somewhere else on whatever.com.</li><li><strong>URLVariables</strong> allow you to transfer variables between an application and a server.  It&#8217;s used with methods of the <code>URLLoader</code> class, with the <code>data</code> property of the <code>URLRequest</code> class, and additional functions in the <code>flash.nete</code> package.</li></ul><br />Basic workflow goes like:<ol><li>In the Flash/Flex application, create an instance of <code>URLVariables</code>, and add variables to it.  For instance, if you want to be able to retrieve data associated with &#8220;username,&#8221; you&#8217;ll want to do something like <code>URLVariablesObject.username = "username"</code></li><li>Make a page on your server which will extract the variables and work with them.  For example, a page <code>login.php</code>, with code like <code>$username = $_POST["username"]</code></li><li><code>URLRequest</code> contains the data you want to send to the server.  Specify the URL of the server page you want to send data to, set its <code>data</code> to be your URLVariables object, and set its <code>method</code> to be <code>URLRequestMethod.POST</code> if you want to send data to the server page as POST.</li><li><code>URLLoader</code> sends the <code>URLRequest</code> to the server and handles the return.  Create an instance of <code>URLLoader</code>, specify its <code>dataFormat</code> to be that of <code>URLLoaderDataFormat.VARIABLES</code>, and then use the <code>load</code> function to load the <code>URLRequest</code> object specifed earlier.  Add event listeners to handle what happens when the data has been sent to the URL, and what happens if there is an error loading the URL.</li><li>Make server page read the URLVariables with something that looks like <code>$username = $_POST["username"];</code></li></ol><br />A good way to send data to a server page is to wrap up the <code>URLRequest</code> and <code>URLLoader</code> stuff into one class or function, which will receive only the url to send the data to, and URLVariables to send.<br /><br />So, here&#8217;s an example which sends a simple &#8220;test&#8221; string to some server page somewhere.  If it&#8217;s a success, it changes a <code>Label</code> to say so, and if it&#8217;s an error, it changes a <code>Label</code> to say that too.  (I&#8217;ve pretty much taken and only slightly altered from <a href="http://tush.wordpress.com/2007/07/20/actionscript-3-using-urlloader-to-send-and-load-server-variables/">another blog</a>):<br /><pre class="brush:xml">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"><br /> <fx:Script><br />  &lt;![CDATA[<br />   // send test data to server page<br />   protected function sendDataToServer(event:MouseEvent):void<br />   {<br />    var request:URLRequest = new URLRequest(sendToURL);<br />    var loader:URLLoader = new URLLoader();<br />    var variables:URLVariables = new URLVariables();<br />  <br />    variables.test = "test";<br />    loader.dataFormat = URLLoaderDataFormat.TEXT;<br />    request.data = variables;<br />    request.method = URLRequestMethod.POST;<br />    loader.addEventListener(Event.COMPLETE, onSuccess);<br />    loader.addEventListener(IOErrorEvent.IO_ERROR, onError);<br />    loader.load(request);<br />    sendDataToServerLabel.text= "Data sent: '" + variables.test + "'";<br />   }<br /> <br /><br />   // called when URLLoader returns successfully<br />   // prints parameters and messages of event<br />   private function onSuccess(event:Event):void<br />   {<br />    var loader:URLLoader = URLLoader(event.target);<br />    dataReceivedLabel.text = "Data received by server: success!"<br />   }<br />   <br />   // called when URLLoader returns unsucessfully<br />   // prints error message<br />   private function onError(event:IOErrorEvent):void<br />   {<br />    dataReceivedLabel.text = "Error loading URL.";<br />   }<br />  ]]&gt;<br /> </fx:Script><br /><s:Label x="715" y="444" id="dataReceivedLabel"/><br /></pre><br /><span class="sig">Possible errors:</span><br /><code>Error: Error #2101: The String passed to URLVariables.decode() must be a URL-encoded query string containing name/value pairs.</code><br /><br />I got this error fixed after changing this line &#8211;<br /><br /><code>loader.dataFormat = URLLoaderDataFormat.VARIABLES;</code><br /><br />to<br /><br /><code>loader.dataFormat = URLLoaderDataFormat.TEXT;</code><br /><br />What this does (I think) is makes it so that the returning HTML page data from the server page is encoded into a <code>TEXT</code> type instead of a <code>VARIABLES</code> type.  That Flash can&#8217;t reconstruct the HTML data into <code>VARIABLES</code> seems to be a known error, and all you can do now is convert the returning HTML data into <code>TEXT</code>, and then into <code>VARIABLES</code> pairs.<br /><br /><br /><br /><span class="sig">How do you send an array to a PHP page?</span><br />For now, I just want a PHP file on the webserver to take the data the Flex app gives it, and then write it to a file.  The <code>variables</code> object (of type <code>URLVariables</code>)  <br />above has a &#8221;<code>test</code>&#8221; field, which I can retrieve easily in PHP by writing something like <code>$var = $_POST["test"]</code>, but I guess if you want to send an array this way, the easiest way to do it would be to first format the array.  i.e.<ol><li>In Flex, convert the array to a string</li><li>In PHP, retrieve the array, and then split the string and use it.</li></ol><br />Alternatively, you could use <code><a href="http://livedocs.adobe.com/flex/3/html/data_access_2.html">HTTPService</a></code> (which also works with Rails, wooo).  But reading about it in the Adobe documentation, it seems that <code>HTTPService</code> might be more useful for when you&#8217;re working with PHP and a database and want to perform queries or format query results.  All I want to do is send an array of points (each containing x, y, and z) coordinates over, so&#8230;splitting and joining stuff up in PHP it is.<br /><br /><br /><br />Sources: <br />Adobe: <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=Filesystem_08.html">Workflow for reading and writing files</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLLoader.html">URLLoader</a>, <a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/net/URLRequest.html">URLRequest</a>, <a href="http://livedocs.adobe.com/flex/3/html/help.html?content=data_access_2.html">Using HTTPService components</a><br /><a href="http://tush.wordpress.com/2007/07/20/actionscript-3-using-urlloader-to-send-and-load-server-variables/">Tushar Wadekar: ActionScript 3: Using URLLoader to send and load server variables</a><br /><a href="http://www.kirupa.com/forum/showthread.php?t=277069">Kirupa: String passed to URLVariables.decode() must be a URL-encoded query string&#8230;</a><br />StackOverflow: <a href="http://stackoverflow.com/questions/252915/how-to-send-array-throught-httpservice-in-adobe-flex-3">How to send array throught HTTPservice in Adobe Flex 3</a><br /><a href"http://groups.google.com/group/flex_india/browse_thread/thread/19d081e295905d28">Google Groups: Flex India Community: Flex to PHP variables array</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/21/how-do-you-populate-flex-spark-list/">How Do You Populate a Flex Spark List With Information From an Array?</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-21T00:00:00-08:00" pubdate data-updated="true">Jan 21<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-First, you have to wrap the array up in a Collection class, and then you connect that Collection class to the Flex component.  Here&#8217;s my understanding of how the three of these things relate to each other in general:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TToSbSYmLXI/AAAAAAAAAE4/qklhGy7hiRs/s1600/nuubu%2Bflex%2Bcomps.png" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="230" width="320" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TToSbSYmLXI/AAAAAAAAAE4/qklhGy7hiRs/s320/nuubu%2Bflex%2Bcomps.png" /></a></div><br />In general, Collections also give you more functions to sort or filter arrays.  Also, if you alter the ArrayCollection &#8211; by adding or removing an item &#8211; you&#8217;ll affect the underlying array.<br /><br />In code, this is something that would (in general) work to link a List component to an array:<br /><br /><pre class="brush:cpp">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br /><s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" <br />      xmlns:s="library://ns.adobe.com/flex/spark" <br />      xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600"><br /><br /> <fx:Script><br />  <![CDATA[<br />   import mx.collections.*;<br />   protected var array:Array;<br />   protected var arrayCollection:ArrayCollection = new ArrayCollection();<br /><br />   arrayCollection.source = array;<br />   list.dataProvider = arrayCollection;<br />  ]]><br /> </fx:Script><br /> <s:List x="642" y="183" id="list" height="200" width="100"></s:List><br /></s:Application><br /></pre><br /><br />Sources:<br /><a href="http://livedocs.adobe.com/flex/3/html/help.html?content=about_dataproviders_1.html">Adobe: Using Data Providers and Collections</a><br /><a href="http://livedocs.adobe.com/flex/3/html/help.html?content=dpcontrols_1.html#478370">Adobe: List control</a><br /><a href="http://blog.flexdevelopers.com/2009/03/flex-basics-arraycollection.html">Flex Developers & Development: ArrayCollection Basics</a><br /><a href="http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/mx/collections/ArrayCollection.html">Adobe: ArrayCollection documentation</a></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
-  
-</span>
-
-</a>
-
-
-    </article>
   
   
     <article>
@@ -539,6 +401,144 @@ Nice solution, it worked great for me.  I only needed to reference the stage at 
 <span class="categories">
   
     <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/troubleshooting/'>troubleshooting</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/09/c-typedef-struct/">C: Typedef, Struct, Extern</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-09T00:00:00-08:00" pubdate data-updated="true">Jan 9<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">What is <code>typedef</code> and <code>struct</code>?</span><br />A struct in C is a structured type that combines a set of labeled objects of different types, into a single object.  So, kind of like a Java object with its own variables.<br /><br />An example of a struct you could make would be<br /><br /><pre class="brush: cpp">struct pokemon {<br />   char* nickname;<br />   char* species;<br />   int level;<br />   char* item;<br />};<br /></pre><br />Then, to create a new Pokemon struct, I could say<br /><br /><pre class="brush: cpp">struct Pokemon pikachu;<br /></pre><br />And to access the new struct&#8217;s nickname, I could say something like<br /><br /><pre class="brush: cpp">pikachu.nickname;<br /></pre><br />The keyword <code>typedef</code> is just meant so that you can assign different &#8220;names&#8221; to existing types, in case you may get confused.  For instance, you might have code that looks like<br /><br /><pre class="brush: cpp">char* pokemon_name;<br />char* item;<br /><br />void buy(char* item) {<br />   // remove money from the user<br />}<br /></pre><br />Though <code>buy</code> can take any char*, what you really want it to do is only accept char* that represent items, not Pokemon nicknames.  So, you can use typedef to distinguish that pokemon_name and item are completely unrelated variables which happen to both be of type char*.<br /><br /><pre class="brush: cpp">typedef char* pokemon_name;<br />typedef char* item;<br /><br />pokemon_name pokemon_nickname;<br />item item_name;<br /><br />void buy(char* item) {<br />   // remove money from the user<br />}<br /></pre><br />This distinction is only for the programmer; the C/C++ compiler considers both things to be char*, and won&#8217;t give any errors if you happen to try and purchase a Pokemon.  <span class="shh">You cheat.</span><br /><br /><code>typedef</code> can also make declarations easier; for instance, if I did something like<br /><br /><pre class="brush:cpp">typedef struct Pokemon {<br />   char* nickname;<br />   char* species;<br />   int level;<br />   char* item;<br />} Pokemon;<br /></pre><br />Then, instead of having to write <code>struct Pokemon pikachu;</code> like earlier, I could make a new Pokemon just by saying<br /><br /><pre class="brush: cpp">Pokemon pikachu;<br /></pre><br /><br /><span class="sig">What does <code>extern</code> mean?</span><br />The <code>extern</code> declaration indicates the existence of, and type of, a global variable or function.  <code>extern</code> means that something is defined externally to the current module (so if your current .c file is using it, that means that another, included file actually defined it?).  <code>extern</code> can be left off because the linker collapses the multiple definitions into a single one, but to use the <code>extern</code> keyword is cleaner because it defines the global variable in one place, and everything else makes <code>extern</code> references to it.  <br /><br />If a program has a variable that&#8217;s declared as <code>extern</code>, the program won&#8217;t reserve any memory for the variable in the scope that it was declared.  Which is why you need to use the <code>extern</code> keyword in programs that are using the declaration, but haven&#8217;t defined it.<br /><br /><br /><br />Source:<br /><a href="http://en.wikipedia.org/wiki/Struct_%28C_programming_language%29">Wikipedia: Struct (C programming language)</a><br /><a href="http://wiki.answers.com/Q/What_is_the_use_of_extern_in_C">Answers.com: What is the use of extern in C</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/06/q-operating-systems-etc/">[Q&a] Operating Systems, C, Etc.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T00:00:00-08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<b>How do you switch drives with Windows command line?</b><br />If you want to go to drive <code>Z:</code>, rather than <code>cd Z:</code>, you can just type <code>Z:</code>.<br /><br /><br /><b>What do you do when you demux something?</b><br />A demultiplexer is a device that takes a single input signal and routes it to one of many output lines.  It&#8217;s often used with a multiplexer on the sending end.  So, when you demux a signal, you accept it, and then based on some parameter send it to a different function or something. <span class="shh">I think?</span><br /><br /><br /><b>What&#8217;s a virtual machine?</b><br />&#8220;A software implementation of a programmable machine&#8221; &#8211; so, a simulation of a computer, on a computer.<br /><br /><br /><b>What&#8217;s the difference between a function in C and a method in Java?</b><br />All C/C++ programs require a function named <code>main</code> and besides that can have numerous other functions.  In Java, functions can&#8217;t stand by themselves &#8211; they have to be part of a class.  Functions that are part of a class are usually called methods.<br /><br />Also, it seems that methods are called by reference values, which are objects, perhaps like <code>Object.method()</code>, as opposed to just <code>value = function()</code>?  Also, &#8220;method&#8221; is used more often in Java, most likely because Java has objects and C/C++ does not.<br /><br /><br /><b>What&#8217;s Windows NT?</b><br />It&#8217;s a family of operating systems created by Microsoft, which were meant to complement consumer versions of Windows that were based on MS-DOS.  NT was the first fully 32-bit version of Windows.  Windows 2000, Windows XP, Windows Server 2003, Windows Vista, Windows 7, etc., are based on Windows NT, though they aren&#8217;t branded the same way.  NT was once expanded to mean &#8220;New Technology&#8221; and stood originally for &#8220;N-Ten,&#8221; the codename of the Intell i860 XR processor that the OS was originally developed for, but NT has no particular meaning anymore.  Sidenote: it is really confusing that there&#8217;s an operating system called Windows <i>Server</i> 2003.  <i>Wat.</i>  I guess this calls into question what exactly a server is supposed to be.<br /><br /><br /><b>What is a server?</b><br />A server can refer to:<br /><ul><li>a computer program running as <a href="http://nuubu.blogspot.com/2011/01/intro-to-distributed-systems.html">a service</a>, to serve the needs or requests of other programs</li><li>a physical computer running one or more such services, to serve the needs of programs running on other computers in the same network</li><li>a software/hardware system such as a database server, file server, mail server, print server</li></ul>I guess server operating systems are operating systems that have certain features which make them good servers &#8211; such as limited GUI, flexible/advanced networking capability, tight security, backup securities, transparent data transfer between different volumes or devices &#8211; and maybe that&#8217;s what the Windows Server operating systems are all about.<br /><br /><br /><b>How do you press Ctrl+Alt+Delete in a virtual machine?</b><br />In a virtual machine in MS Virtual PC 2007, rather than pressing the keys, go to the <code>Action</code> tab and select <code>Ctrl+Alt+Delete</code>.<br /><br /><br /><b>What does the <code>_</code> or <code>__</code> mean in C programs?</b><br />There&#8217;s no particular meaning.  <code>_</code> is meant to identify system variables/functions, <code>__</code> is meant to identify metadata.  Additionally, when you include headers in C, you <br />add in a lot of code and functions and variables; to prevent these imported names from causing duplicates with the variables/names of your own stuff, it&#8217;s best to avoid using variables/functions which start with underscores in your own program.<br /><br /><br /><br /><br />Source:<br />Jimmy<br />Wikipedia: <a href="http://en.wikipedia.org/wiki/Multiplexer">1</a>, <a href="http://en.wikipedia.org/wiki/Virtual_machine">2</a>, <a href="http://en.wikipedia.org/wiki/Windows_NT">3</a>, <a href="http://en.wikipedia.org/wiki/Server_%28computing%29">4</a><br /><a href="http://www.geekinterview.com/question_details/31163">GeekInterview: What is the difference between methods and functions?</a><br /><a href="http://www.dickbaldwin.com/java/Java008.htm">Dick Baldwin: Similarities and Differences between Java and C++</a><br /><a href="http://bytes.com/topic/c/answers/540408-_-__-significance">Bytes: _ and __ significance</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/06/operating-systems-notes-lecture-2/">Operating Systems Notes [Lecture 2]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-06T00:00:00-08:00" pubdate data-updated="true">Jan 6<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+An operating system provides <a href="http://nuubu.blogspot.com/2011/01/operating-system-notes-chapter-1.html">a middle ground</a> between hardware and software, so making an operating system depends a lot on what hardware you have underlying it.  Computer hardware, however, has the amazing capacity to (at least until fairly recently) follow <strong>Moore&#8217;s Law</strong>, which states that <em>the number of transistors that can be placed inexpensively on an integrated circuit has doubled approximately every two years.</em>  I guess this trend has persisted for half a century, making it so that processors and memory have become ridiculously cheap, ridiculously fast.<br /><br />What this means is, the hardware conditions that you assume and initially create your operating system for may not hold true, and then you&#8217;ll be screwed.<br /><br />One interesting thing is that, though processor performance has increased throughout the years, disk capacity has become 10x as fast as processor performance.  Disk performance has <em>not</em> kept up, having only increased by a factor of 200 since 1983 (from 500 kb/s to ~100 mb/s).  Bandwidth presently is 100x as fast as processor performance, and 10x as fast as disk performance.<br /><br />An obvious implication of these unexpected growths is this: What happens if you have always designed systems so that they spend processing power so as to save &#8220;scarce&#8221; storage and bandwidth?<br /><br />Another thing: operating systems must load programs into main memory in order to execute them, but main memory is not large enough to hold everything all at once, and occasionally you&#8217;ll have to fetch data from the disc.  A computer going out of its way to fetch data from the disc is like a human going out of its way to fetch something from Pluto.  <em>Uphill.  Both ways.  In space.</em><br /><br />In general, hardware can dictate a lot about how simple or complex it will be to implement an OS.  Early OS (like DOS) didn&#8217;t have virtual memory, because the hardware didn&#8217;t allow it; and until recently, Intel-based PCs still didn&#8217;t support 64-bit addressing, though other platforms have had it since forever, like IBM, MIPS, etc.<br /><br />Features were also sometimes built into hardware to support OS building, like timer operation, memory protection, interrupts and exceptions, system calls.<br /><br /><strong>System calls</strong> are there so that the user can call an OS procedure, which is otherwise protected and kept out of hand&#8217;s reach on top of the refridgerator in kernel mode, so that the user doesn&#8217;t eat it all and spill it all over everything.  Once the user is done having a dessert cookie, the OS moves back into user mode, and relinquishes control back to the user.<br /><br />The kernel must save the state that the user was in before the user wanted to eat a cookie, so that it can remember what it was doing before it was interrupted, and resume.<br /><br />So in general the OS sits around waiting for events to happen that it can deal with.  Events can be interrupts, which are sent by programs, or they can be exceptions.  <strong>Exceptions</strong> are thrown by hardware once it detects certain rules being violated (like if someone tries to write to a read-only file), and when they happen control must be passed to the OS&#8217;s handler, with the saved state at the time of the fault.  Exceptions are a performance optimization in that the OS doesn&#8217;t have to deal with figuring out when things are going wrong &#8211; the hardware detects the violation &#8211; and detecting exceptions would be a big hassle for the OS because those extra checks would have to be written into the kernel, taking valuable space.<br /><br />In the meantime, interrupts allow for <strong>asynchronous I/O</strong>.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TSasz1jh5fI/AAAAAAAAAD8/9lBMBA1S9E0/s1600/os%2Bio%2Bcontrol.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TSasz1jh5fI/AAAAAAAAAD8/9lBMBA1S9E0/s320/os%2Bio%2Bcontrol.jpg" width="246" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">this is how we deal with I/O interrupts around here</td></tr></tbody></table><br />So, I/O interrupts can happen at any time, any place.  How do you protect yourself from getting interrupted so much that you end up never getting anything done?  Your OS will have to be able to <strong>synchronize concurrent processes</strong> by guaranteeing that short instructions (read-modify-write) will happen automatically; or maybe, by not letting certain processes get interrupted until their finished; or maybe, by having special atomic instructions, such as the read-modify-write, which you execute immediately.<br /><br /><strong>Concurrent programming</strong> is a huge deal and is a huge difference between systems programming and &#8220;traditional application programming,&#8221; which I&#8217;m starting to feel is like, the lame computer programming.<br /><br /><br /><br />Sources:<br />Lecture 2 notes<br /><a href="http://en.wikipedia.org/wiki/Moore's_law">Wikipedia: Moore&#8217;s Law</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
   
 </span>
 

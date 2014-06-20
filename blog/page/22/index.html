@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Adding a New Model to a Database in Rails Aug 16th, 2011 For whatever reason, adding a model to a database in Rails took me forever to understand. &hellip;">
+  <meta name="description" content="Good Design Moves Tumblr Has Made Recently Which I Really Appreciate Aug 8th, 2011 Tiled PhotosetsIf you wanted to post more than one picture at a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,157 +78,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/16/adding-new-model-to-database-in-rails/">Adding a New Model to a Database in Rails</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00-07:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-For whatever reason, adding a model to a database in Rails took me forever to understand.  Thanks to <a href="https://github.com/kellydunn">Kelly</a>, I now have model-making in Rails down to an art.<br /><br />Want to add a new table or a new column to your Rails application?  This is what you do!<br /><br /><br /><h3>1. Create a new .rb file for your model</h3>Let&#8217;s say that, just like me, you want to create a new database table in your application to keep track of information about dogs.  We (by virtue of the same logic which affords physics problems friction-less vacuums with which to work in) already have a couple tables in our database: one pertaining to users (breeders or owners of dogs), and one pertaining to breeds.  We will keep it simple for now; all we want to know about a dog object for now is what its name is, what user it belongs to, and what breed it is.<br /><br />To add a Dogs table, we first need to create a file which will describe its model.  Part of this is describing what the relationship of the new model is to existing models, like User and Breed.  From real-world experience, we know that a dog generally has one user/owner, and one breed.<br /><br />So, create a file in <strong>app/models/</strong> called <strong>dog.rb</strong>, and type in the following:<br /><pre class="brush: cpp">class Dog &lt; ActiveRecord::Base<br />  belongs_to :user<br />  belongs_to :breed<br />end<br /></pre>Dog inherits Active Record.  Active Record&#8217;s sole purpose of existence is to help create associations between different objects.  This code will later be macro&#8217;ed out by Active Record into something more lower-level to create the associations.<br /><br />The lines that start with <code>belongs_to</code> describe the relationship that this new model has to existing ones.  Basically, a dog belongs to one owner/user, and to one breed.  <br /><br />Rails also has another keyword called <code>has_one</code>, which at first might also seem like an okay association to make between dogs and users; after all, a dog <em>has_one</em> user, right?  <a href="http://duanesbrain.blogspot.com/2006/05/ruby-on-rails-hasone-versus-belongsto.html">But belongs_to is more correct, because has_one implies more of a one-to-one relationship</a>, where you might be doing something like creating a new user every time you create a new dog.  Since users may later obtain more dogs, <code>belongs_to</code> would be more appropriate in the case you want to attach a new dog to an existing user.  (Note: belongs_to also makes it so that the Dogs table will have to be responsible for its foreign key with Users, whereas it would be the opposite case for has_one.)<br /><br /><br /><h3>2. Change your existing models to reflect their relationship to the new model</h3>Because a User can have many dogs, and have many different breeds of dogs, User should now look like this: <br /><pre class="brush: cpp">class User &lt; ActiveRecord::Base<br />&nbsp;&nbsp;acts_as_authentic<br />&nbsp;&nbsp;has_many :dogs<br />&nbsp;&nbsp;has_many :breeds, :through =&gt; :dogs<br />end<br /></pre>And because many dogs can be of a certain breed, and breeds can be owned by multiple owners, Breeds will look the same &#8211; <br /><pre class="brush: cpp">class Breed &lt; ActiveRecord::Base<br />&nbsp;&nbsp;has_many :dogs<br />&nbsp;&nbsp;has_many :users, :through =&gt; :dogs<br />end<br /></pre><br /><br /><h3>3. Generate a new migration</h3>Now you have to create a migration which, when run, will create the relevant tables in a structured manner.  You could also be hipster about it and edit SQL on your database by hand, but then you&#8217;d would have to tell the other people you&#8217;re working with of what you&#8217;ve done if they have local databases, or else run the same SQL on production databases.  With migrations, you can make changes modular, and even roll back changes easily.<br /><br />Run <code>rails g migration create_dogs_table</code>.  This will create a file in <strong>db/migrate</strong> which will look something like this: <br /><blockquote><strong>20110807213821_create_dogs_table.rb</strong></blockquote>The numbers on the left are a timestamp, which is needed by Active Record so it will know what migrations that you haven&#8217;t yet run, so that it can run them for you.<br /><br /><br /><br /><h3>4. Edit the migration file to describe what tables or columns should be added to your database.</h3>Open your migration file and type in these things: <br /><pre class="brush: cpp">class CreateDogTable &lt; ActiveRecord::Migration<br />  def self.up<br />  end<br /><br />  def self.down<br />  end<br />end<br /></pre><code>self.up</code> is executed when a database is updated; <code>self.down</code> is executed when a database is rolled back due to errors.  So, in <code>self.up</code> you want to create your new tables and columns; in <code>self.down</code> you want to define code to remove those tables and columns.  With dog objects, all we said we cared about earlier was the name, so let&#8217;s just make a table which will (automatically) contain a unique ID, a timestamp, and a string for each dog object.  <br /><pre class="brush: cpp">class CreateDog &lt; ActiveRecord::Migration<br />  def self.up<br />    create_table :dogs do | d |<br />      d.timestamps<br />      d.string :name<br />    end<br />  end<br /><br />  def self.down<br />    drop_table :dogs<br />  end<br />end<br /></pre><br /><br /><h3>5. Run the migration to create your table</h3>Run the migration by typing <code>rake db:migrate</code>.  Remember how the migration that we generated had a timestamp?  When you run <code>rake db:migrate</code>, Active Record can use those to figure out all the migrations that might have been added to your code base, which have not yet been run on a certain database (such as the one pertaining to production).  Also, because the code to create and drop data from a database is so high-level, it doesn&#8217;t really matter whether your actual code is in sqlite3 or in MySQL.  You can even use both depending on whether you&#8217;re in development or production stages.<br /><br />Hurray!  Now you have new tables and columns in your database!  <br /><br /><div class="separator" style="clear: both; text-align: center;"></div><br /><br />Sources: <br /><ul><li><a href="https://github.com/kellydunn">Kelly</a></li><li><a href="http://ar.rubyonrails.org/">RubyonRails.org: Active Record</a></li><li><a href="http://duanesbrain.blogspot.com/2006/05/ruby-on-rails-hasone-versus-belongsto.html">Duane&#8217;s Brain: Ruby on Rails : Has_One versus Belongs_To</a></li></ul></div>
-<h2>Comments</h2>
-<div class='comments'>
-<div class='comment'>
-<div class='author'>nadine a.</div>
-<div class='content'>
-Kelly has been being really hipster and avoiding auto-generating files :P But thanks!  Now that I know how to create stuff &quot;model dog&quot; should be easier.  Also, &quot;change&quot; sounds definitely more convenient.  Thanks!</div>
-</div>
-<div class='comment'>
-<div class='author'>jshou</div>
-<div class='content'>
-If you do &quot;rails g model dog&quot;, the model, migration, tests and test helper files are automatically generated.  <br /><br />Also, in Rails 3.1, you don&#39;t have to define both up and down methods if down is obvious from what up is.  You can just define a method &quot;change&quot; with the contents of &quot;up&quot; would have been, and rails can figure out &quot;down&quot; by itself.<br /><br />The only caveat is that if change is drop_table, you have to use down and up, because rails can&#39;t figure out what columns to add back if you roll back the drop.</div>
-</div>
-</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/rails/'>rails</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/10/on-speaking-through-wires/">On Speaking Through the Wires</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-10T00:00:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-7cJWFfzONR4/TkI_p0BZ86I/AAAAAAAAAVw/ihiENRyuKag/s1600/1__pantry.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="640" src="http://1.bp.blogspot.com/-7cJWFfzONR4/TkI_p0BZ86I/AAAAAAAAAVw/ihiENRyuKag/s640/1__pantry.png" width="548" /></a></div><br />I had an interview today!  It was for a position that I felt was made for me &#8211; involving writing, drawing, design, some management too.  (Managing soothes me because I feel like I have an eye on everything that&#8217;s going on.) Despite my enthusiasm I think I still wasn&#8217;t able to explain myself properly, and I blame it in some part on Skype.  I struggle with communicating effectively over electronic things like phones and video-chats.  People&#8217;s eyes don&#8217;t meet, there are no visual cues, they don&#8217;t see that I&#8217;m fiddling with the cork of this delicious Cupcake Red Velvet wine that I finished yesterday as I think.<br /><br />The internet connection is faulty.  Did they understand what I said?  Did I really understand what they said?  Am I being too silly?  <em>Are my feelings of pure love for video game design and story reaching you through these pixels?</em><br /><br />Man, I love the comfort of words that you can think through before you write, then think through after you write, then revise if necessary.<br /><br />One thing they asked was for further demonstration of my ability to sketch things out in perspective, or make layouts, so after RPG today (every Tuesday with the other interns) I drew out a short rendition of Little Red Riding Hood, the whole of which you can view <a href="http://neauro.tumblr.com/post/8727734003/sf-day-43-mondays-man-sf-day-44-had-an">on Tumblr</a>, where it looks much prettier, thanks to the whole <a href="http://nuubu.blogspot.com/2011/08/good-design-moves-tumblr-has-made.html">tiled photosets</a> thing.<br /><br />I don&#8217;t think I&#8217;ve drawn things &#8220;with perspective&#8221; since the endless corridors of elementary school, but these were fun to do. :)</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/drawing/'>drawing</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/08/10/editing-skype-chats/">Editing Skype Chat Messages</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-10T00:00:00-07:00" pubdate data-updated="true">Aug 10<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-There is one thing in particular that I wish Skype would change about its UI, and I think it&#8217;s mostly influenced by my experience using another <a href="http://nuubu.blogspot.com/2011/05/playerio-thoughts-on-bigdb.html">2.0-y bright blue user interface</a>.<br /><br />I&#8217;m talking about the little side menu that comes up over your chat messages, which offers you a variety of possible actions for that message.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-sgPTg-1XhdE/TkNONrn37eI/AAAAAAAAAWQ/ejBSr5mVeLw/s1600/skype2.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="116" src="http://3.bp.blogspot.com/-sgPTg-1XhdE/TkNONrn37eI/AAAAAAAAAWQ/ejBSr5mVeLw/s640/skype2.png" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">man, I should have taken a bigger screenshot</td></tr></tbody></table><br />When I am clicking on my own chat, these are the things that I probably want to do, in order:<br /><br /><ol><li><b>Edit </b>whatever foolish, silly thing I just wrote</li><li><b>Remove</b>&nbsp;whatever now-irrelevant thing I just wrote</li></ol><div><br /></div><div>I can only imagine <b>Copy</b>&nbsp;or <b>Quote</b>&nbsp;to be useful in cases when I want to be snarky. &nbsp;(<i>I already said that! &nbsp;Exactly 5 minutes and 3 seconds ago!</i>) Or maybe if I&#8217;m cross-posting between chats? &nbsp;I don&#8217;t know. &nbsp;I accept there is a use case that I haven&#8217;t encountered for those options.</div><div><br /></div><div>Nevertheless, <b>what I really wish I could do in Skype is click <i>anywhere</i>&nbsp;on a chat-message of mine and have it open up into something I could immediately edit</b>, much like Player.IO&#8217;s treatment of objects in its database. &nbsp;The menu could then be reserved for the lesser use cases of Removing, Copying, or Quoting.</div><div><br /></div><div>Speaking of the menu, could we also make that little arrow larger? &nbsp;The little arrow that opens that menu in the first place?</div><div><br /></div><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-V7fU6z-5WlI/TkNNvNn6bMI/AAAAAAAAAWI/3vOz8JgvCK8/s1600/2011-08-10_1256.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="120" src="http://1.bp.blogspot.com/-V7fU6z-5WlI/TkNNvNn6bMI/AAAAAAAAAWI/3vOz8JgvCK8/s640/2011-08-10_1256.png" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">do you see it?</td></tr></tbody></table><div><br /></div><div>Since there&#8217;s nothing usually relevant to the right side of the chat-message anyway, it would help a lot if the hitbox for the menu was larger. &nbsp;Also, if the menu opened up automatically, instead of me having to click it&#8230;!</div><div><br /></div><div>Just thinking about it is exciting. :D</div></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/project/'>project</a>, <a class='category' href='/blog/categories/social-games/'>social games</a>, <a class='category' href='/blog/categories/ui-slash-ux/'>ui/ux</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
-  
-</span>
-
-</a>
-
-
-    </article>
   
   
     <article>
@@ -575,6 +424,157 @@ Now I want to try shooting in RAW! I quietly lolled at several sentences in this
 <span class="categories">
   
     <a class='category' href='/blog/categories/feminism-thing/'>feminism thing</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/07/04/web-20-overload/">Web 2.0 Overload</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-04T00:00:00-07:00" pubdate data-updated="true">Jul 4<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+San Francisco has been great!  I&#8217;ve been spending most of the time trying to get acclimated to my work environment/coworkers, as well as to the passersby here, who all say &#8220;Hi&#8221; at the last possible moment.  I end up turning around hastily and yelling &#8220;Hi!&#8221; to their backs.<br /><br />I&#8217;ve come to an uncomfortable point in my life where I have so many Web 2.0 things that I have no idea what to update, when I feel like updating something.  Most of my SF adventures are detailed on <a href="http://neauro.tumblr.com/tagged/one_new_sf_thing_every_day">my Tumblr</a>, where I strive to do &#8220;one new thing a day.&#8221; My reasoning for not putting that sort of stuff here is that, the stuff I put on Tumblr is more personal?  And I would prefer to reserve this blog for stuff of more professional nature, i.e. learning about programming?  There&#8217;s also a different flavor to how things get shared on Tumblr that I&#8217;m mindful of, for example, if I&#8217;m uploading pictures, all the ones of dessert go to Tumblr, whereas all my super-nicer ones (even if they include family) all go to Flickr, and everything may go indiscriminately to Facebook, etc.<br /><br />I guess on the topic of learning new things, I&#8217;ve been trying to revamp my portfolio website, but been having fun just changing things here and there, searching for the right layout.  I&#8217;m trying to learn Sinatra and it&#8217;s going well, but since my Dreamhost account doesn&#8217;t really support Rails, I may have to do the site in PHP anyway if I want to get it up faster, and try using Heroku if I&#8217;d be okay with getting it up later.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/misc/'>misc</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/19/im-in-san-francisco/">I&#8217;m in San Francisco!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-19T00:00:00-07:00" pubdate data-updated="true">Jun 19<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-QYiItjM_1LE/Tf7C1F9kltI/AAAAAAAAARQ/j29QnyUoilw/s1600/DSC_0821.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="426" src="http://1.bp.blogspot.com/-QYiItjM_1LE/Tf7C1F9kltI/AAAAAAAAARQ/j29QnyUoilw/s640/DSC_0821.jpg" width="640" /></a></div><br />It&#8217;s that place they call <a href="http://en.wikipedia.org/wiki/South_of_Market,_San_Francisco,_California">SoMa</a>!<br /><br />Sad to think that the sun&#8217;s not setting on me in the Pacific Northwest today.<br /><br />Tomorrow, internship!</div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>nadine a.</div>
+<div class='content'>
+I shall do my utmost ;D</div>
+</div>
+<div class='comment'>
+<div class='author'>axcho</div>
+<div class='content'>
+Hey, I didn&#39;t know you had a blog! Congrats on graduating and getting to San Francisco and starting your internship! :D Hope you have a great time there and remain uncorrupted by their all-powerful evil. ;)</div>
+</div>
+</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/photo/'>photo</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/06/16/i-just-saw-trailer-for-journey-by/">I Just Saw a Trailer for Journey by Thatgamecompany!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-16T00:00:00-07:00" pubdate data-updated="true">Jun 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<iframe allowfullscreen="" frameborder="0" height="349" src="http://www.youtube.com/embed/Z8CLozr2f5k" width="520"></iframe><br /><blockquote>&#8220;<em>One thing that we want to try for Journey is to create this feeling between two complete strangers&#8230;so it&#8217;s like, you&#8217;re on a hike and you&#8217;re heading somewhere, and on the pass you might run across other players pass, and you guys could stay together, or you could leave each other.&#8221;<br /><br />&#8220;One of the ideas of Journey was to create a space in which you could feel a sense of maybe awe or wonder.  So Journey presents a very different experience in which you are left kind of powerless against the environment you&#8217;re presented with.&#8221;</em></blockquote><br /><br />I haven&#8217;t felt so much hope and excitement for a game in such a long time, much less wanted to purchase a PS3 just to play something.  I&#8217;m so happy that people still make console games that aren&#8217;t just <a href="http://www.cracked.com/blog/the-6-most-ominous-trends-in-video-games/">army gamez</a>.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-g1t4KGnEj0k/TfpAk-fulHI/AAAAAAAAARI/07_xfbLCW0M/s1600/62660.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://2.bp.blogspot.com/-g1t4KGnEj0k/TfpAk-fulHI/AAAAAAAAARI/07_xfbLCW0M/s320/62660.jpg" width="143" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">(<a href="http://www.cracked.com/blog/the-6-most-ominous-trends-in-video-games/">source</a>)</td></tr></tbody></table><br />It occurs to me now that I&#8217;ve always been more of a console gamer, but in the past couple years have played games mostly on the PC, most of them either older releases like Bioshock and Portal, or Flash games.  When I was younger games like Sonic the Hedgehog or Castle of Illusion Starring Mickey Mouse were fine, but nowadays I really crave story, for a game to make me think something new.  Games are too expensive to risk going beyond gunsight and realistic blood nowadays, I suppose.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
   
 </span>
 
