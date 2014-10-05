@@ -9,7 +9,7 @@
   <meta name="author" content="nadine a.">
 
   
-  <meta name="description" content="Operating Systems Notes [Disk Caching, RAID Levels, Flash Memory) Feb 17th, 2011 This is a quick rehash of what we&#8217;ve learned in the previous &hellip;">
+  <meta name="description" content="Operating Systems Notes [Deadlocks] Feb 4th, 2011 So. Real talk. I guess deadlocks kind of suck.A deadlock is an irreducible circular dependence. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -78,295 +78,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/17/operating-systems-notes-disk-caching/">Operating Systems Notes [Disk Caching, RAID Levels, Flash Memory)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-17T00:00:00-08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-This is a quick rehash of what we&#8217;ve learned in the previous week!<br /><br /><span class="sig">Disk Caching</span><br />So the OS can optimize operations done by scheduling things, either <a href="http://nuubu.blogspot.com/2011/01/operating-systems-notes-chapter-5-cpu.html">CPU</a> or <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">memory</a>.  The operating system can also schedule disk operations, which are reads/writes from/to the disk (that far-off entity which stores the data you want, yet is time-consuming and expensive to reach).<br /><br /><strong>Disk scheduling</strong> is optimized especially through <strong>disk caching</strong>.  Disk caching can come in two flavors.  <strong>Write caching</strong> is when the user has the data that they want to write to disk, and the OS, rather than writing that data directly to the disk, instead writes it to a cache.  Then, sometime later, the OS writes everything in the cache to the disk.  There&#8217;s a sort of &#8220;five minute rule&#8221; to this, where (very roughly) every &#8220;five minutes or so,&#8221; the cache gets &#8220;flushed&#8221; to disk.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-wDujboA5CPU/TV4Ffh_w4XI/AAAAAAAAAHs/qyHyYUHJcPs/s1600/writecaching.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="81" src="http://3.bp.blogspot.com/-wDujboA5CPU/TV4Ffh_w4XI/AAAAAAAAAHs/qyHyYUHJcPs/s320/writecaching.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">our TA&#8217;s lecture notes are so cool</td></tr></tbody></table><br />There&#8217;s also <strong>read caching</strong>, which is when the operating system reads data from the disk into a cache, so as to be easily and quickly accessed by the user later.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-6A1WwUsxBH8/TV4FjpY-ETI/AAAAAAAAAH0/UahzFruaJtY/s1600/readcaching.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="83" src="http://1.bp.blogspot.com/-6A1WwUsxBH8/TV4FjpY-ETI/AAAAAAAAAH0/UahzFruaJtY/s320/readcaching.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">look at this. &nbsp;just look how understandable this is</td></tr></tbody></table><br /><br />One way to take advantage of disk caching is to use <strong>memory mapped I/O</strong>.  The data in a disk cache exists in kernel space, so what&#8217;s an easy way for a process in user-space to get a hold of it?  To have the process contain a mapping directly to that disk cache!<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-OU-tACxsM5Q/TV4GYm7X0jI/AAAAAAAAAH8/BQaW5asqgME/s1600/memorymappedio.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="126" src="http://2.bp.blogspot.com/-OU-tACxsM5Q/TV4GYm7X0jI/AAAAAAAAAH8/BQaW5asqgME/s320/memorymappedio.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">these colors are just so neat</td></tr></tbody></table><br />The segment of a process&#8217;s <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">virtual address</a> which has been mapped is called a <strong>memory-mapped file</strong>; in this case, it&#8217;s the blue part.<br /><br />As the process uses the file, it may need to write to it, which means eventually that the pages that the user-space process altered will need to be flushed to disk, or written out to disk.  The OS will know which pages to write thanks to the alteration of a dirty bit.  When the ditry bit is high, that means that the page has been altered and will need to be flushed.  <span class="shh">(Somehow this whole paragraph feels a little gross&#8230;)</span><br /><br /><br /><span class="sig">RAID Levels</span><br />are another thing that we&#8217;ve been talking about in lecture.  The thing about disks in general is that though they are a pretty useful/necessary storage device for computers, they&#8217;re super messy &#8211; they run into errors all the time, like bad blocks, or missed seeks.  Part of the job of the operating system is to hide all this messy-ness from higher-level software (i.e. software that other, more sane programmers will write to be run on the computer).  The OS will provide different levels of access to different clients &#8211; for instance, allowing them to access physical disk blocks (a specific head, or cylinder of the disk) or just logical disk blocks (i.e. a program says &#8220;I want disk 6&#8221; and the OS retrieves the real location of &#8220;disk 6&#8221; itself).<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-pZ8QGur6iSg/TV4MPA-H3hI/AAAAAAAAAIE/Sv47rFhynK0/s1600/harddrive.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="223" src="http://4.bp.blogspot.com/-pZ8QGur6iSg/TV4MPA-H3hI/AAAAAAAAAIE/Sv47rFhynK0/s320/harddrive.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">this is what a disk looks like, by the way</td></tr></tbody></table><br />It takes time for an OS to find something on a disk.  The performance is based on three main things:<br /><ol><li><strong>Seeking</strong>: how long it takes to move the disk arm to the correct cylinder on the disk</li><li><strong>Rotation</strong>: how long it takes to wait for the sector you want to rotate under the head of the reader.  This depends on the rotation rate of the disk, which is not increasing that quickly, mainly because the way disks are made now, if they spin any faster they&#8217;ll fall apart</li><li><strong>Transfer</strong>: how long it takes to transfer data from the surface of the disk into the disk controller, and from there back to the process that wants the data</li></ol><br />The OS mainly tries to reduce seek times and rotation.<br /><br />So, since disk transfer rates in general are improving, and since CPU performance isn&#8217;t, what you can do to improve performance is have multiple disks containing/transferring data.  In particular, you can &#8220;stripe&#8221; files across multiple disks by placing parts of each file on a different disk, making it so that you can read parts of a file simultaneously (i.e. use <strong>parallel I/O</strong> to read a single file).<br /><br />The problem with striping is that it&#8217;s not very reliable.  To improve its reliability, you can add redundant data to the disks, along with striping, and thus &#8211; <strong>RAID: Redundant Array of Inexpensive Disks</strong>.  Since disks are physically small and cheap, you can just stick a lot of them into one box to increase storage, performance, and availability.  Depending on how you stripe data, you can affect resulting performance and reliability in different ways.<br /><br />What are some things to consider in different methods of striping?  Firstly, <strong>granularity</strong>.  If you stripe each file across multiple disks (&#8220;fine-grained&#8221; granularity), you will get high throughput for reading the file, but limit overall transfer to one file at a time.  If you stripe each file over only a few disks (&#8220;coarse-grained&#8221; granularity), you limit throughput for 1 file, but can have concurrent access to multiple files.<br /><br />Another thing to think about is the <strong>redundancy</strong> itself.  If you uniformly distribute redundancy, then you&#8217;ll avoid load-balancing problems.  You can also concentrate redundancy information on a subset of your total disks, and make it so that some of your total disks are &#8220;data disks&#8221; and the others are &#8220;redundancy disks.&#8221;<br /><br />So what are the different types of RAID?<br /><br /><strong>RAID Level 0</strong> is when you have a non-redundant disk array &#8211; files are just striped across disks, with no redundant info saved at all.  There&#8217;s high read throughput (since you can do the parallel I/O thing), and also high write throughput (since you don&#8217;t need to write redundant info).  However, if one of your disks fails, then you can lose the file and sometimes the entire volume, which is horrible. D: D:<br /><br /><strong>RAID Level 1</strong> is also known as &#8220;mirrored disks.&#8221; Files are striped across half the disks, and when you write data, it gets written to both a &#8220;data disk&#8221; and the &#8220;mirror disks,&#8221; which are copies of the data disk.  This way, if the data disks fail, you can just use the surviving disks.  A downside to this technique is that you need to have 2N the amount of space to hold N amount of data, understandably.<br /><br /><strong>RAID Level 2, 3, 4</strong> all pretty much have the same idea, I guess &#8211; they all use error correcting code (ECC) or <strong>parity disks</strong> to provide fault tolerance.  Each byte on a parity disks is a parity function of the corresponding bytes on all the other disks.  This way, a read accesses all data disks.  A write accesses all data disks, as well as the parity disk.  If the disk fails, read what you have of the file and then use the parity disk to compute the missing data.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-hxvTkkUW3Bs/TV4N-F5JUiI/AAAAAAAAAIM/CHZ7y8sofE0/s1600/parity%2Bdrives.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="105" src="http://2.bp.blogspot.com/-hxvTkkUW3Bs/TV4N-F5JUiI/AAAAAAAAAIM/CHZ7y8sofE0/s320/parity%2Bdrives.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">yeah! &nbsp;go parity drive, go!</td></tr></tbody></table><br />But, <strong>what is parity, again?</strong> I guess, given a byte, you want to add a bit set so that the total number of 1&#8217;s in the byte is even; that way, any single missing bit can be reconstructed.  Parity bites are used as the simplest form of error detecting.<br /><br /><strong>RAID Level 5</strong> uses <strong>block interleaved distributed parity</strong>, which is just like the parity scheme of earlier RAIDs, but instead of having one parity disk, the parity info is distributed across all disks.  For each block, one disk holds the parity, and the other disks hold the data.  This type of RAID has significantly better performance, since the parity disk is not a hot spot.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-MwfHA3qWfcQ/TV4O_26wZlI/AAAAAAAAAIU/FyZ1f6cnCsA/s1600/raid5.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="150" src="http://4.bp.blogspot.com/-MwfHA3qWfcQ/TV4O_26wZlI/AAAAAAAAAIU/FyZ1f6cnCsA/s320/raid5.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">RAID Level 5 disk layout</td></tr></tbody></table><br />So when you use RAID, you can also use a <strong>RAID controller</strong>, which is embedded in the hardware.  A RAID controller can make it seem to the OS like the many disks you&#8217;re using is actually just one disk.<br /><br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-gvTCVSUmMAU/TV4PdUh6pbI/AAAAAAAAAIc/qiESnTQW4-M/s1600/raidcontroller.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="135" src="http://4.bp.blogspot.com/-gvTCVSUmMAU/TV4PdUh6pbI/AAAAAAAAAIc/qiESnTQW4-M/s320/raidcontroller.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">&#8220;What&#8217;s that? &nbsp;I only have one disk? &nbsp;Oh, cool&#8221;</td></tr></tbody></table><br />The advantages of putting <em>policy</em> in the RAID controller is that it makes the OS&#8217;s job easier.  The disadvantage is that every time you put a layer of abstraction into something, you ruin the chance of optimizing it.  So, putting this layer of abstraction makes the OS a little simpler to program, but now you can&#8217;t optimize the OS (like, using disk scheduling effectively) the way you could if the OS <em>did</em> have control of and was aware of all of its assets.<br /><br /><br /><span class="sig">Solid State Disks (Flash)</span><br />We also talked about flash drives, which was pretty interesting.  Like disks, the data on a flash drive is stored in blocks.  Since there aren&#8217;t any spinning platters, random access is fast, and you don&#8217;t need disk scheduling algorithms.  It&#8217;s very fast to read from a flash drive thanks to the random access, but slower to write to a flash drive, because the flash media must be erased before it can be written to.  So, when you&#8217;re writing to a solid state drive like a flash drive, you&#8217;re actually a) reading some block, b) erasing that block, c) writing back the modified block.  But, there are ways of &#8220;hiding the warts of an SSD&#8221; (as these section notes put it), mostly by virtualizing pages and blocks on the drive (so you&#8217;re working with logical pages, not physical pages), and doing &#8220;wear-leveling,&#8221; which is when you try to spread our the erasure of blocks evenly over the drive.<br /><br />Meanwhile, what is a solid-state drive?  Evidently it&#8217;s just a data storage device toat uses solid-state memory to store persistent data.  &#8220;Solid-state&#8221; refers to a type of electronics which are build entirely from solid materials, within which electrons or other charge carriers are confined within the solid material.  Solid-state memory I think is like RAM, which gets erased once you shut down your computer, but as of 2010, most solid-state drives use NAND-based flash memory, which can hold memory even if there&#8217;s no power running through it.  &#8220;NAND flash&#8221; just refers to the way that the transistors are hooked up in the flash drive: in a way that resembles a NAND gate.<br /><br />Sources:<br />section 7 notes<br /><a href="http://en.wikipedia.org/wiki/Memory-mapped_file">Wikipedia: Memory-mapped file</a>, <a href="http://en.wikipedia.org/wiki/Parity_disk">Parity Drive</a>, <a href="http://en.wikipedia.org/wiki/Parity_bit">Parity bit</a>, <a href="http://en.wikipedia.org/wiki/Solid_state_drive">Solid-state drive</a>, <a href="http://en.wikipedia.org/wiki/Solid-state_(electronics)">Solid state (electronics)</a>, <a href="http://en.wikipedia.org/wiki/Flash_memory#NAND_flash">NAND flash</a><br />lecture 12 notes (&#8220;Disk&#8221;)<br />lecture 13 notes (&#8220;Raid and Volumes&#8221;)</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/16/game-bonding-time/">Game: Bonding Time</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-16T00:00:00-08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-u0vR2MtUWDw/TVyji_MufeI/AAAAAAAAAHU/eDXX8Sa_udg/s1600/bondingtime_titlescreen.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="239" src="http://4.bp.blogspot.com/-u0vR2MtUWDw/TVyji_MufeI/AAAAAAAAAHU/eDXX8Sa_udg/s320/bondingtime_titlescreen.png" width="320" /></a></div><br />So yesterday we finally finished the atom game that me, Jimmy, Leilani, and Chris have been trying to do for the <a href="http://www.facebook.com/haproject">Zynga &amp; Hidden Agenda</a> competition.  The point of the competition is to make a game which will &#8220;teach high school students&#8221; someting.  We all signed up around September and November with the initial idea of making something that would be like Oregon Trail but for ethnic studies, but eventually decided against it because ethnic studies (done right) is a subject that&#8217;s not taught properly in high school for a reason (i.e. general controversy), I think :/<br /><br /><span class="shh">So, that game will come later.</span><br /><br />Over winter break (during which I was rabidly playing <a href="http://nuubu.blogspot.com/2010/12/9-hours-9-persons-9-doors.html">999</a>) there was one scene (spoilers?) with a passcode that you figured out based on the number of atoms in a molecule, so I got the idea of making a game based on how atoms bond with respect to valence electrons, and how (most) atoms strive to have eight valence electrons and will form bonds with other atoms to achieve this.<br /><br />Since 90% of my AP Chem course in high school was all about memorization, I thought that some advantages of a game like this would:<br /><ul><li>provide a slightly more fun way to memorize things like all the polyatomic ions that the College Board decided were important to memorize</li><li>also help people visualize more how atoms get bonded together, hopefully leading to understanding of why something like organic chemistry is its own course (apparently because carbon is super good at bonding with itself; who knew)</li></ul><br />I met with Alex over winter break and to get a refresher on chemistry (which I haven&#8217;t thought about since those ancient high school times) and (in between greeting people returning to Homedale Mall for the holidays <span class="shh">(Maggie and Colin are getting married!!)</span>) we went over a couple concepts.  He pointed out that rather than rote memorization, it would be more helpful to remember certain patterns of bonding (somthing related to alkanes and alkenes, etc.) and also had good ideas of a sort of RPG-style game where you could level up and create different types of bonds by applying heat and other chemicals and stuff. In the end I think that will be saved for another possible game, since I couldn&#8217;t understand it myself well enough to try and teach it to other people (despite the fact that I realize teaching something is the best way to learn it).  In any case, I wanted to keep it pretty simple.<br /><br />So then the gameflow started to look like:<br /><ol><li>Game gives players a molecule to assemble (i.e. &#8220;OH,&#8221; H20&#8221;), as well as a random assortment of atom sprites</li><li>Player tries assembling putting the required atoms together (i.e. pushing together an &#8220;O&#8221; and an &#8220;H&#8221; atom)</li><li>Player is rewarded with points and a mildly amusing (yet honest) description of what role that molecule plays in Everyday Life</li><li>Rinse, lather, repeat</li></ol><br />After that, we all met and broke down into separate teams.  We decided to use <a href="http://flixel.org/">Flixel</a> (which Kathleen showed me and I was super excited to use! :D) and then tried to work out the implementation.  Other than managing the state of the game (i.e. points, timer, propagating atoms to the screen) the main difficulties turned out to be <strong>bonding</strong> atoms, and <strong>validating</strong> bonds that the player had made.  I wanted the game not just to see that the molecules players assembled where all together, but that they were bonded in the right places &#8211; so if a player were trying to bond H20, a bond that went like<br /><br /><br /><center>H-H-O</center><br /><br />would be invalid, whereas something like<br /><br /><br /><center>H-O-H</center><br /><br />would be, since the real-life situation is that a pair of H atoms bond to an O.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-Zyh-voWylFI/TVyyl3vz5-I/AAAAAAAAAHk/YH9wL6cdILk/s1600/Covalent_H2O.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="310" src="http://1.bp.blogspot.com/-Zyh-voWylFI/TVyyl3vz5-I/AAAAAAAAAHk/YH9wL6cdILk/s320/Covalent_H2O.png" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">like so! (<a href="http://commons.wikimedia.org/wiki/File:Covalent_H2O.png">source</a>)</td></tr></tbody></table><br />In the end, the bonding function came to deal purely with atom behavior, i.e. atoms being moved about by the player and sticking together and then moving as one once they were &#8220;bonded.&#8221; Atoms contained data about who their neighboring atoms were.  Validation took a single molecule, then compared the connections and neighbors against a &#8220;validation code.&#8221;<br /><br />So, if we had the case of H-O-H, we could make a &#8220;validation code&#8221; which would contain data about the correct neighbors of each atom &#8211; in this case, <code>h_o1-o_h2-h_o1</code>, which meant &#8220;a hydrogen with 1 oxygen neighbor, an oxygen with 2 hydrogen neighbors, a hydrogen with 1 oxygen neighbor.&#8221;<br /><br />It worked :D And it meant that atoms could be bonded in any order, yay!<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-ZWKDaDp6U4k/TVysvYL3ycI/AAAAAAAAAHc/Mgg9I_Hfu7Y/s1600/bondingtime_firstbond.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="238" src="http://3.bp.blogspot.com/-ZWKDaDp6U4k/TVysvYL3ycI/AAAAAAAAAHc/Mgg9I_Hfu7Y/s320/bondingtime_firstbond.png" width="320" /></a></div><br />The game is <a href="http://neauro.com/flash/atomgame.swf">here</a>.  We&#8217;ve turned it in, but I can&#8217;t help thinking of all the things that I would have wanted to change if we had more time&#8230; (.___.  I guess I can add it in the future.  Specifically:<br /><ul><li>put in some visual cue about which molecule is &#8220;selected&#8221; to bond (right now, the molecule which will get checked is just the last one clicked)</li><li>put in more visual cues about how electrons get shared between atoms (i.e. if two fluorine atoms get placed together, it should show that they both share one electron to bring each one&#8217;s total number of valence electrons to 8)</li><li>put in more visual cues about the nature of bonds in a molecule (i.e. if it&#8217;s a single or double bond)</li><li>put an undo button, for goodness sake; if someone makes a mistake right now, you just have to refresh the whole set of atoms on screen D:</li><li>better icons for bond/reset/skip functions (since according to <em>The Design of Everyday Things</em>, text labels on anything indicate poor design)</li><li>add more, and more interesting, atoms</li><li>add a bonus round of some sorts, where maybe the objective would be to just try and get as many atoms as you can bonded together&#8230;I don&#8217;t know -shrug-</li></ul><br /><br /><br />&#8230;my very first game!  I&#8217;m still pretty proud. :D</div>
-<h2>Comments</h2>
-<div class='comments'>
-<div class='comment'>
-<div class='author'>nadine a.</div>
-<div class='content'>
-Haha, thanks. :D But c&#39;mon, you have done some pretty amazing stuff as well!  You do a ton more little experiments then I do, and have been learning about things for much longer!</div>
-</div>
-<div class='comment'>
-<div class='author'>axcho</div>
-<div class='content'>
-Wow, you actually did this? That&#39;s awesome. I wanted to do something like this back when I was taking chemistry classes. I feel like a loser who comes up with ideas and then never actually does them. You&#39;ve done all this cool stuff and found people to do them with.<br /><br />I congratulate you!</div>
-</div>
-</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/game-design/'>game design</a>, <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/project/'>project</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/15/chocobos-nooooo/">CHOCOBOS. NOOOOO</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-15T00:00:00-08:00" pubdate data-updated="true">Feb 15<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-HRBgV5lMWMQ/TVq_JofqSRI/AAAAAAAAAHM/09kAvAvaRVA/s1600/chochoco.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="574" src="http://1.bp.blogspot.com/-HRBgV5lMWMQ/TVq_JofqSRI/AAAAAAAAAHM/09kAvAvaRVA/s640/chochoco.jpg" width="640" /></a></div><br />So I&#8217;ve been playing social games as research for my Informatics class, and in general been pretty skeptical of the whole thing (outside of FarmVille, which I find myself enjoying slightly more than the others, maybe just because it&#8217;s a farm sim and it feeds my &#8220;pastoral ideal,&#8221; which I recently learned that I possess thanks to <em>The Omnivore&#8217;s Dilemma</em>) &#8211; and then.<br /><br /><em>A chocobo game?</em><br /><br /><span class="shh"><em>I love birds/chickens/chocobos/the pastoral ideal.  It&#8217;s even red.  Red is my favorite color.</em></span><br /><br />It&#8217;s over.  It&#8217;s over for me.<br /><br />.___.</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/11/operating-systems-notes-virtual-memory/">Operating Systems Notes [Virtual Memory, Page Tables, TLBs]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-11T00:00:00-08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-So in case <a href="http://nuubu.blogspot.com/2011/02/operating-systems-notes-memory.html">it wasn&#8217;t clear already</a>, <a href="http://en.wikipedia.org/wiki/Virtual_memory">virtual memory</a> is a memory management technique which accomplishes these things:<ul><li>hides fragmentation of physical memory from programs</li><li>uses hardware memory more efficiently than systems without virtual memory</li><li>lets a program be designed as though there&#8217;s only one hardware memory (rather than one memory split up between different processes, I think?)</li></ul><br />An important aspect of implementing virtual memory is page tables.  A page table translates a program&#8217;s virtual address (used to refer to a function or variable or whatnot) into a physical address (which is the actual location of that function&#8217;s code data, or the variable&#8217;s value data).  Page tables make it so that programs can only be partially loaded into memory.  <strong>So, what happens when a program tries to access a part of its code which isn&#8217;t loaded into memory?<br /><br />A PAGE FAULT.</strong><br /><br />When a page fault happens,<ol><li>the OS is given an <a href="http://nuubu.blogspot.com/2011/01/operating-system-notes-chapter-1.html">interrupt</a></li><li>the OS saves the state of the running process, then searches (in the appropriate vector) for the page fault handler routine)</li><li>the page fault handler routine will find or create (through eviction) a page frame into which to load the page that the program needs</li><li>then it will find that page on the disk and place it into the now-free page frame</li><li>then it will fix up the page table entry &#8211; marking it &#8220;valid,&#8221; setting the &#8220;referenced&#8221; and &#8220;modified&#8221; bits to false, setting the pointers properly</li><li>finally, the process is placed back into the ready queue</li></ol><br />Anyway, it&#8217;s getting late and I want to go to bed so for now I&#8217;ll just skip to<br /><br /><br /><span class="sig">Translation Lookaside Buffers (TLBs)</span><br />to whom we must extend our gratitude for not making page tables awful.  Think about it: if you have a virtual address and you need to look into the page table and then into the physical address in order to actually obtain some value, that&#8217;s a <em>lot</em> of overhead.<br /><br />To make this more efficient, you want to make fetching from a virtual address just about as efficient as fetching from a physical address.  Which you can do with an extra piece of hardware, a cache inside the CPU.<br /><br />Thus, virtual-to-physical translations are cached in the hardware itself, the TLB.  The TLB translates virtual page numbers into page frame numbers (<em>not physical addresses</em>), and can do it in a single machine cycle.  The TLB in turn is managed by the memory management unit (MMU), which is what calculates the physical address from the page table entry and an offset.<br /><br />TLBs exploit the fact that processes have good temporal locality and spatial locality.  This is a fancy way of saying that processes tend to<ul><li>use data/code they have recently used</li><li>use data/code that is close to data/code they have recently used</li></ul>Which is why <em>caching</em>, or saving that data in an easily accessible place (as you may cache your potato chips, water bottles, and chocolate beneath the bedside  table) is a good idea.<br /><br />So, the TLB does the translation between virtual addresses and page frame numbers, and when it misses &#8211; when it can&#8217;t find a page frame number &#8211; the translation is saved into the TLB by the OS.<br /><br />In order for TLBs to work, the OS must make sure the TLB and page tables are consistent and up-to-date, and <strong>when a context switch happens, the TLB must be completely flushed</strong>, which means that context switching is still an expensive operation &#8211; all those cached translations, that optimization, disappears.  (The TLB needs to be flushed rather than saved and loaded with the rest of the process state because there&#8217;s no guarantee that other processes wouldn&#8217;t mess around with the data the TLB was keeping track of, and to keep the TLB up-to-date when it isn&#8217;t being presently used by a process is expensive.)<br /><br /><br /><br />Sources:<br /><a href="http://en.wikipedia.org/wiki/Virtual_memory">Wikipedia: Virtual memory</a><br />lecture 11a notes</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/11/operating-systems-notes-memory/">Operating Systems Notes [Memory Management]</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-11T00:00:00-08:00" pubdate data-updated="true">Feb 11<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<span class="sig">What&#8217;s so cool about memory management anyway bro</span><br />So unlike way back when in the time of punchcards &amp; etc., we use computers which are capable of <strong>multiprogramming</strong>, a feature of which is the ability to have multiple processes and jobs in memory all at once.<br /><br />We&#8217;ve already looked at ways that an operating system&#8217;s <a href="http://nuubu.blogspot.com/2011/01/operating-systems-notes-chapter-5-cpu.html">processing power</a> can be utilized effectively when you have many different processes executing simultaneously, but how can memory &#8211; also a scarce resource in a computer &#8211; be distributed across processes?  The goal of memory management is to <strong>maximize memory utilization and system throughput</strong>.<br /><br />You also have to make sure that you can manage memory so as to:<br /><ol><li><strong>Protect</strong>: that is, make sure processes execute in isolation, so they don&#8217;t interfere with each other</li><li><strong>Translate fast</strong>: that is, make sure that memory lookups are speedy despite the fact that protection kind of slows stuff down</li><li><strong>Context switch fast</strong>: that is, make sure memory hardware is updated when old processes are removed from the CPU and new processes are given to it</li></ol><br />On a hardware level, when you&#8217;re dealing with memory, you&#8217;re really messing around with <strong>base registers</strong> and <strong>limit registers</strong>.   Base registers contain the address of a start of a program,  and limit registers contain the length of the program.  Both of these things define the scope of a program&#8217;s memory.<br /><br />Programs get their code and data loaded into memory so that they can be run in processes.  It&#8217;s important to keep the memory that processes use separate, so that they don&#8217;t interfere with each other, overwriting the other program&#8217;s code and making it crash and such.  The memory that a program has is allocated is called its <strong>address space</strong>.  In the olden days, if a program couldn&#8217;t fit into memory, then you&#8217;d have to manually overwrite parts of the code that you weren&#8217;t using presently.<br /><br /><br /><span class="sig">Virtual Memory</span><br />Virtual memory is an abstraction provided by the operating system for memory management.  Thanks to virtual memory, we can do cool things like:<br /><ul><li>allow programs to execute even if their entire address space isn&#8217;t in physical memory</li><li>let programs execute with less RAM than they really &#8220;need&#8221;</li><li>isolate processes from each other so that they can&#8217;t name addresses that other processes can use</li></ul>This is mainly because programs don&#8217;t really use all of the code that they&#8217;re written with &#8211; for instance, a program with if-statements will either execute one branch of the if-statement or the other, and there&#8217;s no real need to allocate space for code that isn&#8217;t run.<br /><br />On a hardware level, virtual memory relies on translation-lookaside buffers (TLB&#8217;s), page tables, page fault handling&#8230;you&#8217;ll also need to deal with swapping and segmentation.  <strong>Swapping</strong> is the memory-equivalent of context switching for processing power.  When you do a context switch between processes, you remove the old process from using CPU and allocate that CPU to the new process; in swapping, you remove memory from the previous process and give it to the new one.<br /><br /><br /><span class="sig">Virtual Addresses</span><br />So, this whole time when we&#8217;ve been talking about how <a href="http://nuubu.blogspot.com/2011/01/operating-systems-notes-chapter-2-3.html">a process consists of an address space</a> (along with at least one thread and OS resources), what we&#8217;ve really meant is that processes have a set of <strong>virtual addresses</strong>.  Once more: a process&#8217;s address space is its set of virtual addresses.<br /><br />And what are virtual addresses?  They are the layer of abstraction between a process and physical memory.  When the CPU executes instructions from a loaded program, it uses the virtual addresses for pointers, arguments to load and store instructions, and so on.  Virtual addresses must be translated by hardware into physical addresses, the actual location of the data stored on disk.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-KotutHv0Kkk/TVTbDb2stkI/AAAAAAAAAGE/c_t2mc_tACA/s1600/viraddr1.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="226" src="http://4.bp.blogspot.com/-KotutHv0Kkk/TVTbDb2stkI/AAAAAAAAAGE/c_t2mc_tACA/s320/viraddr1.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">so, here we&#8217;ve got: process p&#8217;s pointer, which points to a virtual address in p&#8217;s address space. &nbsp;that in turn points to a physical address in physical memory.  the physical address is what points to the actual data.</td></tr></tbody></table><br /><br /><span class="sig">How do you translate virtual addresses into physical addresses?</span><br />Virtual addresses (in the process address space) and physical addresses (on disk) don&#8217;t correspond exactly to each other &#8211; that is, a virtual address in space 0 doesn&#8217;t necessarily point to a physical address in space 0.  So, how does a virtual address translate to a physical address?<br /><br />To translate in the olden days, the physical memory would be partitioned, in one of two ways:<br /><ol><li><strong>Fixed partitions.</strong>  The physical memory would be broken up into fixed-size partitions, so that the physical address could be obtained by adding the virtual address and the base register.  When a context switch happened, a new base register would be loaded.  This was a simple way of doing things but has <strong>fragmentation problems</strong> &#8211; both <strong>internal fragmentation</strong> (which happens when the physical memory partition is larger than what the program needs) and <strong>external fragmentation</strong> (which happens when you may have two small partitions remaining, and one large job which won&#8217;t fit into each separately).<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/-Ty-M47nOJzo/TVTdQWMAdkI/AAAAAAAAAGM/ftBjaeeoabo/s1600/viraddr2.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="203" src="http://4.bp.blogspot.com/-Ty-M47nOJzo/TVTdQWMAdkI/AAAAAAAAAGM/ftBjaeeoabo/s320/viraddr2.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">with fixed partitions,<br />physical address = virtual address + base register<br />the limit register check is to make sure you don&#8217;t overstep physical memory</td></tr></tbody></table><br /></li><li><strong>Variable partitions.</strong> In this case, the physical memory would be broken up into variable-size partitions, the size dependant on the program.  Again, the physical address is equal to the virtual address plus the base register.  Variable partitioning <strong>fixes internal fragmentation</strong>, since you won&#8217;t allocate more than a program needs and therefore waste space that other programs could use &#8211; <strong>but you still have external fragmentation</strong>, because as you load and unload jobs, holes are left scattered behind.  (This is slightly different than external fragmentation in fixed partition systems.)<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://1.bp.blogspot.com/-4zihtB6CQNQ/TVTeWbpF6jI/AAAAAAAAAGU/0-y3xwKJIkI/s1600/viraddr3.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="245" src="http://1.bp.blogspot.com/-4zihtB6CQNQ/TVTeWbpF6jI/AAAAAAAAAGU/0-y3xwKJIkI/s320/viraddr3.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">with variable partitions,<br />physical address = virtual address + base register<br />the limit register makes sure you don&#8217;t overstep memory<br />the black parts denote unused holes in the memory 3:</td></tr></tbody></table></li></ol><br /><br />One way to deal with external fragmentation is to be like,<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-iVkxoUAgHa0/TVTfpWKPs_I/AAAAAAAAAGc/5ngILCCIYpQ/s1600/viraddr4.jpg" imageanchor="1"><img border="0" height="234" src="http://3.bp.blogspot.com/-iVkxoUAgHa0/TVTfpWKPs_I/AAAAAAAAAGc/5ngILCCIYpQ/s320/viraddr4.jpg" width="320" /></a></div><br />and basically push all the allocated physical memory together.  Which is bad because you have to do this manually and like, all the time.<br /><br />So, a better way to do things in general is to be like, PAGES, BRO.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/-29MhcnKDPZQ/TVTf8yOllPI/AAAAAAAAAGk/xqYlIwU95HQ/s1600/viraddr5.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="250" src="http://3.bp.blogspot.com/-29MhcnKDPZQ/TVTf8yOllPI/AAAAAAAAAGk/xqYlIwU95HQ/s320/viraddr5.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">PAGES. &nbsp;YE</td></tr></tbody></table><br /><br /><span class="sig">Pages and Page Tables</span><br />So with pages, processes view their address space as some memory ranging from indexes 0 to N, but in reality the mapping of those address spaces to physical addresses points every which way all over the disk.  The program doesn&#8217;t know this at all, and isolation is still provided to all program&#8217;s because a program still can&#8217;t reference memory outside of its virtual address space.<br /><br />So.  A virtual address is comprised of a virtual page number (VPN), as well as some offset.  A physical address is comprised of a page frame number (PFN), as well as some offset.  Now, to translate from a virtual address to a physical address, you need to divide the address space into equal-sized &#8220;pages,&#8221; and then use one more thing: the <strong>page table</strong>.  The page table contains the mapping between a virtual address&#8217;s VPN and a physical address&#8217;s PFN, and this is how a program with a virtual address can access physical memory, memory on disk.  Once more, for good measure: a page table maps a <em>virtual address page</em> to a <em>physical page frame</em>.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TVThyWocAlI/AAAAAAAAAGs/cQVcDkDCC0U/s1600/viraddr6.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="215" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TVThyWocAlI/AAAAAAAAAGs/cQVcDkDCC0U/s320/viraddr6.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">it&#8217;s easy, right?</td></tr></tbody></table><br /><br />Page tables contain <strong>page table entries (PTEs)</strong>, which look something like this:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/_SdPKamJbrgg/TVTiaKBOuiI/AAAAAAAAAG0/EutComkh8Jg/s1600/viraddr7.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="91" src="http://1.bp.blogspot.com/_SdPKamJbrgg/TVTiaKBOuiI/AAAAAAAAAG0/EutComkh8Jg/s320/viraddr7.jpg" width="320" /></a></div><ul><li>the <strong>valid bit</strong> says whether or not this PTE can be used &#8211; that is, whether or not the virtual address is valid, meaning it actually maps to some physical address, which points to a location in physical memory.</li><li>the <strong>referenced bit</strong> says whether the page has been accessed &#8211; that is, whether it&#8217;s been read from or written to at all</li><li>the <strong>modified bit</strong> says whether or not the page is dirty, meaning a write has occurred to that page</li><li>the <strong>protection bits</strong> control which operations (read, write, execute, etc.) are allowed to be used on this page</li><li>and finally, the PFN determines the &#8220;physical page,&#8221; the location in physical memory that the given virtual address points to.  Like how a base register contains the starting address of a process&#8217;s virtual address space, a physical page&#8217;s start address is determined by the PFN.</li></ul><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-IjOgv0A9WCU/TVTurOC7yJI/AAAAAAAAAHE/1vfxhYR5OlA/s1600/viraddr9.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="232" src="http://2.bp.blogspot.com/-IjOgv0A9WCU/TVTurOC7yJI/AAAAAAAAAHE/1vfxhYR5OlA/s320/viraddr9.jpg" width="320" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">here&#8217;s the picture from earlier without the page table photoshopped out of it</td></tr></tbody></table><br /><br /><strong>The great thing about paging</strong> is that makes it easy to allocate physical memory to a program &#8211; physical memory is now ordered in a list of frames, and when you want to allocate it, just remove it from the list of &#8220;free&#8221; frames.  This solves external fragmentation and all the troublesome-ness of managing the holes left behind from loading and unloading programs.<br /><br />And, it lends itself naturally to <strong>virtual memory</strong>, because a program doesn&#8217;t need to be completely resident in the memory anymore &#8211; only partially, only the parts that you care about right now (or soon).  If it so happens that you need code that is not presently in memory (which you&#8217;ll know, because when you use a virtual address to access something not in memory, the valid bit in the PTE will cry out), you take a <strong>page fault</strong>, and the code or data that you need will be brought into memory.<br /><br />Remaining problems: internal fragmentation, since a process still may not use memory in exact multiples of pages.  Also, there&#8217;s a great overhead in referencing anything, since instead of accessing that thing directly, you&#8217;re making two look-ups, first through the page table, and then into physical memory itself.  <span class="shh">(This can be solved with TLBs &#8211; more on that later.)</span><br /><br />The other problem: page tables can be huge.  Consider that each process has its own address space, which means you need one page table entry per page in the address space.  Operating systems typically have separate page tables per process, and things can get huge fast.  The solution to this is to&#8230;page the page tables lol.<br /><br /><br /><span class="sig">And yet another way to translate virtual addresses into physical addresses: segmentation</span><br />To do segmentation, partition not the physical memory, but the address spaces, into logical units: one partition for stack, one for code, one for the heap, one for subroutines&#8230;<br /><br />A virtual address that is a part of this address space will then consist of a <strong>segment number</strong> and an <strong>offset</strong>.<br /><br /><strong>The good thing about this: it&#8217;s more logical</strong>, since without segmentation, what the linker does during compilation is take a bunch of modules that call each other and linearizes them.  These modules are all independent and are treated that way when the address space is segmented.  Segmentation is also a natural extension of variable-sized partitions; where there&#8217;s one variable partition per process, there&#8217;s many segments per process.  Segmentation also facilitates sharing and reuse of code.<br /><br /><strong>Disadvantages: just like a variable partition system, segmentation can have all the horrific external fragmentation, even if linking is simpler.</strong><br /><br />On a hardware level, you would need a segment table with multiple base/limit register pairs, one per segment in the address space.  The physical address would be yielded by adding the virtual address offset to the base address of the segment.<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TVTsVUM3gXI/AAAAAAAAAG8/rfJKLzVUE18/s1600/viraddr8.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="238" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TVTsVUM3gXI/AAAAAAAAAG8/rfJKLzVUE18/s320/viraddr8.jpg" width="320" /></a></div><br />Anyway, to fix the problem that segmentation has with external fragmentation, you can mix segmentation and paging.  Use segments to manage logical units, and then use paging to partition segments into fixed-size chunks.  Each segment will have its own page table (rather than there being one page table per address space), and memory allocation once again becomes easy and cool, without external fragmentation problems.<br /><br /><br /><br />Sources:<br />lecture 10 notes<br /><a href="http://www.science-dictionary.com/definition/base-register.html">Science-Dictionary: base register</a><br /><a href="http://answers.yahoo.com/question/index?qid=20090520065552AAOWEvZ">Yahoo Answers: Base and limit register?</a><br />section 5 notes</div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
-  
-</span>
-
-</a>
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/02/05/okay-dude-so-planting-nachos-is/">Okay Dude, So, Planting Nachos Is Actually Kind of Cute</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-05T00:00:00-08:00" pubdate data-updated="true">Feb 5<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TU4ySbyJ4dI/AAAAAAAAAFk/Ipk2855l4uk/s1600/nachos1.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="534" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TU4ySbyJ4dI/AAAAAAAAAFk/Ipk2855l4uk/s640/nachos1.jpg" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TVBwgqjNpbI/AAAAAAAAAF0/qtPvgGw2FOI/s1600/nachos01.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="532" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TVBwgqjNpbI/AAAAAAAAAF0/qtPvgGw2FOI/s640/nachos01.jpg" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/_SdPKamJbrgg/TVByO8ZIlfI/AAAAAAAAAF8/NTGFfh633Ko/s1600/nachos02.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="532" src="http://2.bp.blogspot.com/_SdPKamJbrgg/TVByO8ZIlfI/AAAAAAAAAF8/NTGFfh633Ko/s640/nachos02.jpg" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TU4yXQ69pVI/AAAAAAAAAFs/Imea2ZBUA_I/s1600/nachos3.jpg" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="532" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TU4yXQ69pVI/AAAAAAAAAFs/Imea2ZBUA_I/s640/nachos3.jpg" width="640" /></a></div><br />Other things I approve of:<br /><ul><li>being able to sell bushels of stuff</li><li>apparently being able to craft stuff when I reach level 25 (after I get tons of people to help me build the wineries and craft areas and whatever, I guess)</li><li>FINALLY FINDING A QUEEN BEE OMG AUGH FINALLY</li></ul></div>
-</div>
-  
-  
-  <div class="category-bit">Categories: 
-
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/games/'>games</a>, <a class='category' href='/blog/categories/video-games/'>video games</a>
-  
-</span>
-
-</a>
-
-
-    </article>
   
   
     <article>
@@ -544,6 +255,290 @@ First, you have to wrap the array up in a Collection class, and then you connect
 <span class="categories">
   
     <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/programming/'>programming</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/18/operating-systems-notes-chapter-6/">Operating Systems Notes [Chapter 6: Process Synchronization]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T00:00:00-08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+So a <strong>cooperating process</strong> is one that can affect or be affected by other processes, because it shares address space (code, data) with other processes, or because it can share data through passing messages or files.  But, if you share data, then you can run into inconsistencies, i.e. if I&#8217;m reading a paper of numbers, adding them up, and halfway down while I&#8217;m reading it someone starts changing stuff.  By the time I get to the end of the paper, the answer that I get won&#8217;t properly reflect the sum of numbers that had originally been on the paper.<br /><br />The situation in which the outcome of the execution depends on the order of things that take place is a <strong>race condition</strong>.  So, the example earlier is a race condition, because the outcome will be different if I a) read and sum the paper, and then the paper gets rewritten, or if b) someone rewrites the paper, and then I read and sum the paper&#8217;s contents.<br /><br /><strong>Process synchronization</strong> concerns itself with making sure that the changes that result from different processes don&#8217;t interfere with what other processes are doing, even if they&#8217;re all sharing the same <strike>paper</strike> set of data.<br /><br />Parts of code to especially watch out for when trying to synchronize things are those parts that modify or write things, i.e. changing variables, outputting to file.  The part of a process which does this is called the <strong>critical section</strong> and to ensure consistency, you want to be sure you have critical sections which fulfill the following requirements:<ul><li><strong>mutual exclusion:</strong> only one thread is executing in the critical section at any time</li><li><strong>progress:</strong> if thread A and thread B are both outside of the critical section, neither can prevent the other from entering the critical section</li><li><strong>bounded waiting:</strong> (i.e. no starvation) if thread A is waiting to enter the critical section, it will enter it eventually</li><li><strong>performance:</strong> entering and exiting the critical section is small compared to the amount of work being done within it</li></ul><br />Critical sections can be built with <a href="http://nuubu.blogspot.com/2011/01/q-semaphore-mutex.html">semaphores and locks</a>, as well as monitors and messages.  Messages are when processes communicate to each other and have their synchronization taken care of through a communication layer; this is particularly important to <a href="http://nuubu.blogspot.com/2011/01/remote-procedure-calls-rpc.html">RPCs</a> in distributed systems.  Monitors are an abstract data structure which I talk more about below.<br /><br />Locks are the lowest-level mechanism you can use, and are really primitive.  Locks can be implemented either as spin-locks, which is when a process which needs a lock acquires it and goes; but if the lock is already posessed by another thread, the process will sit in a while loop, &#8220;spinning,&#8221; until the lock is free.  This is actually pretty bad because you&#8217;re using up CPU doing nothing, just&#8230;spinning around.<br /><br />You can also implement locks by disabling interrupts, and making sure that some process which is currently executing will not be interfered with by any other process.  But only the kernel should be able to disable interrupts, and if you have long periods of no interruptions then you can &#8220;wreak havoc&#8221; on certain devices.<br /><br />Both spinlocks and disabling interrupts should only be used to build higher-level constructs to ensure proper synchronization of processes.<br /><br /><br />Anyway, kernels can also run into race conditions.  For example, the kernel has a data structure that keeps track of all files that are presently open, and a race condition will occur if two processes open files simultaneously.  To handle critical sections in operating systems, there are <strong>preemptive kernels</strong> (which allow a process to be interrupted in kernel mode), and <strong>nonpreemptive kernels</strong> (which do not allow a process running in kernel mode to be preempted/interrupted, meaning a running kernel-mode process will run until it exits kernel mode).  Preemptive kernels, despite being prone to race conditions, are good for real-time programming scenarios, and are also more responsive since there&#8217;s less of a chance that you&#8217;ll have to wait for some arbitrary period until the processor is free to take on another process.<br /><br /><br /><span class="sig">Monitors</span><br />A monitor is an abstract data type which defines a set of operations which are allowed to be mutually exclusive.  It&#8217;s basically a class that allows shared private data, methods, and automatic synchronization.  A procedure defined in the monitor can only affect variables declared in the monitor, and variables defined in the monitor can only be accessed by functions in the monitor.  Within the monitor, only one process runs at a time.<br /><br />Monitors rely on a <strong>condition variable</strong>, which does three things:<ol><li><code>wait</code> &#8211; release a lock, wait for a signal, recapture a lock</li><li><code>signal</code> &#8211; wake up at most one thread which is waiting to access shared resource</li><li><code>broadcast</code> &#8211; wake up all waiting threads</li></ol>Monitors also manage queues of processes which are waiting to access the shared resource.<br /><br />A monitor can fix deadlocks in the dining philosophers problem.  A monitor would sit in the middle of the dining table, and the philosopher would first ask the monitor for forks.  The monitor would then make a couple of checks on the environment, see if there were any forks <strike>in the queue</strike> available, and if there is a good amount, then the monitor tell his pet condition construct, &#8220;Let the philosopher eat!&#8221;  The philosopher would then obtain forks, eat, and talk to the monitor again when he or she is done eating.<br /><br />There are two types of monitors: Hoare monitors, and Mesa monitors (the latter being the most prevalent today).  They differ in what action happens in the waiting queue after the condition variable signals.  In Hoare monitors, the waiting process is run immediately after <code>signal</code> is called, because it indicates that a resource that the process want has been freed.  In Mesa monitors, the signal doesn&#8217;t mean that a resource has been freed, rather only that something has changed.  Thus, when signal happens, the waiter is made ready to go, but only runs when the shared resource is completely for sure available.<br /><br />Unfortunately for monitors, they&#8217;re pretty heavyweight, so you can&#8217;t do any &#8220;fine-grained locking&#8221; &#8211; you have one thread in the monitor at a time, and that&#8217;s it.<br /><br /><br />Sources:<br /><em>Operating System Concepts (8th Edition)</em>, Silberschatz, Galvin and Gagne, ISBN 978-0-470-12872-5.<br /><a href="http://en.wikipedia.org/wiki/Atomicity">Wikipedia: Atomicity</a><br />lecture notes<br />section TA&#8217;s intensely well-designed slides</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/18/operating-systems-notes-chapter-5-cpu/">Operating Systems Notes [Chapter 5: CPU Scheduling]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-18T00:00:00-08:00" pubdate data-updated="true">Jan 18<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">Scheduling</span><br /><a href="http://nuubu.blogspot.com/2011/01/operating-system-notes-chapter-1.html">Recap</a>: <strong>multiprogramming</strong> takes advantage of the fact that no one process can keep the CPU busy at all times, so the CPU switches between different jobs so that it&#8217;s always busy executing something.  This makes the computer more productive in general.<br /><br />A process is comprised of an address space, OS resources, and <em>at least one thread of execution</em>, and it&#8217;s threads that get scheduled.  The operating system specifically schedules kernel-threads, which are threads of execution for programs that are part of the kernel.<br /><br />Scheduling is what a scheduler does.  Scheduling is concerned with two things:<ol><li>How long will the current process run on the CPU?</li><li>What process will get the CPU next?</li></ol><br />Actually, resources other than the CPU can be scheduled, like threads or devices or I/O access or pretty much everything else in a computer.  But, for now, just the CPU.<br /><br />Some challenges to scheduler design are<ul><li>There are new jobs all the time</li><li>How can you schedule a process when you&#8217;re not sure how long it will take to run completely?</li></ul><br /><br /><span class="sig">Process Cycles</span><br />Essential to scheduling is the idea that processes execute in a <strong>cycle</strong>, which is comprised of a <strong>CPU burst</strong> and an <strong>I/O burst</strong>, and then another CPU burst, and then another I/O burst, and so on until execution is terminated.<br /><br />During the CPU burst, the process is doing things like loading memory, incrementing variables, reading from file, writing to file, etc.  During the I/O burst, the process is just waiting for something (like input it needs to go on).  A program which depends a lot on I/O will have many short CPU bursts, whereas a program which is CPU-bound will have a few long CPU bursts.  CPU bursts vary hugely but tend to last around 1 or 2 milliseconds.  <span class="shh">Computers, you are amazing.</span><br /><br /><br /><span class="sig">Scheduling Schemes</span><br />The <strong>short-term scheduler</strong> (or CPU scheduler) decides, when the CPU becomes idle, what process to run from a list of processes which are ready to execute, and gives that process CPU.  The list of &#8220;ready&#8221; processes can be a queue, or a priority queue, or a tree, or a linked list, etc.<br /><br />Here&#8217;s a picture of the states of a process&#8217;s thread:<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_SdPKamJbrgg/TTZSV_VgYpI/AAAAAAAAAEs/lJ40rGVHVbo/s1600/states%2Bof%2Ba%2Bthread.jpg" imageanchor="1" style="margin-left:1em; margin-right:1em"><img border="0" height="285" width="320" src="http://4.bp.blogspot.com/_SdPKamJbrgg/TTZSV_VgYpI/AAAAAAAAAEs/lJ40rGVHVbo/s320/states%2Bof%2Ba%2Bthread.jpg" /></a></div><br /><br />The scheduler has two different types of schemes.<br /><br />In the <strong>nonpreemptive/cooperative</strong> scheduling scheme, once a process gets CPU allocated to it, the process keeps it until it terminates or goings into the waiting state.  It happens when <ul><li>a process goes from running to waiting state (i.e. because of an I/O request or when a child is being terminated)</li><li>a process terminates</li></ul><br /><strong>Preemptive</strong> scheduling is the opposite; if a process has CPU allocated to it, it still might be interrupted and have its resources allocated to another process.  Preemptive scheduling or nonpreemptive scheduling happens when<ul><li>a process switches from waiting to ready state (i.e. because completion of I/O)</li><li>a process goes from running state to ready state (i.e. because of an interrupt)</li></ul><br />In preemptive scheduling, since data is shared, you can run into concurrency problems where one of the processes sharing data alters it while others are reading it, giving everyone else different information then you may have intended them to have.<br /><br />Since interrupts can happen at any time, and since they can&#8217;t always be ignored by the kernel, code that can be affected by interrupts by be guarded from being used by something else, probably using mutexes, though the book doesn&#8217;t say that right now.<br /><br /><br /><span class="sig">Dispatcher</span><br />The dispatcher is what grants a process control to the CPU, once its been scheduled to have it.  The dispatcher takes care of switching context, switching to user mode, and jumping to the proper space in the user program to execute.<br /><br /><br /><span class="sig">Scheduling Criteria</span><br />Scheduling performance looks to do these things:<ul><li>CPU utilization: keep CPU has busy as possible</li><li>Throughput: make sure that the number of processes that are completed per unit of time is high (i.e. optimize so that 6 processes are completed per second)</li><li>Turnaround time: make sure that processes get completed fast</li><li>Waiting time: make sure that processes do not wait in the ready queue for a long time (and how long it takes a process to execute doesn&#8217;t matter)</li><li>Response time: make sure that processes&#8217; first output is fast (the ones following do as well; but response time refers to the time it takes for a process to give its first output)</li><li>Fairness: make sure that all the processes get a chance at using the resources</li><li>No starvation: make sure that no process never get a chance to run</li><li>Deadlines: make sure jobs finish by the time they need to</li><li>Thread locality: threads that are part of the same process run faster when they&#8217;re on the same processor (because they share memory), so it&#8217;s best to make sure this happens</li><li>etc: etc etc</li></ul><br />Obviously one algorithm can&#8217;t do all of these things though, so you&#8217;ll have to decide which algorithm is best for which kind of system.<br /><br /><br /><span class="sig">Scheduling Algorithms</span><br />All scheduling is concerned with is which of the processes in the ready queue should be allocated to the CPU.<br /><br />In <strong>first-come, first-served</strong> scheduling, the process that requests the CPU first gets the CPU first.  The ready queue in this case can be implemented as a FIFO queue.  The code is simple, but it&#8217;s slow.  One example of how it can be inefficient:<ol><li>In a ready queue, there&#8217;s one CPU-bound process, and many I/O-bound processes.</li><li>The CPU-bound process gets the CPU.  The I/O-bound processes wait.</li><li>The CPU-bound finishes, goes through its I/O burst.  With the CPU freed up, the I/O-bound processes use up the CPU for their CPU bursts &#8211; all quickly, since the CPU burst for an I/O-bound process is short &#8211; and then go back to the queue.</li><li>CPU is now idle, and eventually moved to the ready queue.  Once it gets the CPU, the other I/O-bound processes are left waiting again.</li></ol><br />This situation, where a lot of processes are waiting for one big processes to finish, is a <strong>convoy effect</strong>.  It means that the available CPU is lowered, and device utilization is poor.  Also, since a process that gets the CPU keeps it until the end, first-come first-serve scheduling is nonpreemptive.<br /><br /><br />In <strong>shortest-job-first scheduling</strong> (SJF), each process is associated with the length of its next CPU burst, and the process that gets chosen to have the CPU next is the one which has the smallest CPU burst.  This algorithm gives the minimum average waiting time for a given set of processes.  Disadvantage: it&#8217;s hard to know the length of the next CPU request.  Therefore, it&#8217;s best for long-term scheduling, when you can predict the length of a CPU burst since it will likely be close to the length of the CPU bursts before it.  The SJF algorithm is <em>optimal</em>, and can be either preemptive or nonpreemptive, where the difference is that the scheduler may allow interruptions to a currently running process.<br /><br /><br />The <strong>priority scheduling algorithm</strong> is a more general case of the SJF algorithm.  In this algorithm, each process is associated with a certain priority, and the processes with the greatest priority are chosen to run next.  Processes with equal priority are executed first-come, first-serve.  Priorities can be defined internally, in which case priority would be based on things like time limits or memory requirements.  Externally-defined processes would be set by criteria like whether the process is more important and stuff.<br /><br />Disadvantage: <strong>indefinite blocking</strong> or <strong>starvation</strong>, which can happen if some low-priority processes are kept waiting forever because there&#8217;s always someone more important to be resource-fed.  One solution: <strong>aging</strong>, which would increase the priority of a process the longer it&#8217;s been waiting.<br /><br /><br /><strong>Round-robin scheduling</strong> is especially for timesharing systems, and it&#8217;s like first-come first-serve scheduling but with preemption so that the system can switch between processes.  The ready queue is FIFO and circular, and the scheduler allocates CPU to each process, up to one unit of time, or a &#8220;time quantum.&#8221; Processes are chosen from the top of the ready queue and dispatched.  If the processes has a CPU burst of less than 1 time quantum, then it is allowed to continue; if not, then an interrupt will go off, and after having run for a quantum, that process will be placed at the tail of the ready queue.  This means: fairness, because all processes get a turn at the CPU, and also no starvation, because nothing will get ignored.<br /><br />Disadvantage: average waiting time if you&#8217;re going by RR scheduling is long, and the performance depends a lot on the size of the time quantum.  If it&#8217;s too large, than RR is the same as first-come first-serve; but if it&#8217;s too small, than it becomes like &#8220;processor sharing&#8221; and rather than each of n processes getting the whole CPU for a little bit, each process will get 1/nth of CPU.<br /><br /><br />In <strong>multilevel queue scheduling</strong>, processes are classified into different groups, i.e. <strong>foreground</strong> for interactive processes and <strong>background</strong> for batch processes, which have different scheduling needs.  In a multilevel queue schedule algorithm, the ready queue is split up into several separate queues and processes are assigned permanently to one queue based on some characteristic like process type or priority.  Each queue would have its own scheduling algorithm, and each queue would have its own priority, so that a lower-priority queue would be unable to execute anything until higher-priority queues are empty.<br /><br /><br /><br /><span class="sig">Thread Scheduling</span><br />Since we&#8217;re talking about the OS here, we&#8217;re talking about scheduling kernel-level threads, not user-level threads.  User-level threads are scheduled to run in a scheme using <strong>process-contention scope</strong>, where threads are chosen to run based on priority.  Kernel-threads are scheduled with <strong>system-contention scope</strong>.<br /><br /><br /><span class="sig">Other notes because I&#8217;m too lazy to finish this chapter in its entirety</span><br />If a system has multiple processors, usually each processor is allowed to schedule itself independently, with its own private queue of processes or threads.<br /><br /><br />Sources:<br /><em>Operating System Concepts (8th Edition)</em>, Silberschatz, Galvin and Gagne, ISBN 978-0-470-12872-5.<br />Class lecture 4 notes<br />Class section 3 notes</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/16/q-standard-annotation-language-sal/">[Q&a] Standard Annotation Language (SAL)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-16T00:00:00-08:00" pubdate data-updated="true">Jan 16<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">What does <code>__inout</code>, etc. mean?</span><br />For OS I&#8217;m plumbing the depths of a Windows kernel and keep running into these things in the code that look like <code>__in</code>, or <code>__out</code>, or even <code>__inout</code>&#8230;for example:<br /><br /><pre class="brush:xml">NTKERNELAPI<br />VOID<br />FASTCALL<br />ExAcquireFastMutexUnsafe (<br />    __inout PFAST_MUTEX FastMutex<br />    );<br /></pre><br />I initially found <a href="http://nuubu.blogspot.com/2011/01/q-operating-systems-etc.html">something</a> about the usage of <code>_</code> and <code>__</code> in code, and it turns out that <code>__</code> is just an annotation which will help programmers know more about the intended usage of the code, like comments, and are ignored by the compiler.  <code>__inout</code> stuff is no different.<br /><br />These annotations are part of Microsoft&#8217;s SAL, or, Standard Annotation Language, and define the proper use of buffers, which are regions of data that have been allocated and are represented as pointers.  If a pointer is pointing to a buffer, there&#8217;s no good way to know how big a buffer is in compile time; with usage of SAL, you can make explicit exactly how big a buffer is.  It also helps to show how a function uses its parameters &#8211; what it thinks that the parameter is, and what it will do with that parameter when it finishes.<br /><br />This is relevant because in C, a function can take a value or a pointer as an argument.  Arguments can be used as input (i.e. taking values to add together), or as output (i.e. taking a pointer to something which will store your output value.) But, if you were to leave out these annotations, you wouldn&#8217;t know if an argument a function takes is supposed to be used as function input or output.<br /><br /><code>__in</code>, <code>__out</code>, and <code>__inout</code> are all examples of &#8220;Usage&#8221; annotations.<br /><br />So, if you see something like<br /><br /><pre class="brush: xml">void * memset(<br /> __out_bcount(s) char *p,<br /> __in int v, <br /> __in size_t s);<br /></pre><br />This means that the function <code>memset</code> expects variables <code>int v</code> and <code>size_t s</code> to be valid when the function is called (also called &#8220;valid on input&#8221;).  Also, the buffer <code>char *p</code> will be initialized by this function, will be written to by this function, and will be valid when the function returns.<br /><br />In simpler terms &#8211; <code>v</code> and <code>s</code> are definitely meant to be <code>memset</code>&#8217;s input, and <code>p</code> is meant to be the output.<br /><br /><br />Sources:<br /><a href="http://207.46.16.248/en-us/library/ff550230%28VS.85%29.aspx">MSDN: Overview of Annotations for Drivers</a><br /><a href="http://msdn.microsoft.com/en-us/library/ms235402%28v=vs.80%29.aspx">MSDN: SAL Annotations</a><br /><a href="http://blogs.msdn.com/b/michael_howard/archive/2006/05/19/602077.aspx">MSDN: A Brief Introduction to the Standard Annotation Language</a></div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c/'>c</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>, <a class='category' href='/blog/categories/programming/'>programming</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/14/q-semaphore-mutex/">[Q&a] Semaphore, Mutex</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-14T00:00:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">What&#8217;s a semaphore?</span><br />A semaphore is a procted variable or abstract data type.  It relates to controlling access to some resource shared by processes running simultaneously.  They&#8217;re useful in preventing race conditions and deadlocks (though they don&#8217;t prevent them completely).<br /><br />Semaphores don&#8217;t keep track of which resources are free or who is using the resources; they only keep track of whether resources are free.  There are two types of semaphores: <b>counting semaphores</b> and <b>binary semaphores</b>.  Counting semaphores only keep track of how much of the resource is available at a given time (i.e. &#8220;all of my resources are being used up now&#8230;oh, someone came back, okay, now I have one free which you can use&#8221;).  Binary semaphores only keep track of whether a resource is being used or not, i.e. whether it is presently unavailable or available.<br /><br />Semaphores can&#8217;t prevent errors that occur if a process that has acquired a lock for the resource forgets to release the lock, etc.<br /><br />Also, errors can still happen if there are different resources managed by different semaphores and processes need to use more than one resource at a time.  An interesting thing: the <a href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">dining philosophers problem</a>, which illustrates the problems with multiple processes sharing multiple resources.  Essentially, five philosophers are sitting at a table, either eating or thinking.  They each have a fork to their left and right, and there is a bowl of spaghetti in the middle of the table.  The philosophers need to serve themselves and eat spaghetti with both forks, but don&#8217;t speak to each other, so one may pick up a left fork and wait for his right fork to become free so that he may eat.  Meanwhile, the guy using his right fork may be waiting for his own other fork to become free.  And so on, and so forth.<br /><br />A semaphore in this case would be like a person who is aware of which forks are being used and which ones are available, so that when the philosophers try to eat, they have to consult him first, and he&#8217;ll tell them whether there are any forks to pick up which they can use.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://3.bp.blogspot.com/_SdPKamJbrgg/TS9WBJzlB7I/AAAAAAAAAEk/QEHATD_NLWw/s1600/proceed%2Bcat.jpg" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="283" src="http://3.bp.blogspot.com/_SdPKamJbrgg/TS9WBJzlB7I/AAAAAAAAAEk/QEHATD_NLWw/s320/proceed%2Bcat.jpg" width="300" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">semaphore cat is semaphore</td></tr></tbody></table><br />One problem with semaphores: <strong>busy waiting</strong>, which is what you need to put into processes that are waiting for other processes to finish executing their critical section.  (Or, what philosophers are doing when they are waiting for their neighbors to finish eating.) The busy waiting is basically just a loop waiting for the mutex to free up, and it wastes CPU that another process could be productive with.  A process that does this is a <strong>spinlock</strong>, because &#8220;the process &#8216;spins&#8217; while waiting for the lock.&#8221;  Essentially, if a program knows it needs a lock before it does the next bit of code, it sits in a while loop until the needed lock is freed up.<br /><br /><br /><span class="sig">What&#8217;s a mutex?</span><br />A mutex is essentially a binary semaphore, though mutex specifically describes an abstraction which prevents two processes from executing the same piece of code or accessing the same data at the same time.  Basically, it limits access to a single resource, to one &#8220;owner&#8221; who is at that time allowed to do whatever it wants with it before releasing the mutex so someone else can do something.<br /><br /><br /><span class="sig">What does IRQL mean?</span><br />IRQL stands for Interrupt Request Level, and has something to do with a process, and, given incoming interrupts, which one of those interrupts should be able to interrupt the running process, and which should not.  For instance, if you&#8217;re just quickly trying to modify a single variable, then you don&#8217;t want anything to interrupt you.<br /><br />Basically (I think), each thread has its own IRQL.  If the OS receives another thread to run which has a higher IRQL than that first thread, however, then it will pause the lower-IRQL thread to run the higher-IRQL code.  Weird deadlocks may occur in this case, however, if:<br /><ol><li>lower-IRQL thread is running, and acquires a lock</li><li>lower-IRQL thread is interrupted; higher-IRQL thread begins execution</li><li>higher-IRQL thread needs the lock that lower-IRQL thread has</li><li>higher-IRQL lock cannot continue without that lock</li><li>lower-IRQL thread cannot continue without higher-IRQL finishing execution</li></ol>So, what you would want to do in this case is make sure that a thread that obtains a lock cannot be interrupted.<br /><br />If it does so happen that you don&#8217;t want any interrupts to your thread, then make sure that the IRQL is raised to <code>APC_LEVEL</code>.  This level is pretty much only run when you&#8217;re using Fast Mutexes.  Part of the reason why Fast Mutexes are faster than normal Mutexes in the Windows kernel is because they deny APC interrupts.  APC interrupts originate from the processor, toward itself or another processor.<br /><br /><br /><span class="sig">How do I use a mutex in the Windows NT kernel?</span><br /><a href="http://www-user.tu-chemnitz.de/~heha/oney_wdm/ch04f.htm">Here&#8217;s</a> a start&#8230;<br /><br /><br />Sources:<br /><a href="http://en.wikipedia.org/wiki/Semaphore_%28programming%29">Wikipedia: Semaphore (programming)</a><br /><a href="http://us.generation-nt.com/answer/fast-mutexes-guarded-mutexes-help-27627542.html">GNT: Fast mutexes and guarded mutexes?</a><br /><a href="http://blogs.technet.com/b/askperf/archive/2009/07/21/the-basics-of-mutexes-and-spin-locks.aspx">TechNet: The Basics of Mutexes and Spin Locks</a><br /><a href="http://blogs.msdn.com/b/doronh/archive/2010/02/02/what-is-irql.aspx">MSDN: What is IRQL?</a><br /><a href="http://www.google.com/url?sa=t&amp;source=web&amp;cd=1&amp;ved=0CBMQFjAA&amp;url=http%3A%2F%2Fdownload.microsoft.com%2Fdownload%2Fe%2Fb%2Fa%2Feba1050f-a31d-436b-9281-92cdfeae4b45%2FLocks.doc&amp;rct=j&amp;q=ex%20initialize%20fast%20mutex%20example&amp;ei=yJEzTf7ILIGqsAP4rqiFBg&amp;usg=AFQjCNEWYt0oNPRzKd8sXHFsm_CgrHKZBw&amp;sig2=4FQ-QHdGlj_42VPdrKqIxA&amp;cad=rja">Windows Hardware and Driver Central: Locks, Deadlocks, and Synchronization</a><br /><em>Operating System Concepts (8th Edition)</em>, Silberschatz, Galvin and Gagne, ISBN 978-0-470-12872-5.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/qna/'>qna</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/14/operating-systems-notes-chapter-2-3/">Operating Systems Notes [Chapter 2, 3]</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-14T00:00:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<span class="sig">OS Structures</span><br /><strong>Command shells</strong>, I guess, make it so that users can actually speak directly to the OS and do something, rather than writing a program to speak with the OS.  I didn&#8217;t realize this.<br /><br />To make requests of the OS otherwise, you&#8217;d need to do a <strong>system call</strong>.  Types of requests that you might make the the OS would involve process control, and file and device manipulation (i.e. writing, reading from a mouse or file).<br /><br />Since operating systems are huge and all its parts tend to be interconnected, some better ways to program them involve using <strong>layers</strong> or <strong>microkernels</strong>.<br /><br />In the layered system, the OS structure is broken into layers, with the lowest being hardware and the highest being the user interface.  Layers can speak to adjacent layers, but not further.  The advantage is that you could be working on one layer at a time, and assume that if it works that you can move on to the next layer.  The issue with this is that you make the assumption that layers would not need to have communication across layers, when really sometimes layers <em>do</em> need to speak across other layers in real life, i.e. a user program needing to alter a file.<br /><br />In a microkernel system, all non-essential kernel programs are implemented as system and user-level programs, which means that the kernel is as small as it can possibly be to code it.  In general, this minimal kernel would provide only process and memory management along with a way to communicate.  The main function of the microkernel now is only to facilitate communication between the client program and other services, with messages.  Advantage is that it&#8217;s also easy to extend a microkernel&#8217;s functionality.  Disadvantage: poor performance if you need to make tons of system calls.<br /><br />In general, modularity is important.<br /><br /><br /><span class="sig">Processes</span><br />A process is a program in execution.  It consists of an address space, at least one thread, and a set of OS resources.  The address space is memory which contains code and data for the running program, as well as data relevant to the threads: registers, instruction pointer, stack and stack pointer.  A process also has a set of OS resources, such as open files, network connections, etc.  A process contains everything you need to run the program, or to restart it, if it gets interrupted.<br /><br />Processes may be independent or cooperating, depending on how they interact with each other.  <strong>Cooperating processes</strong> require some way to communicate with each other: either through shared memory (through shared variables), or message passing (through a pipe).  With shared memory, application programmers manage the communication, whereas with message-passing, the operating system has to take care of communication.  Shared memory and message passing aren&#8217;t mutually exclusive.<br /><br />You can also communicate across computers in a client-server system using sockets, remote procedure calls, or pipes.  A socket is an endpoint for communication, so a connection between two applications consists of two sockets, one for each.  <a href="http://nuubu.blogspot.com/2011/01/remote-procedure-calls-rpc.html">Remote procedure calls</a> are when an application calls another application&#8217;s function across a system.  Pipes come in two flavors: ordinary, which allows parent and child processes to communicate; and named, which allows two unrelated processes to speak with each other.</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/compsci/'>compsci</a>, <a class='category' href='/blog/categories/notes/'>notes</a>, <a class='category' href='/blog/categories/operating-systems/'>operating systems</a>
+  
+</span>
+
+</a>
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/01/14/flexas3-errors-with-stage-and-event/">Flex/AS3: Errors With Stage and Event Listeners</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-14T00:00:00-08:00" pubdate data-updated="true">Jan 14<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+This is a continuation of myself attempting to find out how to <a href="http://nuubu.blogspot.com/2010/12/problem-how-do-i-use-flex-components-to.html">use Flex UI components with a previously created AS3 project</a>.<br /><br />And it works fine, except for this error which I get when running in debug mode:<br /><br /><code>TypeError: Error #1009: Cannot access a property or method of a null object reference.</code><br /><br />It turns out that this error refers to a part of the AS3 code which does something with this variable called the stage.  This stage variable was an instance of the <strong>Stage</strong> class, and it&#8217;s made when the Flash Player starts.  SWF files are loaded into the stage container, and all of their objects that display are DisplayObjects, and are children of the stage.  All DisplayObject instances also have a <code>stage</code> property which references the stage that is displaying them.  <span class="shh">Also: Stage is a singleton class, meaning there&#8217;s only one of them, and it can&#8217;t be modified by lowly programmers, and is always at the top level of the display hierarchy within a Flash Player.</span><br /><br />Anyway, the error occurs (I think) because my parent (UI) application loads onto the stage before the embedded (AS3) application.  The AS3 app then tries to use the <code>stage</code> property before it&#8217;s even on the stage.  The solution is to make sure that the embedded SWF is on the stage before you try instantiating or doing anything.<br /><br />To fix it, I essentially wrapped up offending code in an event listener which would wait until the stage was loaded to execute.  So, this code which lets the stage listen for keyboard input:<br /><br /><pre class="brush: cpp"><br />stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);<br /><br /></pre><br />became<br /><br /><pre class="brush: cpp"><br />addEventListener(Event.ADDED_TO_STAGE, function (e:Event):void {<br />  stage.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);<br />});<br /><br /></pre><br />Not sure if this is good style or not.<br /><br /><br />Sources:<br /><a href="http://www.kirupa.com/forum/showthread.php?p=2129548#post2129548">Kirupa: ActionScript 3 Tip of the Day</a><br /><a href="http://jaycsantos.com/flash/do-you-know-actionscript-as3-stage/">jaycsantos.com: Do you know ActionScript?  AS3 Stage</a><br /><a href="http://board.flashkit.com/board/showthread.php?t=792605">Flash Kit: TypeError: Error #1009</a></div>
+<h2>Comments</h2>
+<div class='comments'>
+<div class='comment'>
+<div class='author'>Lewis R Strasburg</div>
+<div class='content'>
+Nice solution, it worked great for me.  I only needed to reference the stage at the very beginning for a &quot;Press Any Key to Start&quot; scenario, and it wasn&#39;t working until now.  Thanks!</div>
+</div>
+</div>
+</div>
+  
+  
+  <div class="category-bit">Categories: 
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/actionscript/'>actionscript</a>, <a class='category' href='/blog/categories/flash/'>flash</a>, <a class='category' href='/blog/categories/flex/'>flex</a>, <a class='category' href='/blog/categories/troubleshooting/'>troubleshooting</a>
   
 </span>
 

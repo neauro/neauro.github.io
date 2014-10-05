@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | liwanag]]></title>
   <link href="http://blog.neauro.com/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://blog.neauro.com/"/>
-  <updated>2014-06-20T16:37:57-07:00</updated>
+  <updated>2014-10-05T13:54:33-07:00</updated>
   <id>http://blog.neauro.com/</id>
   <author>
     <name><![CDATA[nadine a.]]></name>
@@ -37,17 +37,6 @@ Kelly has been being really hipster and avoiding auto-generating files :P But th
 If you do &quot;rails g model dog&quot;, the model, migration, tests and test helper files are automatically generated.  <br /><br />Also, in Rails 3.1, you don&#39;t have to define both up and down methods if down is obvious from what up is.  You can just define a method &quot;change&quot; with the contents of &quot;up&quot; would have been, and rails can figure out &quot;down&quot; by itself.<br /><br />The only caveat is that if change is drop_table, you have to use down and up, because rails can&#39;t figure out what columns to add back if you roll back the drop.</div>
 </div>
 </div>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[AAAAHHHH RAILS]]></title>
-    <link href="http://blog.neauro.com/blog/2011/02/25/aaaahhhh-rails/"/>
-    <updated>2011-02-25T00:00:00-08:00</updated>
-    <id>http://blog.neauro.com/blog/2011/02/25/aaaahhhh-rails</id>
-    <content type="html"><![CDATA[<div class='post'>
-I had a Rails work party with Joshu the other night (after which Rosanna served us basil-pesto pasta and lamb steak) and now I just want to do EVERYTHING IN RAILS.  It is SO COOL.  It's so easy to work with databases and set everything up....eeeeek &lt;3<br /><br /><span class="shh">Why am I taking operating systems when what I really want to do is just make sleek Rails apps/portfolio things .____.</span><br /><br />My main resources are <a href="http://railsforzombies.org/">Rails for Zombies</a> (a pretty site with cute, intelligible tutorials and nice lab sessions <span class="shh">which I mostly skipped, but, whatever</span>) and Kelly, who's the best. :D<br /><br />Once I can figure out something to really make, and once I figure out how to get <a href="http://heroku.com">heroku</a> working, this world is going to be so much more fun.</div>
 
 ]]></content>
   </entry>
