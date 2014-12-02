@@ -1,17 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[liwanag]]></title>
+  <title><![CDATA[miscware]]></title>
   <link href="http://blog.neauro.com/atom.xml" rel="self"/>
   <link href="http://blog.neauro.com/"/>
-  <updated>2014-11-25T10:01:26-08:00</updated>
+  <updated>2014-12-02T07:48:52-08:00</updated>
   <id>http://blog.neauro.com/</id>
   <author>
-    <name><![CDATA[nadine a.]]></name>
+    <name><![CDATA[nat]]></name>
     
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Game: Shelter]]></title>
+    <link href="http://blog.neauro.com/blog/2014/12/01/shelter/"/>
+    <updated>2014-12-01T12:40:06-08:00</updated>
+    <id>http://blog.neauro.com/blog/2014/12/01/shelter</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/shelter-title.jpg" alt="Screenshot from Monument Valley"/></p>
+
+<p class="caption">(<a href="http://animalnewyork.com/2013/game-plan-making-shelter-the-game-of-parenthood-and-badgers/">via</a>)</p>
+
+
+<p>I can&rsquo;t really help being the type of person who would be totally satisfied for hours finding stuff to dig up and feed to digital creatures. That you get to do this in <a href="http://www.mightanddelight.com/index.php?page=shelter">Shelter</a> while waddling around as a squat creature, followed by five other smaller squat creatures, is an unexpectedly satisfying plus.</p>
+
+<p>In Shelter, you play the role of a mother badger tasked with foraging and protecting five little badger babbus. Shelter is So Pretty, though the lack of contrast was occasionally hard on my eyes, and confused my gameplay. For example, since you are cued to hungry babbus by looking at which one is less saturated than the others, I think I ended up overfeeding the babbu with a pattern that consistently made it look pale/hungry, even when it wasn&rsquo;t.</p>
+
+<p>[spoilers ahead]</p>
+
+<p>I was determined to bring all my babbus through the game, but unfortunately lost one to the river, one to fire, and one to the hawk at the end. I wasn&rsquo;t too surprised by the game&rsquo;s bitterwsweet ending, but wish it had been performed differently — for one thing, I kept getting lost running back and forth between those final grasses — would it have been possible to do something like desaturate the direction from which you&rsquo;d come, to make the forest endgame more obvious and maybe even ~paradisical~?</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/shelter2.jpg" alt="Screenshot from Monument Valley"/></p>
+
+<p class="caption">so paradise</p>
+
+
+<p>It was also a shame to be picked off &ldquo;against my will&rdquo; at the end — thinking about it now, it would have been cool to maybe hear a babbu shriek, and then look back to see that a hawk is struggling to carry it away. By the end of the game, the babbus are pretty heavy after all — maybe capable of giving a good thrash — and at that point you could make the choice to go back and try to fight the bird off, at which point it gives you a couple good swipes and then lifts you away to continue the circle of life.</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/shelter1.jpg" alt="Screenshot from Monument Valley"/></p>
+
+<p class="caption">good luck my sweets</p>
+
+
+<p>I&rsquo;m really looking forward to Shelter 2, mostly because you&rsquo;ll be able to run without fear of leaving babbus behind to fend for themselves. Also, <em>those little mewling noises in the trailer</em>.</p>
+
+<iframe width="560" height="315" src="http://blog.neauro.com//www.youtube.com/embed/qGUV4zeHZwY" frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Game: Monument Valley]]></title>
+    <link href="http://blog.neauro.com/blog/2014/12/01/monument/"/>
+    <updated>2014-12-01T09:12:37-08:00</updated>
+    <id>http://blog.neauro.com/blog/2014/12/01/monument</id>
+    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/monument1.jpg" alt="Screenshot from Monument Valley"/></p>
+
+<p class="caption">a screenshot of Monument Valley</p>
+
+
+<p>I played <a href="http://www.monumentvalleygame.com/">Monument Valley</a> carefully, slowly, with headphones, trying to savor it. It&rsquo;s tough with puzzle games, because if something takes you a little more effort than your flow state allows, your vision narrows, and it&rsquo;s tough to think about anything except stuff like <em>HOW DO I GET THROUGH THAT DOOR AUAUUGHHH</em></p>
+
+<p>In Monument Valley, you lead (are?) Ida, a &ldquo;silent princess,&rdquo; through a geometrically implausible landscape. The game has very nice UI built in to facilitate you taking screenshots, which is a good feature for getting the word out. It&rsquo;s fairly innocuous, since you <em>do</em> start to feel like you want to share where you&rsquo;ve been in the game, even if it isn&rsquo;t the sort of thing used for making unique creations.</p>
+
+<p><img class="book-cover" src="http://blog.neauro.com/images/monument2.jpg" alt="Screenshot from Monument Valley"/></p>
+
+<p class="caption">here&#8217;s another screenshot, because i took a lot of them and consider them all gorg</p>
+
+
+<p>The screenshot feature has the added benefit of guiding your player into how they should feel about the game too. <em>This scene is pretty. Appreciate it!</em> Emails sent with screenshots are loaded with the message &ldquo;Wish you were here,&rdquo; which is pretty cute.</p>
+
+<p>My favorite bits (with spoilers):</p>
+
+<ul>
+<li>The title card &ldquo;flavors,&rdquo; especially IN WHICH A THRONE LIES VACANT and IN WHICH THERE IS NOBODY LEFT TO FORGIVE US. These are the game&rsquo;s last-subtle aspects, and though I can&rsquo;t say with any specificity what they refer to (and would have preferred if I could), I like the poetry of them, and their ominousness.</li>
+<li>Meeting your Yellow Block Friend. I loved how Ida would touch them when they were standing together. And I also loved watching them sink under the ocean, only to return later during the descent — so good! Their plodding after you until totally overtaken by watery vectors was pleasantly heartbreaking.</li>
+<li>The whole &ldquo;music box&rdquo; level, as well as the levels in general where you start without knowing where Ida is. It makes the geometry of the game — and Ida&rsquo;s navigation through it — a little more &ldquo;impossible.&rdquo;</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Game: Kisima Inŋitchuŋa (Never Alone)]]></title>
@@ -1059,63 +1128,6 @@ But her assassin&#8217;s skills are little comfort when the convent returns her 
 
 
 <p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Some Thoughts Re: Thomas Was Alone]]></title>
-    <link href="http://blog.neauro.com/blog/2014/01/08/thomas-was-alone/"/>
-    <updated>2014-01-08T09:52:26-08:00</updated>
-    <id>http://blog.neauro.com/blog/2014/01/08/thomas-was-alone</id>
-    <content type="html"><![CDATA[<p><img class="book-cover" src="http://blog.neauro.com/images/twa.png" alt="Screenshot of Thomas Was Alone"/></p>
-
-<p class="caption">(<a href="http://www.mobygames.com/game/windows/thomas-was-alone/screenshots/gameShotId,566500/">via</a>)</p>
-
-
-<p><em>Thomas Was Alone</em> was super cute, if more ambiguous than I personally like. I liked the personality given to all the different shapes, though their common heroism and conceit got a little old as the game went on, which was why Laura&rsquo;s cynicism made her my favorite (though I felt compelled inexlicably to keep calling her &ldquo;Ruth&rdquo;). I loved that the levels were tilted, the play of light, the strange colors. (Though I wonder if any colorblind users had a hard time playing?)</p>
-
-<p>One thing I think the game could have been improved was the game&rsquo;s sense of progression; though numbers ticked up each level, after a while they became meaningless, and now that the game is finished I&rsquo;m not totally sure what I would use them for. The introduction of each of the colored shapes, Thomas&rsquo;s &ldquo;death,&rdquo; and the era of the gray shapes seemed to be the largest movements in the story, and though each was accompanied with a fun snippet of &ldquo;The AIs are gaining sentience!&rdquo; flavor I didn&rsquo;t really have a sense that things were reaching their end until the end came suddenly to meet me. Some levels seemed like little &ldquo;drabbles&rdquo; and experiments, which I completed without much more effort than would take for me to click a cow in Farmville, and it would have been cool to see something else related to AIs breaking their previous ways of being. Breaking through the borders of levels — intentionally disobeying orders — something to add to the flavor text.</p>
-
-<p>I played <em>Thomas Was Alone</em> on a projector and if you have the opportunity to do so yourself I recommend it. All those rectangles are like way better when they&rsquo;re as big as your face.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Running IE7, IE8, and IE9 on a Mac, Using VirtualBox]]></title>
-    <link href="http://blog.neauro.com/blog/2014/01/08/virtualbox/"/>
-    <updated>2014-01-08T09:07:20-08:00</updated>
-    <id>http://blog.neauro.com/blog/2014/01/08/virtualbox</id>
-    <content type="html"><![CDATA[<p>I&rsquo;ve been putting off getting a virtual machine running on the Mac computer I use for work, mostly because I wanted to forget the existence of &lt;IE9 browsers entirely. Unfortunately, the visual bugs accumulating across my projects were starting to get a little ridiculous.</p>
-
-<p><img class="book-cover" src="http://blog.neauro.com/images/proleft.png" alt="Screenshot of IE8 errors"/></p>
-
-<p class="caption">omg why</p>
-
-
-<p>After some hours of searching and fiddling, I discovered my favorite solution for running IE on a Mac. It goes like this:</p>
-
-<ol>
-<li>Download the relevant/recent version of Oracle&#8217;s <a href="http://www.virtualbox.org">VirtualBox</a>.</li>
-<li>Use the Terminal and and run <code>curl -s https://raw.github.com/xdissent/ievms/master/ievms.sh | env IEVMS_VERSIONS="8 9" bash</code> to download 2 virtual machines; one that can run IE8, and one that can run IE9.</li>
-</ol>
-
-
-<p>That&rsquo;s it! Once that&rsquo;s finished, you can open VirtualBox and you&rsquo;ll see your boxes all ready to go.</p>
-
-<p><img class="book-cover" src="http://blog.neauro.com/images/virtualbox.png" alt="Screenshot of IE8 in VirtualBox"/></p>
-
-<p class="caption">only IE8 is pictured above</p>
-
-
-<p>Thanks to <a href="http://osxdaily.com/2011/09/04/internet-explorer-for-mac-ie7-ie8-ie-9-free/">OSXDaily</a> for the post that led me to finding <a href="https://github.com/xdissent">xdissent</a>&rsquo;s awesome installations.</p>
-
-<p>Other notes:</p>
-
-<ul>
-<li><code>border-radius</code>, <code>rem</code>, and <code>opacity</code> are some of the many words not recognized by IE8.</li>
-<li>PressF12 to open up IE8&#8217;s Developer Tools.</li>
-</ul>
-
 ]]></content>
   </entry>
   
