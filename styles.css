@@ -26,10 +26,11 @@ ul {
 }
   ul li {
     margin:0;
+    margin-bottom:0.2em;
   }
 ul.works {
   margin-left:2em;
-  margin-top:-0.5em;
+  margin-top:0.5em;
 }
 a:link {
   color:#5d5d5d;
