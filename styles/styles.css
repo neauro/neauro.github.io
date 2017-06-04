@@ -20,8 +20,8 @@ h2 {
   max-width:780px;
   width:70%;
   margin:0px auto;
-  /* text-align:center; */
   margin-top:5%;
+  min-width:400px;
 }
 .header {
   text-align:center;
@@ -133,7 +133,7 @@ blockquote {
 
 /* end */
 .footer {
-  font-size: 10pt;
+  font-size: 11pt;
   box-sizing: border-box;
   width: 95%;
   margin: 0px auto;
