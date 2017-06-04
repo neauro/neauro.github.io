@@ -46,7 +46,6 @@ a:visited {
   text-decoration:none;
   color:#222; 
   min-width: 150px;
-  height: 200px;
   margin-top:2rem;
 }
   .bit:hover,
@@ -66,6 +65,8 @@ a:visited {
   .bit p {
     font-size:11pt; 
     color:#656565;
+    min-height:35px;
+    height:35px;
   }
 .bit-img {
   background-color:lavender;
@@ -150,3 +151,9 @@ blockquote {
   .sm li a:active {
     color:#878787;
   }
+
+@media only screen and (max-width: 700px) {
+  .bit {
+    width: 100%;
+  }
+}
