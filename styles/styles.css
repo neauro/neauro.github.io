@@ -97,6 +97,7 @@ h4 {
 .portfolio-bit a:link {
   text-decoration: underline;
 }
+.about-img,
 .portfolio-bit img {
   margin:0px auto;
   display:block;
