@@ -85,6 +85,9 @@ h4 {
   font-family: "Crete Round";
   font-size: 15pt;
 }
+.portfolio-bit {
+  padding:1rem;
+}
 .portfolio-bit h3 {
   margin-top:2rem;
 }
