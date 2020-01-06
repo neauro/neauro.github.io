@@ -134,7 +134,7 @@ iframe {
 .hello-bit {
   margin:0px auto;
   margin-top:3rem;
-  width:50%;
+  width:80%;
 }
   .hello-bit h3 {
     text-align:center;
@@ -173,5 +173,12 @@ blockquote {
 @media only screen and (max-width: 700px) {
   .bit {
     width: 100%;
+  }
+  .side-by-side .smaller {
+    display:block;
+    width:100%;
+  }
+  .hello-bit {
+    width:100%;
   }
 }
