@@ -1,6 +1,6 @@
 /* top */
 body {
-  background-color:#f5f5f5;
+  background-color:#fff;
   color:#222;
   font-family:"Roboto";
   margin:0;
@@ -10,10 +10,12 @@ h1 {
   text-transform:lowercase;
   font-family:"Crete Round";
   margin:0;
+  font-weight:normal;
 }
 h2 {
   font-family: "Roboto";
   font-size:14pt;
+  font-weight:normal;
   color:#656565;
   margin:0;
 } 
@@ -25,7 +27,6 @@ h2 {
   min-width:375px;
 }
 .header {
-  text-align:center;
 }
 
 a,
@@ -112,9 +113,12 @@ iframe {
   max-width:560px;
 }
 
-.smaller {
-  width:100%;
-}
+  .side-by-side .smaller {
+    display:inline-block;
+    width:46%;
+    margin:1.75%;
+  }
+
 .half-size {
   width:50%;
 }
