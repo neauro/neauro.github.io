@@ -147,6 +147,8 @@ iframe {
   }
 blockquote {
   font-style:italic;
+  border-left:4px solid #a5a5a5;
+  padding-left:1rem;
 }
 
 /* end */
