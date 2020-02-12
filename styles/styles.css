@@ -84,9 +84,11 @@ h3 {
   margin-top: 2rem;
 }
 h4 {
-  margin-top:2rem;
-  font-family: "Bitter";
-  font-size: 15pt;
+  color: #707070;
+  margin: 0;
+  margin-top: 3rem;
+  font-family: "Public Sans";
+  font-size: 12pt;
 }
 .portfolio-bit {
   padding:1rem;
@@ -94,7 +96,6 @@ h4 {
 .portfolio-bit h3 {
   margin-top:2rem;
   font-size: 12pt;
-  text-transform: uppercase;
   color: #707070;
   color: #da627d;
 }
