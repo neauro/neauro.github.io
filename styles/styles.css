@@ -43,7 +43,6 @@ a:visited {
 /* middle */
 .bit {
   width:100%;
-  padding:20px;
   box-sizing:border-box;
   margin:0px;
   display:inline-block;
@@ -74,10 +73,10 @@ a:visited {
   }
 .bit-img {
   background-color:lavender;
-  background-position:50% 50%;
   background-size: cover;
   border-radius:2px;
-  height:500px;
+  min-height:500px;
+  
 }
 h3 {
   font-family: "Bitter";
@@ -192,7 +191,6 @@ li {
     width:100%;
   }
 }
-
 
 /* illustration */
 .illust {
