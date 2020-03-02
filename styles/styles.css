@@ -71,6 +71,14 @@ a:visited {
     min-height:35px;
     height:35px;
   }
+.half.bit{
+  width:49%;
+  float:left;
+  margin-bottom:3rem;
+}
+  .half.bit.right {
+    margin-left:1%;
+  }
 .bit-img {
   background-color:lavender;
   background-size: cover;
@@ -165,6 +173,7 @@ li {
   margin-bottom: 3rem;
   padding-top: 2rem;
   padding-top: 1rem;
+  clear:both;
   border-top: 1px dotted #808080;
 }
 .sm {
