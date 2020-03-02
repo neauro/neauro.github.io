@@ -150,6 +150,11 @@ blockquote {
   border-left:4px solid #a5a5a5;
   padding-left:1rem;
 }
+li {
+  line-height:20px;
+  margin-bottom:4px;
+  width:83%;
+}
 
 /* end */
 .footer {
