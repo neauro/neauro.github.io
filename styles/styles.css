@@ -72,6 +72,9 @@ a:visited {
     min-height:35px;
     height:35px;
   }
+  .bit img {
+    border-radius:2px;
+  }
 .half.bit{
   width:49%;
   float:left;
