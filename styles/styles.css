@@ -6,12 +6,25 @@ body {
   margin:0;
 }
 
-h1 {
+h1,h2 {
   text-transform:lowercase;
-  font-family:"Bitter";
+  font-family:"Gotu";
   margin:0;
   font-weight:normal;
 }
+  .header {
+    margin-bottom:1rem;
+  }
+  .title {
+    text-align:left;
+    margin-top:5rem;
+    margin-left:2rem;
+    line-height:42px;
+  }
+  .subtitle {
+    color:#707070;
+    font-size:23px;
+  }
 h2 {
   font-family: "Public Sans";
   font-size:14pt;
@@ -23,12 +36,8 @@ h2 {
   max-width:780px;
   width:70%;
   margin:0px auto;
-  margin-top:5%;
   min-width:375px;
   box-sizing:border-box;
-}
-.header {
-  text-align:center;
 }
 
 a,
@@ -50,7 +59,7 @@ a:visited {
   text-decoration:none;
   color:#222; 
   min-width: 150px;
-  margin-top:2rem;
+  margin-top:1rem;
 }
   .bit:hover,
   .bit:active
@@ -91,7 +100,7 @@ a:visited {
   
 }
 h3 {
-  font-family: "Bitter";
+  font-family: "Gotu";
   margin-top: 2rem;
 }
 h4 {
@@ -104,18 +113,29 @@ h4 {
 .portfolio-bit {
   padding:1rem;
 }
-.portfolio-bit h3 {
-  margin-top:2rem;
-  font-size: 12pt;
-  color: #707070;
-  color: #da627d;
-}
-.portfolio-bit p {
-  line-height:17pt;
-}
-.portfolio-bit a:link {
-  text-decoration: underline;
-}
+  .clear {
+    clear:both;
+  }
+  .portfolio-bit h3.proj-header {
+    margin-top:1rem;
+    float:left;
+    width:30%;
+    font-size: 12pt;
+    color:#F7990A;
+    color:#F68200;
+  }
+  .proj-contents {
+    float:right;
+    width:69%;
+  }
+  .portfolio-bit h3 {
+  }
+  .portfolio-bit p {
+    line-height:17pt;
+  }
+  .portfolio-bit a:link {
+    text-decoration: underline;
+  }
 .about-img,
 .portfolio-bit img {
   margin:0px auto;
@@ -164,7 +184,7 @@ blockquote {
 li {
   line-height:20px;
   margin-bottom:4px;
-  width:83%;
+  width:77%;
 }
 
 /* end */
