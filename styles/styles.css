@@ -18,7 +18,7 @@ h1,h2 {
   .title {
     text-align:left;
     margin-top:5rem;
-    margin-left:2rem;
+    margin-left:5rem;
     line-height:42px;
   }
   .subtitle {
@@ -186,8 +186,9 @@ iframe {
   }
 blockquote {
   font-style:italic;
-  border-left:4px solid #a5a5a5;
+  border-left:2px solid #a5a5a5;
   padding-left:1rem;
+  margin-bottom:3rem;
 }
 li {
   line-height:20px;
