@@ -25,6 +25,14 @@ h1,h2 {
     color:#707070;
     font-size:23px;
   }
+  .subheader {
+    text-align:center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+    .subheader h1 { 
+      font-size:23px !important;
+    }
 h2 {
   font-family: "Public Sans";
   font-size:14pt;
