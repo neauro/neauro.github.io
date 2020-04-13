@@ -20,6 +20,7 @@ h1,h2 {
     margin-top:5rem;
     margin-left:5rem;
     line-height:42px;
+    margin-right:2rem;
   }
   .subtitle {
     color:#707070;
@@ -33,10 +34,10 @@ h1,h2 {
     .subheader h1 { 
       font-size:23px !important;
     }
+
 h2 {
   font-family: "Public Sans";
   font-size:14pt;
-  font-weight:normal;
   color:#656565;
   margin:0;
 } 
@@ -233,6 +234,11 @@ li {
   }
   .side-by-side .smaller {
     display:block;
+    width:100%;
+  }
+  .portfolio-bit h3.proj-header,
+  .proj-contents {
+    float:none;
     width:100%;
   }
 }
