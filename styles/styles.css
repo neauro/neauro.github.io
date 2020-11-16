@@ -34,7 +34,7 @@ h1,h2 {
     font-family: "Public Sans",sans-serif;
     margin-top:1rem;
     font-weight:normal;
-    margin-bottom:13rem;
+    margin-bottom:10rem;
   }
   .subheader {
     text-align:center;
@@ -81,6 +81,10 @@ a:hover,
 a:active {
   text-decoration:none;
 }
+  a:hover {
+    top:2px;
+    left:2px;
+  }
 a:link,
 a:visited {
   color:#222;
@@ -132,18 +136,37 @@ a:visited {
   }
 .half.bit{
   width:49%;
+  margin-left:1%;
   float:left;
-  margin-bottom:3rem;
 }
+  .half.bit h3 {
+    position:static;
+  }
+  .half.bit h3 {
+    top:0rem;
+  }
+  .half.bit .text {
+    position:absolute;
+    top:92%;
+    left:0px;
+  }
+  .half.bit .text h3,
+  .half.bit .text p {
+    color:#4c4c4c;
+  }
+    .half.bit .text p {
+      font-size: 14pt;
+      margin-top: 0rem;
+      width: 100%;
+      font-weight: 300;
+    }
   .half.bit.right {
     margin-left:1%;
   }
 .bit-img {
-  background-color:lavender;
   background-size: cover;
   border-radius:2px;
   min-height:500px;
-  
 }
 
 
@@ -173,6 +196,24 @@ a:visited {
   width:400px; 
   left: 14rem;
   top: 14rem;
+}
+.reveal {
+  background-size:40%;
+  background-position:100% 50%;
+  background-repeat:no-repeat;
+  background-color:#f1f1f1;
+  margin-bottom:2rem;
+  }
+  .reveal h3,
+  .reveal p {
+    color:#4c4c4c;
+  }
+.game h3,
+.game p {
+  text-shadow: -1px 1px #222;
+}
+.game {
+  margin-bottom:2rem;
 }
 
 
@@ -270,33 +311,6 @@ li {
   width:77%;
 }
 
-/* end */
-.footer {
-  font-size: 11pt;
-  box-sizing: border-box;
-  width: 95%;
-  margin: 0px auto;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  padding-top: 2rem;
-  padding-top: 1rem;
-  clear:both;
-  border-top: 1px dotted #808080;
-}
-.sm {
-  display:block;
-  padding:0;
-}
-  .sm li {
-    list-style-type: none;
-  }
-  .sm li a,
-  .sm li a:active {
-    color:#878787;
-  }
-  .sm li a:hover {
-    text-decoration:underline;
-  }
 
 @media only screen and (max-width: 700px) {
   .bit {
