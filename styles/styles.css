@@ -34,7 +34,7 @@ h1,h2 {
     font-family: "Public Sans",sans-serif;
     margin-top:1rem;
     font-weight:normal;
-    margin-bottom:10rem;
+    margin-bottom:13rem;
   }
   .subheader {
     text-align:center;
@@ -59,6 +59,22 @@ h2 {
   min-width:375px;
   box-sizing:border-box;
 }
+.top-bar {
+  padding:0;
+  float:right;
+}
+  .top-bar li {
+    list-style-type: none;
+    display: inline;
+    margin-left: 2rem;
+  }
+  .top-bar li a,
+  .top-bar li a:active {
+    color:#4c4c4c;
+  }
+  .top-bar li a:hover {
+    text-decoration:underline;
+  }
 
 a,
 a:hover,
@@ -80,11 +96,11 @@ a:visited {
   margin:0px;
   display:inline-block;
   text-decoration:none;
-  color:#222; 
   min-width: 150px;
   margin-top:1rem;
   padding-top:2rem;
   padding-left:2rem;
+  margin-bottom:13rem;
 }
   .bit:hover,
   .bit:active
@@ -100,7 +116,7 @@ a:visited {
     margin-top:2rem;
     line-height:20pt;
     font-family:"MarangsaDisplay";
-    font-size: 15pt;
+    font-size: 13pt;
     text-transform: uppercase;
     letter-spacing:2.5px;
   }
@@ -108,6 +124,7 @@ a:visited {
     font-size:20pt; 
     margin-top:1rem;
     width:50%;
+    font-weight:300;
     color:#fff;
   }
   .bit img {
@@ -131,7 +148,6 @@ a:visited {
 
 
 /* INDIVIDIAL HOMEPAGE STYLES */
-/* livestories */
 .lscard {
   width:250px;
 }
@@ -140,6 +156,25 @@ a:visited {
   top: -7rem;
   right: 4rem;
 }
+.nx h3,
+.nx p{
+  color:#4c4c4c;
+  position:relative;
+  left:18rem;
+}
+.nx img {
+  position:absolute;
+}
+.nxphone {
+  width:225px;
+  top:-40%;
+}
+.nxresearch {
+  width:400px; 
+  left: 14rem;
+  top: 14rem;
+}
+
 
 
 
