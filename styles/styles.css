@@ -54,10 +54,10 @@ h2 {
 .content {
   max-width:960px;
   width:70%;
-  padding:1rem;
   margin:0px auto;
   min-width:375px;
   box-sizing:border-box;
+  padding-bottom:30%;
 }
 .top-bar {
   padding:0;
@@ -95,6 +95,7 @@ a:visited {
   position:relative;
   width:100%;
   height:280px;
+  min-height:280px;
   background-size:cover;
   padding-right:2rem;
   box-sizing:border-box;
@@ -198,13 +199,13 @@ a:visited {
   top:-40%;
 }
 .nxresearch {
-  width:400px; 
-  left: 14rem;
-  top: 12rem;
+  width:50%;
+  left: 15rem;
+  top: 13rem;
 }
 .reveal {
   background-size:40%;
-  background-position:100% 50%;
+  background-position:100% 100%;
   background-repeat:no-repeat;
   background-color:#f1f1f1;
   margin-bottom:2rem;
@@ -319,15 +320,17 @@ li {
 
 @media only screen and (max-width: 1337px) {
   .content {
-    border:1px solid green;
+    /* border:1px solid green; */
   }
   .bit {
     height:auto;
+    margin-bottom:2rem;
   }
   .bit.ls {
     background-size:100%;
     background-repeat:no-repeat;
     background-position:0% 100%;
+    margin-bottom:9rem;
   }
   .bit.ls p {
     width:100%;
@@ -342,11 +345,23 @@ li {
   .nx p {
     font-size:17pt;
   }
+  .nxresearch {
+    left: 28%;
+    top: 74%;
+  }
+  .bit.nx {
+    margin-bottom:13rem;
+  }
+  .reveal {
+    background-size:40%;
+  }
 }
 
 @media only screen and (max-width: 860px) {
   .content {
-    border:1px solid red;
+    /* border:1px solid red; */
+  }
+  .bit {
   }
   .lscard {
     width:49%;
@@ -356,22 +371,35 @@ li {
   }
   .nxitems .nxphone {
     width:30%;
+    top:-6%;
   }
   .nxitems .nxresearch {
-    width: 55%;
-    left: 33%;
-    top: 93%;
+    width: 58%;
+    left: 30%;
+    top: 67%;
+  }
+  .bit.nx {
+    margin-bottom:40%;
   }
   .nx h3,
   .nx p {
     left:41%;
-    margin-top:0rem;
+    margin-top:0.5rem;
   }
+  .reveal {
+    margin-bottom:1rem;
+  }
+    .reveal h3 {
+      margin-top:0rem;
+    }
+    .reveal p {
+      font-size:16pt;
+    }
 }
 
 @media only screen and (max-width: 375px) {
   .content {
-    border:1px solid purple;
+    /* border:1px solid purple; */
   }
   .content {
     width:100%;
@@ -409,7 +437,6 @@ li {
   margin-bottom:2rem;
 }
   .illust-caption {
-    border:1px solid red;
     width:100%;
     height:100%;
     position:absolute;
