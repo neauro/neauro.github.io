@@ -58,7 +58,6 @@ h2 {
   margin:0px auto;
   min-width:375px;
   box-sizing:border-box;
-  padding-bottom:30%;
 }
 .top-bar {
   padding:0;
@@ -108,7 +107,7 @@ a:visited {
   margin-top:1rem;
   padding-top:2rem;
   padding-left:2rem;
-  margin-bottom:13rem;
+  margin-bottom:9rem;
 }
   .bit:hover,
   .bit:active
@@ -140,9 +139,13 @@ a:visited {
   }
 .half.bit{
   width:49%;
-  margin-left:1%;
+  margin:0;
   float:left;
+  margin-bottom:15rem;
 }
+  .half.bit.second {
+    margin-left: 2%;
+  }
   .half.bit h3 {
     position:static;
   }
@@ -185,6 +188,9 @@ a:visited {
   position:absolute;
   top: -7rem;
   right: 4rem;
+}
+.bit.nx {
+  margin-bottom:12rem;
 }
 .nx h3,
 .nx p{
@@ -321,8 +327,14 @@ li {
 
 @media only screen and (max-width: 1337px) {
   .content {
-    border:1px dashed green;
+    /* border:1px dashed green; */
     width:100%;
+  }
+  .illo {
+    background-position: 50% 7%;
+  }
+  .dog {
+    background-position: 50% 53%;
   }
   .bit {
     height:auto;
@@ -335,28 +347,24 @@ li {
     background-position:0% 100%;
     margin-bottom:9rem;
   }
-  .bit.ls p {
-    /* width:47%; */
-  }
-  /*
-  .lscard-group {
-    margin: 0px auto;
-    position: static;
-    margin-top: 2rem;
-    display: block;
-    width: 505px;
-  }
-  */
   .nx p {
     font-size:17pt;
   }
   .nxresearch {
-    left: 28%;
+    left: 25%;
     top: 74%;
   }
   .bit.nx {
-    margin-bottom:13rem;
+    margin-bottom:11rem;
   }
+  .bit.half {
+    float:none;
+    width:100%;
+    margin-bottom:5rem;
+  }
+    .half.bit.second {
+      margin-left:0;
+    }
   .reveal {
     background-size:40%;
   }
@@ -364,8 +372,14 @@ li {
 
 @media only screen and (max-width: 965px) {
   .content {
-    border:2px dashed red;
+    /* border:2px dashed red; */
     width:600px;
+  }
+  .bit.half {
+    margin-bottom:5rem;
+  }
+  .bit.ls {
+    margin-bottom:8rem;
   }
   .bit {
     width:100%;
@@ -383,21 +397,27 @@ li {
     margin-top: 2rem;
   }
   .nxitems .nxphone {
-    width:30%;
-    top:-6%;
+    width: 40%;
+    top: -29%;
+    left: 0%;
   }
   .nxitems .nxresearch {
-    width: 58%;
-    left: 30%;
-    top: 67%;
+    width: 68%;
+    left: 31%;
+    top: 61%;
   }
   .bit.nx {
-    margin-bottom:40%;
+    margin-bottom:12rem;
   }
+    .nx h3 {
+      margin-top:0rem;
+    }
+    .nx p {
+      font-size:15pt;
+    }
   .nx h3,
   .nx p {
-    left:41%;
-    margin-top:0.5rem;
+    left:46%;
   }
   .reveal {
     margin-bottom:1rem;
@@ -411,24 +431,19 @@ li {
 }
 @media only screen and (max-width: 620px) {
   .content {
-    border:1px dashed purple;
+    /* border:1px dashed purple; */
     width:375px;
   }
-}
-
-/*
-@media only screen and (max-width: 375px) {
-  .content {
+  .bit.ls {
+    margin-bottom:7rem;
   }
-  .content {
-    width:100%;
-    padding:10px;
+  .bit.nx {
+    margin-bottom:2rem;
+  }
+  .bit.half {
+    margin-bottom:6rem;
   }
 }
-*/
-
-
-
 
 
 
