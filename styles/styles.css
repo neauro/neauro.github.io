@@ -54,6 +54,7 @@ h2 {
 .content {
   max-width:960px;
   width:70%;
+  padding:10px;
   margin:0px auto;
   min-width:375px;
   box-sizing:border-box;
@@ -320,11 +321,13 @@ li {
 
 @media only screen and (max-width: 1337px) {
   .content {
-    /* border:1px solid green; */
+    border:1px dashed green;
+    width:100%;
   }
   .bit {
     height:auto;
     margin-bottom:2rem;
+    min-width:900px;
   }
   .bit.ls {
     background-size:100%;
@@ -333,8 +336,9 @@ li {
     margin-bottom:9rem;
   }
   .bit.ls p {
-    width:100%;
+    /* width:47%; */
   }
+  /*
   .lscard-group {
     margin: 0px auto;
     position: static;
@@ -342,6 +346,7 @@ li {
     display: block;
     width: 505px;
   }
+  */
   .nx p {
     font-size:17pt;
   }
@@ -357,17 +362,25 @@ li {
   }
 }
 
-@media only screen and (max-width: 860px) {
+@media only screen and (max-width: 965px) {
   .content {
-    /* border:1px solid red; */
+    border:2px dashed red;
+    width:600px;
   }
   .bit {
+    width:100%;
+    min-width:100%;
+  }
+  .bit.ls p {
+    width:100%;
   }
   .lscard {
     width:49%;
   }
   .lscard-group {
-    width:100%;
+    position:static;
+    margin: 0px auto;
+    margin-top: 2rem;
   }
   .nxitems .nxphone {
     width:30%;
@@ -396,16 +409,23 @@ li {
       font-size:16pt;
     }
 }
+@media only screen and (max-width: 620px) {
+  .content {
+    border:1px dashed purple;
+    width:375px;
+  }
+}
 
+/*
 @media only screen and (max-width: 375px) {
   .content {
-    /* border:1px solid purple; */
   }
   .content {
     width:100%;
     padding:10px;
   }
 }
+*/
 
 
 
@@ -413,6 +433,7 @@ li {
 
 
 
+/*
 @media only screen and (max-width: 700px) {
   .bit {
     width: 100%;
@@ -427,6 +448,7 @@ li {
     width:100%;
   }
 }
+*/
 
 /* illustration */
 .illust {
