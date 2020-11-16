@@ -16,7 +16,7 @@ body {
 
 h1,h2 {
   text-transform:lowercase;
-  font-family:"MarangsaDisplay";
+  font-family:"MarangsaDisplay", serif;
   margin:0;
   font-weight:normal;
 }
@@ -37,9 +37,9 @@ h1,h2 {
     margin-bottom:10rem;
   }
   .subheader {
-    text-align:center;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+  margin-top:1rem;
+  margin-bottom:1rem;
+    float:left;
   }
     .subheader h1 { 
       font-size:23px !important;
@@ -87,7 +87,7 @@ a:active {
   }
 a:link,
 a:visited {
-  color:#222;
+  color:#4c4c4c;
 }
 
 /* middle */
@@ -112,7 +112,7 @@ a:visited {
   .bit:hover,
   .bit:active
   {
-    color:#222; 
+    color:#4c4c4c; 
   }
   .bit h3,
   .bit p {
@@ -122,7 +122,7 @@ a:visited {
   .bit h3 {
     margin-top:2rem;
     line-height:20pt;
-    font-family:"MarangsaDisplay";
+    font-family:"MarangsaDisplay", serif;
     font-size: 13pt;
     text-transform: uppercase;
     letter-spacing:2.5px;
@@ -223,7 +223,7 @@ a:visited {
   }
 .game h3,
 .game p {
-  text-shadow: -1px 1px #222;
+  text-shadow: -1px 1px #4c4c4c;
 }
 .game {
   margin-bottom:3rem;
@@ -236,16 +236,57 @@ a:visited {
 
 
 h3 {
-  font-family: "Gotu";
+  font-family: "MarangsaDisplay", serif;
   margin-top: 2rem;
 }
 h4 {
-  color: #707070;
-  margin: 0;
-  margin-top: 3rem;
-  font-family: "Public Sans";
-  font-size: 12pt;
+  font-family: "MarangsaDisplay", serif;
+  clear:both;
+  font-size: 30pt;
+  width:500px;
+  line-height:36pt;
+  margin-bottom:0rem;
 }
+  .ls1 {
+    margin-top:13rem;
+  }
+  .ls2 {
+    float:right;
+    width:500px;
+    margin-bottom:2rem;
+  }
+  .ls3 {
+    width:50%;
+  }
+h5 {
+  font-family: "MarangsaDisplay", serif;
+  color:#878787;
+  text-transform:uppercase;
+  font-size:18pt;
+  margin-bottom:0;
+  margin-top:3rem;
+  letter-spacing:1.5px;
+}
+.content.portfolio p {
+  width:500px;
+  line-height: 17pt;
+}
+.content.portfolio li {
+  width:500px;
+}
+
+
+
+
+.portfolio img {
+  margin:0px auto;
+  display:block;
+  margin-bottom:0;
+  margin-top:2rem;
+  max-width:100%;
+}
+
+/*
 .portfolio-bit {
   padding:1rem;
 }
@@ -280,6 +321,10 @@ h4 {
   margin-top:2rem;
   max-width:100%;
 }
+*/
+  .smaller {
+    width:80%;
+  }
 iframe {
   display:block;
   margin:0px auto;
@@ -292,16 +337,21 @@ iframe {
     width:46%;
     margin:1.75%;
   }
+  .side-by-side.lights {
+    width:61%;
+    margin:0px auto;
+  }
 
 .half-size {
   width:50%;
 }
-.caption {
+.content.portfolio p.caption {
   margin-top:0.5rem;
   margin-bottom:2rem;
   font-size:90%;
   text-align:center;
   color:#878787;
+  width:100%;
   font-style:italic; 
 }
 .hello-bit {
