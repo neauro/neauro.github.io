@@ -1,14 +1,22 @@
 /* top */
+
+@font-face {
+  font-family: 'MarangsaDisplay';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Dangwa'), url('MaragsaDisplay.ttf') format('truetype');
+  }
+
 body {
   background-color:#fff;
-  color:#222;
+  color:#4c4c4c;
   font-family:"Public Sans";
   margin:0;
 }
 
 h1,h2 {
   text-transform:lowercase;
-  font-family:"Gotu";
+  font-family:"MarangsaDisplay";
   margin:0;
   font-weight:normal;
 }
@@ -18,13 +26,15 @@ h1,h2 {
   .title {
     text-align:left;
     margin-top:5rem;
-    margin-left:5rem;
-    line-height:42px;
-    margin-right:2rem;
+    font-size:20px;
   }
   .subtitle {
     color:#707070;
     font-size:23px;
+    font-family: "Public Sans",sans-serif;
+    margin-top:1rem;
+    font-weight:normal;
+    margin-bottom:10rem;
   }
   .subheader {
     text-align:center;
@@ -42,8 +52,9 @@ h2 {
   margin:0;
 } 
 .content {
-  max-width:780px;
+  max-width:960px;
   width:70%;
+  padding:1rem;
   margin:0px auto;
   min-width:375px;
   box-sizing:border-box;
@@ -61,7 +72,10 @@ a:visited {
 
 /* middle */
 .bit {
+  position:relative;
   width:100%;
+  height:280px;
+  background-size:cover;
   box-sizing:border-box;
   margin:0px;
   display:inline-block;
@@ -69,6 +83,8 @@ a:visited {
   color:#222; 
   min-width: 150px;
   margin-top:1rem;
+  padding-top:2rem;
+  padding-left:2rem;
 }
   .bit:hover,
   .bit:active
@@ -78,17 +94,21 @@ a:visited {
   .bit h3,
   .bit p {
     margin:0;
+    color:#fff;
   }
   .bit h3 {
-    margin-top:0.5rem;
+    margin-top:2rem;
     line-height:20pt;
-    font-size: 12pt;
+    font-family:"MarangsaDisplay";
+    font-size: 15pt;
+    text-transform: uppercase;
+    letter-spacing:2.5px;
   }
   .bit p {
-    font-size:11pt; 
-    color:#656565;
-    min-height:35px;
-    height:35px;
+    font-size:20pt; 
+    margin-top:1rem;
+    width:50%;
+    color:#fff;
   }
   .bit img {
     border-radius:2px;
@@ -108,6 +128,24 @@ a:visited {
   min-height:500px;
   
 }
+
+
+/* INDIVIDIAL HOMEPAGE STYLES */
+/* livestories */
+.lscard {
+  width:250px;
+}
+.lscard-group {
+  position:absolute;
+  top: -7rem;
+  right: 4rem;
+}
+
+
+
+
+
+
 h3 {
   font-family: "Gotu";
   margin-top: 2rem;

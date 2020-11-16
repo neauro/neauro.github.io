@@ -1,4 +1,6 @@
 *.swp
-.DS_Store
+*.DS_Store
 *.swo
 *.swn
+styles/*.swp
+styles/*.DS_Store
