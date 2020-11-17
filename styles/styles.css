@@ -42,7 +42,7 @@ h1,h2 {
     float:left;
   }
     .subheader h1 { 
-      font-size:23px !important;
+      font-size:23px;
     }
 
 h2 {
@@ -286,7 +286,7 @@ h5 {
   width:500px;
   line-height: 17pt;
 }
-.content.portfolio a {
+.content.portfolio p a {
   text-decoration:underline;
 }
 .content.portfolio li {
@@ -466,8 +466,11 @@ li {
     /*  border:2px dashed purple; */
     width:375px;
   }
-    .content.portfolio p{
+    .content.portfolio p {
       width:100%;
+    }
+    .content.portfolio .subheader h1 {
+      font-size:22px;
     }
     .ls1,
     .ls2 h4,
