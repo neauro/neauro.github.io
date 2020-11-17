@@ -303,43 +303,6 @@ h5 {
   margin-top:2rem;
   max-width:100%;
 }
-
-/*
-.portfolio-bit {
-  padding:1rem;
-}
-  .clear {
-    clear:both;
-  }
-  .portfolio-bit h3.proj-header {
-    margin-top:1rem;
-    float:left;
-    width:30%;
-    font-size: 12pt;
-    color:#F7990A;
-    color:#F68200;
-  }
-  .proj-contents {
-    float:right;
-    width:60%;
-  }
-  .portfolio-bit h3 {
-  }
-  .portfolio-bit p {
-    line-height:17pt;
-  }
-  .portfolio-bit a:link {
-    text-decoration: underline;
-  }
-.about-img,
-.portfolio-bit img {
-  margin:0px auto;
-  display:block;
-  margin-bottom:0;
-  margin-top:2rem;
-  max-width:100%;
-}
-*/
   .smaller {
     width:60%;
   }
@@ -500,9 +463,32 @@ li {
 }
 @media only screen and (max-width: 620px) {
   .content {
-    /* border:1px dashed purple; */
+    /*  border:2px dashed purple; */
     width:375px;
   }
+    .content.portfolio p{
+      width:100%;
+    }
+    .ls1,
+    .ls2 h4,
+    .content.portfolio h4 {
+      width: 100%;
+      font-size: 20pt;
+      line-height: 26pt;
+    }
+    .content.portfolio h5 {
+      font-size:15pt;
+    }
+    .content.portfolio img {
+      width:100%;
+    }
+    .ls2 {
+      float:none;
+      width:100%;
+    }
+    .content.portfolio li {
+      width:100%;
+    }
   .bit.ls {
     margin-bottom:7rem;
   }
@@ -515,24 +501,6 @@ li {
 }
 
 
-
-
-/*
-@media only screen and (max-width: 700px) {
-  .bit {
-    width: 100%;
-  }
-  .side-by-side .smaller {
-    display:block;
-    width:100%;
-  }
-  .portfolio-bit h3.proj-header,
-  .proj-contents {
-    float:none;
-    width:100%;
-  }
-}
-*/
 
 /* illustration */
 .illust {
