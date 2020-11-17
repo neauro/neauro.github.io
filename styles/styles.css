@@ -333,6 +333,7 @@ iframe {
   margin:0px auto;
   width:100%;
   max-width:560px;
+  margin-bottom:3rem;
 }
 
   .side-by-side .smaller {
