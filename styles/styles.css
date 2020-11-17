@@ -270,6 +270,9 @@ h4 {
   .ap3 {
     width:80%;
   }
+  .illo1 {
+    margin-top:4rem;
+  }
 h5 {
   font-family: "MarangsaDisplay", serif;
   color:#878787;
@@ -335,7 +338,7 @@ h5 {
 }
 */
   .smaller {
-    width:80%;
+    width:60%;
   }
 iframe {
   display:block;
