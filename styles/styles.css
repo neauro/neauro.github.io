@@ -286,6 +286,9 @@ h5 {
   width:500px;
   line-height: 17pt;
 }
+.content.portfolio a {
+  text-decoration:underline;
+}
 .content.portfolio li {
   width:500px;
 }
