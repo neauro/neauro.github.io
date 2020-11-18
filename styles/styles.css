@@ -51,6 +51,28 @@ h2 {
   color:#656565;
   margin:0;
 } 
+
+.bg {
+  position:fixed;
+  z-index:-1;
+}
+  .pfp {
+    position:absolute;
+    top:50px;
+    z-index:-1;
+    left:900px;
+    width:313px;
+    height: 355px;
+  }
+  .bigblob {
+    top:350px;
+    left:450px;
+  }
+  .littleblob {
+    top:750px;
+    left:950px;
+  }
+
 .content {
   max-width:960px;
   width:70%;
@@ -180,6 +202,7 @@ a:visited {
 /* INDIVIDIAL HOMEPAGE STYLES */
 .bit.ls {
   background-color:#00A0BC;
+  margin-top:10rem;
 }
 .lscard {
   width:250px;
