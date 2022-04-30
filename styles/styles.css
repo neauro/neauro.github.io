@@ -12,6 +12,7 @@ body {
   color:#4c4c4c;
   font-family:"Public Sans";
   margin:0;
+  font-size:13pt;
 }
 
 h1,h2 {
@@ -64,6 +65,18 @@ h2 {
     width:313px;
     height: 355px;
   }
+  .rainslice {
+    position:absolute;
+    z-index:-1;
+  }
+    .rainslice.up {
+      top:0px;
+    }
+    .rainslice.down {
+      bottom:0px;
+      right:0px;
+      transform:rotate(180deg);
+    }
   .bigblob {
     top:300px;
     left:450px;
@@ -80,6 +93,7 @@ h2 {
   margin:0px auto;
   min-width:375px;
   box-sizing:border-box;
+  position:relative;
 }
 .top-bar {
   padding:0;
@@ -202,7 +216,6 @@ a:visited {
 /* INDIVIDIAL HOMEPAGE STYLES */
 .bit.ls {
   background-color:#00A0BC;
-  margin-top:10rem;
 }
 .lscard {
   width:250px;
