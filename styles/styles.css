@@ -11,6 +11,7 @@ body {
   background-color:#fff;
   color:#4c4c4c;
   font-family:"Public Sans";
+  font-size:13pt;
   margin:0;
 }
 
@@ -72,8 +73,15 @@ h2 {
     top:650px;
     left:950px;
   }
+  .rainslice {
+    position:absolute;
+    top:0;
+    z-index:-1;
+    left:0;
+  }
 
 .content {
+  position:relative;
   max-width:960px;
   width:70%;
   padding:10px;
@@ -202,7 +210,6 @@ a:visited {
 /* INDIVIDIAL HOMEPAGE STYLES */
 .bit.ls {
   background-color:#00A0BC;
-  margin-top:10rem;
 }
 .lscard {
   width:250px;
