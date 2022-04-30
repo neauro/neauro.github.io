@@ -333,6 +333,9 @@ h5 {
   margin-top:2rem;
   max-width:100%;
 }
+  .portfolio img.rainslice {
+    margin-top:0;
+  }
   .smaller {
     width:60%;
   }
