@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>{{ page.title }}</title>
+
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css?family=Public+Sans:400,400i,700" rel="stylesheet">
+  {% feed_meta %}
+  {% seo %}
+  </head>
+
+  <body>
+    <div class="content">
+      <img class="rainslice up" src="assets/images/rainslice.png"/>
+      {% include navigation.html %}
+      <div class="portfolio">
+        {{ content }}
+      </div>
+      <img class="bg bigblob" src="assets/images/bigblob.png"/>
+      <img class="bg littleblob" src="assets/images/littleblob.png"/>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<nav>
+  <ul class="top-bar">
+     {% for item in site.data.navigation %}
+         <li><a href="{{ item.link }}" {% if page.url == item.link %}class="active-nav"{% endif %}>
+               {{ item.name }}
+             </a>
+         </li>
+     {% endfor %}
+  </ul>
+</nav>
+<div class="header title">
+  <h1>nadine aurora tabing</h1>
+  <h1 class="subtitle">
+    UX Designer &amp; Writer based in the Pacific Northwest
+    </h1>
+</div>
