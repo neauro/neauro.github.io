@@ -1,6 +1,9 @@
 ---
 ---
 @import "main";
+$text-color-lighter: #878787;
+$text-color-default:#4c4c4c;
+$narrow-text-width:600px;
 
 /* top */
 
@@ -13,10 +16,11 @@
 
 body {
   background-color:#fff;
-  color:#4c4c4c;
+  color:$text-color-default;
   font-family:"Public Sans";
   margin:0;
   font-size:13pt;
+  line-height:19pt;
 }
 
 h1,h2 {
@@ -110,7 +114,7 @@ h2 {
     }
   }
   .study p {
-    max-width:600px;
+    max-width:$narrow-text-width;
   }
   .study li {
     max-width:550px;
@@ -126,9 +130,9 @@ h2 {
     margin-left: 2rem;
   }
   li a {
-    color:#4c4c4c;
+    color:$text-color-default;
     &:active {
-      color:#4c4c4c;
+      color:$text-color-default;
     }
     &:hover {
       text-decoration:underline;
@@ -152,7 +156,7 @@ a {
 
   &:link,
   &:visited {
-    color: #4c4c4c;
+    color: $text-color-default;
   }
 }
 
@@ -178,7 +182,7 @@ a {
   &:hover,
   &:active
   {
-    color:#4c4c4c; 
+    color:$text-color-default;
   }
 
   h3,
@@ -226,7 +230,7 @@ a {
     left:0px;
     h3,
     p {
-      color:#4c4c4c;
+      color:$text-color-default;
     }
 
     p {
@@ -264,7 +268,7 @@ a {
 }
 .nx h3,
 .nx p{
-  color:#4c4c4c;
+  color:$text-color-default;
   position:relative;
   left:16rem;
 }
@@ -289,11 +293,11 @@ a {
   }
   .reveal h3,
   .reveal p {
-    color:#4c4c4c;
+    color:$text-color-default;
   }
 .game h3,
 .game p {
-  text-shadow: -1px 1px #4c4c4c;
+  text-shadow: -1px 1px $text-color-default;
 }
 .game {
   margin-bottom:3rem;
@@ -345,7 +349,7 @@ h4 {
   }
 h5 {
   font-family: "MarangsaDisplay", serif;
-  color:#878787;
+  color:$text-color-lighter;
   text-transform:uppercase;
   font-size:18pt;
   margin-bottom:0;
@@ -407,7 +411,7 @@ iframe {
   margin-bottom:2rem;
   font-size:90%;
   text-align:center;
-  color:#878787;
+  color:$text-color-lighter;
   width:100%;
   font-style:italic; 
 }
@@ -636,10 +640,48 @@ li {
     }
     h5 {
       font-size:45px;
+      margin-top:2rem;
     }
-    h6 {
+    .writing-info {
       font-size: 15px;
       margin: 0px auto;
+      font-weight:bold;
+      margin:0px;
     }
   }
 }
+
+/* blog */
+
+.blog {
+  h1 {
+    font-size:50px;
+  }
+  h2 {
+    font-size:30px;
+    font-family: 'MarangsaDisplay';
+    text-transform:none;
+      color:$text-color-default;
+  }
+}
+  .post {
+    margin-top:4rem;
+    max-width:$narrow-text-width;
+    margin-bottom:4rem;
+    .header {
+        margin:0px;
+        margin-bottom:3rem;
+    }
+    a {
+      text-decoration:underline;
+    }
+    h2 {
+    }
+    
+    a.read-more {
+      font-style: italic;
+      color:$text-color-lighter;
+      text-decoration:none;
+    }
+
+  }

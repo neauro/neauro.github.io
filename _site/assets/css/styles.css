@@ -3,7 +3,7 @@ body { color: green; }
 /* top */
 @font-face { font-family: 'MarangsaDisplay'; font-style: normal; font-weight: normal; src: local("Dangwa"), url("..//fonts/MaragsaDisplay.ttf") format("truetype"); }
 
-body { background-color: #fff; color: #4c4c4c; font-family: "Public Sans"; margin: 0; font-size: 13pt; }
+body { background-color: #fff; color: #4c4c4c; font-family: "Public Sans"; margin: 0; font-size: 13pt; line-height: 19pt; }
 
 h1, h2 { text-transform: lowercase; font-family: "MarangsaDisplay", serif; margin: 0; font-weight: normal; }
 
@@ -197,8 +197,21 @@ li { line-height: 20px; margin-bottom: 4px; width: 77%; }
 
 .writing-bit .overlay h5, .writing-bit .overlay a { color: #fff !important; }
 
-.writing-bit .overlay h5 { font-size: 45px; }
+.writing-bit .overlay h5 { font-size: 45px; margin-top: 2rem; }
 
-.writing-bit .overlay h6 { font-size: 15px; margin: 0px auto; }
+.writing-bit .overlay .writing-info { font-size: 15px; margin: 0px auto; font-weight: bold; margin: 0px; }
+
+/* blog */
+.blog h1 { font-size: 50px; }
+
+.blog h2 { font-size: 30px; font-family: 'MarangsaDisplay'; text-transform: none; color: #4c4c4c; }
+
+.post { margin-top: 4rem; max-width: 600px; margin-bottom: 4rem; }
+
+.post .header { margin: 0px; margin-bottom: 3rem; }
+
+.post a { text-decoration: underline; }
+
+.post a.read-more { font-style: italic; color: #878787; text-decoration: none; }
 
 /*# sourceMappingURL=styles.css.map */
