@@ -2,6 +2,7 @@
 layout: post
 author: me
 title: "New Story: Balikbayan"
+tags: new-story writing
 ---
 
 I have my first publication out in [Solarpunk Magazine](https://solarpunkmagazine.com)!

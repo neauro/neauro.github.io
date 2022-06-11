@@ -8,4 +8,9 @@ layout: default
   </div>
 
   {{ content }}
+  Tags: 
+    {% for tag in page.tags %}
+      {% capture tag_name %}{{ tag }}{% endcapture %}
+      <a class="tag" href="/tag/{{ tag_name }}">{{ tag_name }}</a>
+    {% endfor %}
 </div>

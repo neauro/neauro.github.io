@@ -29,10 +29,16 @@
 <loc>http://localhost:4000/napster.html</loc>
 </url>
 <url>
+<loc>http://localhost:4000/tag/new-story.html</loc>
+</url>
+<url>
 <loc>http://localhost:4000/revealchat.html</loc>
 </url>
 <url>
 <loc>http://localhost:4000/writing.html</loc>
+</url>
+<url>
+<loc>http://localhost:4000/tag/writing.html</loc>
 </url>
 <url>
 <loc>http://localhost:4000/artportfolio.html</loc>

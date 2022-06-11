@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css?family=Public+Sans:400,400i,700" rel="stylesheet">
   {% feed_meta %}
   {% seo %}
+  {% if site.tags != "" %}
+    {% include collecttags.html %}
+  {% endif %}
   </head>
 
   <body>

@@ -663,6 +663,10 @@ li {
     text-transform:none;
       color:$text-color-default;
   }
+  a.tag {
+    text-decoration:italic;
+
+  }
 }
   .post {
     margin-top:4rem;
@@ -683,5 +687,4 @@ li {
       color:$text-color-lighter;
       text-decoration:none;
     }
-
   }
