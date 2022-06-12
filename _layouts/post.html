@@ -8,9 +8,15 @@ layout: default
   </div>
 
   {{ content }}
-  Tags: 
-    {% for tag in page.tags %}
-      {% capture tag_name %}{{ tag }}{% endcapture %}
-      <a class="tag" href="/tag/{{ tag_name }}">{{ tag_name }}</a>
-    {% endfor %}
+
+  <div class="footer">
+    <p>
+      Tags: 
+        {% for tag in page.tags %}
+          {% capture tag_name %}{{ tag }}{% endcapture %}
+          <a class="tag" href="/tag/{{ tag_name }}">{{ tag_name }}</a>
+        {% endfor %}
+    </p>
+    <div class="breadcrumb"><a href="/blog">◄ Back to blog</a></div>
+  </div>
 </div>

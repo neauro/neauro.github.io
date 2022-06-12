@@ -667,6 +667,12 @@ li {
     text-decoration:italic;
 
   }
+  .footer {
+    margin-top:5rem;
+    a {
+      color:$text-color-lighter;
+    }
+  }
 }
   .post {
     margin-top:4rem;
@@ -684,7 +690,7 @@ li {
     
     a.read-more {
       font-style: italic;
-      color:$text-color-lighter;
-      text-decoration:none;
+    color:$text-color-lighter;
+    text-decoration:none;
     }
   }

@@ -208,6 +208,10 @@ li { line-height: 20px; margin-bottom: 4px; width: 77%; }
 
 .blog a.tag { text-decoration: italic; }
 
+.blog .footer { margin-top: 5rem; }
+
+.blog .footer a { color: #878787; }
+
 .post { margin-top: 4rem; max-width: 600px; margin-bottom: 4rem; }
 
 .post .header { margin: 0px; margin-bottom: 3rem; }
