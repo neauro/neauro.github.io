@@ -4,6 +4,7 @@
 $text-color-lighter: #878787;
 $text-color-default:#4c4c4c;
 $narrow-text-width:600px;
+$portfolio-text-width:500px;
 
 /* top */
 
@@ -36,11 +37,13 @@ h1,h2 {
     text-align:left;
     margin-top:5rem;
     font-size:22px;
+    line-height:44px;
   }
   .subtitle {
     color:#707070;
     font-size:23px;
     font-family: "Public Sans",sans-serif;
+    line-height:30px;
     margin-top:1rem;
     font-weight:normal;
     margin-bottom:10rem;
@@ -97,9 +100,10 @@ h2 {
 .content{
   max-width:960px;
   width:70%;
+  overflow-x:hidden;
   padding:10px;
   margin:0px auto;
-  min-width:375px;
+  /* min-width:375px; */
   box-sizing:border-box;
   position:relative;
   &.portfolio {
@@ -254,6 +258,9 @@ a {
 /* INDIVIDIAL HOMEPAGE STYLES */
 .bit.ls {
   background-color:#00A0BC;
+  p {
+    width:40%;
+  }
 }
 .lscard {
   width:250px;
@@ -357,7 +364,7 @@ h5 {
   letter-spacing:1.5px;
 }
 .content .portfolio p {
-  width:500px;
+  max-width:$portfolio-text-width;
   line-height: 17pt;
 }
 .content .portfolio a {
@@ -369,7 +376,7 @@ h5 {
   }
 }
 .content .portfolio li {
-  width:500px;
+  max-width:$portfolio-text-width;
 }
 
 
@@ -438,7 +445,7 @@ li {
 
 @media only screen and (max-width: 1337px) {
   .content {
-    /* border:1px dashed green; */
+    /* border:1px dashed green;  */
     width:100%;
   }
   .illo {
@@ -514,8 +521,8 @@ li {
   }
   .nxitems .nxresearch {
     width: 68%;
-    left: 31%;
-    top: 61%;
+    left: 35%;
+    top: 71%;
   }
   .bit.nx {
     margin-bottom:12rem;
@@ -539,11 +546,20 @@ li {
     .reveal p {
       font-size:16pt;
     }
+    .subtitle {
+      margin-bottom:0rem;
+    }
 }
 @media only screen and (max-width: 620px) {
+.top-bar li {
+  margin-left:1rem;
+}
+  .bit.reveal p {
+    width:65%;
+  }
   .content {
-    /*  border:2px dashed purple; */
-    width:375px;
+    width:90%;
+    /* border:1px solid purple; */
   }
     .content.portfolio p {
       width:100%;
@@ -580,6 +596,19 @@ li {
   .bit.half {
     margin-bottom:6rem;
   }
+  .subtitle {
+    margin-bottom:0rem;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .content {
+    width:100%;
+    /* border:2px solid blue; */
+  }
+  .rainslice {
+    width:320px;
+  }
+  
 }
 
 
