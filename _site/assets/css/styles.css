@@ -265,7 +265,7 @@ h4 {
   font-family: "MarangsaDisplay", serif;
   clear: both;
   font-size: 30pt;
-  width: 500px;
+  max-width: 500px;
   line-height: 36pt;
   margin-bottom: 0rem; }
 
@@ -478,6 +478,17 @@ li {
   .subtitle {
     margin-bottom: 0rem; } }
 @media only screen and (max-width: 620px) {
+  .ls1 {
+    margin-top: 3rem; }
+
+  .smaller,
+  .ls3,
+  .ap1,
+  .ap2,
+  .side-by-side .smaller,
+  .nxboardimg {
+    width: 100%; }
+
   .top-bar li {
     margin-left: 1rem; }
 
