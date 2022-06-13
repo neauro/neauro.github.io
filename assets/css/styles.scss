@@ -5,6 +5,7 @@ $text-color-lighter: #878787;
 $text-color-default:#4c4c4c;
 $narrow-text-width:600px;
 $portfolio-text-width:500px;
+$nav-icon-size:16px;
 
 /* top */
 
@@ -132,6 +133,9 @@ h2 {
     list-style-type: none;
     display: inline;
     margin-left: 2rem;
+   &.icon {
+    margin-left:4px;
+   }
   }
   li a {
     color:$text-color-default;
@@ -144,6 +148,11 @@ h2 {
     &.active-nav {
       font-weight:bold;
    }
+  }
+  img {
+    width:$nav-icon-size;
+    height:$nav-icon-size;
+    margin:0px auto;
   }
 }
 

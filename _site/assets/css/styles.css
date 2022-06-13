@@ -115,6 +115,8 @@ h2 {
     list-style-type: none;
     display: inline;
     margin-left: 2rem; }
+    .top-bar li.icon {
+      margin-left: 4px; }
   .top-bar li a {
     color: #4c4c4c; }
     .top-bar li a:active {
@@ -123,6 +125,10 @@ h2 {
       text-decoration: underline; }
     .top-bar li a.active-nav {
       font-weight: bold; }
+  .top-bar img {
+    width: 16px;
+    height: 16px;
+    margin: 0px auto; }
 
 a {
   text-decoration: none; }
