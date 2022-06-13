@@ -1,6 +1,5 @@
 ---
 layout: post
-author: me
 title: "New Story: Balikbayan"
 tags: new-story writing story-rec
 ---
