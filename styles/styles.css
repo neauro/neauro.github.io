@@ -11,6 +11,7 @@ body {
   background-color:#fff;
   color:#4c4c4c;
   font-family:"Public Sans";
+  font-size:13pt;
   margin:0;
   font-size:13pt;
 }
@@ -85,8 +86,15 @@ h2 {
     top:650px;
     left:950px;
   }
+  .rainslice {
+    position:absolute;
+    top:0;
+    z-index:-1;
+    left:0;
+  }
 
 .content {
+  position:relative;
   max-width:960px;
   width:70%;
   padding:10px;
@@ -339,6 +347,9 @@ h5 {
   margin-top:2rem;
   max-width:100%;
 }
+  .portfolio img.rainslice {
+    margin-top:0;
+  }
   .smaller {
     width:60%;
   }

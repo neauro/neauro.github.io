@@ -44,6 +44,10 @@
 <loc>http://localhost:4000/tag/writing.html</loc>
 </url>
 <url>
+<loc>http://localhost:4000/about.html</loc>
+<lastmod>2022-06-12T21:06:22-07:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/artportfolio.html</loc>
 <lastmod>2022-04-29T17:56:58-07:00</lastmod>
 </url>
