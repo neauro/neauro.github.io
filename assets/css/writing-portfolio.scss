@@ -1,0 +1,263 @@
+---
+---
+@import "main";
+$text-color-lighter: #757575;
+$text-color-default:#4c4c4c;
+$narrow-text-width:600px;
+$portfolio-text-width:500px;
+$nav-icon-size:16px;
+$border:4px solid #e6e6e6;
+
+/* top */
+
+@font-face {
+  font-family: 'MarangsaDisplay';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Dangwa'), url('..//fonts/MaragsaDisplay.ttf') format('truetype');
+  }
+
+body {
+  background-color:#fff;
+  color:$text-color-default;
+  font-family:"Georgia";
+  margin:0;
+  font-size:13pt;
+  line-height:19pt;
+}
+
+h1, h3 {
+  font-family:"MarangsaDisplay", serif;
+  font-weight:normal;
+  margin:0;
+}
+h1, h2 {
+  text-transform:lowercase;
+}
+  h3.recent {
+    font-size:80%;
+    text-transform:uppercase;
+    color:$text-color-lighter;
+    margin-bottom:2rem;
+  }
+  h1 {
+    margin-top:5rem;
+    margin-bottom:1rem;
+    font-size:35pt;
+    line-height:40pt;
+  }
+  h2 {
+    font-size:14pt;
+    font-weight:normal;
+    color:$text-color-lighter;
+    font-size:23px;
+    font-family: "Georgia",serif;
+    line-height:30px;
+    margin-top:1rem;
+    margin-bottom:7rem;
+  } 
+
+.rainslice {
+  position:absolute;
+  z-index:-1;
+  top:0px;
+}
+
+.content{
+  width:850px;
+  padding:10px;
+  box-sizing:border-box;
+  left:5rem;
+  position:absolute;
+}
+.top-bar {
+  padding:0;
+  margin-right:20%;
+  float:right;
+  text-transform:lowercase;
+  li {
+    list-style-type: none;
+    display: inline;
+    margin-left: 2rem;
+   &.icon {
+    margin-left:4px;
+   }
+  }
+  li a {
+    color:$text-color-default;
+    &:active {
+      color:$text-color-default;
+    }
+    &:hover {
+      text-decoration:underline;
+    }
+    &.active-nav {
+      font-weight:bold;
+   }
+  }
+  img {
+    width:$nav-icon-size;
+    height:$nav-icon-size;
+    margin:0px auto;
+  }
+}
+
+a {
+  text-decoration:none;
+  &:hover,
+  &:active {
+    text-decoration:none;
+  }
+  &:hover {
+    top:2px;
+    left:2px;
+  }
+
+  &:link,
+  &:visited {
+    color: $text-color-default;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .content {
+    /* border:1px dashed green;   */
+    width:auto;
+    .writing-bit {
+      display:block;
+    }
+    footer {
+      display:block;
+      max-width:initial;
+      min-width:initial;
+      .bio {
+        padding:0;
+        padding-top:1rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .content {
+    overflow-x:hidden;
+    left:1rem;
+    h2.subtitle {
+      margin-bottom:5rem;
+    }
+    .writing-bit {
+      width:100%;
+    }
+    footer {
+      width:80%;
+    }
+  }
+}
+/*
+@media only screen and (max-width: 620px) {
+    border:2px dashed purple;
+
+} */
+/*
+@media only screen and (max-width: 320px) {
+  .content {
+    width:100%;
+    /* border:2px solid blue;
+  }
+  .rainslice {
+    width:320px;
+  }
+  
+} */
+
+hr {
+  border:0;
+  border-top:$border;
+  margin-top:4rem;
+  margin-bottom:4rem;
+  float:left;
+  width:300px;
+}
+
+
+footer {
+  clear:both;
+  font-size:80%;
+  width:50%;
+  max-width:600px;
+  min-width:455px;
+  display:grid;
+  grid-template-columns:35% auto;
+  .avatar {
+    background-image: url("../images/headshot.png");
+    width:160px;
+    height:160px;
+    background-size:cover;
+    border-radius:6px;
+    .circle {
+      border-radius:50%;
+      z-index:-1;
+      position:Relative;
+      background-color:#fee6b7;
+      width:240px;
+      height:240px;
+      left:40px;
+      bottom:-20px;
+    }
+  }
+  .bio {
+    padding-left:1rem;
+    p {
+      margin:0;
+      margin-bottom:1rem;
+    }
+  }
+}
+
+/* writing */
+.writing-bit {
+  display:grid;
+  grid-template-columns:35% auto;
+  width:80%;
+  a {
+    color:#789f51;
+    &:hover {
+      text-decoration:underline;
+    }
+  }
+  blockquote {
+    border-left:$border;
+    color:$text-color-lighter;
+    padding-left:10px;
+    box-sizing:border-box;
+    width:90%;
+    margin:0;
+    margin-top:1rem;
+    margin-bottom:1rem;
+  }
+  h3 {
+    font-size:30pt;
+  }
+    p {
+      margin:0;
+    }
+    .publisher {
+      font-size: 17px;
+      margin: 0px auto;
+      margin-top:1rem;
+    }
+    .wordcount {
+      color:$text-color-lighter;
+    }
+  .cover {
+    background-size:cover;
+    .overlay {
+      width:100%;
+      height:100%;
+      background-color:rgba(255,255,255,0.35);
+      padding:20px;
+      box-sizing:border-box;
+      color:#fff;
+    }
+  }
+}

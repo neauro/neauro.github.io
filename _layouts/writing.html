@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>nadine aurora tabing: speculative fiction</title>
+    <title>{{ page.title }}</title>
 
     <link rel="stylesheet" href="/assets/css/writing-portfolio.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -15,17 +15,12 @@
       <img class="rainslice" src="/assets/images/rainslice.png"/>
       <nav>
         <ul class="top-bar">
-           
-               <li><a href="http://suchnadine.com" >
-                     Shop
+           {% for item in site.data.writing_navigation %}
+               <li><a href="{{ item.link }}" {% if page.url == item.link %}class="active-nav"{% endif %}>
+                     {{ item.name }}
                    </a>
                </li>
-           
-               <li><a href="/" >
-                     Design Work
-                   </a>
-               </li>
-           
+           {% endfor %}
            <li><a target="new" href="http://twitter.com/suchnadine"><img src="/assets/icons/twitter.svg" alt="Twitter"/></a>
         </ul>
       </nav>
@@ -33,24 +28,7 @@
         <h1> nadine aurora tabing </h1>
         <h2 class="subtitle"> speculative fiction writer, designer, &amp; artist</h2>
       </div>
-      <h3 class="recent">Recent Work</h3>
-
-<div class="writing-bit">
-  <div class="info">
-    <h3>Balikbayan</h3>
-  </div>
-  <div></div>
-  <div>
-    <p class="publisher">Solarpunk Magazine (2022)</p>
-    <p class="wordcount">250 words</p>
-  </div>
-  <div class="quote">
-    <blockquote>Every childhood summer he returned to a country that felt loose, unfitting: the smothering heat, the sour stews with bone-in meat eaten under a rusted roof, his aunties that gasped, in English, when a butterfly landed on him at the cemetery: <Em>Look, your mother is visiting.</em></blockquote>
-    Solarpunk, Filipino ghost stories, and diaspora mango feelings.
-    <a href="https://solarpunkmagazine.com/may-2022-micro-fiction-winning-story/">Read more</a>
-  </div>
-</div>
-
+      {{ content }}
       <hr/>
       <footer>
       <div class="avatar"><div class="circle"></div></div>
