@@ -24,7 +24,7 @@ h1, h2 {
   text-transform: lowercase; }
 
 h3.recent {
-  font-size: 80%;
+  font-size: 90%;
   text-transform: uppercase;
   color: #757575;
   margin-bottom: 2rem; }
@@ -170,8 +170,9 @@ footer {
 /* writing */
 .writing-bit {
   display: grid;
-  grid-template-columns: 35% auto;
-  width: 80%; }
+  grid-template-columns: 40% auto;
+  width: 80%;
+  margin-bottom: 3rem; }
   .writing-bit a {
     color: #789f51; }
     .writing-bit a:hover {
