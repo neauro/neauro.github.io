@@ -8,7 +8,7 @@ body {
   font-weight: normal;
   src: local("Dangwa"), url("..//fonts/MaragsaDisplay.ttf") format("truetype"); }
 body {
-  background-color: #fff;
+  background-color: #f9f9f9;
   color: #4c4c4c;
   font-family: "Georgia";
   margin: 0;
@@ -187,7 +187,8 @@ footer {
     margin-top: 1rem;
     margin-bottom: 1rem; }
   .writing-bit h3 {
-    font-size: 30pt; }
+    font-size: 26pt;
+    line-height: 7pt; }
   .writing-bit p {
     margin: 0; }
   .writing-bit .publisher {
