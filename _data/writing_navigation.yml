@@ -1,7 +1,9 @@
+- name: About
+  link: /about.html
 - name: Shop
   link: http://suchnadine.com
 - name: Newsletter
-  link: https://nadinetabing.substack.com/?r=7zv1l&s=w&utm_campaign=portfolio&utm_medium=web
+  link: https://nadinetabing.substack.com/?r=7zv1l&s=w&utm_campaign=portfolio&utm_medium=portfolio
 - name: Design Work
   link: /
 

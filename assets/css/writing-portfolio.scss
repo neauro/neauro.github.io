@@ -7,6 +7,8 @@ $narrow-text-width:600px;
 $portfolio-text-width:500px;
 $nav-icon-size:16px;
 $border:4px solid #e6e6e6;
+$cover-height:543px;
+$cover-width:423px;
 
 /* top */
 
@@ -75,6 +77,13 @@ h1, h2 {
   margin-right:20%;
   float:right;
   text-transform:lowercase;
+  &.write-nav {
+    float:none;
+    li {
+      margin-right:2rem;
+      margin-left:0;
+    }
+  }
   li {
     list-style-type: none;
     display: inline;
@@ -84,7 +93,7 @@ h1, h2 {
    }
   }
   li a {
-    color:$text-color-default;
+    color:$text-color-lighter;
     &:active {
       color:$text-color-default;
     }
@@ -215,11 +224,65 @@ footer {
 }
 
 /* writing */
-.writing-bit {
-  display:grid;
-  grid-template-columns:40% auto;
+.writing-portfolio {
+  margin-top:3rem;
+}
+.writing-wrapper {
   width:80%;
   margin-bottom:3rem;
+  position:relative;
+  img {
+    width:$cover-width;
+    height:$cover-height;
+  }
+  .desc {
+    position:absolute;
+    width:212px;
+    bottom:0;
+    right:0;
+    p {
+      font-size:14px;
+      line-height:17px;
+      color:$text-color-lighter;
+      margin-bottom:1rem;
+
+    }
+  }
+  .title-pub {
+    position:absolute;
+    left:-13rem;;
+    bottom:11rem;
+    transform: rotate(-90deg);
+    h3, h4 {
+      color:#000;
+      display:inline-block;
+      font-weight:normal;
+    }
+    h3 {
+      font-size:36px;
+      margin-right:1rem;
+    }
+    h4 {
+      font-size: 20px;
+      font-family: "Georgia", serif;
+
+    }
+  }
+  .cover {
+    position:relative;
+    img {
+      position:relative;
+      left:1rem;
+    }
+    p {
+      position: absolute;
+      &#obsolesce {
+        width: 369px;
+        left: 34px;
+        bottom: 68px;
+      }
+    }
+  }
   a {
     color:#789f51;
     &:hover {
