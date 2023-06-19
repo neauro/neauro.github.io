@@ -145,37 +145,6 @@ a {
   }
 }
 
-@media only screen and (max-width: 500px) {
-  .content {
-    overflow-x:hidden;
-    left:1rem;
-    h2.subtitle {
-      margin-bottom:5rem;
-    }
-    .writing-bit {
-      width:100%;
-    }
-    footer {
-      width:80%;
-    }
-  }
-}
-/*
-@media only screen and (max-width: 620px) {
-    border:2px dashed purple;
-
-} */
-/*
-@media only screen and (max-width: 320px) {
-  .content {
-    width:100%;
-    /* border:2px solid blue;
-  }
-  .rainslice {
-    width:320px;
-  }
-  
-} */
 
 hr {
   border:0;
@@ -226,6 +195,11 @@ footer {
 .writing-grid {
   display:grid;
   grid-template-columns: 5% 1fr 1fr;
+  margin-bottom:3rem;
+  &.desc-first {
+    grid-template-columns: 1fr 5% 1fr;
+    grid-column-gap:20px;
+  }
 
   .title-pub-col {
     position:relative;
@@ -258,6 +232,7 @@ footer {
       position:absolute;
     }
   }
+
   .desc-col {
     padding:30px;
     color:$text-color-lighter;
@@ -283,170 +258,82 @@ footer {
       bottom: 68px;
     }
   }
-}
-
-
-
-
-
-/* writing
-.writing-portfolio {
-  margin-top:3rem;
-}
-.writing-wrapper {
-  width:80%;
-  margin-bottom:3rem;
-  position:relative;
-  img {
-    width:$cover-width;
-    height:$cover-height;
-  }
-  .desc {
-    position:absolute;
-    width:212px;
-    bottom:0;
-    &.right {
-      right:0;
-    }
-    p {
-      font-size:14px;
-      line-height:17px;
-      color:$text-color-lighter;
-      margin-bottom:1rem;
-
-    }
-  }
-  .title-pub {
-    position:absolute;
-    transform: rotate(-90deg);
-    &.left {
-      left:-13rem;
-      bottom:11rem;
-    }
-    &.right {
-      right:9rem;
-      bottom:11rem;
-    }
-    &#gyre {
-      left:-15rem;
-    }
-    h3, h4 {
-      color:#000;
-      display:inline;
-      font-weight:normal;
-    }
-    h3 {
-      font-size:36px;
-      margin-right:1rem;
-    }
-    h4 {
-      font-size: 20px;
-      font-family: "Georgia", serif;
-
-    }
-  }
-  .cover {
-    position:relative;
-    img {
-    position:relative;
-    }
-    &.right img {
-      left:18rem;
-    }
-    &.left img {
-      left:1rem;
-    }
-    p {
-      position: absolute;
-      &#gyre {
-        width: 369px;
-        color: #fff;
-        left: 36px;
-        bottom: 68px;
-      }
-    }
-  }
-  a {
-    color:#789f51;
-    &:hover {
-      text-decoration:underline;
-    }
-  }
-  blockquote {
-    border-left:$border;
-    color:$text-color-lighter;
-    padding-left:10px;
-    box-sizing:border-box;
-    width:90%;
-    margin:0;
-    margin-top:1rem;
-    margin-bottom:1rem;
-  }
-  h3 {
-    font-size:26pt;
-    line-height:16pt;
-  }
-    p {
-      margin:0;
-    }
-    .publisher {
-      font-size: 17px;
-      margin: 0px auto;
-      margin-top:1rem;
-    }
-    .wordcount {
-      color:$text-color-lighter;
-    }
-  .cover {
-    background-size:cover;
-    .overlay {
-      width:100%;
-      height:100%;
-      background-color:rgba(255,255,255,0.35);
-      padding:20px;
-      box-sizing:border-box;
-      color:#fff;
-    }
-  }
-  
-  specific styles
-  &#obsolesce {
-    .cover p {
-      width: 369px;
-      left: 34px;
-      bottom: 68px;
-    }
-  }
   &#garden {
-    .cover p {
-      width: 369px;
-      color: #fff;
-      right: -32px;
-      bottom: 68px;
-    }
     img {
       width:423px;
       height:619px;
     }
-    .title-pub {
-      bottom:16rem;
-    }
-  }
-
-  &#butterfly {
-    .cover p {
+    .cover-col p {
       width: 369px;
       color: #fff;
-      right: -4px;
+      left: 44px;
       bottom: 68px;
     }
-    .title-pub {
-      right: 12rem;
+  }
+  &#gyre {
+    img {
+      width:423px;
+      height:600px;
     }
+    .cover-col p {
+      width: 369px;
+      color: #fff;
+      left: 22px;
+      bottom: 68px;
+    }
+  }
+  &#butterfly {
     img {
       width:518px;
       height:600px;
     }
+    .cover-col p {
+      width: 369px;
+      color: #fff;
+      left: 13px;
+      bottom: 68px;
+    }
+    .desc-col {
+      padding:0px;
+      p {
+        position:absolute;
+        right:100px;
+        width:106px;
+        bottom:0px;
+      }
+    }
   }
+}
 
+
+@media only screen and (max-width: 500px) {
+  .content {
+    overflow-x:hidden;
+    left:1rem;
+    h2.subtitle {
+      margin-bottom:5rem;
+    }
+    .writing-bit {
+      width:100%;
+    }
+    footer {
+      width:80%;
+    }
+  }
+}
+/*
+@media only screen and (max-width: 620px) {
+    border:2px dashed purple;
+
+} */
+/*
+@media only screen and (max-width: 320px) {
+  .content {
+    width:100%;
+    /* border:2px solid blue;
+  }
+  .rainslice {
+    width:320px;
+  }
+  
 } */
