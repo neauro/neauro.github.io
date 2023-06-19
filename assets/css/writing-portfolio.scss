@@ -261,6 +261,9 @@ footer {
       right:9rem;
       bottom:11rem;
     }
+    &#gyre {
+      left:-15rem;
+    }
     h3, h4 {
       color:#000;
       display:inline;
@@ -289,15 +292,10 @@ footer {
     }
     p {
       position: absolute;
-      &#obsolesce {
-        width: 369px;
-        left: 34px;
-        bottom: 68px;
-      }
-      &#garden {
+      &#gyre {
         width: 369px;
         color: #fff;
-        right: -32px;
+        left: 36px;
         bottom: 68px;
       }
     }
@@ -344,4 +342,49 @@ footer {
       color:#fff;
     }
   }
+  
+  /* specific styles */
+  &#obsolesce {
+    .cover p {
+      width: 369px;
+      left: 34px;
+      bottom: 68px;
+    }
+    img {
+      width:423px;
+      height:600px;
+    }
+  }
+  &#garden {
+    .cover p {
+      width: 369px;
+      color: #fff;
+      right: -32px;
+      bottom: 68px;
+    }
+    img {
+      width:423px;
+      height:619px;
+    }
+    .title-pub {
+      bottom:16rem;
+    }
+  }
+
+  &#butterfly {
+    .cover p {
+      width: 369px;
+      color: #fff;
+      right: -4px;
+      bottom: 68px;
+    }
+    .title-pub {
+      right: 12rem;
+    }
+    img {
+      width:518px;
+      height:600px;
+    }
+  }
+
 }
