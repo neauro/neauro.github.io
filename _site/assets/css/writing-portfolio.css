@@ -182,12 +182,13 @@ footer {
   position: relative; }
   .writing-wrapper img {
     width: 423px;
-    height: 543px; }
+    height: 619px; }
   .writing-wrapper .desc {
     position: absolute;
     width: 212px;
-    bottom: 0;
-    right: 0; }
+    bottom: 0; }
+    .writing-wrapper .desc.right {
+      right: 0; }
     .writing-wrapper .desc p {
       font-size: 14px;
       line-height: 17px;
@@ -195,12 +196,16 @@ footer {
       margin-bottom: 1rem; }
   .writing-wrapper .title-pub {
     position: absolute;
-    left: -13rem;
-    bottom: 11rem;
     transform: rotate(-90deg); }
+    .writing-wrapper .title-pub.left {
+      left: -13rem;
+      bottom: 11rem; }
+    .writing-wrapper .title-pub.right {
+      right: 9rem;
+      bottom: 11rem; }
     .writing-wrapper .title-pub h3, .writing-wrapper .title-pub h4 {
       color: #000;
-      display: inline-block;
+      display: inline;
       font-weight: normal; }
     .writing-wrapper .title-pub h3 {
       font-size: 36px;
@@ -211,13 +216,21 @@ footer {
   .writing-wrapper .cover {
     position: relative; }
     .writing-wrapper .cover img {
-      position: relative;
+      position: relative; }
+    .writing-wrapper .cover.right img {
+      left: 18rem; }
+    .writing-wrapper .cover.left img {
       left: 1rem; }
     .writing-wrapper .cover p {
       position: absolute; }
       .writing-wrapper .cover p#obsolesce {
         width: 369px;
         left: 34px;
+        bottom: 68px; }
+      .writing-wrapper .cover p#garden {
+        width: 369px;
+        color: #fff;
+        right: -32px;
         bottom: 68px; }
   .writing-wrapper a {
     color: #789f51; }

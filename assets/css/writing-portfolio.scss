@@ -7,7 +7,7 @@ $narrow-text-width:600px;
 $portfolio-text-width:500px;
 $nav-icon-size:16px;
 $border:4px solid #e6e6e6;
-$cover-height:543px;
+$cover-height:619px;
 $cover-width:423px;
 
 /* top */
@@ -239,7 +239,9 @@ footer {
     position:absolute;
     width:212px;
     bottom:0;
-    right:0;
+    &.right {
+      right:0;
+    }
     p {
       font-size:14px;
       line-height:17px;
@@ -250,12 +252,18 @@ footer {
   }
   .title-pub {
     position:absolute;
-    left:-13rem;;
-    bottom:11rem;
     transform: rotate(-90deg);
+    &.left {
+      left:-13rem;
+      bottom:11rem;
+    }
+    &.right {
+      right:9rem;
+      bottom:11rem;
+    }
     h3, h4 {
       color:#000;
-      display:inline-block;
+      display:inline;
       font-weight:normal;
     }
     h3 {
@@ -271,7 +279,12 @@ footer {
   .cover {
     position:relative;
     img {
-      position:relative;
+    position:relative;
+    }
+    &.right img {
+      left:18rem;
+    }
+    &.left img {
       left:1rem;
     }
     p {
@@ -279,6 +292,12 @@ footer {
       &#obsolesce {
         width: 369px;
         left: 34px;
+        bottom: 68px;
+      }
+      &#garden {
+        width: 369px;
+        color: #fff;
+        right: -32px;
         bottom: 68px;
       }
     }
