@@ -316,6 +316,7 @@ footer {
     }
   }
   &#diy {
+  grid-template-columns: 15% 1fr 1fr;
     img {
       width:423px;
       height:600px;
@@ -324,8 +325,21 @@ footer {
       p {
         width: 369px;
         color: #fff;
-        left: 22px;
-        bottom: 34px;
+        left: 10%;
+        bottom: 50%;
+      }
+    }
+  }
+  &#parts {
+    img {
+      width:423px;
+      height:600px;
+    }
+    .cover-col {
+      p {
+        width: 369px;
+        left: 10%;
+        bottom: 50%;
       }
     }
   }

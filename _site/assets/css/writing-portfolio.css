@@ -233,14 +233,23 @@ footer {
     color: #fff;
     left: 22px;
     bottom: 34px; }
-  .writing-grid#diy img {
+  .writing-grid#diy {
+    grid-template-columns: 15% 1fr 1fr; }
+    .writing-grid#diy img {
+      width: 423px;
+      height: 600px; }
+    .writing-grid#diy .cover-col p {
+      width: 369px;
+      color: #fff;
+      left: 10%;
+      bottom: 50%; }
+  .writing-grid#parts img {
     width: 423px;
     height: 600px; }
-  .writing-grid#diy .cover-col p {
+  .writing-grid#parts .cover-col p {
     width: 369px;
-    color: #fff;
-    left: 22px;
-    bottom: 34px; }
+    left: 10%;
+    bottom: 50%; }
 
 @media only screen and (max-width: 500px) {
   .content {
