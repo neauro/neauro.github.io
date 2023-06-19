@@ -225,6 +225,22 @@ footer {
       right: 100px;
       width: 106px;
       bottom: 0px; }
+  .writing-grid#taste img {
+    width: 423px;
+    height: 600px; }
+  .writing-grid#taste .cover-col p {
+    width: 369px;
+    color: #fff;
+    left: 22px;
+    bottom: 34px; }
+  .writing-grid#diy img {
+    width: 423px;
+    height: 600px; }
+  .writing-grid#diy .cover-col p {
+    width: 369px;
+    color: #fff;
+    left: 22px;
+    bottom: 34px; }
 
 @media only screen and (max-width: 500px) {
   .content {
