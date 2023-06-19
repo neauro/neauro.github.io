@@ -7,8 +7,6 @@ $narrow-text-width:600px;
 $portfolio-text-width:500px;
 $nav-icon-size:16px;
 $border:4px solid #e6e6e6;
-$cover-height:619px;
-$cover-width:423px;
 
 /* top */
 
@@ -66,7 +64,7 @@ h1, h2 {
 }
 
 .content{
-  width:850px;
+  width:700px;
   padding:10px;
   box-sizing:border-box;
   left:5rem;
@@ -223,7 +221,75 @@ footer {
   }
 }
 
-/* writing */
+
+/* test grid */
+.writing-grid {
+  display:grid;
+  grid-template-columns: 5% 1fr 1fr;
+
+  .title-pub-col {
+    position:relative;
+  }
+  .title-pub {
+    position:absolute;
+    left:0;
+    bottom:0;
+    transform: rotate(-90deg) translate(0%);
+    transform-origin: left top;
+    width:max-content;
+    h3, h4 {
+      color:#000;
+      display:inline;
+      font-weight:normal;
+    }
+    h3 {
+      font-size:36px;
+      margin-right:1rem;
+    }
+    h4 {
+      font-size: 20px;
+      font-family: "Georgia", serif;
+    }
+  }
+
+  .cover-col {
+    position:relative;
+    p {
+      position:absolute;
+    }
+  }
+  .desc-col {
+    padding:30px;
+    color:$text-color-lighter;
+    font-size:80%;
+    line-height:140%;
+    position:relative;
+    p {
+      position:absolute;
+      bottom:0;
+    }
+  }
+
+  /* specific styles */
+
+  &#obsolesce {
+    img {
+      width:423px;
+      height:600px;
+    }
+    .cover-col p {
+      width: 369px;
+      left: 21px;
+      bottom: 68px;
+    }
+  }
+}
+
+
+
+
+
+/* writing
 .writing-portfolio {
   margin-top:3rem;
 }
@@ -343,16 +409,12 @@ footer {
     }
   }
   
-  /* specific styles */
+  specific styles
   &#obsolesce {
     .cover p {
       width: 369px;
       left: 34px;
       bottom: 68px;
-    }
-    img {
-      width:423px;
-      height:600px;
     }
   }
   &#garden {
@@ -387,4 +449,4 @@ footer {
     }
   }
 
-}
+} */
