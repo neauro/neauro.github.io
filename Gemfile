@@ -15,3 +15,4 @@ gem "github-pages"
   # end
 
 gem "webrick", "~> 1.7"
+gem "tzinfo", ">= 1.2.10"
