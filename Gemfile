@@ -15,4 +15,9 @@ gem "github-pages"
   # end
 
 gem "webrick", "~> 1.7"
+
+# security updates
 gem "tzinfo", ">= 1.2.10"
+gem "nokogiri", ">= 1.14.3"
+gem "commonmarker", ">= 0.23.9"
+gem "activesupport", ">= 6.1.7.3"
