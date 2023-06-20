@@ -98,7 +98,6 @@ a {
 
 @media only screen and (max-width: 960px) {
   .content {
-    /* border:1px dashed green;   */
     width: auto; }
     .content .writing-bit {
       display: block; }
@@ -221,9 +220,7 @@ footer {
   .writing-grid#butterfly .desc-col {
     padding: 0px; }
     .writing-grid#butterfly .desc-col p {
-      position: absolute;
       right: 100px;
-      width: 106px;
       bottom: 0px; }
   .writing-grid#taste img {
     width: 423px;
@@ -251,29 +248,30 @@ footer {
     left: 10%;
     bottom: 50%; }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 730px) {
+  body {
+    border: 1px solid blue;
+    overflow-x: hidden; }
+
+  .writing-portfolio {
+    padding-top: 3rem; }
+
+  .writing-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 1fr;
+    margin-bottom: 10rem; }
+    .writing-grid .title-pub-col {
+      top: 3rem; }
+    .writing-grid .title-pub {
+      transform: none;
+      width: 80%; }
+    .writing-grid .desc-col {
+      width: 50%; }
+      .writing-grid .desc-col p {
+        position: initial; }
+
   .content {
     overflow-x: hidden;
     left: 1rem; }
-    .content h2.subtitle {
-      margin-bottom: 5rem; }
-    .content .writing-bit {
-      width: 100%; }
     .content footer {
       width: 80%; } }
-/*
-@media only screen and (max-width: 620px) {
-    border:2px dashed purple;
-
-} */
-/*
-@media only screen and (max-width: 320px) {
-  .content {
-    width:100%;
-    /* border:2px solid blue;
-  }
-  .rainslice {
-    width:320px;
-  }
-  
-} */
