@@ -86,28 +86,29 @@ h2 {
     height: 16px;
     margin: 0px auto; }
 
-a {
+.top-bar a {
   text-decoration: none; }
-  a:hover, a:active {
+  .top-bar a:link {
     text-decoration: none; }
-  a:hover {
-    top: 2px;
-    left: 2px; }
-  a:link, a:visited {
-    color: #4c4c4c; }
+  .top-bar a:hover, .top-bar a:active {
+    text-decoration: underline; }
+  .top-bar a:visited {
+    text-decoration: underline; }
 
-@media only screen and (max-width: 960px) {
-  .content {
-    width: auto; }
-    .content .writing-bit {
-      display: block; }
-    .content footer {
-      display: block;
-      max-width: initial;
-      min-width: initial; }
-      .content footer .bio {
-        padding: 0;
-        padding-top: 1rem; } }
+.writing-portfolio a {
+  text-decoration: none;
+  background-color: #91A86B;
+  color: #ffffff;
+  padding-left: 4px;
+  padding-right: 4px; }
+  .writing-portfolio a:hover, .writing-portfolio a:active {
+    top: 2px;
+    left: 2px;
+    text-decoration: underline; }
+  .writing-portfolio a:visited {
+    background-color: #728258;
+    text-decoration: underline; }
+
 hr {
   border: 0;
   border-top: 4px solid #e6e6e6;
@@ -250,7 +251,6 @@ footer {
 
 @media only screen and (max-width: 730px) {
   body {
-    border: 1px solid blue;
     overflow-x: hidden; }
 
   .writing-portfolio {
@@ -266,7 +266,8 @@ footer {
       transform: none;
       width: 80%; }
     .writing-grid .desc-col {
-      width: 50%; }
+      width: 50%;
+      grid-row: 3; }
       .writing-grid .desc-col p {
         position: initial; }
 

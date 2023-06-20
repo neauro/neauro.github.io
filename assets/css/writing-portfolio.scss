@@ -7,6 +7,7 @@ $narrow-text-width:600px;
 $portfolio-text-width:500px;
 $nav-icon-size:16px;
 $border:4px solid #e6e6e6;
+$link-color:#91A86B;
 
 /* top */
 
@@ -109,41 +110,43 @@ h1, h2 {
   }
 }
 
-a {
-  text-decoration:none;
-  &:hover,
-  &:active {
+.top-bar {
+  a {
     text-decoration:none;
-  }
-  &:hover {
-    top:2px;
-    left:2px;
-  }
-
-  &:link,
-  &:visited {
-    color: $text-color-default;
-  }
-}
-
-@media only screen and (max-width: 960px) {
-  .content {
-    width:auto;
-    .writing-bit {
-      display:block;
+    &:link {
+      text-decoration:none;
     }
-    footer {
-      display:block;
-      max-width:initial;
-      min-width:initial;
-      .bio {
-        padding:0;
-        padding-top:1rem;
-      }
+    &:hover,
+    &:active {
+      text-decoration:underline;
+    }
+
+    &:visited {
+      text-decoration:underline;
     }
   }
 }
 
+.writing-portfolio {
+  a {
+    text-decoration:none;
+    background-color:$link-color;
+    color:#ffffff;
+    padding-left:4px;
+    padding-right:4px;
+    &:hover,
+    &:active {
+      top:2px;
+      left:2px;
+      text-decoration:underline;
+    }
+
+    &:visited {
+      background-color: #728258;
+      text-decoration:underline;
+    }
+  }
+}
 
 hr {
   border:0;
@@ -345,7 +348,6 @@ footer {
 
 @media only screen and (max-width: 730px) {
   body {
-    border:1px solid blue;
     overflow-x: hidden;
   }
   .writing-portfolio {
@@ -364,6 +366,7 @@ footer {
     }
     .desc-col {
       width:50%;
+      grid-row:3;
       p {
         position: initial;
       }
