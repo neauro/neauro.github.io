@@ -230,6 +230,7 @@ footer {
     width: 369px;
     color: #fff;
     left: 22px;
+    text-shadow: 1px 1px 5px #000000;
     bottom: 34px; }
   .writing-grid#diy {
     grid-template-columns: 15% 1fr 1fr; }
@@ -276,3 +277,19 @@ footer {
     left: 1rem; }
     .content footer {
       width: 80%; } }
+@media only screen and (max-width: 400px) {
+  .writing-grid .desc-col {
+    padding: 0px; }
+  .writing-grid .title-pub-col {
+    width: 60%; }
+  .writing-grid .cover-col p {
+    width: 300px !important; }
+
+  .content footer {
+    width: 40%;
+    display: block; }
+    .content footer .bio {
+      padding-left: 0;
+      margin-top: 1rem; }
+      .content footer .bio p {
+        width: 80%; } }
