@@ -134,13 +134,19 @@ h1, h2 {
     color:#ffffff;
     padding-left:4px;
     padding-right:4px;
+    &.no-highlight,
+    &.no-highlight:visited
+    {
+      background-color:transparent;
+      color:$link-color;
+
+    }
     &:hover,
     &:active {
       top:2px;
       left:2px;
       text-decoration:underline;
     }
-
     &:visited {
       background-color: #728258;
       text-decoration:underline;

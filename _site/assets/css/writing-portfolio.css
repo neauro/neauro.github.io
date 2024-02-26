@@ -101,6 +101,9 @@ h2 {
   color: #ffffff;
   padding-left: 4px;
   padding-right: 4px; }
+  .writing-portfolio a.no-highlight, .writing-portfolio a.no-highlight:visited {
+    background-color: transparent;
+    color: #91A86B; }
   .writing-portfolio a:hover, .writing-portfolio a:active {
     top: 2px;
     left: 2px;
