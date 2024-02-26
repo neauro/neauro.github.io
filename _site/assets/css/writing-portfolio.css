@@ -351,6 +351,8 @@ footer {
       padding-left: 0; }
     .content#taste h2, .content#taste h3 {
       padding-left: 0em; }
+    .content#taste .credit-grid {
+      padding-left: 0; }
 
   a:link,
   a:visited {
