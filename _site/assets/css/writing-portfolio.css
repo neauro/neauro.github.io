@@ -292,3 +292,71 @@ footer {
       margin-top: 1rem; }
       .content footer .bio p {
         width: 80%; } }
+/* inherited taste */
+.content#taste {
+  overflow-y: hidden;
+  width: 100%;
+  max-width: 700px;
+  position: relative;
+  left: 0;
+  padding-left: 3rem; }
+  .content#taste h1, .content#taste h2 {
+    text-transform: none !important; }
+  .content#taste h1 {
+    line-height: 30pt;
+    font-family: "Kurale", serif; }
+  .content#taste h2 {
+    margin-bottom: 0.2em;
+    padding-left: 3rem;
+    color: #4c4c4c; }
+  .content#taste a:link,
+  .content#taste a:visited {
+    color: #4c4c4c; }
+  .content#taste h3 {
+    font-family: "Georgia";
+    font-style: italic;
+    font-size: 99%;
+    color: #757575; }
+  .content#taste .inheritedtaste {
+    padding-top: 3rem;
+    width: 100%; }
+  .content#taste .writing-portfolio {
+    padding-top: 0; }
+  .content#taste .header.title {
+    padding-left: 8rem;
+    position: relative; }
+  .content#taste .credit-grid {
+    padding-left: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    grid-template-rows: 1fr; }
+    .content#taste .credit-grid h3 {
+      padding-left: 10px; }
+
+.spoon {
+  position: absolute;
+  top: 0px;
+  left: 0px; }
+
+@media only screen and (max-width: 550px) {
+  .content#taste {
+    top: 10rem;
+    left: 0rem;
+    padding-left: 3rem;
+    width: 90% !important; }
+    .content#taste .header.title {
+      padding-left: 0; }
+    .content#taste h2, .content#taste h3 {
+      padding-left: 0em; }
+
+  a:link,
+  a:visited {
+    color: #4c4c4c; }
+
+  footer.taste {
+    min-width: auto;
+    width: 50%;
+    display: block; }
+    footer.taste .bio {
+      padding-left: 0;
+      margin-top: 1rem; } }

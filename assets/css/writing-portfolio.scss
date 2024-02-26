@@ -404,4 +404,89 @@ footer {
       }
     }
   }
+
+}
+
+/* inherited taste */
+.content#taste {
+  overflow-y:hidden;
+  width:100%;
+  max-width:700px;
+  position:relative;
+  left:0;
+  padding-left:3rem;
+  h1, h2 {
+    text-transform:none !important;
+  }
+  h1 {
+    line-height:30pt;
+    font-family:"Kurale", serif;
+  }
+  h2 {
+    margin-bottom:0.2em;
+    padding-left:3rem;
+    color: $text-color-default;
+  }
+  a:link,
+  a:visited {
+    color: $text-color-default;
+  }
+  h3 {
+    font-family:"Georgia";
+    font-style: italic;
+    font-size:99%;
+    color: $text-color-lighter;
+  }
+  .inheritedtaste {
+    padding-top:3rem;
+    width:100%;
+  }
+  .writing-portfolio {
+    padding-top:0;
+  }
+  .header.title {
+    padding-left:8rem;
+    position:relative;
+  }
+  .credit-grid {
+    padding-left:3rem;
+    display:grid;
+    grid-template-columns: 1fr 10fr;
+    grid-template-rows:1fr;
+    h3 {
+      padding-left:10px;
+    }
+  }
+}
+.spoon {
+  position:absolute;
+  top:0px;
+  left:0px;
+}
+@media only screen and (max-width: 550px) {
+  .content#taste {
+    top:10rem;
+    left:0rem;
+    padding-left:3rem;
+    width:90% !important;
+    .header.title {
+      padding-left:0;
+    }
+    h2, h3 {
+    padding-left:0em;
+    }
+  }
+  a:link,
+  a:visited {
+    color: $text-color-default;
+  }
+  footer.taste {
+    min-width:auto;
+    width:50%;
+    display:block;
+    .bio {
+      padding-left:0;
+      margin-top:1rem;
+    }
+  }
 }
