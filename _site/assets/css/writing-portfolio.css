@@ -103,7 +103,7 @@ h2 {
   padding-right: 4px; }
   .writing-portfolio a.no-highlight, .writing-portfolio a.no-highlight:visited {
     background-color: transparent;
-    color: #91A86B; }
+    color: #708253; }
   .writing-portfolio a:hover, .writing-portfolio a:active {
     top: 2px;
     left: 2px;
@@ -322,7 +322,7 @@ footer {
     color: #757575; }
   .content#taste .inheritedtaste {
     padding-top: 3rem;
-    width: 100%; }
+    width: 90%; }
   .content#taste .writing-portfolio {
     padding-top: 0; }
   .content#taste .header.title {

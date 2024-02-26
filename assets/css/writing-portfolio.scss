@@ -134,11 +134,12 @@ h1, h2 {
     color:#ffffff;
     padding-left:4px;
     padding-right:4px;
+
     &.no-highlight,
     &.no-highlight:visited
     {
       background-color:transparent;
-      color:##708253;
+      color:#708253;
 
     }
     &:hover,
@@ -445,7 +446,7 @@ footer {
   }
   .inheritedtaste {
     padding-top:3rem;
-    width:100%;
+    width:90%;
   }
   .writing-portfolio {
     padding-top:0;
