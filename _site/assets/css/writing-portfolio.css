@@ -205,6 +205,17 @@ footer {
     color: #fff;
     left: 44px;
     bottom: 68px; }
+  .writing-grid#anatomy img {
+    width: 423px;
+    height: 619px; }
+  .writing-grid#anatomy .cover-col {
+    left: 11px; }
+  .writing-grid#anatomy .cover-col p {
+    width: 369px;
+    color: #fff;
+    left: 19px;
+    top: 200px;
+    text-shadow: 1px 1px 1px #000; }
   .writing-grid#gyre img {
     width: 423px;
     height: 600px; }
