@@ -254,7 +254,8 @@ footer {
       width: 300px;
       color: #fff;
       left: 10%;
-      bottom: 10%; }
+      bottom: 10%;
+      text-shadow: 1px 1px 1px #000; }
   .writing-grid#parts img {
     width: 423px;
     height: 600px; }
