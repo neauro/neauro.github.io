@@ -275,7 +275,9 @@ footer {
     grid-template-rows: 1fr;
     margin-bottom: 10rem; }
     .writing-grid .title-pub-col {
-      top: 3rem; }
+      top: 3rem;
+      width: 70%;
+      margin-bottom: 1rem; }
     .writing-grid .title-pub {
       transform: none;
       width: 80%; }
@@ -364,10 +366,9 @@ footer {
       padding-left: 0em; }
     .content#taste .credit-grid {
       padding-left: 0; }
-
-  a:link,
-  a:visited {
-    color: #4c4c4c; }
+    .content#taste a:link,
+    .content#taste a:visited {
+      color: #4c4c4c; }
 
   footer.taste {
     min-width: auto;

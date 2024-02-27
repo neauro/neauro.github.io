@@ -382,6 +382,8 @@ footer {
     margin-bottom:10rem;
     .title-pub-col {
       top:3rem;
+      width:70%;
+      margin-bottom:1rem;
     }
     .title-pub {
       transform:none;
@@ -501,10 +503,10 @@ footer {
     .credit-grid {
       padding-left:0;
     }
-  }
-  a:link,
-  a:visited {
-    color: $text-color-default;
+    a:link,
+    a:visited {
+      color: $text-color-default;
+    }
   }
   footer.taste {
     min-width:auto;
