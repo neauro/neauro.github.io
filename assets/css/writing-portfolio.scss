@@ -420,6 +420,9 @@ footer {
 
 
 @media only screen and (max-width: 500px) {
+  body {
+    overflow-x: hidden;
+  }
   .content {
     left:1rem;
     footer {
