@@ -51,7 +51,7 @@ h2 {
   top: 0px; }
 
 .content {
-  width: 700px;
+  max-width: 700px;
   padding: 10px;
   box-sizing: border-box;
   left: 5rem;
@@ -269,13 +269,14 @@ footer {
   .writing-grid#parts .title-pub {
     width: 400px; }
 
-@media only screen and (max-width: 730px) {
+@media only screen and (max-width: 800px) {
   .content {
     position: inherit;
     margin-left: 2rem; }
 
   .writing-portfolio {
-    margin-top: 3rem; }
+    margin-top: 3rem;
+    overflow-x: hidden; }
 
   .writing-grid {
     grid-template-columns: 1fr !important;
