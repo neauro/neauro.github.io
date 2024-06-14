@@ -303,7 +303,8 @@ footer {
 @media only screen and (max-width: 500px) {
   .content {
     width: auto;
-    overflow-x: hidden; }
+    overflow-x: hidden;
+    margin-left: 0; }
     .content footer {
       font-size: 100%;
       grid-template-columns: 1fr !important;
@@ -314,35 +315,11 @@ footer {
         padding-left: 0;
         margin-top: 1rem; }
 
-  .writing-grid .desc-col p {
-    font-size: 120%;
-    line-height: 156%; } }
-/*
-@media only screen and (max-width: 400px) {
-  .writing-grid {
-    .desc-col {
-      padding:0px;
-    }
-    .title-pub-col {
-      width:60%;
-    }
-    .cover-col p {
-      width:300px !important;
-    }
-  }
-  .content footer {
-    width:40%;
-    display:block;
-    .bio {
-      padding-left:0;
-      margin-top:1rem;
-      p {
-        width:80%;
-      }
-    }
-  }
-
-} */
+  .writing-grid .desc-col {
+    width: 90%; }
+    .writing-grid .desc-col p {
+      font-size: 120%;
+      line-height: 156%; } }
 /* inherited taste */
 .content#taste {
   overflow-y: hidden;
