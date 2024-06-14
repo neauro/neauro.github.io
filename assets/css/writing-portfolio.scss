@@ -378,8 +378,9 @@ footer {
 
 
 @media only screen and (max-width: 730px) {
-  body {
-    overflow-x: hidden;
+  .content {
+    position:inherit;
+    margin-left:2rem;
   }
   .writing-portfolio {
     margin-top:3rem;
@@ -397,10 +398,10 @@ footer {
     }
     .title-pub {
       transform:none;
-      width:80%;
+      width:100%;
     }
     .desc-col {
-      width:50%;
+      width:80%;
       grid-row:3;
       font-size:100%;
       margin-top:-1rem;
@@ -421,13 +422,14 @@ footer {
 
 @media only screen and (max-width: 500px) {
   .content {
-    left:1rem;
+    width:auto;
+    overflow-x:hidden;
     footer {
       font-size:100%;
       grid-template-columns: 1fr !important;
       grid-template-rows:1fr;
       width:50%;
-      min-width:auto;
+      min-width:100%;
       .bio {
         padding-left:0;
         margin-top:1rem;
