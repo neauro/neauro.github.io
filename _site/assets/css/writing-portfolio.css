@@ -240,11 +240,11 @@ footer {
     width: 423px;
     height: 600px; }
   .writing-grid#taste .cover-col p {
-    width: 369px;
+    width: 333px;
     color: #fff;
-    left: 22px;
+    left: 38px;
     text-shadow: 1px 1px 5px #000000;
-    bottom: 34px; }
+    bottom: 66px; }
   .writing-grid#diy {
     grid-template-columns: 15% 1fr 1fr; }
     .writing-grid#diy img {
@@ -260,55 +260,101 @@ footer {
     width: 423px;
     height: 600px; }
   .writing-grid#parts .cover-col p {
-    width: 369px;
+    width: 293px;
     left: 10%;
     bottom: 50%; }
+  .writing-grid#parts .title-pub {
+    width: 400px; }
 
 @media only screen and (max-width: 730px) {
   body {
     overflow-x: hidden; }
 
   .writing-portfolio {
-    padding-top: 3rem; }
+    margin-top: 3rem; }
 
   .writing-grid {
     grid-template-columns: 1fr !important;
     grid-template-rows: 1fr;
-    margin-bottom: 10rem; }
+    margin-bottom: 5rem; }
     .writing-grid .title-pub-col {
       top: 3rem;
       width: 70%;
+      grid-template-rows: 2fr;
       margin-bottom: 1rem; }
     .writing-grid .title-pub {
       transform: none;
       width: 80%; }
     .writing-grid .desc-col {
       width: 50%;
-      grid-row: 3; }
+      grid-row: 3;
+      font-size: 100%;
+      padding-left: 0px; }
       .writing-grid .desc-col p {
         position: initial; }
 
-  .content {
-    overflow-x: hidden;
-    left: 1rem; }
-    .content footer {
-      width: 80%; } }
-@media only screen and (max-width: 400px) {
-  .writing-grid .desc-col {
-    padding: 0px; }
-  .writing-grid .title-pub-col {
-    width: 60%; }
-  .writing-grid .cover-col p {
-    width: 300px !important; }
-
   .content footer {
-    width: 40%;
-    display: block; }
-    .content footer .bio {
-      padding-left: 0;
-      margin-top: 1rem; }
-      .content footer .bio p {
-        width: 80%; } }
+    width: 80%; } }
+/*
+@media only screen and (max-width: 730px) {
+  .writing-portfolio {
+    padding-top:3rem;
+  }
+  .writing-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows:1fr;
+    margin-bottom:10rem;
+    .title-pub-col {
+      top:3rem;
+      width:70%;
+      margin-bottom:1rem;
+    }
+    .title-pub {
+      transform:none;
+      width:80%;
+    }
+    .desc-col {
+      width:50%;
+      grid-row:3;
+      p {
+        position: initial;
+      }
+    }
+  }
+  .content {
+    overflow-x:hidden;
+    left:1rem;
+    footer {
+      width:80%;
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .writing-grid {
+    .desc-col {
+      padding:0px;
+    }
+    .title-pub-col {
+      width:60%;
+    }
+    .cover-col p {
+      width:300px !important;
+    }
+  }
+  .content footer {
+    width:40%;
+    display:block;
+    .bio {
+      padding-left:0;
+      margin-top:1rem;
+      p {
+        width:80%;
+      }
+    }
+  }
+
+} */
 /* inherited taste */
 .content#taste {
   overflow-y: hidden;
