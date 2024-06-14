@@ -128,6 +128,9 @@ footer {
   min-width: 455px;
   display: grid;
   grid-template-columns: 35% auto; }
+  footer a:link,
+  footer a:visited {
+    color: #ce6305; }
   footer .avatar {
     background-image: url("../images/headshot.png");
     width: 160px;
@@ -294,42 +297,22 @@ footer {
         position: initial; }
 
   .content footer {
-    width: 80%; } }
-/*
-@media only screen and (max-width: 730px) {
-  .writing-portfolio {
-    padding-top:3rem;
-  }
-  .writing-grid {
-    grid-template-columns: 1fr !important;
-    grid-template-rows:1fr;
-    margin-bottom:10rem;
-    .title-pub-col {
-      top:3rem;
-      width:70%;
-      margin-bottom:1rem;
-    }
-    .title-pub {
-      transform:none;
-      width:80%;
-    }
-    .desc-col {
-      width:50%;
-      grid-row:3;
-      p {
-        position: initial;
-      }
-    }
-  }
+    grid-template-columns: 35% auto; } }
+@media only screen and (max-width: 500px) {
   .content {
-    overflow-x:hidden;
-    left:1rem;
-    footer {
-      width:80%;
-    }
-  }
-}
+    left: 1rem; }
+    .content footer {
+      font-size: 100%;
+      grid-template-columns: 1fr !important;
+      grid-template-rows: 1fr; }
+      .content footer .bio {
+        padding-left: 0;
+        margin-top: 1rem; }
 
+  .writing-grid .desc-col p {
+    font-size: 120%;
+    line-height: 156%; } }
+/*
 @media only screen and (max-width: 400px) {
   .writing-grid {
     .desc-col {
