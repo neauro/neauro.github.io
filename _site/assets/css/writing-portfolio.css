@@ -193,13 +193,15 @@ footer {
     .writing-grid .desc-col p {
       position: absolute;
       bottom: 0; }
-  .writing-grid#obsolesce img {
-    width: 423px;
-    height: 600px; }
-  .writing-grid#obsolesce .cover-col p {
-    width: 369px;
-    left: 21px;
-    bottom: 68px; }
+  .writing-grid#obsolesce {
+    padding-top: 1rem; }
+    .writing-grid#obsolesce img {
+      width: 423px;
+      height: 600px; }
+    .writing-grid#obsolesce .cover-col p {
+      width: 369px;
+      left: 21px;
+      bottom: 68px; }
   .writing-grid#garden img {
     width: 423px;
     height: 619px; }
@@ -259,15 +261,19 @@ footer {
       left: 10%;
       bottom: 10%;
       text-shadow: 1px 1px 1px #000; }
+  .writing-grid#parts.desc-first {
+    grid-template-columns: 1fr 1% 1fr; }
   .writing-grid#parts img {
-    width: 423px;
-    height: 600px; }
+    width: 520px;
+    height: 633px; }
   .writing-grid#parts .cover-col p {
     width: 293px;
-    left: 10%;
-    bottom: 50%; }
+    left: 25%;
+    bottom: 44%; }
   .writing-grid#parts .title-pub {
-    width: 400px; }
+    width: 400px;
+    left: 2rem;
+    z-index: 1; }
 
 @media only screen and (max-width: 800px) {
   .content {
@@ -320,7 +326,15 @@ footer {
     width: 90%; }
     .writing-grid .desc-col p {
       font-size: 120%;
-      line-height: 156%; } }
+      line-height: 156%;
+      width: 90%; }
+  .writing-grid#parts .title-pub {
+    left: 0; }
+  .writing-grid#parts .cover-col p {
+    left: 9%; }
+  .writing-grid#parts img {
+    left: -70px;
+    position: relative; } }
 /* inherited taste */
 .content#taste {
   overflow-y: hidden;

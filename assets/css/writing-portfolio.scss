@@ -261,6 +261,7 @@ footer {
   /* specific styles */
 
   &#obsolesce {
+    padding-top:1rem;
     img {
       width:423px;
       height:600px;
@@ -359,19 +360,24 @@ footer {
     }
   }
   &#parts {
+    &.desc-first {
+      grid-template-columns: 1fr 1% 1fr;
+    }
     img {
-      width:423px;
-      height:600px;
+      width:520px;
+      height:633px;
     }
     .cover-col {
       p {
         width: 293px;
-        left: 10%;
-        bottom: 50%;
+        left: 25%;
+        bottom: 44%;
       }
     }
     .title-pub {
       width:400px;
+      left:2rem;
+      z-index:1;
     }
   }
 }
@@ -444,8 +450,22 @@ footer {
       p {
       font-size:120%;
       line-height:156%;
+      width:90%;
       }
     }
+
+  &#parts {
+    .title-pub {
+      left:0;
+    }
+    .cover-col p {
+      left: 9%;
+    }
+    img {
+    left: -70px;
+      position: relative;
+    }
+  }
   }
 }
 
