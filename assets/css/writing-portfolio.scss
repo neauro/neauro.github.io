@@ -361,11 +361,10 @@ footer {
   }
   &#parts {
     &.desc-first {
-      grid-template-columns: 1fr 1% 1fr;
     }
     img {
-      width:520px;
-      height:633px;
+      width:430px;
+      height:586px;
     }
     .cover-col {
       p {
@@ -376,8 +375,6 @@ footer {
     }
     .title-pub {
       width:400px;
-      left:2rem;
-      z-index:1;
     }
   }
 }
@@ -454,18 +451,14 @@ footer {
       }
     }
 
-  &#parts {
-    .title-pub {
-      left:0;
+    &#parts {
+      .title-pub {
+        left:0 !important;
+      }
+      .cover-col p {
+        left: 9%;
+      }
     }
-    .cover-col p {
-      left: 9%;
-    }
-    img {
-    left: -70px;
-      position: relative;
-    }
-  }
   }
 }
 

@@ -261,19 +261,15 @@ footer {
       left: 10%;
       bottom: 10%;
       text-shadow: 1px 1px 1px #000; }
-  .writing-grid#parts.desc-first {
-    grid-template-columns: 1fr 1% 1fr; }
   .writing-grid#parts img {
-    width: 520px;
-    height: 633px; }
+    width: 430px;
+    height: 586px; }
   .writing-grid#parts .cover-col p {
     width: 293px;
     left: 25%;
     bottom: 44%; }
   .writing-grid#parts .title-pub {
-    width: 400px;
-    left: 2rem;
-    z-index: 1; }
+    width: 400px; }
 
 @media only screen and (max-width: 800px) {
   .content {
@@ -329,12 +325,9 @@ footer {
       line-height: 156%;
       width: 90%; }
   .writing-grid#parts .title-pub {
-    left: 0; }
+    left: 0 !important; }
   .writing-grid#parts .cover-col p {
-    left: 9%; }
-  .writing-grid#parts img {
-    left: -70px;
-    position: relative; } }
+    left: 9%; } }
 /* inherited taste */
 .content#taste {
   overflow-y: hidden;
